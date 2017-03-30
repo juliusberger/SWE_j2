@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SWE_j2.iml" filepath="$PROJECT_DIR$/SWE_j2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/antool.iml" filepath="$PROJECT_DIR$/antool.iml" />
     </modules>
   </component>
 </project>
