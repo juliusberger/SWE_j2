@@ -24,7 +24,7 @@ public class Projects implements Initializable {
 
     public Button loadProject;
 
-
+    // debug
     private ObservableList<Project> tData = FXCollections.observableArrayList(
             new Project("Test1", "22.04.2017", "22.04.2017"),
             new Project("Test2", "23.04.2017", "22.04.2017"),
@@ -33,6 +33,7 @@ public class Projects implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //<editor-fold desc="Tabelle mit Model verknüpfen">
         nameColumn.setCellValueFactory(
                 new PropertyValueFactory<>("name")
         );
@@ -44,8 +45,20 @@ public class Projects implements Initializable {
         );
 
         projectsTable.setItems(tData);
+        //</editor-fold>
+
+        //<editor-fold desc="'Projekt laden' Button Aktivieren, wenn Auswahl in Tabelle erfolgt">
+        projectsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                loadProject.setDisable(false);
+            } else {
+                loadProject.setDisable(true);
+            }
+        });
+        //</editor-fold>
     }
 
+    // Wenn 'Projekt laden' Button betätigt
     public void loadProject() {
         Project selectedProject = projectsTable.getSelectionModel().getSelectedItem();
         // TODO: handle project load

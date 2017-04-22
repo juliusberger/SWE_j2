@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.String?>
-<VBox styleClass="p-10" spacing="10.0" stylesheets="@../../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
+<VBox spacing="10.0" styleClass="p-10" stylesheets="@../../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.projects.Projects">
     <Label>
         Letzte Projekte
@@ -27,7 +27,9 @@
         </columnResizePolicy>
     </TableView>
     <HBox>
-        <Button maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" onAction="#loadProject">Projekt laden</Button>
+        <Button fx:id="loadProject" disable="true" maxWidth="1.7976931348623157E308" onAction="#loadProject"
+                HBox.hgrow="ALWAYS">Projekt laden
+        </Button>
         <Button maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Projekt speichern</Button>
     </HBox>
     <HBox>
