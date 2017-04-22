@@ -47,10 +47,10 @@
         </Label>
         <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
             <Label styleClass="ph-5">Name:</Label>
-            <TextField GridPane.columnIndex="1"/>
+            <TextField GridPane.columnIndex="1" fx:id="editorSurname"/>
 
             <Label styleClass="ph-5" GridPane.rowIndex="1">Vorname:</Label>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="editorName"/>
 
             <columnConstraints>
                 <ColumnConstraints prefWidth="100"/>
@@ -122,5 +122,4 @@
             </rowConstraints>
         </GridPane>
     </VBox>
-
 </VBox>
