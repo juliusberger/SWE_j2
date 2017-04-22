@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<VBox styleClass="p-10" spacing="10.0" stylesheets="@../../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.projects.Projects">
+    <Label>
+        Letzte Projekte
+
+        <styleClass>
+            <String fx:value="h3"/>
+            <String fx:value="bold"/>
+        </styleClass>
+    </Label>
+    <TableView fx:id="projectsTable">
+        <placeholder>
+            <Label text="Keine Projekte"/>
+        </placeholder>
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Name"/>
+            <TableColumn fx:id="dateCreatedColumn" text="Erstelldatum"/>
+            <TableColumn fx:id="dateModifiedColumn" text="Änderungsdatum"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+    <HBox>
+        <Button maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" onAction="#loadProject">Projekt laden</Button>
+        <Button maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Projekt speichern</Button>
+    </HBox>
+    <HBox>
+        <Button>Projekt erstellen</Button>
+        <Button>Projekt importieren</Button>
+    </HBox>
+
+</VBox>

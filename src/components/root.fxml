@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.Root" stylesheets="assets/global.css">
+
+
+    <TabPane prefHeight="600.0" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Projekte">
+            <fx:include source="projects/projects.fxml"/>
+        </Tab>
+        <Tab text="Projektdaten">
+            <fx:include source="projectData/projectData.fxml"/>
+        </Tab>
+        <Tab text="IST-Analyse">
+            <fx:include source="table/table.fxml"/>
+        </Tab>
+        <Tab text="SOLL-Analyse">
+            <fx:include source="table/table.fxml"/>
+        </Tab>
+        <Tab text="Lastenheft">
+            <fx:include source="table/table.fxml"/>
+        </Tab>
+        <Tab text="Aufwandsschätzung">
+            <fx:include source="table/table.fxml"/>
+        </Tab>
+        <Tab text="Glossar">
+            <fx:include source="table/table.fxml"/>
+        </Tab>
+    </TabPane>
+</AnchorPane>
