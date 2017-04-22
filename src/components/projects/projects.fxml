@@ -26,15 +26,20 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
         </columnResizePolicy>
     </TableView>
-    <HBox>
-        <Button fx:id="loadProject" disable="true" maxWidth="1.7976931348623157E308" onAction="#loadProject"
+    <HBox styleClass="button-hbox">
+        <Button fx:id="loadProject" onAction="#loadProject" disable="true" maxWidth="1.7976931348623157E308"
                 HBox.hgrow="ALWAYS">Projekt laden
         </Button>
         <Button maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Projekt speichern</Button>
     </HBox>
-    <HBox>
-        <Button>Projekt erstellen</Button>
-        <Button>Projekt importieren</Button>
+    <Separator prefWidth="200.0"/>
+    <HBox styleClass="button-hbox">
+        <Button maxWidth="1.7976931348623157E308"
+                HBox.hgrow="ALWAYS">Projekt erstellen
+        </Button>
+        <Button maxWidth="1.7976931348623157E308"
+                HBox.hgrow="ALWAYS">Projekt importieren
+        </Button>
     </HBox>
 
 </VBox>

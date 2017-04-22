@@ -15,6 +15,7 @@ public class Main extends Application {
         AnchorPane root = FXMLLoader.load(getClass().getResource("components/root.fxml"));
         Scene scene = new Scene(root);
 
+        primaryStage.setResizable(false);
         primaryStage.setTitle("ANTool");
         primaryStage.setScene(scene);
         primaryStage.show();
