@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane hbarPolicy="NEVER"
+            styleClass="p-10"
+            stylesheets="@../../assets/global.css"
+            xmlns="http://javafx.com/javafx/8.0.112"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="components.requirements.Requirements">
+	<VBox prefWidth="560"
+	      spacing="10.0">
+		<fx:define>
+			<ToggleGroup fx:id="tg1"/>
+			<ToggleGroup fx:id="tg2"/>
+			<ToggleGroup fx:id="tg3"/>
+			<ToggleGroup fx:id="tg4"/>
+			<ToggleGroup fx:id="tg5"/>
+		</fx:define>
+
+
+		<Label styleClass="h3">
+			Zielbestimmung
+		</Label>
+		<TextArea maxHeight="60.0"/>
+
+		<Separator/>
+
+		<Label styleClass="h3">
+			Produkteinsatz
+		</Label>
+		<TextArea maxHeight="60.0"/>
+
+		<Separator/>
+
+		<Label styleClass="h3">
+			Funktionale Anforderungen
+		</Label>
+		<TableView fx:id="functionalRequirementsTable"
+		           maxHeight="120.0">
+			<placeholder>
+				<Label text="Keine Einträge"/>
+			</placeholder>
+			<columns>
+				<TableColumn text="Funktion"/>
+				<TableColumn text="Beschreibung"/>
+				<TableColumn text="Akteur"/>
+			</columns>
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+			</columnResizePolicy>
+		</TableView>
+		<HBox styleClass="button-hbox">
+			<Button maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag hinzufügen
+			</Button>
+			<Button disable="true"
+			        maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag bearbeiten
+			</Button>
+			<Button disable="true"
+			        maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag löschen
+			</Button>
+		</HBox>
+
+		<Separator/>
+
+		<Label styleClass="h3">
+			Nicht-Funktionale Anforderungen
+		</Label>
+		<TableView fx:id="nonFunctionalRequirementsTable"
+		           maxHeight="120.0">
+			<placeholder>
+				<Label text="Keine Einträge"/>
+			</placeholder>
+			<columns>
+				<TableColumn text="Geschäftsprozess"/>
+				<TableColumn text="Beschreibung"/>
+			</columns>
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+			</columnResizePolicy>
+		</TableView>
+		<HBox styleClass="button-hbox">
+			<Button maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag hinzufügen
+			</Button>
+			<Button disable="true"
+			        maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag bearbeiten
+			</Button>
+			<Button disable="true"
+			        maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag löschen
+			</Button>
+		</HBox>
+
+		<Separator/>
+
+		<Label styleClass="h3">
+			Qualitätsanforderungen
+		</Label>
+		<GridPane styleClass="pt-5"
+		          HBox.hgrow="ALWAYS">
+			<Label GridPane.columnIndex="1">Wichtig</Label>
+			<Label GridPane.columnIndex="2">Mittel</Label>
+			<Label GridPane.columnIndex="3">Niedrig</Label>
+			<Label GridPane.columnIndex="4">Irrelevant</Label>
+
+			<Label styleClass="ph-5"
+			       GridPane.rowIndex="1">Funktionalität:
+			</Label>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg1}"
+			             GridPane.columnIndex="1"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg1}"
+			             GridPane.columnIndex="2"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg1}"
+			             GridPane.columnIndex="3"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg1}"
+			             GridPane.columnIndex="4"
+			             GridPane.rowIndex="1"/>
+
+			<Label styleClass="ph-5"
+			       GridPane.rowIndex="2">Zuverlässigkeit:
+			</Label>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg2}"
+			             GridPane.columnIndex="1"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg2}"
+			             GridPane.columnIndex="2"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg2}"
+			             GridPane.columnIndex="3"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg2}"
+			             GridPane.columnIndex="4"
+			             GridPane.rowIndex="1"/>
+
+			<Label styleClass="ph-5"
+			       GridPane.rowIndex="3">Effizienz:
+			</Label>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg3}"
+			             GridPane.columnIndex="1"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg3}"
+			             GridPane.columnIndex="2"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg3}"
+			             GridPane.columnIndex="3"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg3}"
+			             GridPane.columnIndex="4"
+			             GridPane.rowIndex="1"/>
+
+			<Label styleClass="ph-5"
+			       GridPane.rowIndex="4">Wartbarkeit/Änderbarkeit:
+			</Label>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg4}"
+			             GridPane.columnIndex="1"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg4}"
+			             GridPane.columnIndex="2"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg4}"
+			             GridPane.columnIndex="3"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg4}"
+			             GridPane.columnIndex="4"
+			             GridPane.rowIndex="1"/>
+
+			<Label styleClass="ph-5"
+			       GridPane.rowIndex="5">Übertragbarkeit:
+			</Label>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg5}"
+			             GridPane.columnIndex="1"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg5}"
+			             GridPane.columnIndex="2"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg5}"
+			             GridPane.columnIndex="3"
+			             GridPane.rowIndex="1"/>
+			<RadioButton mnemonicParsing="false"
+			             toggleGroup="${tg5}"
+			             GridPane.columnIndex="4"
+			             GridPane.rowIndex="1"/>
+
+
+			<columnConstraints>
+				<ColumnConstraints prefWidth="100"/>
+				<ColumnConstraints halignment="CENTER"
+				                   hgrow="SOMETIMES"/>
+				<ColumnConstraints halignment="CENTER"
+				                   hgrow="SOMETIMES"/>
+				<ColumnConstraints halignment="CENTER"
+				                   hgrow="SOMETIMES"/>
+				<ColumnConstraints halignment="CENTER"
+				                   hgrow="SOMETIMES"/>
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints minHeight="30.0"/>
+				<RowConstraints minHeight="20.0"/>
+				<RowConstraints minHeight="20.0"/>
+				<RowConstraints minHeight="20.0"/>
+				<RowConstraints minHeight="20.0"/>
+				<RowConstraints minHeight="20.0"/>
+			</rowConstraints>
+		</GridPane>
+
+		<Separator/>
+
+		<Label styleClass="h3">
+			Ergänzungen
+		</Label>
+		<TableView fx:id="additionalTable"
+		           maxHeight="120.0">
+			<placeholder>
+				<Label text="Keine Einträge"/>
+			</placeholder>
+			<columns>
+				<TableColumn text="Thema/Rubrik/Schlagwort"/>
+				<TableColumn text="Beschreibung"/>
+			</columns>
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+			</columnResizePolicy>
+		</TableView>
+		<HBox styleClass="button-hbox">
+			<Button maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag hinzufügen
+			</Button>
+			<Button disable="true"
+			        maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag bearbeiten
+			</Button>
+			<Button disable="true"
+			        maxWidth="1.7976931348623157E308"
+			        HBox.hgrow="ALWAYS">Eintrag löschen
+			</Button>
+		</HBox>
+	</VBox>
+</ScrollPane>

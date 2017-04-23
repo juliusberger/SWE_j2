@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox spacing="10.0"
+      styleClass="p-10"
+      stylesheets="@../../assets/global.css"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="components.stateAnalysis.EditDialog"
+      prefHeight="300.0"
+      prefWidth="400.0">
+	<Label styleClass="h3">
+		Eintrag
+	</Label>
+	<TextField fx:id="entry"/>
+	<Separator/>
+	<Label styleClass="h3">
+		Beschreibung
+	</Label>
+	<TextArea fx:id="description"/>
+
+	<HBox styleClass="button-hbox">
+		<Button fx:id="save"
+		        maxWidth="1.7976931348623157E308"
+		        HBox.hgrow="ALWAYS">Speichern
+		</Button>
+		<Button fx:id="cancel"
+		        maxWidth="1.7976931348623157E308"
+		        HBox.hgrow="ALWAYS">Abbrechen
+		</Button>
+	</HBox>
+
+
+</VBox>
