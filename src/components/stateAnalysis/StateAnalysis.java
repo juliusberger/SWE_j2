@@ -1,8 +1,11 @@
 package components.stateAnalysis;
 
+import helpers.Dialog;
+import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import models.Analysis.AnalysisEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,11 +15,13 @@ import java.util.ResourceBundle;
  */
 public class StateAnalysis implements Initializable {
 
-    public TableView stateAnalysisTable;
+    public TableView<AnalysisEntry> stateAnalysisTable;
 
-    public Button addEntry;
-    public Button editEntry;
-    public Button deleteEntry;
+    public Button addEntryButton;
+    public Button editEntryButton;
+    public Button deleteEntryButton;
+
+    private models.Analysis.FutureAnalysis data = new models.Analysis.FutureAnalysis();
 
 
     @Override
@@ -24,21 +29,51 @@ public class StateAnalysis implements Initializable {
                            ResourceBundle resources) {
 
 
-        //<editor-fold desc="'Projekt laden' Button Aktivieren, wenn Auswahl in Tabelle erfolgt">
-        stateAnalysisTable.getSelectionModel()
-                .selectedItemProperty()
-                .addListener((obs, oldSelection, newSelection) ->
-                {
-                    if (newSelection != null)
-                    {
-                        editEntry.setDisable(false);
-                        deleteEntry.setDisable(false);
-                    } else
-                    {
-                        editEntry.setDisable(true);
-                        deleteEntry.setDisable(true);
-                    }
-                });
-        //</editor-fold>
+        TableBinding.bindTableToData(stateAnalysisTable,
+                data.getEntries(),
+                "entryName",
+                "description");
+        TableBinding.observeDisabledButtonState(stateAnalysisTable,
+                editEntryButton,
+                deleteEntryButton);
+
+        TableBinding.bindTableDeleteButton(stateAnalysisTable,
+                deleteEntryButton);
+
+        addEntryButton.setOnAction(event -> {
+            Dialog dialog = new Dialog("Eintrag",
+                    "Beschreibung");
+            dialog.addObserver((o, arg) -> {
+                if (dialog.isSaveClicked()) {
+                    this.data.getEntries().add(new AnalysisEntry(
+                            dialog.getData(0),
+                            dialog.getData(1)
+                    ));
+                }
+                dialog.deleteObservers();
+            });
+            dialog.show();
+        });
+
+        editEntryButton.setOnAction(event -> {
+            final AnalysisEntry selectedEntry = this.stateAnalysisTable.getSelectionModel().getSelectedItem();
+            Dialog dialog = new Dialog("Eintrag",
+                    "Beschreibung");
+            dialog.addObserver((o, arg) -> {
+                if (dialog.isSaveClicked()) {
+                    selectedEntry.setEntryName(
+                            dialog.getData(0)
+                    );
+                    selectedEntry.setDescription(
+                            dialog.getData(1)
+                    );
+                }
+                dialog.deleteObservers();
+            });
+            dialog.setData(
+                    selectedEntry.getEntryName(),
+                    selectedEntry.getDescription());
+            dialog.show();
+        });
     }
 }

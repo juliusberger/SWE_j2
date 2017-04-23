@@ -1,12 +1,12 @@
 package components.projects;
 
+import helpers.TableBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import models.Project;
 
 import java.net.URL;
@@ -22,7 +22,7 @@ public class Projects implements Initializable {
     public TableColumn<Project, String> dateCreatedColumn;
     public TableColumn<Project, String> dateModifiedColumn;
 
-    public Button loadProject;
+    public Button loadProjectButton;
 
     // debug
     private ObservableList<Project> tData = FXCollections.observableArrayList(
@@ -46,27 +46,35 @@ public class Projects implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //<editor-fold desc="Tabelle mit Model verknüpfen">
-        nameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("name")
-        );
-        dateCreatedColumn.setCellValueFactory(
-                new PropertyValueFactory<>("dateCreated")
-        );
-        dateModifiedColumn.setCellValueFactory(
-                new PropertyValueFactory<>("dateModified")
-        );
+        TableBinding.bindTableToData(projectsTable,
+                tData,
+                "name",
+                "dateCreated",
+                "dateModified");
 
-        projectsTable.setItems(tData);
+//        nameColumn.setCellValueFactory(
+//                new PropertyValueFactory<>("name")
+//        );
+//        dateCreatedColumn.setCellValueFactory(
+//                new PropertyValueFactory<>("dateCreated")
+//        );
+//        dateModifiedColumn.setCellValueFactory(
+//                new PropertyValueFactory<>("dateModified")
+//        );
+//
+//        projectsTable.setItems(tData);
         //</editor-fold>
 
+        TableBinding.observeDisabledButtonState(projectsTable,
+                loadProjectButton);
         //<editor-fold desc="'Projekt laden' Button Aktivieren, wenn Auswahl in Tabelle erfolgt">
-        projectsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                loadProject.setDisable(false);
-            } else {
-                loadProject.setDisable(true);
-            }
-        });
+//        projectsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+//            if (newSelection != null) {
+//                loadProjectButton.setDisable(false);
+//            } else {
+//                loadProjectButton.setDisable(true);
+//            }
+//        });
         //</editor-fold>
     }
 

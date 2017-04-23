@@ -8,25 +8,26 @@
       stylesheets="@../../assets/global.css"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="components.stateAnalysis.EditDialog"
+      fx:id="root"
+      fx:controller="helpers.dialog.SimpleDialog"
       prefHeight="300.0"
       prefWidth="400.0">
 	<Label styleClass="h3">
 		Eintrag
 	</Label>
-	<TextField fx:id="entry"/>
+	<TextField fx:id="entryField"/>
 	<Separator/>
 	<Label styleClass="h3">
 		Beschreibung
 	</Label>
-	<TextArea fx:id="description"/>
+	<TextArea fx:id="descriptionField"/>
 
 	<HBox styleClass="button-hbox">
-		<Button fx:id="save"
+		<Button fx:id="saveButton"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Speichern
 		</Button>
-		<Button fx:id="cancel"
+		<Button fx:id="cancelButton"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Abbrechen
 		</Button>

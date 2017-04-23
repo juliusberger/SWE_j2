@@ -1,8 +1,10 @@
 package components.futureAnalysis;
 
+import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import models.Analysis.AnalysisEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,33 +14,35 @@ import java.util.ResourceBundle;
  */
 public class FutureAnalysis implements Initializable {
 
-    public TableView futureAnalysisTable;
+    public TableView<AnalysisEntry> futureAnalysisTable;
 
-    public Button addEntry;
-    public Button editEntry;
-    public Button deleteEntry;
+    public Button addEntryButton;
+    public Button editEntryButton;
+    public Button deleteEntryButton;
+
+    private models.Analysis.FutureAnalysis data = new models.Analysis.FutureAnalysis();
 
 
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
 
+        TableBinding.bindTableToData(futureAnalysisTable,
+                data.getEntries(),
+                "entryName",
+                "description");
+        TableBinding.observeDisabledButtonState(futureAnalysisTable,
+                editEntryButton,
+                deleteEntryButton);
 
-        //<editor-fold desc="'Projekt laden' Button Aktivieren, wenn Auswahl in Tabelle erfolgt">
-        futureAnalysisTable.getSelectionModel()
-                .selectedItemProperty()
-                .addListener((obs, oldSelection, newSelection) ->
-                {
-                    if (newSelection != null)
-                    {
-                        editEntry.setDisable(false);
-                        deleteEntry.setDisable(false);
-                    } else
-                    {
-                        editEntry.setDisable(true);
-                        deleteEntry.setDisable(true);
-                    }
-                });
-        //</editor-fold>
+        TableBinding.bindTableDeleteButton(futureAnalysisTable,
+                deleteEntryButton);
+
+        // debug
+        final int[] index = {0};
+        addEntryButton.setOnAction(event -> data.getEntries()
+                .add(new AnalysisEntry("test" + Integer.toString(index[0]),
+                        "testDesc" + Integer.toString(index[0]++))));
+
     }
 }

@@ -22,14 +22,14 @@
 		<Label styleClass="h3">
 			Zielbestimmung
 		</Label>
-		<TextArea maxHeight="60.0"/>
+		<TextArea maxHeight="60.0" fx:id="projectGoalText"/>
 
 		<Separator/>
 
 		<Label styleClass="h3">
 			Produkteinsatz
 		</Label>
-		<TextArea maxHeight="60.0"/>
+		<TextArea maxHeight="60.0" fx:id="fieldOfApplicationText"/>
 
 		<Separator/>
 
@@ -51,14 +51,14 @@
 			</columnResizePolicy>
 		</TableView>
 		<HBox styleClass="button-hbox">
-			<Button maxWidth="1.7976931348623157E308"
+			<Button fx:id="functionalRequirementsAddButton" maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag hinzufügen
 			</Button>
-			<Button disable="true"
+			<Button fx:id="functionalRequirementsEditButton"
 			        maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag bearbeiten
 			</Button>
-			<Button disable="true"
+			<Button fx:id="functionalRequirementsDeleteButton"
 			        maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag löschen
 			</Button>
@@ -83,14 +83,14 @@
 			</columnResizePolicy>
 		</TableView>
 		<HBox styleClass="button-hbox">
-			<Button maxWidth="1.7976931348623157E308"
+			<Button fx:id="nonFunctionalRequirementsAddButton" maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag hinzufügen
 			</Button>
-			<Button disable="true"
+			<Button fx:id="nonFunctionalRequirementsEditButton"
 			        maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag bearbeiten
 			</Button>
-			<Button disable="true"
+			<Button fx:id="nonFunctionalRequirementsDeleteButton"
 			        maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag löschen
 			</Button>
@@ -235,7 +235,7 @@
 		<Label styleClass="h3">
 			Ergänzungen
 		</Label>
-		<TableView fx:id="additionalTable"
+		<TableView fx:id="commentsTable"
 		           maxHeight="120.0">
 			<placeholder>
 				<Label text="Keine Einträge"/>
@@ -249,14 +249,14 @@
 			</columnResizePolicy>
 		</TableView>
 		<HBox styleClass="button-hbox">
-			<Button maxWidth="1.7976931348623157E308"
+			<Button fx:id="commentsAddButton" maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag hinzufügen
 			</Button>
-			<Button disable="true"
+			<Button fx:id="commentsEditButton"
 			        maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag bearbeiten
 			</Button>
-			<Button disable="true"
+			<Button fx:id="commentsDeleteButton"
 			        maxWidth="1.7976931348623157E308"
 			        HBox.hgrow="ALWAYS">Eintrag löschen
 			</Button>

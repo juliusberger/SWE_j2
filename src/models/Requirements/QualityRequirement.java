@@ -1,4 +1,4 @@
-package models;
+package models.Requirements;
 
 /**
  * Created by Michi on 23.04.2017.

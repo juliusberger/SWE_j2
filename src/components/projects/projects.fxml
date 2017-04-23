@@ -31,7 +31,7 @@
         </columnResizePolicy>
     </TableView>
     <HBox styleClass="button-hbox">
-        <Button fx:id="loadProject" onAction="#loadProject" disable="true" maxWidth="1.7976931348623157E308"
+        <Button fx:id="loadProjectButton" onAction="#loadProject" disable="true" maxWidth="1.7976931348623157E308"
                 HBox.hgrow="ALWAYS">Projekt laden
         </Button>
         <Button maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Projekt speichern</Button>

@@ -9,7 +9,9 @@ public class ProjectData
 {
     private final SimpleStringProperty name;
     private final SimpleStringProperty dueDate;
+
     private final ProjectEditor projectEditor;
+
     private final Customer customer;
 
     public ProjectData(String name,
@@ -19,7 +21,9 @@ public class ProjectData
     {
         this.name = new SimpleStringProperty(name);
         this.dueDate = new SimpleStringProperty(dueDate);
+
         this.projectEditor = projectEditor;
+
         this.customer = customer;
     }
 
