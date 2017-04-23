@@ -4,7 +4,7 @@ import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import models.Analysis.AnalysisEntry;
+import models.partials.Analysis.AnalysisEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +20,7 @@ public class FutureAnalysis implements Initializable {
     public Button editEntryButton;
     public Button deleteEntryButton;
 
-    private models.Analysis.FutureAnalysis data = new models.Analysis.FutureAnalysis();
+    private models.FutureAnalysis data = new models.FutureAnalysis();
 
 
     @Override

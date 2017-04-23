@@ -1,4 +1,4 @@
-package models.Analysis;
+package models.partials.Analysis;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-abstract class Analysis {
+public abstract class Analysis {
     private ObservableList<AnalysisEntry> entries = FXCollections.observableArrayList();
 
     // Methoden sind durch ObservableList implementiert

@@ -1,7 +1,7 @@
 package testStage;
 
-import models.Analysis.AnalysisEntry;
-import models.Analysis.StateAnalysis;
+import models.StateAnalysis;
+import models.partials.Analysis.AnalysisEntry;
 
 /**
  * Erstellt von Julius am 23/04/2017.

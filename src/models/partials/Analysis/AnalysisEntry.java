@@ -1,4 +1,4 @@
-package models.Analysis;
+package models.partials.Analysis;
 
 import javafx.beans.property.SimpleStringProperty;
 

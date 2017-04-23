@@ -4,8 +4,10 @@ import helpers.Dialog;
 import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import models.Analysis.AnalysisEntry;
+import models.FutureAnalysis;
+import models.partials.Analysis.AnalysisEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,13 +23,15 @@ public class StateAnalysis implements Initializable {
     public Button editEntryButton;
     public Button deleteEntryButton;
 
-    private models.Analysis.FutureAnalysis data = new models.Analysis.FutureAnalysis();
+    private FutureAnalysis data = new FutureAnalysis();
 
 
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
 
+
+// TODO: Optimize and Refactor Functions for edit and add
 
         TableBinding.bindTableToData(stateAnalysisTable,
                 data.getEntries(),
@@ -75,5 +79,17 @@ public class StateAnalysis implements Initializable {
                     selectedEntry.getDescription());
             dialog.show();
         });
+
+        stateAnalysisTable.setRowFactory(tv -> {
+            TableRow<AnalysisEntry> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    editEntryButton.getOnAction().handle(null);
+                }
+            });
+            return row;
+        });
+
+
     }
 }

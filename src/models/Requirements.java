@@ -1,6 +1,10 @@
-package models.Requirements;
+package models;
 
 import javafx.beans.property.SimpleStringProperty;
+import models.partials.Requirements.Comments;
+import models.partials.Requirements.FunctionalRequirements;
+import models.partials.Requirements.NonFunctionalRequirements;
+import models.partials.Requirements.QualityRequirement;
 
 import java.util.ArrayList;
 import java.util.List;

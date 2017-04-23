@@ -4,9 +4,9 @@ import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import models.Requirements.CommentEntry;
-import models.Requirements.FunctionalRequirementEntry;
-import models.Requirements.NonFunctionalRequirementEntry;
+import models.partials.Requirements.CommentEntry;
+import models.partials.Requirements.FunctionalRequirementEntry;
+import models.partials.Requirements.NonFunctionalRequirementEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,7 +32,7 @@ public class Requirements implements Initializable {
     public Button commentsDeleteButton;
 
 
-    private models.Requirements.Requirements data = new models.Requirements.Requirements("",
+    private models.Requirements data = new models.Requirements("",
             "");
 
     @Override

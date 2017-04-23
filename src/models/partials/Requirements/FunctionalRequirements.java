@@ -1,4 +1,4 @@
-package models.Requirements;
+package models.partials.Requirements;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
