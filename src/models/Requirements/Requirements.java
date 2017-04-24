@@ -15,7 +15,7 @@ public class Requirements {
     private final FunctionalRequirements functionalRequirements = new FunctionalRequirements();
     private final NonFunctionalRequirements nonFunctionalRequirements = new NonFunctionalRequirements();
 
-    private final List<QualityRequirement> qualityRequirements = new ArrayList<>(5);
+    private final List<QualityRequirementEntry> qualityRequirementEntries = new ArrayList<>(5);
 
     private final Comments comments = new Comments();
 
@@ -57,8 +57,8 @@ public class Requirements {
         return this.nonFunctionalRequirements;
     }
 
-    public List<QualityRequirement> getQualityRequirements() {
-        return this.qualityRequirements;
+    public List<QualityRequirementEntry> getQualityRequirementEntries() {
+        return this.qualityRequirementEntries;
     }
 
     public Comments getComments() {

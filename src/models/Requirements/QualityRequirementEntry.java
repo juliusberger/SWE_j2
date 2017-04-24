@@ -3,7 +3,7 @@ package models.Requirements;
 /**
  * Created by Michi on 23.04.2017.
  */
-public class QualityRequirement
+public class QualityRequirementEntry
 {
     private String name;
     private Priority priority;
@@ -13,8 +13,8 @@ public class QualityRequirement
         HIGH, MEDIUM, LOW, IRRELEVANT
     }
 
-    public QualityRequirement(String name,
-                              Priority priority)
+    public QualityRequirementEntry(String name,
+                                   Priority priority)
     {
         this.name = name;
         this.priority = priority;
