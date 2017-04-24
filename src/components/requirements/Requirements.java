@@ -4,9 +4,9 @@ import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import models.partials.Requirements.CommentEntry;
-import models.partials.Requirements.FunctionalRequirementEntry;
-import models.partials.Requirements.NonFunctionalRequirementEntry;
+import models.Requirements.CommentEntry;
+import models.Requirements.FunctionalRequirementEntry;
+import models.Requirements.NonFunctionalRequirementEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,43 +32,68 @@ public class Requirements implements Initializable {
     public Button commentsDeleteButton;
 
 
-    private models.Requirements data = new models.Requirements("",
+    private models.Requirements.Requirements data = new models.Requirements.Requirements("",
             "");
 
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
 
-        TableBinding.bindTableToData(functionalRequirementsTable,
-                data.getFunctionalRequirements().getEntries(),
+        TableBinding<FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>(this.functionalRequirementsTable,
+                this.data.getFunctionalRequirements(),
                 "function",
-                "stakeholder",
-                "description");
-        TableBinding.observeDisabledButtonState(functionalRequirementsTable,
-                functionalRequirementsEditButton,
-                functionalRequirementsDeleteButton);
-        TableBinding.bindTableDeleteButton(functionalRequirementsTable,
-                functionalRequirementsDeleteButton);
+                "description",
+                "stakeholder");
+        functionalRequirementEntryTableBinding.bindAll(this.functionalRequirementsAddButton,
+                this.functionalRequirementsEditButton,
+                this.functionalRequirementsDeleteButton);
 
-        TableBinding.bindTableToData(nonFunctionalRequirementsTable,
-                data.getNonFunctionalRequirements().getEntries(),
+        TableBinding<NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>(this.nonFunctionalRequirementsTable,
+                this.data.getNonFunctionalRequirements(),
                 "businessProcess",
                 "description");
-        TableBinding.observeDisabledButtonState(nonFunctionalRequirementsTable,
-                nonFunctionalRequirementsEditButton,
-                nonFunctionalRequirementsDeleteButton);
-        TableBinding.bindTableDeleteButton(nonFunctionalRequirementsTable,
-                nonFunctionalRequirementsDeleteButton);
+        nonFunctionalRequirementEntryTableBinding.bindAll(this.nonFunctionalRequirementsAddButton,
+                this.nonFunctionalRequirementsEditButton,
+                this.nonFunctionalRequirementsDeleteButton);
 
-        TableBinding.bindTableToData(commentsTable,
-                data.getComments().getEntries(),
+        TableBinding<CommentEntry> commentEntryTableBinding = new TableBinding<>(this.commentsTable,
+                this.data.getComments(),
                 "keyword",
                 "description");
-        TableBinding.observeDisabledButtonState(commentsTable,
-                commentsEditButton,
-                commentsDeleteButton);
-        TableBinding.bindTableDeleteButton(commentsTable,
-                commentsDeleteButton);
+        commentEntryTableBinding.bindAll(this.commentsAddButton,
+                this.commentsEditButton,
+                this.commentsDeleteButton);
+
+//        TableBinding.bindTableToData(functionalRequirementsTable,
+//                data.getFunctionalRequirements().getEntries(),
+//                "function",
+//                "stakeholder",
+//                "description");
+//        TableBinding.observeDisabledButtonState(functionalRequirementsTable,
+//                functionalRequirementsEditButton,
+//                functionalRequirementsDeleteButton);
+//        TableBinding.bindTableDeleteButton(functionalRequirementsTable,
+//                functionalRequirementsDeleteButton);
+//
+//        TableBinding.bindTableToData(nonFunctionalRequirementsTable,
+//                data.getNonFunctionalRequirements().getEntries(),
+//                "businessProcess",
+//                "description");
+//        TableBinding.observeDisabledButtonState(nonFunctionalRequirementsTable,
+//                nonFunctionalRequirementsEditButton,
+//                nonFunctionalRequirementsDeleteButton);
+//        TableBinding.bindTableDeleteButton(nonFunctionalRequirementsTable,
+//                nonFunctionalRequirementsDeleteButton);
+//
+//        TableBinding.bindTableToData(commentsTable,
+//                data.getComments().getEntries(),
+//                "keyword",
+//                "description");
+//        TableBinding.observeDisabledButtonState(commentsTable,
+//                commentsEditButton,
+//                commentsDeleteButton);
+//        TableBinding.bindTableDeleteButton(commentsTable,
+//                commentsDeleteButton);
 
 
     }

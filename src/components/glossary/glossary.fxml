@@ -28,14 +28,14 @@
 		</columnResizePolicy>
 	</TableView>
 	<HBox styleClass="button-hbox">
-		<Button maxWidth="1.7976931348623157E308"
+		<Button fx:id="glossaryAddButton" maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag hinzufügen
 		</Button>
-		<Button disable="true"
+		<Button fx:id="glossaryEditButton"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag bearbeiten
 		</Button>
-		<Button disable="true"
+		<Button fx:id="glossaryDeleteButton"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag löschen
 		</Button>

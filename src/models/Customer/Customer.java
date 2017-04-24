@@ -1,4 +1,4 @@
-package models;
+package models.Customer;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -39,12 +39,12 @@ public class Customer
 
     public String getSurname()
     {
-        return surname.get();
+        return this.surname.get();
     }
 
     public SimpleStringProperty surnameProperty()
     {
-        return surname;
+        return this.surname;
     }
 
     public void setSurname(String surname)
@@ -54,12 +54,12 @@ public class Customer
 
     public String getName()
     {
-        return name.get();
+        return this.name.get();
     }
 
     public SimpleStringProperty nameProperty()
     {
-        return name;
+        return this.name;
     }
 
     public void setName(String name)
@@ -69,12 +69,12 @@ public class Customer
 
     public String getTelephone()
     {
-        return telephone.get();
+        return this.telephone.get();
     }
 
     public SimpleStringProperty telephoneProperty()
     {
-        return telephone;
+        return this.telephone;
     }
 
     public void setTelephone(String telephone)
@@ -84,12 +84,12 @@ public class Customer
 
     public String getEmail()
     {
-        return email.get();
+        return this.email.get();
     }
 
     public SimpleStringProperty emailProperty()
     {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email)
@@ -99,12 +99,12 @@ public class Customer
 
     public String getCompanyName()
     {
-        return companyName.get();
+        return this.companyName.get();
     }
 
     public SimpleStringProperty companyNameProperty()
     {
-        return companyName;
+        return this.companyName;
     }
 
     public void setCompanyName(String companyName)
@@ -114,12 +114,12 @@ public class Customer
 
     public String getCompanyStreet()
     {
-        return companyStreet.get();
+        return this.companyStreet.get();
     }
 
     public SimpleStringProperty companyStreetProperty()
     {
-        return companyStreet;
+        return this.companyStreet;
     }
 
     public void setCompanyStreet(String companyStreet)
@@ -129,12 +129,12 @@ public class Customer
 
     public String getCompanyPLZ()
     {
-        return companyPLZ.get();
+        return this.companyPLZ.get();
     }
 
     public SimpleStringProperty companyPLZProperty()
     {
-        return companyPLZ;
+        return this.companyPLZ;
     }
 
     public void setCompanyPLZ(String companyPLZ)
@@ -144,12 +144,12 @@ public class Customer
 
     public String getCompanyLocation()
     {
-        return companyLocation.get();
+        return this.companyLocation.get();
     }
 
     public SimpleStringProperty companyLocationProperty()
     {
-        return companyLocation;
+        return this.companyLocation;
     }
 
     public void setCompanyLocation(String companyLocation)

@@ -1,4 +1,4 @@
-package models;
+package models.ProjectEditor;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -19,12 +19,12 @@ public class ProjectEditor
 
     public String getSurname()
     {
-        return surname.get();
+        return this.surname.get();
     }
 
     public SimpleStringProperty surnameProperty()
     {
-        return surname;
+        return this.surname;
     }
 
     public void setSurname(String surname)
@@ -34,12 +34,12 @@ public class ProjectEditor
 
     public String getName()
     {
-        return name.get();
+        return this.name.get();
     }
 
     public SimpleStringProperty nameProperty()
     {
-        return name;
+        return this.name;
     }
 
     public void setName(String name)
@@ -49,6 +49,6 @@ public class ProjectEditor
 
     public String toString()
     {
-        return "Name: " + surname + "Vorname: " + name;
+        return "Name: " + this.surname + "Vorname: " + this.name;
     }
 }

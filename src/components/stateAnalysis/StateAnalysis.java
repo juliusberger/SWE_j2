@@ -1,13 +1,10 @@
 package components.stateAnalysis;
 
-import helpers.Dialog;
 import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import models.FutureAnalysis;
-import models.partials.Analysis.AnalysisEntry;
+import models.Analysis.AnalysisEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +20,7 @@ public class StateAnalysis implements Initializable {
     public Button editEntryButton;
     public Button deleteEntryButton;
 
-    private FutureAnalysis data = new FutureAnalysis();
+    private final models.Analysis.StateAnalysis data = new models.Analysis.StateAnalysis();
 
 
     @Override
@@ -31,65 +28,13 @@ public class StateAnalysis implements Initializable {
                            ResourceBundle resources) {
 
 
-// TODO: Optimize and Refactor Functions for edit and add
-
-        TableBinding.bindTableToData(stateAnalysisTable,
-                data.getEntries(),
+        TableBinding<AnalysisEntry> tableBinding = new TableBinding<>(this.stateAnalysisTable,
+                this.data,
                 "entryName",
                 "description");
-        TableBinding.observeDisabledButtonState(stateAnalysisTable,
-                editEntryButton,
-                deleteEntryButton);
-
-        TableBinding.bindTableDeleteButton(stateAnalysisTable,
-                deleteEntryButton);
-
-        addEntryButton.setOnAction(event -> {
-            Dialog dialog = new Dialog("Eintrag",
-                    "Beschreibung");
-            dialog.addObserver((o, arg) -> {
-                if (dialog.isSaveClicked()) {
-                    this.data.getEntries().add(new AnalysisEntry(
-                            dialog.getData(0),
-                            dialog.getData(1)
-                    ));
-                }
-                dialog.deleteObservers();
-            });
-            dialog.show();
-        });
-
-        editEntryButton.setOnAction(event -> {
-            final AnalysisEntry selectedEntry = this.stateAnalysisTable.getSelectionModel().getSelectedItem();
-            Dialog dialog = new Dialog("Eintrag",
-                    "Beschreibung");
-            dialog.addObserver((o, arg) -> {
-                if (dialog.isSaveClicked()) {
-                    selectedEntry.setEntryName(
-                            dialog.getData(0)
-                    );
-                    selectedEntry.setDescription(
-                            dialog.getData(1)
-                    );
-                }
-                dialog.deleteObservers();
-            });
-            dialog.setData(
-                    selectedEntry.getEntryName(),
-                    selectedEntry.getDescription());
-            dialog.show();
-        });
-
-        stateAnalysisTable.setRowFactory(tv -> {
-            TableRow<AnalysisEntry> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && !row.isEmpty()) {
-                    editEntryButton.getOnAction().handle(null);
-                }
-            });
-            return row;
-        });
-
+        tableBinding.bindAll(this.addEntryButton,
+                this.editEntryButton,
+                this.deleteEntryButton);
 
     }
 }

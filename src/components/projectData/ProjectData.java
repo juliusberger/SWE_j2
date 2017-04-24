@@ -3,8 +3,8 @@ package components.projectData;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import models.Customer;
-import models.ProjectEditor;
+import models.Customer.Customer;
+import models.ProjectEditor.ProjectEditor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,13 +20,13 @@ public class ProjectData implements Initializable
 
     public Button debug;
 
-    private models.ProjectData projectData;
+    private models.ProjectData.ProjectData projectData;
 
     @Override
     public void initialize(URL location,
                            ResourceBundle resources)
     {
-        projectData = new models.ProjectData("",
+        this.projectData = new models.ProjectData.ProjectData("",
                 "",
                 new ProjectEditor("",
                         ""),
@@ -39,11 +39,11 @@ public class ProjectData implements Initializable
                         "",
                         ""));
 
-        editorName.textProperty()
-                .bindBidirectional(projectData.getProjectEditor()
+        this.editorName.textProperty()
+                .bindBidirectional(this.projectData.getProjectEditor()
                         .nameProperty());
-        editorSurname.textProperty()
-                .bindBidirectional(projectData.getProjectEditor()
+        this.editorSurname.textProperty()
+                .bindBidirectional(this.projectData.getProjectEditor()
                         .surnameProperty());
     }
 }

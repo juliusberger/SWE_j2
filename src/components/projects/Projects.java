@@ -1,13 +1,12 @@
 package components.projects;
 
-import helpers.TableBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import models.Project;
+import models.Project.Project;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,11 +45,11 @@ public class Projects implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //<editor-fold desc="Tabelle mit Model verknüpfen">
-        TableBinding.bindTableToData(projectsTable,
-                tData,
-                "name",
-                "dateCreated",
-                "dateModified");
+//        TableBinding.bindTableToData(projectsTable,
+//                tData,
+//                "name",
+//                "dateCreated",
+//                "dateModified");
 
 //        nameColumn.setCellValueFactory(
 //                new PropertyValueFactory<>("name")
@@ -65,8 +64,8 @@ public class Projects implements Initializable {
 //        projectsTable.setItems(tData);
         //</editor-fold>
 
-        TableBinding.observeDisabledButtonState(projectsTable,
-                loadProjectButton);
+//        TableBinding.observeDisabledButtonState(projectsTable,
+//                loadProjectButton);
         //<editor-fold desc="'Projekt laden' Button Aktivieren, wenn Auswahl in Tabelle erfolgt">
 //        projectsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 //            if (newSelection != null) {
@@ -82,7 +81,7 @@ public class Projects implements Initializable {
      * Wenn 'Projekt laden' Button betätigt
      */
     public void loadProject() {
-        Project selectedProject = projectsTable.getSelectionModel().getSelectedItem();
+        Project selectedProject = this.projectsTable.getSelectionModel().getSelectedItem();
         // TODO: handle project load
 
         // debug

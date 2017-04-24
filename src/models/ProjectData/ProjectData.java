@@ -1,6 +1,8 @@
-package models;
+package models.ProjectData;
 
 import javafx.beans.property.SimpleStringProperty;
+import models.Customer.Customer;
+import models.ProjectEditor.ProjectEditor;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -29,12 +31,12 @@ public class ProjectData
 
     public String getName()
     {
-        return name.get();
+        return this.name.get();
     }
 
     public SimpleStringProperty nameProperty()
     {
-        return name;
+        return this.name;
     }
 
     public void setName(String name)
@@ -44,12 +46,12 @@ public class ProjectData
 
     public String getDueDate()
     {
-        return dueDate.get();
+        return this.dueDate.get();
     }
 
     public SimpleStringProperty dueDateProperty()
     {
-        return dueDate;
+        return this.dueDate;
     }
 
     public void setDueDate(String dueDate)
@@ -59,11 +61,11 @@ public class ProjectData
 
     public ProjectEditor getProjectEditor()
     {
-        return projectEditor;
+        return this.projectEditor;
     }
 
     public Customer getCustomer()
     {
-        return customer;
+        return this.customer;
     }
 }

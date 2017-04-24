@@ -31,14 +31,15 @@ public class Dialog extends Observable {
     private final List<TextArea> textAreas = new ArrayList<>();
 
 
-    public Dialog(String textFieldLabel,
-                  String... textAreaLabels) {
+    Dialog(ArrayList<String> stringProperties) {
         this.stage = new Stage();
 
-        this.textFieldLabel = new Label(textFieldLabel);
+        this.textFieldLabel = new Label(stringProperties.get(0));
         this.textFieldLabel.getStyleClass().add("h3");
 
-        for (String textAreaLabel : textAreaLabels) {
+        stringProperties.remove(0);
+
+        for (String textAreaLabel : stringProperties) {
             Label label = new Label(textAreaLabel);
             label.getStyleClass().add("h3");
 
@@ -47,7 +48,7 @@ public class Dialog extends Observable {
         }
     }
 
-    public void show() {
+    void show() {
         try {
             this.stage.initModality(Modality.APPLICATION_MODAL);
             this.stage.initStyle(StageStyle.UNDECORATED);
@@ -63,8 +64,8 @@ public class Dialog extends Observable {
 
 
             {
-                vBox.getChildren().add(textFieldLabel);
-                vBox.getChildren().add(textField);
+                vBox.getChildren().add(this.textFieldLabel);
+                vBox.getChildren().add(this.textField);
 
                 for (int index = 0; index < this.textAreas.size(); index++) {
                     vBox.getChildren().add(this.textAreaLabels.get(index));
@@ -110,11 +111,11 @@ public class Dialog extends Observable {
 
     private void close() {
         this.stage.close();
-        setChanged();
-        notifyObservers();
+        this.setChanged();
+        this.notifyObservers();
     }
 
-    public boolean isSaveClicked() {
+    boolean isSaveClicked() {
         return this.saveClicked;
     }
 
@@ -126,6 +127,15 @@ public class Dialog extends Observable {
         }
     }
 
+    ArrayList<String> getData() {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add(this.textField.getText());
+        for (TextArea textArea : this.textAreas) {
+            strings.add(textArea.getText());
+        }
+        return strings;
+    }
+
     public void setData(int i,
                         String text) {
         if (i == 0) {
@@ -135,10 +145,10 @@ public class Dialog extends Observable {
         }
     }
 
-    public void setData(String... texts) {
-        textField.setText(texts[0]);
+    void setData(ArrayList<String> texts) {
+        this.textField.setText(texts.get(0));
         for (int index = 0; index < this.textAreas.size(); index++) {
-            textAreas.get(index).setText(texts[index + 1]);
+            this.textAreas.get(index).setText(texts.get(index + 1));
         }
     }
 }

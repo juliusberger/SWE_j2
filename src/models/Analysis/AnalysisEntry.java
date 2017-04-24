@@ -1,4 +1,4 @@
-package models.partials.Analysis;
+package models.Analysis;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -9,37 +9,38 @@ public class AnalysisEntry {
     private final SimpleStringProperty entryName;
     private final SimpleStringProperty description;
 
-    public AnalysisEntry(String entryName,
-                         String description) {
+    AnalysisEntry(String entryName,
+                  String description) {
         this.entryName = new SimpleStringProperty(entryName);
         this.description = new SimpleStringProperty(description);
     }
 
-    public String getEntryName() {
-        return entryName.get();
+
+    String getEntryName() {
+        return this.entryName.get();
     }
 
     public SimpleStringProperty entryNameProperty() {
-        return entryName;
+        return this.entryName;
     }
 
-    public void setEntryName(String entryName) {
+    void setEntryName(String entryName) {
         this.entryName.set(entryName);
     }
 
-    public String getDescription() {
-        return description.get();
+    String getDescription() {
+        return this.description.get();
     }
 
     public SimpleStringProperty descriptionProperty() {
-        return description;
+        return this.description;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description.set(description);
     }
 
     public String toString() {
-        return "Name: " + getEntryName() + "\nDescription: " + getDescription();
+        return "Name: " + this.getEntryName() + "\nDescription: " + this.getDescription();
     }
 }

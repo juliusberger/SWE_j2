@@ -1,10 +1,6 @@
-package models;
+package models.Requirements;
 
 import javafx.beans.property.SimpleStringProperty;
-import models.partials.Requirements.Comments;
-import models.partials.Requirements.FunctionalRequirements;
-import models.partials.Requirements.NonFunctionalRequirements;
-import models.partials.Requirements.QualityRequirement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +26,11 @@ public class Requirements {
     }
 
     public String getProjectGoal() {
-        return projectGoal.get();
+        return this.projectGoal.get();
     }
 
     public SimpleStringProperty projectGoalProperty() {
-        return projectGoal;
+        return this.projectGoal;
     }
 
     public void setProjectGoal(String projectGoal) {
@@ -42,11 +38,11 @@ public class Requirements {
     }
 
     public String getFieldOfApplication() {
-        return fieldOfApplication.get();
+        return this.fieldOfApplication.get();
     }
 
     public SimpleStringProperty fieldOfApplicationProperty() {
-        return fieldOfApplication;
+        return this.fieldOfApplication;
     }
 
     public void setFieldOfApplication(String fieldOfApplication) {
@@ -54,18 +50,18 @@ public class Requirements {
     }
 
     public FunctionalRequirements getFunctionalRequirements() {
-        return functionalRequirements;
+        return this.functionalRequirements;
     }
 
     public NonFunctionalRequirements getNonFunctionalRequirements() {
-        return nonFunctionalRequirements;
+        return this.nonFunctionalRequirements;
     }
 
     public List<QualityRequirement> getQualityRequirements() {
-        return qualityRequirements;
+        return this.qualityRequirements;
     }
 
     public Comments getComments() {
-        return comments;
+        return this.comments;
     }
 }

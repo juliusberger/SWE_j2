@@ -1,4 +1,4 @@
-package models.partials.Requirements;
+package models.Requirements;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -9,35 +9,35 @@ public class FunctionalRequirementEntry extends RequirementEntry {
     private final SimpleStringProperty function;
     private final SimpleStringProperty stakeholder;
 
-    public FunctionalRequirementEntry(String function,
-                                      String stakeholder,
-                                      String description) {
+    FunctionalRequirementEntry(String function,
+                               String description,
+                               String stakeholder) {
         super(description);
         this.function = new SimpleStringProperty(function);
         this.stakeholder = new SimpleStringProperty(stakeholder);
     }
 
-    public String getFunction() {
-        return function.get();
+    String getFunction() {
+        return this.function.get();
     }
 
     public SimpleStringProperty functionProperty() {
-        return function;
+        return this.function;
     }
 
-    public void setFunction(String function) {
+    void setFunction(String function) {
         this.function.set(function);
     }
 
-    public String getStakeholder() {
-        return stakeholder.get();
+    String getStakeholder() {
+        return this.stakeholder.get();
     }
 
     public SimpleStringProperty stakeholderProperty() {
-        return stakeholder;
+        return this.stakeholder;
     }
 
-    public void setStakeholder(String stakeholder) {
+    void setStakeholder(String stakeholder) {
         this.stakeholder.set(stakeholder);
     }
 

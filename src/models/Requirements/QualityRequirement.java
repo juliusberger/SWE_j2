@@ -1,4 +1,4 @@
-package models.partials.Requirements;
+package models.Requirements;
 
 /**
  * Created by Michi on 23.04.2017.
@@ -22,7 +22,7 @@ public class QualityRequirement
 
     public String getName()
     {
-        return name;
+        return this.name;
     }
 
     public void setName(String name)
@@ -32,7 +32,7 @@ public class QualityRequirement
 
     public Priority getPriority()
     {
-        return priority;
+        return this.priority;
     }
 
     public void setPriority(Priority priority)

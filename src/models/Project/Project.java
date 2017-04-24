@@ -1,6 +1,7 @@
-package models;
+package models.Project;
 
 import javafx.beans.property.SimpleStringProperty;
+import models.ProjectData.ProjectData;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -31,12 +32,12 @@ public class Project
 
     public String getName()
     {
-        return name.get();
+        return this.name.get();
     }
 
     public SimpleStringProperty nameProperty()
     {
-        return name;
+        return this.name;
     }
 
     public void setName(String name)
@@ -46,12 +47,12 @@ public class Project
 
     public String getDateCreated()
     {
-        return dateCreated.get();
+        return this.dateCreated.get();
     }
 
     public SimpleStringProperty dateCreatedProperty()
     {
-        return dateCreated;
+        return this.dateCreated;
     }
 
     public void setDateCreated(String dateCreated)
@@ -61,12 +62,12 @@ public class Project
 
     public String getDateModified()
     {
-        return dateModified.get();
+        return this.dateModified.get();
     }
 
     public SimpleStringProperty dateModifiedProperty()
     {
-        return dateModified;
+        return this.dateModified;
     }
 
     public void setDateModified(String dateModified)

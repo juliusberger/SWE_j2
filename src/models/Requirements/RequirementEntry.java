@@ -1,4 +1,4 @@
-package models.partials.Requirements;
+package models.Requirements;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -12,15 +12,15 @@ abstract class RequirementEntry {
         this.description = new SimpleStringProperty(description);
     }
 
-    public String getDescription() {
-        return description.get();
+    String getDescription() {
+        return this.description.get();
     }
 
     public SimpleStringProperty descriptionProperty() {
-        return description;
+        return this.description;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description.set(description);
     }
 }
