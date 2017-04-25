@@ -4,9 +4,12 @@ import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import models.Requirements.CommentEntry;
 import models.Requirements.FunctionalRequirementEntry;
 import models.Requirements.NonFunctionalRequirementEntry;
+import models.Requirements.QualityRequirementEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +18,9 @@ import java.util.ResourceBundle;
  * Erstellt von Julius am 23/04/2017.
  */
 public class Requirements implements Initializable {
+
+    public TextArea projectGoalText;
+    public TextArea fieldOfApplicationText;
 
     public TableView<FunctionalRequirementEntry> functionalRequirementsTable;
     public Button functionalRequirementsAddButton;
@@ -25,6 +31,14 @@ public class Requirements implements Initializable {
     public Button nonFunctionalRequirementsAddButton;
     public Button nonFunctionalRequirementsEditButton;
     public Button nonFunctionalRequirementsDeleteButton;
+
+
+    public ToggleGroup tg1;
+    public ToggleGroup tg2;
+    public ToggleGroup tg3;
+    public ToggleGroup tg4;
+    public ToggleGroup tg5;
+
 
     public TableView<CommentEntry> commentsTable;
     public Button commentsAddButton;
@@ -38,6 +52,8 @@ public class Requirements implements Initializable {
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
+        this.projectGoalText.textProperty().bindBidirectional(this.data.projectGoalProperty());
+        this.fieldOfApplicationText.textProperty().bindBidirectional(this.data.fieldOfApplicationProperty());
 
         TableBinding<FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>(this.functionalRequirementsTable,
                 this.data.getFunctionalRequirements(),
@@ -56,6 +72,20 @@ public class Requirements implements Initializable {
                 this.nonFunctionalRequirementsEditButton,
                 this.nonFunctionalRequirementsDeleteButton);
 
+        ToggleGroup[] toggleGroups = {this.tg1, this.tg2, this.tg3, this.tg4, this.tg5};
+        for (int i = 0; i < toggleGroups.length; i++) {
+            int finalI = i;
+            toggleGroups[i].selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
+                this.data.getQualityRequirementEntries()
+                        .get(finalI)
+                        .setPriority(QualityRequirementEntry.Priority.values()[Integer.parseInt(toggleGroups[finalI].getSelectedToggle()
+                                .getUserData()
+                                .toString())]);
+                System.out.println(this.data.getQualityRequirementEntries().get(finalI).getPriority().toString());
+            });
+        }
+
+
         TableBinding<CommentEntry> commentEntryTableBinding = new TableBinding<>(this.commentsTable,
                 this.data.getComments(),
                 "keyword",
@@ -63,38 +93,6 @@ public class Requirements implements Initializable {
         commentEntryTableBinding.bindAll(this.commentsAddButton,
                 this.commentsEditButton,
                 this.commentsDeleteButton);
-
-//        TableBinding.bindTableToData(functionalRequirementsTable,
-//                data.getFunctionalRequirements().getEntries(),
-//                "function",
-//                "stakeholder",
-//                "description");
-//        TableBinding.observeDisabledButtonState(functionalRequirementsTable,
-//                functionalRequirementsEditButton,
-//                functionalRequirementsDeleteButton);
-//        TableBinding.bindTableDeleteButton(functionalRequirementsTable,
-//                functionalRequirementsDeleteButton);
-//
-//        TableBinding.bindTableToData(nonFunctionalRequirementsTable,
-//                data.getNonFunctionalRequirements().getEntries(),
-//                "businessProcess",
-//                "description");
-//        TableBinding.observeDisabledButtonState(nonFunctionalRequirementsTable,
-//                nonFunctionalRequirementsEditButton,
-//                nonFunctionalRequirementsDeleteButton);
-//        TableBinding.bindTableDeleteButton(nonFunctionalRequirementsTable,
-//                nonFunctionalRequirementsDeleteButton);
-//
-//        TableBinding.bindTableToData(commentsTable,
-//                data.getComments().getEntries(),
-//                "keyword",
-//                "description");
-//        TableBinding.observeDisabledButtonState(commentsTable,
-//                commentsEditButton,
-//                commentsDeleteButton);
-//        TableBinding.bindTableDeleteButton(commentsTable,
-//                commentsDeleteButton);
-
 
     }
 }

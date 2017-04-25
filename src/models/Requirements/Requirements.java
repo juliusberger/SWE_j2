@@ -23,6 +23,9 @@ public class Requirements {
                         String fieldOfApplication) {
         this.projectGoal = new SimpleStringProperty(projectGoal);
         this.fieldOfApplication = new SimpleStringProperty(fieldOfApplication);
+        for (int i = 0; i < 5; i++) {
+            this.qualityRequirementEntries.add(new QualityRequirementEntry());
+        }
     }
 
     public String getProjectGoal() {

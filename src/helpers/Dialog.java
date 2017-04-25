@@ -66,7 +66,6 @@ public class Dialog extends Observable {
             vBox.getStyleClass().add("p-10");
             vBox.setPrefWidth(300);
 
-
             {
                 vBox.getChildren().add(this.textFieldLabel);
                 vBox.getChildren().add(this.textField);
