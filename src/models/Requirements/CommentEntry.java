@@ -10,13 +10,13 @@ public class CommentEntry
     private final SimpleStringProperty keyword;
     private final SimpleStringProperty description;
 
-    CommentEntry(String keyword,
+    public CommentEntry(String keyword,
                  String description) {
         this.keyword = new SimpleStringProperty(keyword);
         this.description = new SimpleStringProperty(description);
     }
 
-    String getKeyword() {
+    public String getKeyword() {
         return this.keyword.get();
     }
 
@@ -24,11 +24,11 @@ public class CommentEntry
         return this.keyword;
     }
 
-    void setKeyword(String keyword) {
+    public void setKeyword(String keyword) {
         this.keyword.set(keyword);
     }
 
-    String getDescription() {
+    public String getDescription() {
         return this.description.get();
     }
 
@@ -36,7 +36,7 @@ public class CommentEntry
         return this.description;
     }
 
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description.set(description);
     }
 }

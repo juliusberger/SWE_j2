@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -44,23 +45,26 @@ public class Dialog extends Observable {
             label.getStyleClass().add("h3");
 
             this.textAreaLabels.add(label);
-            this.textAreas.add(new TextArea());
+
+            TextArea textArea = new TextArea();
+            textArea.setPrefHeight(80);
+            textArea.setWrapText(true);
+            this.textAreas.add(textArea);
         }
     }
 
     void show() {
         try {
             this.stage.initModality(Modality.APPLICATION_MODAL);
-            this.stage.initStyle(StageStyle.UNDECORATED);
-            this.stage.setTitle("ABC");
-
+            this.stage.initStyle(StageStyle.UNIFIED);
+            this.stage.setTitle("Eintrag hinzufügen");
+            this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
 
             VBox vBox = new VBox();
             vBox.setSpacing(10.0);
             vBox.getStylesheets().add(this.getClass().getResource("../assets/global.css").toExternalForm());
             vBox.getStyleClass().add("p-10");
-            vBox.prefHeight(300);
-            vBox.prefWidth(400);
+            vBox.setPrefWidth(300);
 
 
             {

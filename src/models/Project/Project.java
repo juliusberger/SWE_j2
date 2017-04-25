@@ -1,7 +1,11 @@
 package models.Project;
 
 import javafx.beans.property.SimpleStringProperty;
+import models.Analysis.FutureAnalysis;
+import models.Analysis.StateAnalysis;
+import models.Glossary.Glossary;
 import models.ProjectData.ProjectData;
+import models.Requirements.Requirements;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -14,6 +18,11 @@ public class Project
     private final SimpleStringProperty fileLocation;
 
     private ProjectData projectData;
+    private StateAnalysis stateAnalysis;
+    private FutureAnalysis futureAnalysis;
+    private Requirements requirements;
+    /*private CostEstimation costEstimation;*/
+    private Glossary glossary;
 
     public Project(String name,
                    String dateCreated,

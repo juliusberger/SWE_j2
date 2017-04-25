@@ -14,8 +14,7 @@
 	<Label styleClass="h3">
 		Glossareinträge
 	</Label>
-	<TableView fx:id="glossaryTable"
-	           maxHeight="120.0">
+	<TableView fx:id="glossaryTable">
 		<placeholder>
 			<Label text="Keine Einträge"/>
 		</placeholder>

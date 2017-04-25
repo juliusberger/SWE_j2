@@ -9,14 +9,19 @@ public class AnalysisEntry {
     private final SimpleStringProperty entryName;
     private final SimpleStringProperty description;
 
-    AnalysisEntry(String entryName,
-                  String description) {
+    public AnalysisEntry() {
+        this.entryName = new SimpleStringProperty("");
+        this.description = new SimpleStringProperty("");
+    }
+
+    public AnalysisEntry(String entryName,
+                         String description) {
         this.entryName = new SimpleStringProperty(entryName);
         this.description = new SimpleStringProperty(description);
     }
 
 
-    String getEntryName() {
+    public String getEntryName() {
         return this.entryName.get();
     }
 
@@ -24,11 +29,11 @@ public class AnalysisEntry {
         return this.entryName;
     }
 
-    void setEntryName(String entryName) {
+    public void setEntryName(String entryName) {
         this.entryName.set(entryName);
     }
 
-    String getDescription() {
+    public String getDescription() {
         return this.description.get();
     }
 
@@ -36,7 +41,7 @@ public class AnalysisEntry {
         return this.description;
     }
 
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description.set(description);
     }
 
