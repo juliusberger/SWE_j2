@@ -16,10 +16,8 @@
 			<Label text="Keine Einträge"/>
 		</placeholder>
 		<columns>
-			<TableColumn fx:id="entryColumn"
-			             text="Eintrag"/>
-			<TableColumn fx:id="descriptionColumn"
-			             text="Beschreibung"/>
+			<TableColumn text="Eintrag"/>
+			<TableColumn text="Beschreibung"/>
 		</columns>
 		<columnResizePolicy>
 			<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
