@@ -14,10 +14,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        VBox root = FXMLLoader.load(this.getClass().getResource("components/root.fxml"));
+        VBox root = FXMLLoader.load(this.getClass().getResource("components/rootView.fxml"));
         Scene scene = new Scene(root);
 
-        //primaryStage.setResizable(false);
         primaryStage.setTitle("ANTool");
         primaryStage.initStyle(StageStyle.UNIFIED);
         primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("assets/ANTool_Icon2.png")));

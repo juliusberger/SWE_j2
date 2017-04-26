@@ -22,7 +22,8 @@
 		<Label styleClass="h3">
 			Zielbestimmung
 		</Label>
-		<TextArea fx:id="projectGoalText"
+		<TextArea wrapText="true"
+		          fx:id="projectGoalText"
 		          maxHeight="60.0"/>
 
 		<Separator/>
@@ -30,7 +31,8 @@
 		<Label styleClass="h3">
 			Produkteinsatz
 		</Label>
-		<TextArea fx:id="fieldOfApplicationText"
+		<TextArea wrapText="true"
+		          fx:id="fieldOfApplicationText"
 		          maxHeight="60.0"/>
 
 		<Separator/>
