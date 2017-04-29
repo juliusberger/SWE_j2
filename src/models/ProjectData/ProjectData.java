@@ -1,71 +1,72 @@
 package models.ProjectData;
 
 import javafx.beans.property.SimpleStringProperty;
-import models.Customer.Customer;
-import models.ProjectEditor.ProjectEditor;
+import models.Customer.I_Customer;
+import models.ProjectEditor.I_ProjectEditor;
 
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-public class ProjectData
-{
+public class ProjectData implements I_ProjectData {
     private final SimpleStringProperty name;
     private final SimpleStringProperty dueDate;
 
-    private final ProjectEditor projectEditor;
+    private final I_ProjectEditor IProjectEditor;
 
-    private final Customer customer;
+    private final I_Customer ICustomer;
 
     public ProjectData(String name,
                        String dueDate,
-                       ProjectEditor projectEditor,
-                       Customer customer)
+                       I_ProjectEditor IProjectEditor,
+                       I_Customer ICustomer)
     {
         this.name = new SimpleStringProperty(name);
         this.dueDate = new SimpleStringProperty(dueDate);
 
-        this.projectEditor = projectEditor;
+        this.IProjectEditor = IProjectEditor;
 
-        this.customer = customer;
+        this.ICustomer = ICustomer;
     }
 
-    public String getName()
-    {
+    @Override
+    public String getName() {
         return this.name.get();
     }
 
-    public SimpleStringProperty nameProperty()
-    {
+    @Override
+    public SimpleStringProperty nameProperty() {
         return this.name;
     }
 
-    public void setName(String name)
-    {
+    @Override
+    public void setName(String name) {
         this.name.set(name);
     }
 
-    public String getDueDate()
-    {
+    @Override
+    public String getDueDate() {
         return this.dueDate.get();
     }
 
-    public SimpleStringProperty dueDateProperty()
-    {
+    @Override
+    public SimpleStringProperty dueDateProperty() {
         return this.dueDate;
     }
 
-    public void setDueDate(String dueDate)
-    {
+    @Override
+    public void setDueDate(String dueDate) {
         this.dueDate.set(dueDate);
     }
 
-    public ProjectEditor getProjectEditor()
+    @Override
+    public I_ProjectEditor getProjectEditor()
     {
-        return this.projectEditor;
+        return this.IProjectEditor;
     }
 
-    public Customer getCustomer()
+    @Override
+    public I_Customer getCustomer()
     {
-        return this.customer;
+        return this.ICustomer;
     }
 }

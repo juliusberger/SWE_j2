@@ -6,10 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
-import models.Requirements.CommentEntry;
-import models.Requirements.FunctionalRequirementEntry;
-import models.Requirements.NonFunctionalRequirementEntry;
-import models.Requirements.QualityRequirementEntry;
+import models.Requirements.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,12 +19,12 @@ public class Requirements implements Initializable {
     public TextArea projectGoalText;
     public TextArea fieldOfApplicationText;
 
-    public TableView<FunctionalRequirementEntry> functionalRequirementsTable;
+    public TableView<I_FunctionalRequirementEntry> functionalRequirementsTable;
     public Button functionalRequirementsAddButton;
     public Button functionalRequirementsEditButton;
     public Button functionalRequirementsDeleteButton;
 
-    public TableView<NonFunctionalRequirementEntry> nonFunctionalRequirementsTable;
+    public TableView<I_NonFunctionalRequirementEntry> nonFunctionalRequirementsTable;
     public Button nonFunctionalRequirementsAddButton;
     public Button nonFunctionalRequirementsEditButton;
     public Button nonFunctionalRequirementsDeleteButton;
@@ -40,13 +37,13 @@ public class Requirements implements Initializable {
     public ToggleGroup tg5;
 
 
-    public TableView<CommentEntry> commentsTable;
+    public TableView<I_CommentEntry> commentsTable;
     public Button commentsAddButton;
     public Button commentsEditButton;
     public Button commentsDeleteButton;
 
 
-    private models.Requirements.Requirements data = new models.Requirements.Requirements("",
+    private I_Requirements data = new models.Requirements.Requirements("",
             "");
 
     @Override
@@ -55,7 +52,7 @@ public class Requirements implements Initializable {
         this.projectGoalText.textProperty().bindBidirectional(this.data.projectGoalProperty());
         this.fieldOfApplicationText.textProperty().bindBidirectional(this.data.fieldOfApplicationProperty());
 
-        TableBinding<FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>(this.functionalRequirementsTable,
+        TableBinding<I_FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>(this.functionalRequirementsTable,
                 this.data.getFunctionalRequirements(),
                 "function",
                 "description",
@@ -64,7 +61,7 @@ public class Requirements implements Initializable {
                 this.functionalRequirementsEditButton,
                 this.functionalRequirementsDeleteButton);
 
-        TableBinding<NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>(this.nonFunctionalRequirementsTable,
+        TableBinding<I_NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>(this.nonFunctionalRequirementsTable,
                 this.data.getNonFunctionalRequirements(),
                 "businessProcess",
                 "description");
@@ -78,7 +75,7 @@ public class Requirements implements Initializable {
             toggleGroups[i].selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
                 this.data.getQualityRequirementEntries()
                         .get(finalI)
-                        .setPriority(QualityRequirementEntry.Priority.values()[Integer.parseInt(toggleGroups[finalI].getSelectedToggle()
+                        .setPriority(I_QualityRequirementEntry.Priority.values()[Integer.parseInt(toggleGroups[finalI].getSelectedToggle()
                                 .getUserData()
                                 .toString())]);
                 System.out.println(this.data.getQualityRequirementEntries().get(finalI).getPriority().toString());
@@ -86,7 +83,7 @@ public class Requirements implements Initializable {
         }
 
 
-        TableBinding<CommentEntry> commentEntryTableBinding = new TableBinding<>(this.commentsTable,
+        TableBinding<I_CommentEntry> commentEntryTableBinding = new TableBinding<>(this.commentsTable,
                 this.data.getComments(),
                 "keyword",
                 "description");

@@ -5,37 +5,43 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * Erstellt von Julius am 24/04/2017.
  */
-public class GlossaryEntry {
+public class GlossaryEntry implements I_GlossaryEntry {
     private final SimpleStringProperty item;
     private final SimpleStringProperty definition;
 
-    GlossaryEntry(String item,
-                  String definition) {
+    public GlossaryEntry(String item,
+                         String definition) {
         this.item = new SimpleStringProperty(item);
         this.definition = new SimpleStringProperty(definition);
     }
 
-    String getItem() {
+    @Override
+    public String getItem() {
         return this.item.get();
     }
 
+    @Override
     public SimpleStringProperty itemProperty() {
         return this.item;
     }
 
-    void setItem(String item) {
+    @Override
+    public void setItem(String item) {
         this.item.set(item);
     }
 
-    String getDefinition() {
+    @Override
+    public String getDefinition() {
         return this.definition.get();
     }
 
+    @Override
     public SimpleStringProperty definitionProperty() {
         return this.definition;
     }
 
-    void setDefinition(String definition) {
+    @Override
+    public void setDefinition(String definition) {
         this.definition.set(definition);
     }
 }

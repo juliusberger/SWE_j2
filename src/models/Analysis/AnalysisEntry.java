@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-public class AnalysisEntry {
+public class AnalysisEntry implements I_AnalysisEntry {
     private final SimpleStringProperty entryName;
     private final SimpleStringProperty description;
 
@@ -21,26 +21,32 @@ public class AnalysisEntry {
     }
 
 
+    @Override
     public String getEntryName() {
         return this.entryName.get();
     }
 
+    @Override
     public SimpleStringProperty entryNameProperty() {
         return this.entryName;
     }
 
+    @Override
     public void setEntryName(String entryName) {
         this.entryName.set(entryName);
     }
 
+    @Override
     public String getDescription() {
         return this.description.get();
     }
 
+    @Override
     public SimpleStringProperty descriptionProperty() {
         return this.description;
     }
 
+    @Override
     public void setDescription(String description) {
         this.description.set(description);
     }

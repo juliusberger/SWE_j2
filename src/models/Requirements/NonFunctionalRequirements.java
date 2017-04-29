@@ -2,17 +2,17 @@ package models.Requirements;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import models.ObservableDataAdaptor;
 
 import java.util.ArrayList;
 
 /**
  * Created by Michi on 23.04.2017.
  */
-public class NonFunctionalRequirements implements ObservableDataAdaptor<NonFunctionalRequirementEntry> {
-    private final ObservableList<NonFunctionalRequirementEntry> entries = FXCollections.observableArrayList();
+public class NonFunctionalRequirements implements I_NonFunctionalRequirements {
+    private final ObservableList<I_NonFunctionalRequirementEntry> entries = FXCollections.observableArrayList();
 
-    public ObservableList<NonFunctionalRequirementEntry> getEntries() {
+    @Override
+    public ObservableList<I_NonFunctionalRequirementEntry> getEntries() {
         return this.entries;
     }
 
@@ -25,7 +25,7 @@ public class NonFunctionalRequirements implements ObservableDataAdaptor<NonFunct
     }
 
     @Override
-    public void setData(NonFunctionalRequirementEntry entry,
+    public void setData(I_NonFunctionalRequirementEntry entry,
                         ArrayList<String> dataStrings) {
         if (dataStrings.size() >= 2) {
             entry.setBusinessProcess(dataStrings.get(0));
@@ -34,7 +34,7 @@ public class NonFunctionalRequirements implements ObservableDataAdaptor<NonFunct
     }
 
     @Override
-    public ArrayList<String> getData(NonFunctionalRequirementEntry entry) {
+    public ArrayList<String> getData(I_NonFunctionalRequirementEntry entry) {
         ArrayList<String> stringProperties = new ArrayList<>();
         stringProperties.add(entry.getBusinessProcess());
         stringProperties.add(entry.getDescription());

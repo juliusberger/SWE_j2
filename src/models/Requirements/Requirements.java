@@ -8,16 +8,16 @@ import java.util.List;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-public class Requirements {
+public class Requirements implements I_Requirements {
     private final SimpleStringProperty projectGoal;
     private final SimpleStringProperty fieldOfApplication;
 
-    private final FunctionalRequirements functionalRequirements = new FunctionalRequirements();
-    private final NonFunctionalRequirements nonFunctionalRequirements = new NonFunctionalRequirements();
+    private final I_FunctionalRequirements IFunctionalRequirements = new FunctionalRequirements();
+    private final I_NonFunctionalRequirements INonFunctionalRequirements = new NonFunctionalRequirements();
 
-    private final List<QualityRequirementEntry> qualityRequirementEntries = new ArrayList<>(5);
+    private final List<I_QualityRequirementEntry> qualityRequirementEntries = new ArrayList<>(5);
 
-    private final Comments comments = new Comments();
+    private final I_Comments IComments = new Comments();
 
     public Requirements(String projectGoal,
                         String fieldOfApplication) {
@@ -28,43 +28,53 @@ public class Requirements {
         }
     }
 
+    @Override
     public String getProjectGoal() {
         return this.projectGoal.get();
     }
 
+    @Override
     public SimpleStringProperty projectGoalProperty() {
         return this.projectGoal;
     }
 
+    @Override
     public void setProjectGoal(String projectGoal) {
         this.projectGoal.set(projectGoal);
     }
 
+    @Override
     public String getFieldOfApplication() {
         return this.fieldOfApplication.get();
     }
 
+    @Override
     public SimpleStringProperty fieldOfApplicationProperty() {
         return this.fieldOfApplication;
     }
 
+    @Override
     public void setFieldOfApplication(String fieldOfApplication) {
         this.fieldOfApplication.set(fieldOfApplication);
     }
 
-    public FunctionalRequirements getFunctionalRequirements() {
-        return this.functionalRequirements;
+    @Override
+    public I_FunctionalRequirements getFunctionalRequirements() {
+        return this.IFunctionalRequirements;
     }
 
-    public NonFunctionalRequirements getNonFunctionalRequirements() {
-        return this.nonFunctionalRequirements;
+    @Override
+    public I_NonFunctionalRequirements getNonFunctionalRequirements() {
+        return this.INonFunctionalRequirements;
     }
 
-    public List<QualityRequirementEntry> getQualityRequirementEntries() {
+    @Override
+    public List<I_QualityRequirementEntry> getQualityRequirementEntries() {
         return this.qualityRequirementEntries;
     }
 
-    public Comments getComments() {
-        return this.comments;
+    @Override
+    public I_Comments getComments() {
+        return this.IComments;
     }
 }

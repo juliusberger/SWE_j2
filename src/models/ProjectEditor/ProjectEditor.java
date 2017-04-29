@@ -5,8 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-public class ProjectEditor
-{
+public class ProjectEditor implements I_ProjectEditor {
     private SimpleStringProperty surname;
     private SimpleStringProperty name;
 
@@ -17,33 +16,33 @@ public class ProjectEditor
         this.name = new SimpleStringProperty(name);
     }
 
-    public String getSurname()
-    {
+    @Override
+    public String getSurname() {
         return this.surname.get();
     }
 
-    public SimpleStringProperty surnameProperty()
-    {
+    @Override
+    public SimpleStringProperty surnameProperty() {
         return this.surname;
     }
 
-    public void setSurname(String surname)
-    {
+    @Override
+    public void setSurname(String surname) {
         this.surname.set(surname);
     }
 
-    public String getName()
-    {
+    @Override
+    public String getName() {
         return this.name.get();
     }
 
-    public SimpleStringProperty nameProperty()
-    {
+    @Override
+    public SimpleStringProperty nameProperty() {
         return this.name;
     }
 
-    public void setName(String name)
-    {
+    @Override
+    public void setName(String name) {
         this.name.set(name);
     }
 

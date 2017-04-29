@@ -3,6 +3,7 @@ package components.projectData;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import models.Customer.Customer;
+import models.ProjectData.I_ProjectData;
 import models.ProjectEditor.ProjectEditor;
 
 import java.net.URL;
@@ -29,7 +30,7 @@ public class ProjectData implements Initializable {
     public TextField customerCompanyPLZ;
     public TextField customerCompanyLocation;
 
-    private models.ProjectData.ProjectData projectData = new models.ProjectData.ProjectData("",
+    private I_ProjectData IProjectData = new models.ProjectData.ProjectData("",
             "",
             new ProjectEditor("",
                     ""),
@@ -45,27 +46,28 @@ public class ProjectData implements Initializable {
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
-        this.projectName.textProperty().bindBidirectional(this.projectData.nameProperty());
-        this.projectDueDate.textProperty().bindBidirectional(this.projectData.dueDateProperty());
+        this.projectName.textProperty().bindBidirectional(this.IProjectData.nameProperty());
+        this.projectDueDate.textProperty().bindBidirectional(this.IProjectData.dueDateProperty());
 
 
         this.editorName.textProperty()
-                .bindBidirectional(this.projectData.getProjectEditor()
+                .bindBidirectional(this.IProjectData.getProjectEditor()
                         .nameProperty());
         this.editorSurname.textProperty()
-                .bindBidirectional(this.projectData.getProjectEditor()
+                .bindBidirectional(this.IProjectData.getProjectEditor()
                         .surnameProperty());
 
-        this.customerSurname.textProperty().bindBidirectional(this.projectData.getCustomer().surnameProperty());
-        this.customerName.textProperty().bindBidirectional(this.projectData.getCustomer().nameProperty());
-        this.customerTelephone.textProperty().bindBidirectional(this.projectData.getCustomer().telephoneProperty());
-        this.customerEmail.textProperty().bindBidirectional(this.projectData.getCustomer().emailProperty());
+        this.customerSurname.textProperty().bindBidirectional(this.IProjectData.getCustomer().surnameProperty());
+        this.customerName.textProperty().bindBidirectional(this.IProjectData.getCustomer().nameProperty());
+        this.customerTelephone.textProperty().bindBidirectional(this.IProjectData.getCustomer().telephoneProperty());
+        this.customerEmail.textProperty().bindBidirectional(this.IProjectData.getCustomer().emailProperty());
 
-        this.customerCompanyName.textProperty().bindBidirectional(this.projectData.getCustomer().companyNameProperty());
+        this.customerCompanyName.textProperty()
+                .bindBidirectional(this.IProjectData.getCustomer().companyNameProperty());
         this.customerCompanyStreet.textProperty()
-                .bindBidirectional(this.projectData.getCustomer().companyStreetProperty());
-        this.customerCompanyPLZ.textProperty().bindBidirectional(this.projectData.getCustomer().companyPLZProperty());
+                .bindBidirectional(this.IProjectData.getCustomer().companyStreetProperty());
+        this.customerCompanyPLZ.textProperty().bindBidirectional(this.IProjectData.getCustomer().companyPLZProperty());
         this.customerCompanyLocation.textProperty()
-                .bindBidirectional(this.projectData.getCustomer().companyLocationProperty());
+                .bindBidirectional(this.IProjectData.getCustomer().companyLocationProperty());
     }
 }

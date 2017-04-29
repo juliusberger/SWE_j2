@@ -4,7 +4,7 @@ import helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import models.Analysis.AnalysisEntry;
+import models.Analysis.I_AnalysisEntry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,20 +14,20 @@ import java.util.ResourceBundle;
  */
 public class FutureAnalysis implements Initializable {
 
-    public TableView<AnalysisEntry> futureAnalysisTable;
+    public TableView<I_AnalysisEntry> futureAnalysisTable;
 
     public Button addEntryButton;
     public Button editEntryButton;
     public Button deleteEntryButton;
 
-    private models.Analysis.FutureAnalysis data = new models.Analysis.FutureAnalysis();
+    private models.Analysis.I_Analysis data = new models.Analysis.FutureAnalysis();
 
 
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
 
-        TableBinding<AnalysisEntry> tableBinding = new TableBinding<>(this.futureAnalysisTable,
+        TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(this.futureAnalysisTable,
                 this.data,
                 "entryName",
                 "description");

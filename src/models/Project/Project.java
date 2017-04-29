@@ -1,11 +1,10 @@
 package models.Project;
 
 import javafx.beans.property.SimpleStringProperty;
-import models.Analysis.FutureAnalysis;
-import models.Analysis.StateAnalysis;
-import models.Glossary.Glossary;
-import models.ProjectData.ProjectData;
-import models.Requirements.Requirements;
+import models.Analysis.I_Analysis;
+import models.Glossary.I_Glossary;
+import models.ProjectData.I_ProjectData;
+import models.Requirements.I_Requirements;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -17,18 +16,18 @@ public class Project
     private final SimpleStringProperty dateModified;
     private final SimpleStringProperty fileLocation;
 
-    private ProjectData projectData;
-    private StateAnalysis stateAnalysis;
-    private FutureAnalysis futureAnalysis;
-    private Requirements requirements;
+    private I_ProjectData IProjectData;
+    private I_Analysis stateAnalysis;
+    private I_Analysis futureAnalysis;
+    private I_Requirements IRequirements;
     /*private CostEstimation costEstimation;*/
-    private Glossary glossary;
+    private I_Glossary IGlossary;
 
     public Project(String name,
                    String dateCreated,
                    String dateModified,
                    String fileLocation,
-                   ProjectData projectData)
+                   I_ProjectData IProjectData)
     {
 
         this.name = new SimpleStringProperty(name);
@@ -36,7 +35,7 @@ public class Project
         this.dateModified = new SimpleStringProperty(dateModified);
         this.fileLocation = new SimpleStringProperty(fileLocation);
 
-        this.projectData = projectData;
+        this.IProjectData = IProjectData;
     }
 
     public String getName()
