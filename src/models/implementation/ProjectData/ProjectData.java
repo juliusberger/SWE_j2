@@ -5,6 +5,8 @@ import models.interfaces.ProjectData.I_Customer;
 import models.interfaces.ProjectData.I_ProjectData;
 import models.interfaces.ProjectData.I_ProjectEditor;
 
+import java.util.ArrayList;
+
 /**
  * Erstellt von Julius am 23/04/2017.
  */
@@ -57,5 +59,24 @@ public class ProjectData implements I_ProjectData {
     @Override
     public I_Customer getCustomer() {
         return this._customer;
+    }
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        try {
+            this.setName(propertyStrings.get(0));
+            this.setDueDate(propertyStrings.get(1));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getName());
+        stringProperties.add(this.getDueDate());
+
+        return stringProperties;
     }
 }

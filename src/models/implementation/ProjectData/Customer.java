@@ -3,6 +3,8 @@ package models.implementation.ProjectData;
 import javafx.beans.property.SimpleStringProperty;
 import models.interfaces.ProjectData.I_Customer;
 
+import java.util.ArrayList;
+
 /**
  * Erstellt von Julius am 23/04/2017.
  */
@@ -130,5 +132,39 @@ class Customer implements I_Customer {
 
     public void setCompanyLocation(String companyLocation) {
         this._companyLocation.set(companyLocation);
+    }
+
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        try {
+            this.setSurname(propertyStrings.get(0));
+            this.setName(propertyStrings.get(1));
+            this.setTelephone(propertyStrings.get(2));
+            this.setEmail(propertyStrings.get(3));
+
+            this.setCompanyName(propertyStrings.get(4));
+            this.setCompanyStreet(propertyStrings.get(5));
+            this.setCompanyPLZ(propertyStrings.get(6));
+            this.setCompanyLocation(propertyStrings.get(7));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getSurname());
+        stringProperties.add(this.getName());
+        stringProperties.add(this.getTelephone());
+        stringProperties.add(this.getEmail());
+
+        stringProperties.add(this.getCompanyName());
+        stringProperties.add(this.getCompanyStreet());
+        stringProperties.add(this.getCompanyPLZ());
+        stringProperties.add(this.getCompanyLocation());
+
+        return stringProperties;
     }
 }

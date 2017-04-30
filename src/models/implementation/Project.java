@@ -72,7 +72,6 @@ public class Project implements I_Project {
         this._fileLocation.set(fileLocation);
     }
 
-
     @Override
     public I_ProjectData getProjectData() {
         return this._projectData;

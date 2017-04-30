@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Adapter, der beim Aufruf von setAllProperties die besetzten Properties setzt, bzw. bei getAllProperties alle Properties des Models zurückgibt.
- * Die Anzahl der Properties
- * Dieses Interface ist für alle Models, die mit Elementhaltern des {@link I_ObservableDataAdaptor} verknüpft sind
+ *
+ * Dieses Interface ist Voraussetzung für alle Models, die mit Elementhaltern des {@link I_ObservableDataAdaptor} verknüpft sind
  */
 public interface I_ModelPropertyAdaptor {
     /**

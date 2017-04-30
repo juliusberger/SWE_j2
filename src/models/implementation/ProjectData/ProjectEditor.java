@@ -3,6 +3,8 @@ package models.implementation.ProjectData;
 import javafx.beans.property.SimpleStringProperty;
 import models.interfaces.ProjectData.I_ProjectEditor;
 
+import java.util.ArrayList;
+
 /**
  * Erstellt von Julius am 23/04/2017.
  */
@@ -44,7 +46,22 @@ class ProjectEditor implements I_ProjectEditor {
         this._name.set(name);
     }
 
-    public String toString() {
-        return "Name: " + this._surname + "Vorname: " + this._name;
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        try {
+            this.setSurname(propertyStrings.get(0));
+            this.setName(propertyStrings.get(1));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getSurname());
+        stringProperties.add(this.getName());
+
+        return stringProperties;
     }
 }
