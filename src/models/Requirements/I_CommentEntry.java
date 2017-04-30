@@ -1,11 +1,12 @@
 package models.Requirements;
 
 import javafx.beans.property.SimpleStringProperty;
+import models.I_ModelPropertyAdaptor;
 
 /**
  * Erstellt von Julius am 29/04/2017.
  */
-public interface I_CommentEntry {
+public interface I_CommentEntry extends I_ModelPropertyAdaptor {
     String getKeyword();
 
     SimpleStringProperty keywordProperty();

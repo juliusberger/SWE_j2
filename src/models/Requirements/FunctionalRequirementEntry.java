@@ -2,68 +2,86 @@ package models.Requirements;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.ArrayList;
+
 /**
  * Erstellt von Julius am 23/04/2017.
  */
 public class FunctionalRequirementEntry implements I_FunctionalRequirementEntry {
-    private final SimpleStringProperty function;
-    private final SimpleStringProperty description;
-    private final SimpleStringProperty stakeholder;
+    private final SimpleStringProperty _function = new SimpleStringProperty();
+    private final SimpleStringProperty _description = new SimpleStringProperty();
+    private final SimpleStringProperty _stakeholder = new SimpleStringProperty();
 
-    FunctionalRequirementEntry(String function,
-                               String description,
-                               String stakeholder) {
-        this.function = new SimpleStringProperty(function);
-        this.description = new SimpleStringProperty(description);
-        this.stakeholder = new SimpleStringProperty(stakeholder);
+    FunctionalRequirementEntry() {
     }
 
     @Override
     public String getFunction() {
-        return this.function.get();
+        return this._function.get();
     }
 
     @Override
     public SimpleStringProperty functionProperty() {
-        return this.function;
+        return this._function;
     }
 
     @Override
     public void setFunction(String function) {
-        this.function.set(function);
+        this._function.set(function);
     }
 
     @Override
     public String getStakeholder() {
-        return this.stakeholder.get();
+        return this._stakeholder.get();
     }
 
     @Override
     public SimpleStringProperty stakeholderProperty() {
-        return this.stakeholder;
+        return this._stakeholder;
     }
 
     @Override
     public void setStakeholder(String stakeholder) {
-        this.stakeholder.set(stakeholder);
+        this._stakeholder.set(stakeholder);
     }
 
     @Override
     public String getDescription() {
-        return this.description.get();
+        return this._description.get();
     }
 
     @Override
     public SimpleStringProperty descriptionProperty() {
-        return this.description;
+        return this._description;
     }
 
     @Override
     public void setDescription(String description) {
-        this.description.set(description);
+        this._description.set(description);
     }
 
-//    public String toString() {
+    @Override
+    public void setAllProperties(ArrayList<String> dataStrings) {
+        try {
+            this.setFunction(dataStrings.get(0));
+            this.setDescription(dataStrings.get(1));
+            this.setStakeholder(dataStrings.get(2));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getFunction());
+        stringProperties.add(this.getDescription());
+        stringProperties.add(this.getStakeholder());
+
+        return stringProperties;
+    }
+
+    //    public String toString() {
 //        return "Name: " + getKeyword() + "\nDescription: " + getDescription();
 //    }
 }

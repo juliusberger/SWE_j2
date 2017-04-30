@@ -1,8 +1,6 @@
 package testStage;
 
-import models.Requirements.CommentEntry;
 import models.Requirements.I_Requirements;
-import models.Requirements.Requirements;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
@@ -10,6 +8,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -35,20 +34,12 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        I_Requirements a = new Requirements("test1",
-                "test2");
+        ArrayList<String> x = new ArrayList<>();
 
-        a.getComments()
-                .getEntries()
-                .add(new CommentEntry("te",
-                        "st"));
+        x.add("Test");
 
-        try {
-            write(a,
-                    "foo.xml");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(x.get(0));
+        System.out.println(x.get(1));
 
         /*Requirements b;
         try {

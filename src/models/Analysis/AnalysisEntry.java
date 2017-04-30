@@ -2,56 +2,64 @@ package models.Analysis;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.ArrayList;
+
 /**
  * Erstellt von Julius am 23/04/2017.
  */
 public class AnalysisEntry implements I_AnalysisEntry {
-    private final SimpleStringProperty entryName;
-    private final SimpleStringProperty description;
+    private final SimpleStringProperty _entryName = new SimpleStringProperty();
+    private final SimpleStringProperty _description = new SimpleStringProperty();
 
-    public AnalysisEntry() {
-        this.entryName = new SimpleStringProperty("");
-        this.description = new SimpleStringProperty("");
+    AnalysisEntry() {
     }
-
-    public AnalysisEntry(String entryName,
-                         String description) {
-        this.entryName = new SimpleStringProperty(entryName);
-        this.description = new SimpleStringProperty(description);
-    }
-
 
     @Override
     public String getEntryName() {
-        return this.entryName.get();
+        return this._entryName.get();
     }
 
     @Override
     public SimpleStringProperty entryNameProperty() {
-        return this.entryName;
+        return this._entryName;
     }
 
     @Override
     public void setEntryName(String entryName) {
-        this.entryName.set(entryName);
+        this._entryName.set(entryName);
     }
 
     @Override
     public String getDescription() {
-        return this.description.get();
+        return this._description.get();
     }
 
     @Override
     public SimpleStringProperty descriptionProperty() {
-        return this.description;
+        return this._description;
     }
 
     @Override
     public void setDescription(String description) {
-        this.description.set(description);
+        this._description.set(description);
     }
 
-    public String toString() {
-        return "Name: " + this.getEntryName() + "\nDescription: " + this.getDescription();
+    @Override
+    public void setAllProperties(ArrayList<String> dataStrings) {
+        try {
+            this.setEntryName(dataStrings.get(0));
+            this.setDescription(dataStrings.get(1));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getEntryName());
+        stringProperties.add(this.getDescription());
+
+        return stringProperties;
     }
 }

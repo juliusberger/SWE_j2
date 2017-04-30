@@ -2,46 +2,64 @@ package models.Glossary;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.ArrayList;
+
 /**
  * Erstellt von Julius am 24/04/2017.
  */
 public class GlossaryEntry implements I_GlossaryEntry {
-    private final SimpleStringProperty item;
-    private final SimpleStringProperty definition;
+    private final SimpleStringProperty _item = new SimpleStringProperty();
+    private final SimpleStringProperty _definition = new SimpleStringProperty();
 
-    public GlossaryEntry(String item,
-                         String definition) {
-        this.item = new SimpleStringProperty(item);
-        this.definition = new SimpleStringProperty(definition);
+    GlossaryEntry() {
     }
 
     @Override
     public String getItem() {
-        return this.item.get();
+        return this._item.get();
     }
 
     @Override
     public SimpleStringProperty itemProperty() {
-        return this.item;
+        return this._item;
     }
 
     @Override
     public void setItem(String item) {
-        this.item.set(item);
+        this._item.set(item);
     }
 
     @Override
     public String getDefinition() {
-        return this.definition.get();
+        return this._definition.get();
     }
 
     @Override
     public SimpleStringProperty definitionProperty() {
-        return this.definition;
+        return this._definition;
     }
 
     @Override
     public void setDefinition(String definition) {
-        this.definition.set(definition);
+        this._definition.set(definition);
+    }
+
+    @Override
+    public void setAllProperties(ArrayList<String> dataStrings) {
+        try {
+            this.setItem(dataStrings.get(0));
+            this.setDefinition(dataStrings.get(1));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getItem());
+        stringProperties.add(this.getDefinition());
+
+        return stringProperties;
     }
 }

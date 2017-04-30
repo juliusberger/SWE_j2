@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import models.Analysis.I_AnalysisEntry;
+import models.Project;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +21,7 @@ public class StateAnalysis implements Initializable {
     public Button editEntryButton;
     public Button deleteEntryButton;
 
-    private final models.Analysis.I_Analysis data = new models.Analysis.StateAnalysis();
+    private final models.Analysis.I_Analysis data = Project.getInstance().getStateAnalysis();
 
 
     @Override

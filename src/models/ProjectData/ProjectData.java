@@ -1,72 +1,58 @@
 package models.ProjectData;
 
 import javafx.beans.property.SimpleStringProperty;
-import models.Customer.I_Customer;
-import models.ProjectEditor.I_ProjectEditor;
 
 /**
  * Erstellt von Julius am 23/04/2017.
  */
 public class ProjectData implements I_ProjectData {
-    private final SimpleStringProperty name;
-    private final SimpleStringProperty dueDate;
+    private final SimpleStringProperty _name = new SimpleStringProperty();
+    private final SimpleStringProperty _dueDate = new SimpleStringProperty();
 
-    private final I_ProjectEditor IProjectEditor;
+    private final I_ProjectEditor _projectEditor = new ProjectEditor();
 
-    private final I_Customer ICustomer;
+    private final I_Customer _customer = new Customer();
 
-    public ProjectData(String name,
-                       String dueDate,
-                       I_ProjectEditor IProjectEditor,
-                       I_Customer ICustomer)
-    {
-        this.name = new SimpleStringProperty(name);
-        this.dueDate = new SimpleStringProperty(dueDate);
-
-        this.IProjectEditor = IProjectEditor;
-
-        this.ICustomer = ICustomer;
+    public ProjectData() {
     }
 
     @Override
     public String getName() {
-        return this.name.get();
+        return this._name.get();
     }
 
     @Override
     public SimpleStringProperty nameProperty() {
-        return this.name;
+        return this._name;
     }
 
     @Override
     public void setName(String name) {
-        this.name.set(name);
+        this._name.set(name);
     }
 
     @Override
     public String getDueDate() {
-        return this.dueDate.get();
+        return this._dueDate.get();
     }
 
     @Override
     public SimpleStringProperty dueDateProperty() {
-        return this.dueDate;
+        return this._dueDate;
     }
 
     @Override
     public void setDueDate(String dueDate) {
-        this.dueDate.set(dueDate);
+        this._dueDate.set(dueDate);
     }
 
     @Override
-    public I_ProjectEditor getProjectEditor()
-    {
-        return this.IProjectEditor;
+    public I_ProjectEditor getProjectEditor() {
+        return this._projectEditor;
     }
 
     @Override
-    public I_Customer getCustomer()
-    {
-        return this.ICustomer;
+    public I_Customer getCustomer() {
+        return this._customer;
     }
 }

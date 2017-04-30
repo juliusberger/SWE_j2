@@ -1,3 +1,4 @@
-Clevere Interfaces für Tabellenpopulation, evtl. mit Integration der Buttons etc.
-
-Auslagerung der Table Views in eigene FXML-Files, alternativ auch programmatikalisch erstellen
+- Validierung der Eingaben
+- Aufwandsabschätzung
+- Import/Export der Daten
+- Auslagerung der Table Views in eigene FXML-Files, alternativ auch programmatikalisch erstellen

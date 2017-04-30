@@ -1,8 +1,6 @@
 package models.ProjectData;
 
 import javafx.beans.property.SimpleStringProperty;
-import models.Customer.I_Customer;
-import models.ProjectEditor.I_ProjectEditor;
 
 /**
  * Erstellt von Julius am 29/04/2017.

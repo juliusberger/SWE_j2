@@ -1,12 +1,10 @@
 package components.projects;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import models.Project.Project;
+import models.Project;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,24 +21,6 @@ public class Projects implements Initializable {
 
     public Button loadProjectButton;
 
-    // debug
-    private ObservableList<Project> tData = FXCollections.observableArrayList(
-            new Project("Test1",
-                    "22.04.2017",
-                    "22.04.2017",
-                    "",
-                    null),
-            new Project("Test2",
-                    "23.04.2017",
-                    "22.04.2017",
-                    "",
-                    null),
-            new Project("Test3",
-                    "22.04.2017",
-                    "24.04.2017",
-                    "",
-                    null)
-    );
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

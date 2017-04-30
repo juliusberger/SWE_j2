@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import models.Glossary.I_Glossary;
 import models.Glossary.I_GlossaryEntry;
+import models.Project;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +21,7 @@ public class Glossary implements Initializable {
     public Button glossaryEditButton;
     public Button glossaryDeleteButton;
 
-    private I_Glossary data = new models.Glossary.Glossary();
+    private I_Glossary data = Project.getInstance().getGlossary();
 
     @Override
     public void initialize(URL location,

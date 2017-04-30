@@ -2,46 +2,64 @@ package models.Requirements;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.ArrayList;
+
 /**
  * Created by Michi on 23.04.2017.
  */
 public class CommentEntry implements I_CommentEntry {
-    private final SimpleStringProperty keyword;
-    private final SimpleStringProperty description;
+    private final SimpleStringProperty _keyword = new SimpleStringProperty();
+    private final SimpleStringProperty _description = new SimpleStringProperty();
 
-    public CommentEntry(String keyword,
-                 String description) {
-        this.keyword = new SimpleStringProperty(keyword);
-        this.description = new SimpleStringProperty(description);
+    CommentEntry() {
     }
 
     @Override
     public String getKeyword() {
-        return this.keyword.get();
+        return this._keyword.get();
     }
 
     @Override
     public SimpleStringProperty keywordProperty() {
-        return this.keyword;
+        return this._keyword;
     }
 
     @Override
     public void setKeyword(String keyword) {
-        this.keyword.set(keyword);
+        this._keyword.set(keyword);
     }
 
     @Override
     public String getDescription() {
-        return this.description.get();
+        return this._description.get();
     }
 
     @Override
     public SimpleStringProperty descriptionProperty() {
-        return this.description;
+        return this._description;
     }
 
     @Override
     public void setDescription(String description) {
-        this.description.set(description);
+        this._description.set(description);
+    }
+
+    @Override
+    public void setAllProperties(ArrayList<String> dataStrings) {
+        try {
+            this.setKeyword(dataStrings.get(0));
+            this.setDescription(dataStrings.get(1));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getKeyword());
+        stringProperties.add(this.getDescription());
+
+        return stringProperties;
     }
 }

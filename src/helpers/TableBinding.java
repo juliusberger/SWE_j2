@@ -5,7 +5,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.ObservableDataAdaptor;
+import models.I_ModelPropertyAdaptor;
+import models.I_ObservableDataAdaptor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,13 +14,13 @@ import java.util.Arrays;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-public class TableBinding<S> {
+public class TableBinding<S extends I_ModelPropertyAdaptor> {
     private TableView<S> tableView;
-    private ObservableDataAdaptor<S> dataModel;
+    private I_ObservableDataAdaptor<S> dataModel;
     private ArrayList<String> propertyNames;
 
     public TableBinding(TableView<S> tableView,
-                        ObservableDataAdaptor<S> dataModel,
+                        I_ObservableDataAdaptor<S> dataModel,
                         String... propertyNames) {
         this.tableView = tableView;
         this.dataModel = dataModel;
@@ -78,7 +79,7 @@ public class TableBinding<S> {
                 if (dialog.isSaveClicked()) {
                     System.out.println("Got data: ");
                     System.out.println(dialog.getData());
-                    this.dataModel.addData(dialog.getData());
+                    this.dataModel.addAllProperties(dialog.getData());
                 }
                 dialog.deleteObservers();
             });
@@ -92,12 +93,12 @@ public class TableBinding<S> {
             Dialog dialog = new Dialog(this.getColumnStringPropertyLabels());
             dialog.addObserver((o, arg) -> {
                 if (dialog.isSaveClicked()) {
-                    this.dataModel.setData(selectedEntry,
+                    this.dataModel.setAllProperties(selectedEntry,
                             dialog.getData());
                 }
                 dialog.deleteObservers();
             });
-            dialog.setData(this.dataModel.getData(selectedEntry));
+            dialog.setData(this.dataModel.getAllProperties(selectedEntry));
             dialog.show();
         });
 

@@ -1,4 +1,4 @@
-package models.Customer;
+package models.ProjectData;
 
 import javafx.beans.property.SimpleStringProperty;
 
