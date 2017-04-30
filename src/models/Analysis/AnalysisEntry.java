@@ -45,10 +45,10 @@ public class AnalysisEntry implements I_AnalysisEntry {
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> dataStrings) {
+    public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setEntryName(dataStrings.get(0));
-            this.setDescription(dataStrings.get(1));
+            this.setEntryName(propertyStrings.get(0));
+            this.setDescription(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }

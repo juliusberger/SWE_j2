@@ -21,21 +21,10 @@ public abstract class ObservableEntryHolder<S extends I_ModelPropertyAdaptor> im
     }
 
     @Override
-    public void addAllProperties(ArrayList<String> dataStrings) {
+    public void addEntryWithProperties(ArrayList<String> propertyStrings) {
         S entry = this.createEntry();
-        entry.setAllProperties(dataStrings);
+        entry.setAllProperties(propertyStrings);
 
         this.getEntries().add(entry);
-    }
-
-    @Override
-    public void setAllProperties(S entry,
-                                 ArrayList<String> dataStrings) {
-        entry.setAllProperties(dataStrings);
-    }
-
-    @Override
-    public ArrayList<String> getAllProperties(S entry) {
-        return entry.getAllProperties();
     }
 }

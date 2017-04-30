@@ -45,10 +45,10 @@ public class GlossaryEntry implements I_GlossaryEntry {
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> dataStrings) {
+    public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setItem(dataStrings.get(0));
-            this.setDefinition(dataStrings.get(1));
+            this.setItem(propertyStrings.get(0));
+            this.setDefinition(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }

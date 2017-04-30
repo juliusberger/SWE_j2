@@ -45,10 +45,10 @@ public class CommentEntry implements I_CommentEntry {
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> dataStrings) {
+    public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setKeyword(dataStrings.get(0));
-            this.setDescription(dataStrings.get(1));
+            this.setKeyword(propertyStrings.get(0));
+            this.setDescription(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }

@@ -11,15 +11,22 @@ import models.ProjectData.ProjectData;
 import models.Requirements.I_Requirements;
 import models.Requirements.Requirements;
 
+import java.util.ArrayList;
+
 /**
- * Erstellt von Julius am 23/04/2017.
+ *
  */
-public class Project {
-    private static Project _instance;
+public class Project implements I_Project {
+    private static I_Project _instance;
+
+    public static I_Project getInstance() {
+        if (Project._instance == null)
+            Project._instance = new Project();
+        return Project._instance;
+    }
+
 
     private final SimpleStringProperty _name = new SimpleStringProperty();
-    private final SimpleStringProperty _dateCreated = new SimpleStringProperty();
-    private final SimpleStringProperty _dateModified = new SimpleStringProperty();
     private final SimpleStringProperty _fileLocation = new SimpleStringProperty();
 
     private I_ProjectData _projectData = new ProjectData();
@@ -29,81 +36,79 @@ public class Project {
     /*private CostEstimation _costEstimation;*/
     private I_Glossary _glossary = new Glossary();
 
+
     private Project() {
     }
 
-    public static Project getInstance() {
-        if (Project._instance == null)
-            Project._instance = new Project();
-        return Project._instance;
-    }
 
-
+    @Override
     public String getName() {
         return this._name.get();
     }
 
+    @Override
     public SimpleStringProperty nameProperty() {
         return this._name;
     }
 
+    @Override
     public void setName(String name) {
         this._name.set(name);
     }
 
-    public String getDateCreated() {
-        return this._dateCreated.get();
-    }
-
-    public SimpleStringProperty dateCreatedProperty() {
-        return this._dateCreated;
-    }
-
-    public void setDateCreated(String dateCreated) {
-        this._dateCreated.set(dateCreated);
-    }
-
-    public String getDateModified() {
-        return this._dateModified.get();
-    }
-
-    public SimpleStringProperty dateModifiedProperty() {
-        return this._dateModified;
-    }
-
-    public void setDateModified(String dateModified) {
-        this._dateModified.set(dateModified);
-    }
-
+    @Override
     public String getFileLocation() {
         return this._fileLocation.get();
     }
 
+    @Override
     public SimpleStringProperty fileLocationProperty() {
         return this._fileLocation;
     }
 
+    @Override
     public void setFileLocation(String fileLocation) {
         this._fileLocation.set(fileLocation);
     }
 
+
+    @Override
     public I_ProjectData getProjectData() {
         return this._projectData;
     }
 
+    @Override
     public I_Analysis getStateAnalysis() {
         return this._stateAnalysis;
     }
 
+    @Override
     public I_Analysis getFutureAnalysis() {
         return this._futureAnalysis;
     }
 
+    @Override
     public I_Requirements getRequirements() {
         return this._requirements;
     }
 
+    @Override
     public I_Glossary getGlossary() {
         return this._glossary;
+    }
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        this.setName(propertyStrings.get(0));
+        this.setFileLocation(propertyStrings.get(1));
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getName());
+        stringProperties.add(this.getFileLocation());
+
+        return stringProperties;
     }
 }

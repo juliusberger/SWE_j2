@@ -61,11 +61,11 @@ public class FunctionalRequirementEntry implements I_FunctionalRequirementEntry 
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> dataStrings) {
+    public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setFunction(dataStrings.get(0));
-            this.setDescription(dataStrings.get(1));
-            this.setStakeholder(dataStrings.get(2));
+            this.setFunction(propertyStrings.get(0));
+            this.setDescription(propertyStrings.get(1));
+            this.setStakeholder(propertyStrings.get(2));
         } catch (IndexOutOfBoundsException ignored) {
 
         }

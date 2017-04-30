@@ -26,9 +26,6 @@
 	<TabPane prefHeight="600.0"
 	         prefWidth="600"
 	         tabClosingPolicy="UNAVAILABLE">
-		<Tab text="Projekte">
-			<fx:include source="projects/projects.fxml"/>
-		</Tab>
 		<Tab text="Projektdaten">
 			<fx:include source="projectData/projectData.fxml"/>
 		</Tab>

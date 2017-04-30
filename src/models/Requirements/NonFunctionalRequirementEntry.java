@@ -46,10 +46,10 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
 
 
     @Override
-    public void setAllProperties(ArrayList<String> dataStrings) {
+    public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setBusinessProcess(dataStrings.get(0));
-            this.setDescription(dataStrings.get(1));
+            this.setBusinessProcess(propertyStrings.get(0));
+            this.setDescription(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }

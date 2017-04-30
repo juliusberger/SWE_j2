@@ -79,7 +79,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
                 if (dialog.isSaveClicked()) {
                     System.out.println("Got data: ");
                     System.out.println(dialog.getData());
-                    this.dataModel.addAllProperties(dialog.getData());
+                    this.dataModel.addEntryWithProperties(dialog.getData());
                 }
                 dialog.deleteObservers();
             });
@@ -93,12 +93,11 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
             Dialog dialog = new Dialog(this.getColumnStringPropertyLabels());
             dialog.addObserver((o, arg) -> {
                 if (dialog.isSaveClicked()) {
-                    this.dataModel.setAllProperties(selectedEntry,
-                            dialog.getData());
+                    selectedEntry.setAllProperties(dialog.getData());
                 }
                 dialog.deleteObservers();
             });
-            dialog.setData(this.dataModel.getAllProperties(selectedEntry));
+            dialog.setData(selectedEntry.getAllProperties());
             dialog.show();
         });
 

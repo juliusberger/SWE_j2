@@ -9,11 +9,12 @@ import java.util.ArrayList;
  */
 public interface I_ModelPropertyAdaptor {
     /**
-     * Methode, um alle Properties einer Klasse zu setzen. Ein Unterschreiten der benötigten Länge von dataStrings für die Anzahl der Properties ist zu prüfen oder per try-catch zu ignorieren.
+     * Methode, um alle Properties einer Klasse zu setzen.
+     * Ein Unterschreiten der benötigten Länge von propertyStrings für die Anzahl der Properties ist zu prüfen oder per try-catch zu ignorieren.
      *
-     * @param dataStrings Enthält die zu setzenden Properties in der korrekten Reihenfolge.
+     * @param propertyStrings Enthält die zu setzenden Properties in der korrekten Reihenfolge.
      */
-    void setAllProperties(ArrayList<String> dataStrings);
+    void setAllProperties(ArrayList<String> propertyStrings);
 
     /**
      * @return Liefert alle Property-Strings der jew. in der Klasse angegebenen Properties.

@@ -74,4 +74,20 @@ public class Requirements implements I_Requirements {
     public I_Comments getComments() {
         return this._comments;
     }
+
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        this.setProjectGoal(propertyStrings.get(0));
+        this.setFieldOfApplication(propertyStrings.get(1));
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(this.getProjectGoal());
+        stringProperties.add(this.getFieldOfApplication());
+
+        return stringProperties;
+    }
 }

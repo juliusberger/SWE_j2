@@ -1,13 +1,14 @@
 package models.Requirements;
 
 import javafx.beans.property.SimpleStringProperty;
+import models.I_ModelPropertyAdaptor;
 
 import java.util.List;
 
 /**
  * Erstellt von Julius am 29/04/2017.
  */
-public interface I_Requirements {
+public interface I_Requirements extends I_ModelPropertyAdaptor {
     String getProjectGoal();
 
     SimpleStringProperty projectGoalProperty();
