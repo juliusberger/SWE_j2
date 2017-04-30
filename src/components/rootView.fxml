@@ -7,19 +7,31 @@
       stylesheets="assets/global.css"
       xmlns="http://javafx.com/javafx/8.0.112"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="components.RootView">
+      fx:controller="components.RootView"
+      fx:id="rootVBox">
 
-	<MenuBar layoutX="-10.0"
-	         layoutY="-12.0">
+	<MenuBar>
 		<Menu mnemonicParsing="false"
 		      text="Datei">
 			<MenuItem mnemonicParsing="false"
-			          text="Close"/>
-		</Menu>
-		<Menu mnemonicParsing="false"
-		      text="Bearbeiten">
+			          text="Neues Projekt"
+			          fx:id="newProjectItem"/>
+			<SeparatorMenuItem mnemonicParsing="false"/>
+
 			<MenuItem mnemonicParsing="false"
-			          text="Delete"/>
+			          text="Projekt öffnen"
+			          fx:id="openProjectItem"/>
+			<MenuItem mnemonicParsing="false"
+			          text="Projekt speichern"
+			          fx:id="saveProjectItem"/>
+			<SeparatorMenuItem mnemonicParsing="false"/>
+
+			<MenuItem mnemonicParsing="false"
+			          text="XML-Import"
+			          fx:id="XMLImportItem"/>
+			<MenuItem mnemonicParsing="false"
+			          text="XML-Export"
+			          fx:id="XMLExportItem"/>
 		</Menu>
 	</MenuBar>
 

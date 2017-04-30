@@ -1,9 +1,7 @@
 package com.company;
 
 import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 /**
@@ -11,6 +9,7 @@ import java.io.FileOutputStream;
  * realized with Java StAX Pattern
  */
 public class XML_Export {
+
 
     public static void exportXML(String fileName)
     {

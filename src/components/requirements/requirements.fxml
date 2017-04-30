@@ -242,7 +242,7 @@
 
 
 			<columnConstraints>
-				<ColumnConstraints prefWidth="100"/>
+				<ColumnConstraints prefWidth="150"/>
 				<ColumnConstraints halignment="CENTER"
 				                   hgrow="SOMETIMES"/>
 				<ColumnConstraints halignment="CENTER"

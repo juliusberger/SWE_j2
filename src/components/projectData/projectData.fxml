@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.lang.*?>
 <VBox prefHeight="400"
       prefWidth="600"
       spacing="10.0"
@@ -12,13 +11,8 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="components.projectData.ProjectData">
     <VBox>
-        <Label>
+	    <Label styleClass="h3">
             Projekt
-
-            <styleClass>
-	            <String fx:value="h3"/>
-	            <String fx:value="bold"/>
-            </styleClass>
         </Label>
         <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
             <Label styleClass="ph-5">Name:</Label>
@@ -47,13 +41,8 @@
 
 
     <VBox>
-        <Label>
+	    <Label styleClass="h3">
             Projektbearbeiter
-
-            <styleClass>
-	            <String fx:value="h3"/>
-	            <String fx:value="bold"/>
-            </styleClass>
         </Label>
         <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
             <Label styleClass="ph-5">Name:</Label>
@@ -82,13 +71,8 @@
 
 
     <VBox>
-        <Label>
+	    <Label styleClass="h3">
             Kundendaten
-
-            <styleClass>
-	            <String fx:value="h3"/>
-	            <String fx:value="bold"/>
-            </styleClass>
         </Label>
         <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
             <Label styleClass="ph-5">Name:</Label>
