@@ -42,7 +42,7 @@
 			<fx:include source="requirements/requirements.fxml"/>
 		</Tab>
 		<Tab text="Aufwandsschätzung">
-			<fx:include source="table/table.fxml"/>
+			<fx:include source="costEstimation/costEstimation.fxml"/>
 		</Tab>
 		<Tab text="Glossar">
 			<fx:include source="glossary/glossary.fxml"/>
