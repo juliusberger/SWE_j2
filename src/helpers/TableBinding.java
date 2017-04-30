@@ -5,8 +5,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.I_ModelPropertyAdaptor;
-import models.I_ObservableDataAdaptor;
+import models.interfaces.I_ModelPropertyAdaptor;
+import models.interfaces.I_ObservableDataAdaptor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,9 +15,9 @@ import java.util.Arrays;
  * Erstellt von Julius am 23/04/2017.
  */
 public class TableBinding<S extends I_ModelPropertyAdaptor> {
-    private TableView<S> tableView;
-    private I_ObservableDataAdaptor<S> dataModel;
-    private ArrayList<String> propertyNames;
+    private final TableView<S> tableView;
+    private final I_ObservableDataAdaptor<S> dataModel;
+    private final ArrayList<String> propertyNames;
 
     public TableBinding(TableView<S> tableView,
                         I_ObservableDataAdaptor<S> dataModel,

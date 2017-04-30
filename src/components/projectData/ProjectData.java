@@ -2,8 +2,8 @@ package components.projectData;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import models.Project;
-import models.ProjectData.I_ProjectData;
+import models.implementation.Project;
+import models.interfaces.ProjectData.I_ProjectData;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +29,7 @@ public class ProjectData implements Initializable {
     public TextField customerCompanyPLZ;
     public TextField customerCompanyLocation;
 
-    private I_ProjectData _projectData = Project.getInstance().getProjectData();
+    private final I_ProjectData _projectData = Project.getInstance().getProjectData();
 
     @Override
     public void initialize(URL location,

@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
-import models.Project;
-import models.Requirements.*;
+import models.implementation.Project;
+import models.interfaces.Requirements.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +44,7 @@ public class Requirements implements Initializable {
     public Button commentsDeleteButton;
 
 
-    private I_Requirements data = Project.getInstance().getRequirements();
+    private final I_Requirements data = Project.getInstance().getRequirements();
 
     @Override
     public void initialize(URL location,

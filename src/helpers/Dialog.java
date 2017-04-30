@@ -20,7 +20,7 @@ import java.util.Observable;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-public class Dialog extends Observable {
+class Dialog extends Observable {
     private boolean saveClicked = false;
 
     private final Stage stage;

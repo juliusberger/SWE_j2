@@ -1,6 +1,6 @@
 package testStage;
 
-import models.Requirements.I_Requirements;
+import models.interfaces.Requirements.I_Requirements;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
