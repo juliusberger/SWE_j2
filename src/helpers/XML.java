@@ -152,6 +152,7 @@ public class XML
         }
     }
 
+    /*
     public static void importXML(String fileName)
     {
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
@@ -165,6 +166,9 @@ public class XML
             I_Analysis stateAnalysis = project.getStateAnalysis();
             I_Analysis futureAnalysis = project.getFutureAnalysis();
             I_Requirements requirements = project.getRequirements();
+            I_FunctionalRequirements functionalRequirements = requirements.getFunctionalRequirements();
+            I_NonFunctionalRequirements nonFunctionalRequirements = requirements.getNonFunctionalRequirements();
+            List<I_QualityRequirementEntry> qualityRequirements = requirements.getQualityRequirementEntries();
 
             int event = xmlStreamReader.getEventType();
             while(true){
@@ -221,17 +225,26 @@ public class XML
                                 ArrayList<String> functionalRequirementsEntryArguments = new ArrayList<String>();
                                 functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
                                 functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
-                                futureAnalysis.addEntryWithProperties(functionalRequirementsEntryArguments);
+                                functionalRequirements.addEntryWithProperties(functionalRequirementsEntryArguments);
                             }
 
-                            int numberOfNonFunctionalRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(2));
+                            int numberOfNonFunctionalRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(numberOfFunctionalRequirementsProperties + 3));
 
-                            for (int currentIndexPosition = 2; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + 2; currentIndexPosition += 2)
+                            for (int currentIndexPosition = numberOfFunctionalRequirementsProperties + 4; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + numberOfNonFunctionalRequirementsProperties + 3; currentIndexPosition += 2)
                             {
-                                ArrayList<String> functionalRequirementsEntryArguments = new ArrayList<String>();
-                                functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
-                                functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
-                                futureAnalysis.addEntryWithProperties(functionalRequirementsEntryArguments);
+                                ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<String>();
+                                nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
+                                nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
+                                nonFunctionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
+                            }
+
+                            int numberOfQualityRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(numberOfFunctionalRequirementsProperties + 4));
+                            for (int currentIndexPosition = numberOfFunctionalRequirementsProperties + 4; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + numberOfNonFunctionalRequirementsProperties + 3; currentIndexPosition += 2)
+                            {
+                                ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<String>();
+                                nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
+                                nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
+                                nonFunctionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
                             }
                         }
                         break;
@@ -252,6 +265,7 @@ public class XML
         }
         return players;
     }
+    */
 
     private static ArrayList<String> getProjectProperties()
     {
