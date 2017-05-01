@@ -77,8 +77,6 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
             Dialog dialog = new Dialog(this.getColumnStringPropertyLabels());
             dialog.addObserver((o, arg) -> {
                 if (dialog.isSaveClicked()) {
-                    System.out.println("Got data: ");
-                    System.out.println(dialog.getData());
                     this.dataModel.addEntryWithProperties(dialog.getData());
                 }
                 dialog.deleteObservers();

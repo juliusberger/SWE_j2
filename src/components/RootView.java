@@ -41,7 +41,7 @@ public class RootView implements Initializable {
             fileChooser.getExtensionFilters().setAll(projectExtensionFilter);
             final File file = fileChooser.showOpenDialog(this.anchorPane.getScene().getWindow());
             if (file != null) {
-                this.onOpenFile(file);
+                this.onLoadFile(file);
             }
         });
 
@@ -59,7 +59,7 @@ public class RootView implements Initializable {
             fileChooser.getExtensionFilters().setAll(XMLExtensionFilter);
             final File file = fileChooser.showOpenDialog(this.anchorPane.getScene().getWindow());
             if (file != null) {
-                this.onOpenFile(file);
+                this.onLoadFile(file);
             }
         });
 
@@ -77,12 +77,11 @@ public class RootView implements Initializable {
         // handle new project
     }
 
-    private void onOpenFile(File file) {
-        file.getAbsolutePath();
+    private void onLoadFile(File file) {
+        //XML.importXML(file.getAbsolutePath());
     }
 
     private void onSaveFile(File file) {
-        System.out.println("exporting file... " + file.getAbsolutePath());
         XML.exportXML(file.getAbsolutePath());
     }
 }
