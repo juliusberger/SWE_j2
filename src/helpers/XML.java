@@ -272,11 +272,6 @@ public class XML
         // Alle Properties der Klasse "Project" hinzufügen
         ArrayList<String> currentProjectProperties = new ArrayList<String>();
         currentProjectProperties = Project.getInstance().getAllProperties();
-        for (String projectProperty : currentProjectProperties)
-        {
-            currentProjectProperties.add(projectProperty);
-        }
-
         return currentProjectProperties;
     }
 
