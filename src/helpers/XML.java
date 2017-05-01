@@ -5,13 +5,16 @@ import models.interfaces.Analysis.I_Analysis;
 import models.interfaces.Analysis.I_AnalysisEntry;
 import models.interfaces.Glossary.I_Glossary;
 import models.interfaces.Glossary.I_GlossaryEntry;
+import models.interfaces.I_Project;
+import models.interfaces.ProjectData.I_Customer;
 import models.interfaces.ProjectData.I_ProjectData;
 import models.interfaces.ProjectData.I_ProjectEditor;
 import models.interfaces.Requirements.*;
 
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamWriter;
+import javax.xml.stream.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -149,9 +152,105 @@ public class XML
         }
     }
 
-    public static void importXML()
+    public static void importXML(String fileName)
     {
+        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+        try
+        {
+            XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader(new FileInputStream(fileName));
+            I_Project project = Project.getInstance();
+            I_ProjectData projectData = project.getProjectData();
+            I_ProjectEditor projectEditor = projectData.getProjectEditor();
+            I_Customer customer = projectData.getCustomer();
+            I_Analysis stateAnalysis = project.getStateAnalysis();
+            I_Analysis futureAnalysis = project.getFutureAnalysis();
+            I_Requirements requirements = project.getRequirements();
 
+            int event = xmlStreamReader.getEventType();
+            while(true){
+                switch(event) {
+                    case XMLStreamConstants.START_ELEMENT:
+                        if(xmlStreamReader.getLocalName().equals("Project_Properties")){
+                            project.setName(xmlStreamReader.getAttributeValue(0));
+                            project.setFileLocation(xmlStreamReader.getAttributeValue(1));
+                        }
+                        else if (xmlStreamReader.getLocalName().equals("Project_Data_Properties")){
+                            projectData.setName(xmlStreamReader.getAttributeValue(0));
+                            projectData.setDueDate(xmlStreamReader.getAttributeValue(1));
+                            projectEditor.setSurname(xmlStreamReader.getAttributeValue(2));
+                            projectEditor.setName(xmlStreamReader.getAttributeValue(3));
+                            customer.setSurname(xmlStreamReader.getAttributeValue(4));
+                            customer.setName(xmlStreamReader.getAttributeValue(5));
+                            customer.setTelephone(xmlStreamReader.getAttributeValue(6));
+                            customer.setEmail(xmlStreamReader.getAttributeValue(7));
+                            customer.setCompanyName(xmlStreamReader.getAttributeValue(8));
+                            customer.setCompanyStreet(xmlStreamReader.getAttributeValue(9));
+                            customer.setCompanyPLZ(xmlStreamReader.getAttributeValue(10));
+                            customer.setCompanyLocation(xmlStreamReader.getAttributeValue(11));
+                        }
+                        else if (xmlStreamReader.getLocalName().equals("State_Analysis_Properties")){
+                            int numberOfStateAnalysisProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
+
+                            for (int currentIndexPosition = 0; (currentIndexPosition + 1) < numberOfStateAnalysisProperties; currentIndexPosition += 2)
+                            {
+                                ArrayList<String> stateAnalysisEntryArguments = new ArrayList<String>();
+                                stateAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
+                                stateAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
+                                stateAnalysis.addEntryWithProperties(stateAnalysisEntryArguments);
+                            }
+                        }
+                        else if (xmlStreamReader.getLocalName().equals("Future_Analysis_Properties")){
+                            int numberOfFutureAnalysisProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
+
+                            for (int currentIndexPosition = 0; (currentIndexPosition + 1) < numberOfFutureAnalysisProperties; currentIndexPosition += 2)
+                            {
+                                ArrayList<String> futureAnalysisEntryArguments = new ArrayList<String>();
+                                futureAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
+                                futureAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
+                                futureAnalysis.addEntryWithProperties(futureAnalysisEntryArguments);
+                            }
+                        }
+                        else if (xmlStreamReader.getLocalName().equals("Requirements_Properties")){
+                            requirements.setProjectGoal(xmlStreamReader.getAttributeValue(0));
+                            requirements.setFieldOfApplication(xmlStreamReader.getAttributeValue(1));
+
+                            int numberOfFunctionalRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(2));
+
+                            for (int currentIndexPosition = 3; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + 3; currentIndexPosition += 2)
+                            {
+                                ArrayList<String> functionalRequirementsEntryArguments = new ArrayList<String>();
+                                functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
+                                functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
+                                futureAnalysis.addEntryWithProperties(functionalRequirementsEntryArguments);
+                            }
+
+                            int numberOfNonFunctionalRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(2));
+
+                            for (int currentIndexPosition = 2; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + 2; currentIndexPosition += 2)
+                            {
+                                ArrayList<String> functionalRequirementsEntryArguments = new ArrayList<String>();
+                                functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
+                                functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
+                                futureAnalysis.addEntryWithProperties(functionalRequirementsEntryArguments);
+                            }
+                        }
+                        break;
+                    case XMLStreamConstants.END_ELEMENT:
+                        if(xmlStreamReader.getLocalName().equals("Player")){
+                            players.add(plr);
+                        }
+                        break;
+                }
+                if (!xmlStreamReader.hasNext())
+                    break;
+
+                event = xmlStreamReader.next();
+            }
+
+        } catch (FileNotFoundException | XMLStreamException e) {
+            e.printStackTrace();
+        }
+        return players;
     }
 
     private static ArrayList<String> getProjectProperties()
