@@ -28,8 +28,12 @@ public class CostEstimation implements Initializable {
     public void initialize(URL location,
                            ResourceBundle resources) {
         this.box1.valueProperty()
-                .bindBidirectional(Project.getInstance().getCostEstimationEntries().get(0).getWeightProperty());
-        Project.getInstance()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(0)
+                        .getWeightProperty());
+        Project.getInstance().getCostEstimation()
                 .getCostEstimationEntries()
                 .get(0)
                 .getWeightProperty()
