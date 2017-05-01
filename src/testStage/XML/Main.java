@@ -1,6 +1,7 @@
 package testStage.XML;
 
 import helpers.XML;
+import models.implementation.Project;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class Main {
     }
 
     */
-
-        XML.exportXML();
+        Project.getInstance().setName("Testprojekt");
+        XML.exportXML("C:/Users/Michi/Desktop/Temp/Test.xml");
 
     }
 }
