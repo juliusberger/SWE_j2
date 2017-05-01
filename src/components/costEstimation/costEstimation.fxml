@@ -40,7 +40,7 @@
 				<Label maxWidth="1.7976931348623157E308"
 				       HBox.hgrow="ALWAYS">1 Verflechtung mit anderen Anwendungssystemen
 				</Label>
-				<ChoiceBox>
+				<ChoiceBox fx:id="box1">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0"/>

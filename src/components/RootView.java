@@ -2,7 +2,7 @@ package components;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
  */
 public class RootView implements Initializable {
 
-    public VBox rootVBox;
+    public AnchorPane anchorPane;
 
     public MenuItem newProjectItem;
     public MenuItem openProjectItem;
@@ -38,7 +38,7 @@ public class RootView implements Initializable {
         this.openProjectItem.setOnAction(event -> {
             fileChooser.setTitle("Projekt öffnen");
             fileChooser.getExtensionFilters().setAll(projectExtensionFilter);
-            final File file = fileChooser.showOpenDialog(this.rootVBox.getScene().getWindow());
+            final File file = fileChooser.showOpenDialog(this.anchorPane.getScene().getWindow());
             if (file != null) {
                 this.onOpenFile(file);
             }
@@ -47,7 +47,7 @@ public class RootView implements Initializable {
         this.saveProjectItem.setOnAction(event -> {
             fileChooser.setTitle("Projekt speichern");
             fileChooser.getExtensionFilters().setAll(projectExtensionFilter);
-            final File file = fileChooser.showSaveDialog(this.rootVBox.getScene().getWindow());
+            final File file = fileChooser.showSaveDialog(this.anchorPane.getScene().getWindow());
             if (file != null) {
                 this.onSaveFile(file);
             }
@@ -56,7 +56,7 @@ public class RootView implements Initializable {
         this.XMLImportItem.setOnAction(event -> {
             fileChooser.setTitle("XML importieren");
             fileChooser.getExtensionFilters().setAll(XMLExtensionFilter);
-            final File file = fileChooser.showOpenDialog(this.rootVBox.getScene().getWindow());
+            final File file = fileChooser.showOpenDialog(this.anchorPane.getScene().getWindow());
             if (file != null) {
                 this.onOpenFile(file);
             }
@@ -65,7 +65,7 @@ public class RootView implements Initializable {
         this.XMLExportItem.setOnAction(event -> {
             fileChooser.setTitle("XML exportieren");
             fileChooser.getExtensionFilters().setAll(XMLExtensionFilter);
-            final File file = fileChooser.showSaveDialog(this.rootVBox.getScene().getWindow());
+            final File file = fileChooser.showSaveDialog(this.anchorPane.getScene().getWindow());
             if (file != null) {
                 this.onSaveFile(file);
             }

@@ -52,3 +52,8 @@
 .center-left {
     -fx-alignment: center-left;
 }
+
+.invalid-input {
+    -fx-text-box-border: red;
+    -fx-focus-color: red;
+}
