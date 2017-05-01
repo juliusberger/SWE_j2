@@ -1,5 +1,6 @@
 package components;
 
+import helpers.XML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -81,6 +82,7 @@ public class RootView implements Initializable {
     }
 
     private void onSaveFile(File file) {
-        file.getAbsolutePath();
+        System.out.println("exporting file... " + file.getAbsolutePath());
+        XML.exportXML(file.getAbsolutePath());
     }
 }
