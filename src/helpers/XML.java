@@ -72,7 +72,7 @@ public class XML
             //<editor-fold desc="Exportiert die Properties der Klasse "StateAnalysis"">
             writer.writeStartElement("State_Analysis_Properties");
             writer.writeAttribute("numberOfStateAnalysisEntries", String.valueOf(stateAnalysisProperties.size()));
-            for(int stateAnalysisEntriesIndex = 0; stateAnalysisEntriesIndex < stateAnalysisProperties.size(); stateAnalysisEntriesIndex++)
+            for(int stateAnalysisEntriesIndex = 0; (stateAnalysisEntriesIndex + 1) < stateAnalysisProperties.size(); stateAnalysisEntriesIndex += 2)
             {
                 writer.writeAttribute("entryName", stateAnalysisProperties.get(stateAnalysisEntriesIndex).toString());
                 writer.writeAttribute("description", stateAnalysisProperties.get(stateAnalysisEntriesIndex + 1).toString());
@@ -84,7 +84,7 @@ public class XML
             //<editor-fold desc="Exportiert die Properties der Klasse "FutureAnalysis"">
             writer.writeStartElement("Future_Analysis_Properties");
             writer.writeAttribute("numberOfFutureAnalysisEntries", String.valueOf(futureAnalysisProperties.size()));
-            for(int futureAnalysisEntriesIndex = 0; futureAnalysisEntriesIndex < futureAnalysisProperties.size(); futureAnalysisEntriesIndex++)
+            for(int futureAnalysisEntriesIndex = 0; (futureAnalysisEntriesIndex + 1) < futureAnalysisProperties.size(); futureAnalysisEntriesIndex += 2)
             {
                 writer.writeAttribute("entryName", futureAnalysisProperties.get(futureAnalysisEntriesIndex).toString());
                 writer.writeAttribute("description", futureAnalysisProperties.get(futureAnalysisEntriesIndex + 1).toString());
@@ -99,7 +99,7 @@ public class XML
             writer.writeAttribute("fieldOfApplication", requirementsProperties.get(0).get(1).toString());
 
             writer.writeAttribute("numberOfFunctionalRequirementsEntries", String.valueOf(requirementsProperties.get(1).size()));
-            for(int functionalRequirementsEntriesIndex = 0; functionalRequirementsEntriesIndex < requirementsProperties.get(1).size(); functionalRequirementsEntriesIndex++)
+            for(int functionalRequirementsEntriesIndex = 0; (functionalRequirementsEntriesIndex + 2) < requirementsProperties.get(1).size(); functionalRequirementsEntriesIndex += 3)
             {
                 writer.writeAttribute("function", requirementsProperties.get(1).get(functionalRequirementsEntriesIndex).toString());
                 writer.writeAttribute("descritpion", requirementsProperties.get(1).get(functionalRequirementsEntriesIndex + 1).toString());
@@ -107,20 +107,20 @@ public class XML
             }
 
             writer.writeAttribute("numberOfNonFunctionalRequirementsEntries", String.valueOf(requirementsProperties.get(2).size()));
-            for(int nonFunctionalRequirementsEntriesIndex = 0; nonFunctionalRequirementsEntriesIndex < requirementsProperties.get(2).size(); nonFunctionalRequirementsEntriesIndex++)
+            for(int nonFunctionalRequirementsEntriesIndex = 0; (nonFunctionalRequirementsEntriesIndex + 1) < requirementsProperties.get(2).size(); nonFunctionalRequirementsEntriesIndex += 2)
             {
                 writer.writeAttribute("businessProcess", requirementsProperties.get(2).get(nonFunctionalRequirementsEntriesIndex).toString());
                 writer.writeAttribute("description", requirementsProperties.get(2).get(nonFunctionalRequirementsEntriesIndex + 1).toString());
             }
 
             writer.writeAttribute("numberOfQualityRequirementsEntries", String.valueOf(requirementsProperties.get(3).size()));
-            for (int qualityRequirementsEntriesIndex = 0; qualityRequirementsEntriesIndex < requirementsProperties.get(3).size(); qualityRequirementsEntriesIndex++)
+            for (int qualityRequirementsEntriesIndex = 0; (qualityRequirementsEntriesIndex + 1) < requirementsProperties.get(3).size(); qualityRequirementsEntriesIndex += 2)
             {
                 writer.writeAttribute("priority", requirementsProperties.get(3).get(qualityRequirementsEntriesIndex).toString());
             }
 
             writer.writeAttribute("numberOfCommentsEntries", String.valueOf(requirementsProperties.get(4).size()));
-            for (int commentsEntriesIndex = 0; commentsEntriesIndex < requirementsProperties.get(4).size(); commentsEntriesIndex++)
+            for (int commentsEntriesIndex = 0; (commentsEntriesIndex + 1) < requirementsProperties.get(4).size(); commentsEntriesIndex += 2)
             {
                 writer.writeAttribute("keyword", requirementsProperties.get(4).get(commentsEntriesIndex).toString());
                 writer.writeAttribute("description", requirementsProperties.get(4).get(commentsEntriesIndex + 1).toString());
@@ -133,7 +133,7 @@ public class XML
             //<editor-fold desc="Exportiert die Properties der Klasse "Glossary"">
             writer.writeStartElement("Glossary_Properties");
             writer.writeAttribute("numberOfGlossaryEntries", String.valueOf(glossaryProperties.size()));
-            for(int glossaryEntriesIndex = 0; glossaryEntriesIndex < glossaryProperties.size(); glossaryEntriesIndex++)
+            for(int glossaryEntriesIndex = 0; (glossaryEntriesIndex + 1) < glossaryProperties.size(); glossaryEntriesIndex += 2)
             {
                 writer.writeAttribute("item", glossaryProperties.get(glossaryEntriesIndex).toString());
                 writer.writeAttribute("definition", glossaryProperties.get(glossaryEntriesIndex + 1).toString());
