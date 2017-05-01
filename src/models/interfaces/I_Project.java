@@ -2,12 +2,10 @@ package models.interfaces;
 
 import javafx.beans.property.SimpleStringProperty;
 import models.interfaces.Analysis.I_Analysis;
-import models.interfaces.CostEstimation.I_CostEstimationEntry;
+import models.interfaces.CostEstimation.I_CostEstimation;
 import models.interfaces.Glossary.I_Glossary;
 import models.interfaces.ProjectData.I_ProjectData;
 import models.interfaces.Requirements.I_Requirements;
-
-import java.util.List;
 
 /**
  * Erstellt von Julius am 30/04/2017.
@@ -31,7 +29,7 @@ public interface I_Project extends I_ModelPropertyAdaptor {
 
     I_Analysis getFutureAnalysis();
 
-    List<I_CostEstimationEntry> getCostEstimationEntries();
+    I_CostEstimation getCostEstimation();
 
     I_Requirements getRequirements();
 

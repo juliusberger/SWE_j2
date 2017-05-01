@@ -3,19 +3,18 @@ package models.implementation;
 import javafx.beans.property.SimpleStringProperty;
 import models.implementation.Analysis.FutureAnalysis;
 import models.implementation.Analysis.StateAnalysis;
-import models.implementation.CostEstimation.CostEstimationEntry;
+import models.implementation.CostEstimation.CostEstimation;
 import models.implementation.Glossary.Glossary;
 import models.implementation.ProjectData.ProjectData;
 import models.implementation.Requirements.Requirements;
 import models.interfaces.Analysis.I_Analysis;
-import models.interfaces.CostEstimation.I_CostEstimationEntry;
+import models.interfaces.CostEstimation.I_CostEstimation;
 import models.interfaces.Glossary.I_Glossary;
 import models.interfaces.I_Project;
 import models.interfaces.ProjectData.I_ProjectData;
 import models.interfaces.Requirements.I_Requirements;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -37,14 +36,11 @@ public class Project implements I_Project {
     private final I_Analysis _stateAnalysis = new StateAnalysis();
     private final I_Analysis _futureAnalysis = new FutureAnalysis();
     private final I_Requirements _requirements = new Requirements();
-    private final List<I_CostEstimationEntry> _costEstimationEntries = new ArrayList<>(7);
+    private final I_CostEstimation _costEstimation = new CostEstimation();
     private final I_Glossary _glossary = new Glossary();
 
 
     private Project() {
-        for (int i = 0; i < 7; i++) {
-            this._costEstimationEntries.add(new CostEstimationEntry());
-        }
     }
 
 
@@ -99,8 +95,8 @@ public class Project implements I_Project {
     }
 
     @Override
-    public List<I_CostEstimationEntry> getCostEstimationEntries() {
-        return this._costEstimationEntries;
+    public I_CostEstimation getCostEstimation() {
+        return this._costEstimation;
     }
 
     @Override

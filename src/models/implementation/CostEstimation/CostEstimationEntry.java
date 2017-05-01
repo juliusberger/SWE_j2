@@ -6,7 +6,7 @@ import models.interfaces.CostEstimation.I_CostEstimationEntry;
 /**
  * Erstellt von Julius am 01/05/2017.
  */
-public class CostEstimationEntry implements I_CostEstimationEntry {
+class CostEstimationEntry implements I_CostEstimationEntry {
     private SimpleStringProperty _weight = new SimpleStringProperty("");
 
     @Override
