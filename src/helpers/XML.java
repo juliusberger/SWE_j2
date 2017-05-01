@@ -32,12 +32,80 @@ public class XML
 
             // Der XML-Header wird erzeugt
             writer.writeStartDocument();
-            // Zuerst wird das Wurzelelement mit Attribut geschrieben
-            writer.writeStartElement( "Project Properties" );
+            writer.writeCharacters("\n");
+
+            //<editor-fold desc="Exportiert die Properties der Klasse "Project"">
+            writer.writeStartElement( "Project_Properties" );
             writer.writeAttribute( "name", allProperties.get(0).get(0).toString() );
             writer.writeAttribute("fileLocation", allProperties.get(0).get(1).toString());
             writer.writeEndElement();
+            writer.writeCharacters("\n");
+            //</editor-fold>
 
+            //<editor-fold desc="Exportiert die Properties der Klasse "ProjectData"">
+            writer.writeStartElement("Project_Data_Properties");
+            writer.writeAttribute( "projectDataName", allProperties.get(1).get(0).toString() );
+            writer.writeAttribute( "projectDataDueDate", allProperties.get(1).get(1).toString() );
+            writer.writeAttribute( "projectEditorSurname", allProperties.get(1).get(2).toString() );
+            writer.writeAttribute( "projectEditorName", allProperties.get(1).get(3).toString() );
+            writer.writeAttribute( "customerSurname", allProperties.get(1).get(4).toString() );
+            writer.writeAttribute( "customerName", allProperties.get(1).get(5).toString() );
+            writer.writeAttribute( "customerTelephone", allProperties.get(1).get(6).toString() );
+            writer.writeAttribute( "customerEmail", allProperties.get(1).get(7).toString() );
+            writer.writeAttribute( "customerCompanyName", allProperties.get(1).get(8).toString() );
+            writer.writeAttribute( "customerCompanyStreet", allProperties.get(1).get(9).toString() );
+            writer.writeAttribute( "customerCompanyPLZ", allProperties.get(1).get(10).toString() );
+            writer.writeAttribute( "customerCompanyLocation", allProperties.get(1).get(11).toString() );
+            writer.writeEndElement();
+            writer.writeCharacters("\n");
+            //</editor-fold>
+
+            //<editor-fold desc="Exportiert die Properties der Klasse "StateAnalysis"">
+            writer.writeStartElement("State_Analysis_Properties");
+            writer.writeAttribute("numberOfEntries", String.valueOf(allProperties.get(2).size()));
+            for(int stateAnalysisEntriesIndex = 0; stateAnalysisEntriesIndex < allProperties.get(2).size(); stateAnalysisEntriesIndex++)
+            {
+                writer.writeAttribute("entryName", allProperties.get(2).get(stateAnalysisEntriesIndex).toString());
+                writer.writeAttribute("description", allProperties.get(2).get(stateAnalysisEntriesIndex + 1).toString());
+            }
+            writer.writeEndElement();
+            writer.writeCharacters("\n");
+            //</editor-fold>
+
+            //<editor-fold desc="Exportiert die Properties der Klasse "FutureAnalysis"">
+            writer.writeStartElement("Future_Analysis_Properties");
+            writer.writeAttribute("numberOfEntries", String.valueOf(allProperties.get(3).size()));
+            for(int futureAnalysisEntriesIndex = 0; futureAnalysisEntriesIndex < allProperties.get(3).size(); futureAnalysisEntriesIndex++)
+            {
+                writer.writeAttribute("entryName", allProperties.get(3).get(futureAnalysisEntriesIndex).toString());
+                writer.writeAttribute("description", allProperties.get(3).get(futureAnalysisEntriesIndex + 1).toString());
+            }
+            writer.writeEndElement();
+            writer.writeCharacters("\n");
+            //</editor-fold>
+
+            //<editor-fold desc="Exportiert die Properties der Klasse "Requirements"">
+            writer.writeStartElement("Requirements_Properties");
+            writer.writeAttribute("projectGoal", allProperties.get(4).get(0).get(0).toString());
+            writer.writeAttribute("fieldOfApplication", allProperties.get(4).get(0).get(1).toString());
+
+            writer.writeAttribute("numberOfEntries", String.valueOf(allProperties.get(4).get(2).size()));
+            for(int functionalRequirementsEntriesIndex = 0; functionalRequirementsEntriesIndex < allProperties.get(4).get(2).size(); functionalRequirementsEntriesIndex++)
+            {
+                writer.writeAttribute("function", allProperties.get(4).get(functionalRequirementsEntriesIndex).toString());
+                writer.writeAttribute("descritpion", allProperties.get(4).get(functionalRequirementsEntriesIndex + 1).toString());
+                writer.writeAttribute("stakeholder", allProperties.get(4).get(functionalRequirementsEntriesIndex + 2).toString());
+            }
+
+
+            writer.writeEndElement();
+            writer.writeCharacters("\n");
+            //</editor-fold>
+
+
+
+
+            // Die XML-Datei wird abgeschlossen
             writer.writeEndDocument();
 
         } catch (Exception exp) {
@@ -108,7 +176,7 @@ public class XML
         //</editor-fold>
 
         //<editor-fold desc="Alle Properties der Klasse "Requirements" hinzufügen">
-        ArrayList<ArrayList> requirementsProperties = new ArrayList<ArrayList>();
+        ArrayList<ArrayList<String>> requirementsProperties = new ArrayList<ArrayList<String>>();
 
         ArrayList<String> requirementProperties = new ArrayList<String>();
         I_Requirements currentRequirements = Project.getInstance().getRequirements();
