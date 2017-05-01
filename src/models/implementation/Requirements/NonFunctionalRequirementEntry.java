@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Erstellt von Julius am 23/04/2017.
  */
 public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirementEntry {
-    private final SimpleStringProperty _businessProcess = new SimpleStringProperty();
-    private final SimpleStringProperty _description = new SimpleStringProperty();
+    private final SimpleStringProperty _businessProcess = new SimpleStringProperty("");
+    private final SimpleStringProperty _description = new SimpleStringProperty("");
 
     NonFunctionalRequirementEntry() {
     }

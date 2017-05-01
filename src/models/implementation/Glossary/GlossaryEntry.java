@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Erstellt von Julius am 24/04/2017.
  */
 public class GlossaryEntry implements I_GlossaryEntry {
-    private final SimpleStringProperty _item = new SimpleStringProperty();
-    private final SimpleStringProperty _definition = new SimpleStringProperty();
+    private final SimpleStringProperty _item = new SimpleStringProperty("");
+    private final SimpleStringProperty _definition = new SimpleStringProperty("");
 
     GlossaryEntry() {
     }

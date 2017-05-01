@@ -27,8 +27,8 @@ public class Project implements I_Project {
     }
 
 
-    private final SimpleStringProperty _name = new SimpleStringProperty();
-    private final SimpleStringProperty _fileLocation = new SimpleStringProperty();
+    private final SimpleStringProperty _name = new SimpleStringProperty("");
+    private final SimpleStringProperty _fileLocation = new SimpleStringProperty("");
 
     private I_ProjectData _projectData = new ProjectData();
     private I_Analysis _stateAnalysis = new StateAnalysis();

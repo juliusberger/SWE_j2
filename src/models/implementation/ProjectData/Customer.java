@@ -9,15 +9,15 @@ import java.util.ArrayList;
  * Erstellt von Julius am 23/04/2017.
  */
 class Customer implements I_Customer {
-    private final SimpleStringProperty _surname = new SimpleStringProperty();
-    private final SimpleStringProperty _name = new SimpleStringProperty();
-    private final SimpleStringProperty _telephone = new SimpleStringProperty();
-    private final SimpleStringProperty _email = new SimpleStringProperty();
+    private final SimpleStringProperty _surname = new SimpleStringProperty("");
+    private final SimpleStringProperty _name = new SimpleStringProperty("");
+    private final SimpleStringProperty _telephone = new SimpleStringProperty("");
+    private final SimpleStringProperty _email = new SimpleStringProperty("");
 
-    private final SimpleStringProperty _companyName = new SimpleStringProperty();
-    private final SimpleStringProperty _companyStreet = new SimpleStringProperty();
-    private final SimpleStringProperty _companyPLZ = new SimpleStringProperty();
-    private final SimpleStringProperty _companyLocation = new SimpleStringProperty();
+    private final SimpleStringProperty _companyName = new SimpleStringProperty("");
+    private final SimpleStringProperty _companyStreet = new SimpleStringProperty("");
+    private final SimpleStringProperty _companyPLZ = new SimpleStringProperty("");
+    private final SimpleStringProperty _companyLocation = new SimpleStringProperty("");
 
     Customer() {
     }

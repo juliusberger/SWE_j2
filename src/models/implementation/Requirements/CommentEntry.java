@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Created by Michi on 23.04.2017.
  */
 public class CommentEntry implements I_CommentEntry {
-    private final SimpleStringProperty _keyword = new SimpleStringProperty();
-    private final SimpleStringProperty _description = new SimpleStringProperty();
+    private final SimpleStringProperty _keyword = new SimpleStringProperty("");
+    private final SimpleStringProperty _description = new SimpleStringProperty("");
 
     CommentEntry() {
     }

@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * Erstellt von Julius am 23/04/2017.
  */
 public class FunctionalRequirementEntry implements I_FunctionalRequirementEntry {
-    private final SimpleStringProperty _function = new SimpleStringProperty();
-    private final SimpleStringProperty _description = new SimpleStringProperty();
-    private final SimpleStringProperty _stakeholder = new SimpleStringProperty();
+    private final SimpleStringProperty _function = new SimpleStringProperty("");
+    private final SimpleStringProperty _description = new SimpleStringProperty("");
+    private final SimpleStringProperty _stakeholder = new SimpleStringProperty("");
 
     FunctionalRequirementEntry() {
     }

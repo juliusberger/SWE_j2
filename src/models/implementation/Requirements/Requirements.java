@@ -10,8 +10,8 @@ import java.util.List;
  * Erstellt von Julius am 23/04/2017.
  */
 public class Requirements implements I_Requirements {
-    private final SimpleStringProperty _projectGoal = new SimpleStringProperty();
-    private final SimpleStringProperty _fieldOfApplication = new SimpleStringProperty();
+    private final SimpleStringProperty _projectGoal = new SimpleStringProperty("");
+    private final SimpleStringProperty _fieldOfApplication = new SimpleStringProperty("");
 
     private final I_FunctionalRequirements _functionalRequirements = new FunctionalRequirements();
     private final I_NonFunctionalRequirements _nonFunctionalRequirements = new NonFunctionalRequirements();

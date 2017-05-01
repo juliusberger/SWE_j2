@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Erstellt von Julius am 23/04/2017.
  */
 class ProjectEditor implements I_ProjectEditor {
-    private final SimpleStringProperty _surname = new SimpleStringProperty();
-    private final SimpleStringProperty _name = new SimpleStringProperty();
+    private final SimpleStringProperty _surname = new SimpleStringProperty("");
+    private final SimpleStringProperty _name = new SimpleStringProperty("");
 
     ProjectEditor() {
 

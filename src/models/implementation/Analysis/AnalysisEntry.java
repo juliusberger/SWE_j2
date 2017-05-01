@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Erstellt von Julius am 23/04/2017.
  */
 public class AnalysisEntry implements I_AnalysisEntry {
-    private final SimpleStringProperty _entryName = new SimpleStringProperty();
-    private final SimpleStringProperty _description = new SimpleStringProperty();
+    private final SimpleStringProperty _entryName = new SimpleStringProperty("");
+    private final SimpleStringProperty _description = new SimpleStringProperty("");
 
     AnalysisEntry() {
     }

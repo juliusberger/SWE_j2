@@ -11,8 +11,8 @@ import java.util.ArrayList;
  * Erstellt von Julius am 23/04/2017.
  */
 public class ProjectData implements I_ProjectData {
-    private final SimpleStringProperty _name = new SimpleStringProperty();
-    private final SimpleStringProperty _dueDate = new SimpleStringProperty();
+    private final SimpleStringProperty _name = new SimpleStringProperty("");
+    private final SimpleStringProperty _dueDate = new SimpleStringProperty("");
 
     private final I_ProjectEditor _projectEditor = new ProjectEditor();
 
