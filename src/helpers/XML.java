@@ -38,7 +38,7 @@ public class XML
             ArrayList<String> glossaryProperties = getGlossaryProperties();
 
             XMLOutputFactory factory = XMLOutputFactory.newInstance();
-            writer = new IndentingXMLStreamWriter(factory.createXMLStreamWriter(new FileOutputStream(fileName)));
+            writer = new IndentingXMLStreamWriter(factory.createXMLStreamWriter( new FileOutputStream(fileName)));
 
             // Der XML-Header wird erzeugt
             writer.writeStartDocument();
@@ -72,11 +72,15 @@ public class XML
 
             //<editor-fold desc="Exportiert die Properties der Klasse "StateAnalysis"">
             writer.writeStartElement("State_Analysis_Properties");
-            writer.writeAttribute("numberOfStateAnalysisEntries", String.valueOf(stateAnalysisProperties.size()));
+            //writer.writeCharacters("\n\t");
+            //writer.writeAttribute("numberOfStateAnalysisEntries", String.valueOf(stateAnalysisProperties.size()));
             for(int stateAnalysisEntriesIndex = 0; (stateAnalysisEntriesIndex + 1) < stateAnalysisProperties.size(); stateAnalysisEntriesIndex += 2)
             {
+                writer.writeCharacters("\t");
+                writer.writeStartElement("State_Analysis_Entry");
                 writer.writeAttribute("entryName", stateAnalysisProperties.get(stateAnalysisEntriesIndex).toString());
                 writer.writeAttribute("description", stateAnalysisProperties.get(stateAnalysisEntriesIndex + 1).toString());
+                writer.writeEndElement();
             }
             writer.writeEndElement();
             writer.writeCharacters("\n");
@@ -239,7 +243,7 @@ public class XML
                                 nonFunctionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
                             }
 
-                            int numberOfQualityRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(numberOfFunctionalRequirementsProperties + 4));
+                            int numberOfQualityRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(numberOfFunctionalRequirementsProperties + numberOfNonFunctionalRequirementsProperties + 4));
                             for (int currentIndexPosition = numberOfFunctionalRequirementsProperties + 4; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + numberOfNonFunctionalRequirementsProperties + 3; currentIndexPosition += 2)
                             {
                                 ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<String>();
