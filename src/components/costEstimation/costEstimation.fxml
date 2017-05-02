@@ -61,7 +61,7 @@
 				<Label maxWidth="1.7976931348623157E308"
 				       HBox.hgrow="ALWAYS">2 Dezentrale Daten, dezentrale Verarbeitung
 				</Label>
-				<ChoiceBox>
+				<ChoiceBox fx:id="box2">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0"/>
@@ -82,7 +82,7 @@
 				<Label maxWidth="1.7976931348623157E308"
 				       HBox.hgrow="ALWAYS">3 Transaktionsrate
 				</Label>
-				<ChoiceBox>
+				<ChoiceBox fx:id="box3">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0"/>
@@ -103,7 +103,7 @@
 				<Label maxWidth="1.7976931348623157E308"
 				       HBox.hgrow="ALWAYS">4 Verarbeitungslogik
 				</Label>
-				<ChoiceBox>
+				<ChoiceBox fx:id="box4">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0"/>
@@ -124,7 +124,7 @@
 				<Label maxWidth="1.7976931348623157E308"
 				       HBox.hgrow="ALWAYS">5 Wiederverwendbarkeit
 				</Label>
-				<ChoiceBox>
+				<ChoiceBox fx:id="box5">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0"/>
@@ -145,7 +145,7 @@
 				<Label maxWidth="1.7976931348623157E308"
 				       HBox.hgrow="ALWAYS">6 Datenbestandskonvertierungen
 				</Label>
-				<ChoiceBox>
+				<ChoiceBox fx:id="box6">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0"/>
@@ -165,7 +165,7 @@
 				<Label maxWidth="1.7976931348623157E308"
 				       HBox.hgrow="ALWAYS">7 Anpassbarkeit
 				</Label>
-				<ChoiceBox>
+				<ChoiceBox fx:id="box7">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0"/>

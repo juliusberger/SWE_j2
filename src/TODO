@@ -1,4 +1,3 @@
-- Validierung der Eingaben
 - Aufwandsabschätzung
 - Import/Export der Daten
 (- Auslagerung der Table Views in eigene FXML-Files, alternativ auch programmatikalisch erstellen)

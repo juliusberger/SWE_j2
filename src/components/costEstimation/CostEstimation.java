@@ -17,6 +17,12 @@ public class CostEstimation implements Initializable {
     public Button classifyRequirementsButton;
 
     public ChoiceBox<String> box1;
+    public ChoiceBox<String> box2;
+    public ChoiceBox<String> box3;
+    public ChoiceBox<String> box4;
+    public ChoiceBox<String> box5;
+    public ChoiceBox<String> box6;
+    public ChoiceBox<String> box7;
 
     public Label calculatedFPLabel;
     public Label calculatedMMLabel;
@@ -33,11 +39,42 @@ public class CostEstimation implements Initializable {
                         .getCostEstimationEntries()
                         .get(0)
                         .getWeightProperty());
-        Project.getInstance().getCostEstimation()
-                .getCostEstimationEntries()
-                .get(0)
-                .getWeightProperty()
-                .addListener((observable, oldValue, newValue) -> System.out
-                        .println(newValue));
+        this.box2.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(1)
+                        .getWeightProperty());
+        this.box3.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(2)
+                        .getWeightProperty());
+        this.box4.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(3)
+                        .getWeightProperty());
+        this.box5.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(4)
+                        .getWeightProperty());
+        this.box6.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(5)
+                        .getWeightProperty());
+        this.box7.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(6)
+                        .getWeightProperty());
+
     }
 }
