@@ -1,5 +1,6 @@
 package helpers;
 
+import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 import models.implementation.Project;
 import models.interfaces.Analysis.I_Analysis;
 import models.interfaces.Analysis.I_AnalysisEntry;
@@ -37,7 +38,7 @@ public class XML
             ArrayList<String> glossaryProperties = getGlossaryProperties();
 
             XMLOutputFactory factory = XMLOutputFactory.newInstance();
-            writer = factory.createXMLStreamWriter( new FileOutputStream(fileName));
+            writer = new IndentingXMLStreamWriter(factory.createXMLStreamWriter(new FileOutputStream(fileName)));
 
             // Der XML-Header wird erzeugt
             writer.writeStartDocument();
