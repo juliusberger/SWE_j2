@@ -78,7 +78,7 @@ public class RootView implements Initializable {
     }
 
     private void onLoadFile(File file) {
-        //XML.importXML(file.getAbsolutePath());
+        XML.importXML(file.getAbsolutePath());
     }
 
     private void onSaveFile(File file) {

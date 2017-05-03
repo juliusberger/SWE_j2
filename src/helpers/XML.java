@@ -44,7 +44,7 @@ public class XML
             writer.writeCharacters("\n");
 
             //<editor-fold desc="Exportiert die Properties der Klasse "Project"">
-            writer.writeStartElement( "Project_Properties" );
+            writer.writeStartElement( "ProjectProperties" );
             writer.writeAttribute( "name", projectProperties.get(0).toString() );
             writer.writeAttribute("fileLocation", projectProperties.get(1).toString());
             writer.writeEndElement();
@@ -250,7 +250,8 @@ public class XML
                         functionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
                     }
                     else if (xmlStreamReader.getLocalName().equals("QualityRequirementsEntry")){
-                        int qualityRequirementsEntryPriority = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
+                        int qualityRequirementsEntryPriorityInteger = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
+                        I_QualityRequirementEntry.Priority qualityRequirementsEntryPriority = I_QualityRequirementEntry.Priority.values()[qualityRequirementsEntryPriorityInteger];
                         qualityRequirements.get(qualityRequirmentsCounter).setPriority(qualityRequirementsEntryPriority);
                         qualityRequirmentsCounter++;
                     }
@@ -271,6 +272,8 @@ public class XML
 
                 event = xmlStreamReader.next();
             }
+
+            System.out.println("XML-Import erfolgreich abgeschlossen");
 
         } catch (FileNotFoundException | XMLStreamException e) {
             System.out.println(e);
