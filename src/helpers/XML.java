@@ -41,14 +41,13 @@ public class XML
 
             // Der XML-Header wird erzeugt
             writer.writeStartDocument();
-            writer.writeCharacters("\n");
+            writer.writeStartElement("ProjectExport");
 
             //<editor-fold desc="Exportiert die Properties der Klasse "Project"">
             writer.writeStartElement( "ProjectProperties" );
             writer.writeAttribute( "name", projectProperties.get(0).toString() );
             writer.writeAttribute("fileLocation", projectProperties.get(1).toString());
             writer.writeEndElement();
-            writer.writeCharacters("\n");
             //</editor-fold>
 
             //<editor-fold desc="Exportiert die Properties der Klasse "ProjectData"">
@@ -66,7 +65,6 @@ public class XML
             writer.writeAttribute( "customerCompanyPLZ", projectDataProperties.get(10).toString() );
             writer.writeAttribute( "customerCompanyLocation", projectDataProperties.get(11).toString() );
             writer.writeEndElement();
-            writer.writeCharacters("\n");
             //</editor-fold>
 
             //<editor-fold desc="Exportiert die Properties der Klasse "StateAnalysis"">
@@ -80,7 +78,6 @@ public class XML
                 writer.writeEndElement();
             }
             writer.writeEndElement();
-            writer.writeCharacters("\n");
             //</editor-fold>
 
             //<editor-fold desc="Exportiert die Properties der Klasse "FutureAnalysis"">
@@ -94,7 +91,6 @@ public class XML
                 writer.writeEndElement();
             }
             writer.writeEndElement();
-            writer.writeCharacters("\n");
             //</editor-fold>
 
             //<editor-fold desc="Exportiert die Properties der Klasse "Requirements"">
@@ -148,7 +144,6 @@ public class XML
             writer.writeEndElement();
 
             writer.writeEndElement();
-            writer.writeCharacters("\n");
             //</editor-fold>
 
             //<editor-fold desc="Exportiert die Properties der Klasse "Glossary"">
@@ -162,11 +157,11 @@ public class XML
                 writer.writeEndElement();
             }
             writer.writeEndElement();
-            writer.writeCharacters("\n");
             //</editor-fold>
 
 
             // XML-Datei wird abgeschlossen
+            writer.writeEndElement();
             writer.writeEndDocument();
 
             System.out.println("XML-Datei erfolgreich erstellt");
@@ -261,13 +256,13 @@ public class XML
                         commentEntryArguments.add(xmlStreamReader.getAttributeValue(1));
                         comments.addEntryWithProperties(commentEntryArguments);
                     }
-                    else if (xmlStreamReader.getLocalName().equals("GlossaryEntry")){
+                    else if (xmlStreamReader.getLocalName().equals("GlossaryEntry"))
+                    {
                         ArrayList<String> glossaryEntryArguments = new ArrayList<String>();
                         glossaryEntryArguments.add(xmlStreamReader.getAttributeValue(0));
                         glossaryEntryArguments.add(xmlStreamReader.getAttributeValue(1));
                         glossary.addEntryWithProperties(glossaryEntryArguments);
                     }
-                    break;
                 }
 
                 event = xmlStreamReader.next();
