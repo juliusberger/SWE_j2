@@ -2,7 +2,6 @@ package helpers;
 
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 import models.implementation.Project;
-import models.implementation.Requirements.Requirements;
 import models.interfaces.Analysis.I_Analysis;
 import models.interfaces.Analysis.I_AnalysisEntry;
 import models.interfaces.Glossary.I_Glossary;
@@ -14,7 +13,6 @@ import models.interfaces.ProjectData.I_ProjectEditor;
 import models.interfaces.Requirements.*;
 
 import javax.xml.stream.*;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -195,9 +193,11 @@ public class XML
             I_Requirements requirements = project.getRequirements();
             I_FunctionalRequirements functionalRequirements = requirements.getFunctionalRequirements();
             I_NonFunctionalRequirements nonFunctionalRequirements = requirements.getNonFunctionalRequirements();
+            I_Comments comments = requirements.getComments();
             List<I_QualityRequirementEntry> qualityRequirements = requirements.getQualityRequirementEntries();
 
-      
+            // Da die QualityRequirements eine vorgegebene Liste sind, wird über diesen Counter der akutell zu verändernde QualityRequirementEntry angesprochen
+            int qualityRequirmentsCounter = 0;
 
             int event = xmlStreamReader.getEventType();
             while(true){
@@ -236,39 +236,32 @@ public class XML
                             requirements.setProjectGoal(xmlStreamReader.getAttributeValue(0));
                             requirements.setFieldOfApplication(xmlStreamReader.getAttributeValue(1));
                         }
-                        else if (xmlStreamReader.getLocalName().equals("FunctionalRequirements")){
+                        else if (xmlStreamReader.getLocalName().equals("FunctionalRequirementsEntry")){
                             ArrayList<String> functionalRequirementsEntryArguments = new ArrayList<String>();
                             functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(0));
+                            functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(1));
+                            functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(2));
                             functionalRequirements.addEntryWithProperties(functionalRequirementsEntryArguments);
                         }
-
-                            for (int currentIndexPosition = 3; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + 3; currentIndexPosition += 2)
-                            {
-                                ArrayList<String> functionalRequirementsEntryArguments = new ArrayList<String>();
-                                functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
-                                functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
-                                functionalRequirements.addEntryWithProperties(functionalRequirementsEntryArguments);
-                            }
-
-                            int numberOfNonFunctionalRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(numberOfFunctionalRequirementsProperties + 3));
-
-                            for (int currentIndexPosition = numberOfFunctionalRequirementsProperties + 4; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + numberOfNonFunctionalRequirementsProperties + 3; currentIndexPosition += 2)
-                            {
-                                ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<String>();
-                                nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
-                                nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
-                                nonFunctionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
-                            }
-
-                            int numberOfQualityRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(numberOfFunctionalRequirementsProperties + numberOfNonFunctionalRequirementsProperties + 4));
-                            for (int currentIndexPosition = numberOfFunctionalRequirementsProperties + 4; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + numberOfNonFunctionalRequirementsProperties + 3; currentIndexPosition += 2)
-                            {
-                                ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<String>();
-                                nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
-                                nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
-                                nonFunctionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
-                            }
+                        else if (xmlStreamReader.getLocalName().equals("NonFunctionalRequirementsEntry")){
+                            ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<String>();
+                            nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(0));
+                            nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(1));
+                            functionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
                         }
+                        else if (xmlStreamReader.getLocalName().equals("QualityRequirementsEntry")){
+                            int qualityRequirementsEntryPriority = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
+                            qualityRequirements.get(qualityRequirmentsCounter).setPriority(qualityRequirementsEntryPriority);
+                            qualityRequirmentsCounter++;
+                        }
+                        else if (xmlStreamReader.getLocalName().equals("CommentEntry")){
+                            ArrayList<String> commentEntryArguments = new ArrayList<String>();
+                            commentEntryArguments.add(xmlStreamReader.getAttributeValue(0));
+                            commentEntryArguments.add(xmlStreamReader.getAttributeValue(1));
+                            comments.addEntryWithProperties(commentEntryArguments);
+                        }
+
+
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         if(xmlStreamReader.getLocalName().equals("Player")){
