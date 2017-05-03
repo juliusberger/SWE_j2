@@ -8,8 +8,6 @@ public interface I_QualityRequirementEntry {
 
     void setPriority(Priority priority);
 
-    void setPriority(int priority);
-
     enum Priority {
         HIGH, MEDIUM, LOW, IRRELEVANT
     }
