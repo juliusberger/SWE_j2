@@ -2,6 +2,7 @@ package helpers;
 
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 import models.implementation.Project;
+import models.implementation.Requirements.Requirements;
 import models.interfaces.Analysis.I_Analysis;
 import models.interfaces.Analysis.I_AnalysisEntry;
 import models.interfaces.Glossary.I_Glossary;
@@ -45,7 +46,7 @@ public class XML
             writer.writeCharacters("\n");
 
             //<editor-fold desc="Exportiert die Properties der Klasse "Project"">
-            writer.writeStartElement( "ProjectProperties" );
+            writer.writeStartElement( "Project_Properties" );
             writer.writeAttribute( "name", projectProperties.get(0).toString() );
             writer.writeAttribute("fileLocation", projectProperties.get(1).toString());
             writer.writeEndElement();
@@ -178,7 +179,7 @@ public class XML
         }
     }
 
-    /*
+
     public static void importXML(String fileName)
     {
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
@@ -196,15 +197,17 @@ public class XML
             I_NonFunctionalRequirements nonFunctionalRequirements = requirements.getNonFunctionalRequirements();
             List<I_QualityRequirementEntry> qualityRequirements = requirements.getQualityRequirementEntries();
 
+      
+
             int event = xmlStreamReader.getEventType();
             while(true){
                 switch(event) {
                     case XMLStreamConstants.START_ELEMENT:
-                        if(xmlStreamReader.getLocalName().equals("Project_Properties")){
+                        if(xmlStreamReader.getLocalName().equals("ProjectProperties")){
                             project.setName(xmlStreamReader.getAttributeValue(0));
                             project.setFileLocation(xmlStreamReader.getAttributeValue(1));
                         }
-                        else if (xmlStreamReader.getLocalName().equals("Project_Data_Properties")){
+                        else if (xmlStreamReader.getLocalName().equals("ProjectDataProperties")){
                             projectData.setName(xmlStreamReader.getAttributeValue(0));
                             projectData.setDueDate(xmlStreamReader.getAttributeValue(1));
                             projectEditor.setSurname(xmlStreamReader.getAttributeValue(2));
@@ -218,33 +221,26 @@ public class XML
                             customer.setCompanyPLZ(xmlStreamReader.getAttributeValue(10));
                             customer.setCompanyLocation(xmlStreamReader.getAttributeValue(11));
                         }
-                        else if (xmlStreamReader.getLocalName().equals("State_Analysis_Properties")){
-                            int numberOfStateAnalysisProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
-
-                            for (int currentIndexPosition = 0; (currentIndexPosition + 1) < numberOfStateAnalysisProperties; currentIndexPosition += 2)
-                            {
-                                ArrayList<String> stateAnalysisEntryArguments = new ArrayList<String>();
-                                stateAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
-                                stateAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
-                                stateAnalysis.addEntryWithProperties(stateAnalysisEntryArguments);
-                            }
+                        else if (xmlStreamReader.getLocalName().equals("StateAnalysisEntry")){
+                            ArrayList<String> stateAnalysisEntryArguments = new ArrayList<String>();
+                            stateAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(0));
+                            stateAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(1));
+                            stateAnalysis.addEntryWithProperties(stateAnalysisEntryArguments);
                         }
-                        else if (xmlStreamReader.getLocalName().equals("Future_Analysis_Properties")){
-                            int numberOfFutureAnalysisProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
-
-                            for (int currentIndexPosition = 0; (currentIndexPosition + 1) < numberOfFutureAnalysisProperties; currentIndexPosition += 2)
-                            {
-                                ArrayList<String> futureAnalysisEntryArguments = new ArrayList<String>();
-                                futureAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition));
-                                futureAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(currentIndexPosition + 1));
-                                futureAnalysis.addEntryWithProperties(futureAnalysisEntryArguments);
-                            }
+                        else if (xmlStreamReader.getLocalName().equals("FutureAnalysisEntry")){
+                            ArrayList<String> futureAnalysisEntryArguments = new ArrayList<String>();
+                            futureAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(0));
+                            futureAnalysis.addEntryWithProperties(futureAnalysisEntryArguments);
                         }
-                        else if (xmlStreamReader.getLocalName().equals("Requirements_Properties")){
+                        else if (xmlStreamReader.getLocalName().equals("RequirementsProperties")) {
                             requirements.setProjectGoal(xmlStreamReader.getAttributeValue(0));
                             requirements.setFieldOfApplication(xmlStreamReader.getAttributeValue(1));
-
-                            int numberOfFunctionalRequirementsProperties = Integer.parseInt(xmlStreamReader.getAttributeValue(2));
+                        }
+                        else if (xmlStreamReader.getLocalName().equals("FunctionalRequirements")){
+                            ArrayList<String> functionalRequirementsEntryArguments = new ArrayList<String>();
+                            functionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(0));
+                            functionalRequirements.addEntryWithProperties(functionalRequirementsEntryArguments);
+                        }
 
                             for (int currentIndexPosition = 3; (currentIndexPosition + 1) < numberOfFunctionalRequirementsProperties + 3; currentIndexPosition += 2)
                             {
@@ -291,7 +287,7 @@ public class XML
         }
         return players;
     }
-    */
+
 
     private static ArrayList<String> getProjectProperties()
     {
