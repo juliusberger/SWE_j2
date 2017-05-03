@@ -127,7 +127,7 @@ public class XML
             {
                 writer.writeCharacters("\t");
                 writer.writeStartElement("QualityRequirementsEntry");
-                writer.writeAttribute("priority", requirementsProperties.get(3).get(qualityRequirementsEntriesIndex).toString());
+                writer.writeAttribute("priority", requirementsProperties.get(3).get(qualityRequirementsEntriesIndex));
                 writer.writeEndElement();
             }
             writer.writeEndElement();
@@ -242,12 +242,15 @@ public class XML
                         ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<String>();
                         nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(0));
                         nonFunctionalRequirementsEntryArguments.add(xmlStreamReader.getAttributeValue(1));
-                        functionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
+                        nonFunctionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
                     }
                     else if (xmlStreamReader.getLocalName().equals("QualityRequirementsEntry")){
-                        int qualityRequirementsEntryPriorityInteger = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
-                        I_QualityRequirementEntry.Priority qualityRequirementsEntryPriority = I_QualityRequirementEntry.Priority.values()[qualityRequirementsEntryPriorityInteger];
-                        qualityRequirements.get(qualityRequirmentsCounter).setPriority(qualityRequirementsEntryPriority);
+                        if (xmlStreamReader.getAttributeValue(0).equals("null"))
+                        {
+                            int qualityRequirementsEntryPriorityInteger = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
+                            I_QualityRequirementEntry.Priority qualityRequirementsEntryPriority = I_QualityRequirementEntry.Priority.values()[qualityRequirementsEntryPriorityInteger];
+                            qualityRequirements.get(qualityRequirmentsCounter).setPriority(qualityRequirementsEntryPriority);
+                        }
                         qualityRequirmentsCounter++;
                     }
                     else if (xmlStreamReader.getLocalName().equals("CommentEntry")){
@@ -376,7 +379,7 @@ public class XML
         for(I_QualityRequirementEntry currentEntry : currentRequirements.getQualityRequirementEntries())
         {
             if (currentEntry.getPriority() != null) {
-                qualityRequirements.add(currentEntry.getPriority().toString());
+                qualityRequirements.add(Integer.toString(currentEntry.getPriority().ordinal()));
             }
             else {
                 qualityRequirements.add("null");
