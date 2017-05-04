@@ -245,7 +245,7 @@ public class XML
                         nonFunctionalRequirements.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
                     }
                     else if (xmlStreamReader.getLocalName().equals("QualityRequirementsEntry")){
-                        if (xmlStreamReader.getAttributeValue(0).equals("null"))
+                        if (!xmlStreamReader.getAttributeValue(0).equals("null"))
                         {
                             int qualityRequirementsEntryPriorityInteger = Integer.parseInt(xmlStreamReader.getAttributeValue(0));
                             I_QualityRequirementEntry.Priority qualityRequirementsEntryPriority = I_QualityRequirementEntry.Priority.values()[qualityRequirementsEntryPriorityInteger];
