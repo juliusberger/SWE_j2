@@ -225,6 +225,7 @@ public class XML
                     else if (xmlStreamReader.getLocalName().equals("FutureAnalysisEntry")){
                         ArrayList<String> futureAnalysisEntryArguments = new ArrayList<String>();
                         futureAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(0));
+                        futureAnalysisEntryArguments.add(xmlStreamReader.getAttributeValue(1));
                         futureAnalysis.addEntryWithProperties(futureAnalysisEntryArguments);
                     }
                     else if (xmlStreamReader.getLocalName().equals("RequirementsProperties")) {
