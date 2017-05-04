@@ -2,6 +2,7 @@ package testStage.XML;
 
 import helpers.XML;
 import models.implementation.Project;
+import models.interfaces.Analysis.I_Analysis;
 import models.interfaces.Glossary.I_Glossary;
 import models.interfaces.I_Project;
 import models.interfaces.ProjectData.I_Customer;
@@ -34,6 +35,8 @@ public class Main {
         I_ProjectData projectData = Project.getInstance().getProjectData();
         I_ProjectEditor projectEditor = projectData.getProjectEditor();
         I_Customer customer = projectData.getCustomer();
+        I_Analysis stateAnalysis = project.getStateAnalysis();
+        I_Analysis futureAnalysis = project.getFutureAnalysis();
         I_Requirements requirements = Project.getInstance().getRequirements();
         I_FunctionalRequirements functionalRequirements = requirements.getFunctionalRequirements();
         I_NonFunctionalRequirements nonFunctionalRequirements = requirements.getNonFunctionalRequirements();
@@ -58,6 +61,26 @@ public class Main {
         customer.setName("Max");
         customer.setSurname("Mustermann");
         customer.setTelephone("12345 123456789");
+
+        ArrayList<String> stateAnalysisEntry1 = new ArrayList<String>();
+        stateAnalysisEntry1.add("Fakt 1");
+        stateAnalysisEntry1.add("Test test test");
+        stateAnalysis.addEntryWithProperties(stateAnalysisEntry1);
+
+        ArrayList<String> stateAnalysisEntry2 = new ArrayList<String>();
+        stateAnalysisEntry2.add("Fakt 2");
+        stateAnalysisEntry2.add("Test2 test2 test2");
+        stateAnalysis.addEntryWithProperties(stateAnalysisEntry2);
+
+        ArrayList<String> futureAnalysisEntry1 = new ArrayList<String>();
+        futureAnalysisEntry1.add("Future Fakt 1");
+        futureAnalysisEntry1.add("Test test test");
+        futureAnalysis.addEntryWithProperties(futureAnalysisEntry1);
+
+        ArrayList<String> futureAnalysisEntry2 = new ArrayList<String>();
+        futureAnalysisEntry2.add("Future Fakt 2");
+        futureAnalysisEntry2.add("Test2 test2 test2");
+        futureAnalysis.addEntryWithProperties(futureAnalysisEntry2);
 
         requirements.setFieldOfApplication("Testgebiet");
         requirements.setProjectGoal("Alles Testen, was man testen kann");
