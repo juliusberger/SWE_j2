@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10.0"
+      styleClass="p-10"
+      stylesheets="@../../assets/global.css"
+      xmlns="http://javafx.com/javafx/8.0.112"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="app.components.glossary.Glossary"
+>
+
+
+	<Label styleClass="h3">
+		Glossareinträge
+	</Label>
+	<TableView fx:id="glossaryTable">
+		<placeholder>
+			<Label text="Keine Einträge"/>
+		</placeholder>
+		<columns>
+			<TableColumn text="Begriff"/>
+			<TableColumn text="Erklärung/Definition"/>
+		</columns>
+		<columnResizePolicy>
+			<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+		</columnResizePolicy>
+	</TableView>
+	<HBox styleClass="button-hbox">
+		<Button fx:id="glossaryAddButton" maxWidth="1.7976931348623157E308"
+		        HBox.hgrow="ALWAYS">Eintrag hinzufügen
+		</Button>
+		<Button fx:id="glossaryEditButton"
+		        maxWidth="1.7976931348623157E308"
+		        HBox.hgrow="ALWAYS">Eintrag bearbeiten
+		</Button>
+		<Button fx:id="glossaryDeleteButton"
+		        maxWidth="1.7976931348623157E308"
+		        HBox.hgrow="ALWAYS">Eintrag löschen
+		</Button>
+	</HBox>
+
+
+</VBox>

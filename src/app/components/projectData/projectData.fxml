@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox prefHeight="400"
+      prefWidth="600"
+      spacing="10.0"
+      styleClass="p-10"
+      stylesheets="@../../assets/global.css"
+      xmlns="http://javafx.com/javafx/8.0.112"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="app.components.projectData.ProjectData">
+    <VBox>
+	    <Label styleClass="h3">
+            Projekt
+        </Label>
+        <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
+            <Label styleClass="ph-5">Name:</Label>
+	        <TextField fx:id="projectName"
+	                   GridPane.columnIndex="1"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="1">Abgabedatum:</Label>
+	        <TextField fx:id="projectDueDate"
+	                   GridPane.columnIndex="1"
+	                   GridPane.rowIndex="1"/>
+
+            <columnConstraints>
+	            <ColumnConstraints prefWidth="150"/>
+	            <ColumnConstraints hgrow="SOMETIMES"
+	                               minWidth="10.0"
+	                               prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+	            <RowConstraints minHeight="30.0"/>
+	            <RowConstraints minHeight="30.0"/>
+            </rowConstraints>
+        </GridPane>
+    </VBox>
+
+	<Separator prefWidth="200.0"/>
+
+
+    <VBox>
+	    <Label styleClass="h3">
+            Projektbearbeiter
+        </Label>
+        <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
+            <Label styleClass="ph-5">Name:</Label>
+	        <TextField fx:id="editorSurname"
+	                   GridPane.columnIndex="1"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="1">Vorname:</Label>
+	        <TextField fx:id="editorName"
+	                   GridPane.columnIndex="1"
+	                   GridPane.rowIndex="1"/>
+
+            <columnConstraints>
+	            <ColumnConstraints prefWidth="150"/>
+	            <ColumnConstraints hgrow="SOMETIMES"
+	                               minWidth="10.0"
+	                               prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+	            <RowConstraints minHeight="30.0"/>
+	            <RowConstraints minHeight="30.0"/>
+            </rowConstraints>
+        </GridPane>
+    </VBox>
+
+	<Separator prefWidth="200.0"/>
+
+
+    <VBox>
+	    <Label styleClass="h3">
+            Kundendaten
+        </Label>
+        <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
+            <Label styleClass="ph-5">Name:</Label>
+	        <TextField fx:id="customerSurname"
+	                   GridPane.columnIndex="1"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="1">Vorname:</Label>
+	        <TextField fx:id="customerName"
+	                   GridPane.columnIndex="1"
+	                   GridPane.rowIndex="1"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="2">Telefonnummer:</Label>
+	        <TextField fx:id="customerTelephone"
+	                   GridPane.columnIndex="1"
+	                   GridPane.rowIndex="2"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="3">E-Mail-Adresse:</Label>
+	        <TextField fx:id="customerEmail"
+	                   GridPane.columnIndex="1"
+	                   GridPane.rowIndex="3"/>
+
+
+            <Label styleClass="ph-5" GridPane.rowIndex="5">Firma:</Label>
+	        <TextField fx:id="customerCompanyName"
+	                   GridPane.columnIndex="1"
+	                   GridPane.rowIndex="5"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="6">Straße:</Label>
+	        <TextField fx:id="customerCompanyStreet"
+	                   GridPane.columnIndex="1"
+	                   GridPane.rowIndex="6"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="7">PLZ, Ort:</Label>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="7">
+	            <TextField fx:id="customerCompanyPLZ"
+	                       maxWidth="95"/>
+	            <TextField fx:id="customerCompanyLocation"
+	                       GridPane.columnIndex="1"/>
+
+                <columnConstraints>
+	                <ColumnConstraints prefWidth="100"/>
+	                <ColumnConstraints hgrow="SOMETIMES"
+	                                   minWidth="10.0"
+	                                   prefWidth="100.0"/>
+                </columnConstraints>
+	            <rowConstraints>
+		            <RowConstraints/>
+	            </rowConstraints>
+            </GridPane>
+
+            <columnConstraints>
+	            <ColumnConstraints prefWidth="150"/>
+	            <ColumnConstraints hgrow="SOMETIMES"
+	                               minWidth="10.0"
+	                               prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+	            <RowConstraints minHeight="30.0"/>
+	            <RowConstraints minHeight="30.0"/>
+	            <RowConstraints minHeight="30.0"/>
+	            <RowConstraints minHeight="30.0"/>
+	            <RowConstraints minHeight="30.0"/> <!-- leere Zeile -->
+	            <RowConstraints minHeight="30.0"/>
+	            <RowConstraints minHeight="30.0"/>
+	            <RowConstraints minHeight="30.0"/>
+            </rowConstraints>
+        </GridPane>
+    </VBox>
+</VBox>

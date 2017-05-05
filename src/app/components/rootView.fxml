@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.112"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="app.components.RootView"
+            fx:id="anchorPane">
+	<VBox
+			prefHeight="600.0"
+			prefWidth="700.0"
+			stylesheets="@../assets/global.css">
+
+		<MenuBar>
+			<Menu mnemonicParsing="false"
+			      text="Datei">
+				<MenuItem fx:id="newProjectItem"
+				          mnemonicParsing="false"
+				          text="Neues Projekt"/>
+				<SeparatorMenuItem mnemonicParsing="false"/>
+
+				<MenuItem fx:id="openProjectItem"
+				          mnemonicParsing="false"
+				          text="Projekt öffnen"/>
+				<MenuItem fx:id="saveProjectItem"
+				          mnemonicParsing="false"
+				          text="Projekt speichern"/>
+				<SeparatorMenuItem mnemonicParsing="false"/>
+
+				<MenuItem fx:id="XMLImportItem"
+				          mnemonicParsing="false"
+				          text="XML-Import"/>
+				<MenuItem fx:id="XMLExportItem"
+				          mnemonicParsing="false"
+				          text="XML-Export"/>
+			</Menu>
+		</MenuBar>
+
+		<TabPane prefHeight="600.0"
+		         prefWidth="600"
+		         tabClosingPolicy="UNAVAILABLE">
+			<Tab text="Projektdaten">
+				<fx:include source="projectData/projectData.fxml"/>
+			</Tab>
+			<Tab text="IST-Analyse">
+				<fx:include source="stateAnalysis/stateAnalysis.fxml"/>
+			</Tab>
+			<Tab text="SOLL-Analyse">
+				<fx:include source="futureAnalysis/futureAnalysis.fxml"/>
+			</Tab>
+			<Tab text="Lastenheft">
+				<fx:include source="requirements/requirements.fxml"/>
+			</Tab>
+			<Tab text="Aufwandsschätzung">
+				<fx:include source="costEstimation/costEstimation.fxml"/>
+			</Tab>
+			<Tab text="Glossar">
+				<fx:include source="glossary/glossary.fxml"/>
+			</Tab>
+		</TabPane>
+
+	</VBox>
+</AnchorPane>
