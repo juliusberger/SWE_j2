@@ -22,8 +22,12 @@ import java.util.List;
 /**
  * Created by Michi on 01.05.2017.
  */
-public class XML
+public final class XML
 {
+    private XML()
+    {
+    }
+
     public static void exportXML(String fileName)
     {
         XMLStreamWriter writer;
@@ -308,6 +312,8 @@ public class XML
 
         } catch (FileNotFoundException | XMLStreamException e) {
             System.out.println(e);
+
+
         }
     }
 
