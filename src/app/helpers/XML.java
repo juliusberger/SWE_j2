@@ -354,7 +354,6 @@ public class XML
         requirements.setProjectGoal("");
         requirements.getFunctionalRequirements().getEntries().clear();
         requirements.getNonFunctionalRequirements().getEntries().clear();
-        requirements.getQualityRequirementEntries().clear();
         requirements.getComments().getEntries().clear();
         //</editor-fold>
 
