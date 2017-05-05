@@ -24,6 +24,7 @@ import java.util.List;
  */
 public final class XML
 {
+    // Klasse soll nicht-instanziierbar sein
     private XML()
     {
     }
