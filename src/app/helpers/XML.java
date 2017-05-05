@@ -201,7 +201,6 @@ public class XML
         }
     }
 
-
     public static void importXML(String fileName)
     {
 
@@ -222,6 +221,8 @@ public class XML
             List<I_QualityRequirementEntry> qualityRequirements = requirements.getQualityRequirementEntries();
             I_Comments comments = requirements.getComments();
             I_Glossary glossary = project.getGlossary();
+
+            removeAllExistingData();
 
             // Da die QualityRequirements eine vorgegebene Liste sind, wird über diesen Counter der akutell zu verändernde QualityRequirementEntry angesprochen
             int qualityRequirmentsCounter = 0;
@@ -310,6 +311,57 @@ public class XML
         }
     }
 
+    public static void removeAllExistingData(){
+        I_Project project = Project.getInstance();
+        I_ProjectData projectData = project.getProjectData();
+        I_ProjectEditor projectEditor = projectData.getProjectEditor();
+        I_Customer customer = projectData.getCustomer();
+        I_Analysis stateAnalysis = project.getStateAnalysis();
+        I_Analysis futureAnalysis = project.getFutureAnalysis();
+        I_Requirements requirements = project.getRequirements();
+        I_Glossary glossary = project.getGlossary();
+
+        //<editor-fold desc="Project Members löschen">
+        project.setFileLocation("");
+        project.setName("");
+        //</editor-fold>
+
+        //<editor-fold desc="ProjectData Members löschen">
+        projectData.setName("");
+        projectData.setDueDate("");
+        projectEditor.setSurname("");
+        projectEditor.setName("");
+        customer.setSurname("");
+        customer.setName("");
+        customer.setTelephone("");
+        customer.setEmail("");
+        customer.setCompanyName("");
+        customer.setCompanyStreet("");
+        customer.setCompanyPLZ("");
+        customer.setCompanyLocation("");
+        //</editor-fold>
+
+        //<editor-fold desc="StateAnalysis Einträge löschen">
+        stateAnalysis.getEntries().clear();
+        //</editor-fold>
+
+        //<editor-fold desc="FutureAnalysis Einträge löschen">
+        futureAnalysis.getEntries().clear();
+        //</editor-fold>
+
+        //<editor-fold desc="Requirements Einträge löschen">
+        requirements.setFieldOfApplication("");
+        requirements.setProjectGoal("");
+        requirements.getFunctionalRequirements().getEntries().clear();
+        requirements.getNonFunctionalRequirements().getEntries().clear();
+        requirements.getQualityRequirementEntries().clear();
+        requirements.getComments().getEntries().clear();
+        //</editor-fold>
+
+        //<editor-fold desc="Glossary Members löschen">
+        glossary.getEntries().clear();
+        //</editor-fold>
+    }
 
     private static ArrayList<String> getProjectProperties()
     {

@@ -21,6 +21,4 @@ public interface I_ObservableDataAdaptor<S extends I_ModelPropertyAdaptor> {
      */
     ObservableList<S> getEntries();
 
-
-    void removeAllEntries();
 }

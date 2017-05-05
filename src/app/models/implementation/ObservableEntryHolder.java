@@ -24,11 +24,6 @@ public abstract class ObservableEntryHolder<S extends I_ModelPropertyAdaptor> im
     }
 
     @Override
-    public void removeAllEntries() {
-        this._entries.clear();
-    }
-
-    @Override
     public void addEntryWithProperties(ArrayList<String> propertyStrings) {
         S entry = this.createEntry();
         entry.setAllProperties(propertyStrings);
