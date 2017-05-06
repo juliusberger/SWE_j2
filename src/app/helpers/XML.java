@@ -1,6 +1,5 @@
 package app.helpers;
 
-import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 import app.models.implementation.Project;
 import app.models.interfaces.Analysis.I_Analysis;
 import app.models.interfaces.Analysis.I_AnalysisEntry;
@@ -11,6 +10,7 @@ import app.models.interfaces.ProjectData.I_Customer;
 import app.models.interfaces.ProjectData.I_ProjectData;
 import app.models.interfaces.ProjectData.I_ProjectEditor;
 import app.models.interfaces.Requirements.*;
+import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 
 import javax.xml.stream.*;
 import java.io.FileInputStream;
@@ -198,6 +198,8 @@ public final class XML
             writer.writeEndElement();
             writer.writeEndDocument();
 
+            InfoDialog dialog = new InfoDialog("XML-Export erfolgreich",
+                    "XML-Export erfolgreich abgeschlossen");
             System.out.println("XML-Datei erfolgreich erstellt");
 
         } catch (Exception exp) {
@@ -309,6 +311,8 @@ public final class XML
                 event = xmlStreamReader.next();
             }
 
+            InfoDialog dialog = new InfoDialog("XML-Import erfolgreich",
+                    "XML-Import erfolgreich abgeschlossen");
             System.out.println("XML-Import erfolgreich abgeschlossen");
 
         } catch (FileNotFoundException | XMLStreamException e) {
@@ -318,7 +322,7 @@ public final class XML
         }
     }
 
-    public static void removeAllExistingData(){
+    private static void removeAllExistingData() {
         I_Project project = Project.getInstance();
         I_ProjectData projectData = project.getProjectData();
         I_ProjectEditor projectEditor = projectData.getProjectEditor();

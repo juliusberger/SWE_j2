@@ -55,17 +55,12 @@ class Dialog extends Observable {
             textArea.setWrapText(true);
             this.textAreas.add(textArea);
         }
-    }
 
-    /**
-     * Baut den Dialog auf und zeigt ihn als Overlay über der App.
-     */
-    void show() {
         try {
             this.stage.initModality(Modality.APPLICATION_MODAL);
             this.stage.initStyle(StageStyle.UNIFIED);
             this.stage.setTitle("Eintrag hinzufügen");
-            this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../app.assets/ANTool_Icon2.png")));
+            this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
 
             VBox vBox = new VBox();
             vBox.setSpacing(10.0);
@@ -108,10 +103,16 @@ class Dialog extends Observable {
 
 
             this.stage.setScene(new Scene(vBox));
-            this.stage.showAndWait();
         } catch (Exception e) {
-            System.out.println("Exception");
+            System.out.println("Error while creating the Dialog.");
         }
+    }
+
+    /**
+     * Baut den Dialog auf und zeigt ihn als Overlay über der App.
+     */
+    void show() {
+        this.stage.showAndWait();
     }
 
     /**
