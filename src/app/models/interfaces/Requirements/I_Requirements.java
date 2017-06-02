@@ -1,5 +1,7 @@
 package app.models.interfaces.Requirements;
 
+import app.models.interfaces.I_XmlExportable;
+import app.models.interfaces.I_XmlImportable;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.I_ModelPropertyAdaptor;
 
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * Erstellt von Julius am 29/04/2017.
  */
-public interface I_Requirements extends I_ModelPropertyAdaptor {
+public interface I_Requirements extends I_ModelPropertyAdaptor, I_XmlExportable, I_XmlImportable {
     String getProjectGoal();
 
     SimpleStringProperty projectGoalProperty();

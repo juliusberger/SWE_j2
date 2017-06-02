@@ -3,6 +3,8 @@ package app.models.implementation.CostEstimation;
 import app.models.interfaces.CostEstimation.I_CostEstimation;
 import app.models.interfaces.CostEstimation.I_CostEstimationEntry;
 
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,5 +23,15 @@ public class CostEstimation implements I_CostEstimation {
     @Override
     public List<I_CostEstimationEntry> getCostEstimationEntries() {
         return this._costEstimationEntries;
+    }
+
+    @Override
+    public void exportAsXML(XMLStreamWriter xmlWriter) {
+
+    }
+
+    @Override
+    public boolean importFromXML(XMLStreamReader xmlReader) {
+        return false;
     }
 }
