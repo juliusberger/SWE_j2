@@ -135,5 +135,7 @@ public class Project implements I_Project {
 
     @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
+        this.setName(xmlReader.getAttributeValue(0));
+        this.setFileLocation(xmlReader.getAttributeValue(1));
     }
 }
