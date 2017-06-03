@@ -123,5 +123,7 @@ public class Requirements implements I_Requirements {
 
     @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
+        this.setProjectGoal(xmlReader.getAttributeValue(0));
+        this.setFieldOfApplication(xmlReader.getAttributeValue(1));
     }
 }
