@@ -7,6 +7,7 @@ import app.models.interfaces.Requirements.I_NonFunctionalRequirements;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
+import java.util.ArrayList;
 
 /**
  * Created by Michi on 23.04.2017.
@@ -37,6 +38,9 @@ class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalReq
 
     @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-
+        ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<>();
+        nonFunctionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(0));
+        nonFunctionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(1));
+        this.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
     }
 }
