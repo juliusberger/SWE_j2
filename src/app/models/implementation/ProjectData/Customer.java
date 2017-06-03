@@ -195,6 +195,13 @@ class Customer implements I_Customer {
 
     @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-
+        this.setSurname(xmlReader.getAttributeValue(4));
+        this.setName(xmlReader.getAttributeValue(5));
+        this.setTelephone(xmlReader.getAttributeValue(6));
+        this.setEmail(xmlReader.getAttributeValue(7));
+        this.setCompanyName(xmlReader.getAttributeValue(8));
+        this.setCompanyStreet(xmlReader.getAttributeValue(9));
+        this.setCompanyPLZ(xmlReader.getAttributeValue(10));
+        this.setCompanyLocation(xmlReader.getAttributeValue(11));
     }
 }
