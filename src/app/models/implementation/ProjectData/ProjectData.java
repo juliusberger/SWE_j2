@@ -100,5 +100,7 @@ public class ProjectData implements I_ProjectData {
 
     @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
+        this.setName(xmlReader.getAttributeValue(0));
+        this.setDueDate(xmlReader.getAttributeValue(1));
     }
 }
