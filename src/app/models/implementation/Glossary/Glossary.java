@@ -19,6 +19,19 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
+        xmlWriter.writeStartElement("GlossaryProperties");
+
+        for(I_GlossaryEntry currentEntry : this.getEntries())
+        {
+            xmlWriter.writeCharacters("\t");
+            xmlWriter.writeStartElement("GlossaryEntry");
+            xmlWriter.writeAttribute("item",
+                    currentEntry.getItem());
+            xmlWriter.writeAttribute("definition",
+                    currentEntry.getDefinition());
+            xmlWriter.writeEndElement();
+        }
+        xmlWriter.writeEndElement();
 
     }
 
