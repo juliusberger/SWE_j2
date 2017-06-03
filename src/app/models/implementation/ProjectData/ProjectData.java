@@ -90,6 +90,7 @@ public class ProjectData implements I_ProjectData {
                 this.getName());
         xmlWriter.writeAttribute( "projectDataDueDate",
                 this.getDueDate());
+        xmlWriter.writeCharacters("\t");
 
         this.getProjectEditor().exportAsXML(xmlWriter);
         this.getCustomer().exportAsXML(xmlWriter);
