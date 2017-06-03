@@ -1,5 +1,6 @@
 package app.helpers;
 
+import app.models.implementation.Project;
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 
 import javax.xml.stream.XMLOutputFactory;
@@ -12,7 +13,7 @@ import java.io.FileOutputStream;
  * Created by Michi on 03.06.2017.
  */
 public class XMLExporter {
-    XMLStreamWriter writer;
+    XMLStreamWriter xmlWriter;
     String fileName = "";
     XMLOutputFactory factory = XMLOutputFactory.newInstance();
 
@@ -21,20 +22,26 @@ public class XMLExporter {
     }
 
 
-    public void export()
+    public void exportToXML()
     {
         try {
-            writer = new IndentingXMLStreamWriter(factory.createXMLStreamWriter( new FileOutputStream(fileName)));
+            xmlWriter = new IndentingXMLStreamWriter(factory.createXMLStreamWriter( new FileOutputStream(fileName)));
 
             // Der XML-Header wird erzeugt
-            writer.writeStartDocument();
-            writer.writeStartElement("ProjectExport");
+            xmlWriter.writeStartDocument();
+            xmlWriter.writeStartElement("ProjectExport");
 
-            //Einzelne Exports einfügen
+            //TODO: CostEstimation einfügen
+            Project.getInstance().exportAsXML(xmlWriter);
+            Project.getInstance().getProjectData().exportAsXML(xmlWriter);
+            Project.getInstance().getStateAnalysis().exportAsXML(xmlWriter);
+            Project.getInstance().getFutureAnalysis().exportAsXML(xmlWriter);
+            Project.getInstance().getRequirements().exportAsXML(xmlWriter);
+            Project.getInstance().getGlossary().exportAsXML(xmlWriter);
 
             // XML-Datei wird abgeschlossen
-            writer.writeEndElement();
-            writer.writeEndDocument();
+            xmlWriter.writeEndElement();
+            xmlWriter.writeEndDocument();
 
             System.out.println("XML-Datei erfolgreich erstellt");
             LogWriter.writeLog("XML-Export wurde erfolgreich erstellt. Pfad zur Datei: " + fileName);
