@@ -3,6 +3,9 @@ package app.models.implementation.ProjectData;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.ProjectData.I_Customer;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
 
 /**
@@ -166,5 +169,15 @@ class Customer implements I_Customer {
         stringProperties.add(this.getCompanyLocation());
 
         return stringProperties;
+    }
+
+    @Override
+    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
+
+    }
+
+    @Override
+    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
+
     }
 }
