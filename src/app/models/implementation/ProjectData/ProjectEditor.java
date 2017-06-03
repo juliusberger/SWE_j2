@@ -80,6 +80,7 @@ class ProjectEditor implements I_ProjectEditor {
 
     @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-
+        this.setSurname(xmlReader.getAttributeValue(0));
+        this.setName(xmlReader.getAttributeValue(1));
     }
 }
