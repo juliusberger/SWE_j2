@@ -19,7 +19,20 @@ class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Commen
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        
+        xmlWriter.writeStartElement("Comments");
+
+        for(I_CommentEntry currentEntry : this.getEntries())
+        {
+            xmlWriter.writeCharacters("\t");
+            xmlWriter.writeStartElement("CommentEntry");
+            xmlWriter.writeAttribute("keyword",
+                    currentEntry.getKeyword());
+            xmlWriter.writeAttribute("description",
+                    currentEntry.getDescription());
+            xmlWriter.writeEndElement();
+        }
+
+        xmlWriter.writeEndElement();
     }
 
     @Override

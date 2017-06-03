@@ -19,7 +19,20 @@ class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalReq
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
+        xmlWriter.writeStartElement("NonFunctionalRequirements");
 
+        for(I_NonFunctionalRequirementEntry currentEntry : this.getEntries())
+        {
+            xmlWriter.writeCharacters("\t");
+            xmlWriter.writeStartElement("NonFunctionalRequirementsEntry");
+            xmlWriter.writeAttribute("businessProcess",
+                    currentEntry.getBusinessProcess());
+            xmlWriter.writeAttribute("description",
+                    currentEntry.getDescription());
+            xmlWriter.writeEndElement();
+        }
+
+        xmlWriter.writeEndElement();
     }
 
     @Override

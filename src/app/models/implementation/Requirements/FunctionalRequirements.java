@@ -19,7 +19,22 @@ class FunctionalRequirements extends ObservableEntryHolder<I_FunctionalRequireme
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
+        xmlWriter.writeStartElement("FunctionalRequirements");
 
+        for(I_FunctionalRequirementEntry currentEntry : this.getEntries())
+        {
+            xmlWriter.writeCharacters("\t");
+            xmlWriter.writeStartElement("FunctionalRequirementsEntry");
+            xmlWriter.writeAttribute("function",
+                    currentEntry.getFunction());
+            xmlWriter.writeAttribute("descritpion",
+                    currentEntry.getDescription());
+            xmlWriter.writeAttribute("stakeholder",
+                    currentEntry.getStakeholder());
+            xmlWriter.writeEndElement();
+        }
+
+        xmlWriter.writeEndElement();
     }
 
     @Override

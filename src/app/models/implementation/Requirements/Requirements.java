@@ -97,7 +97,28 @@ public class Requirements implements I_Requirements {
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
+        xmlWriter.writeStartElement("RequirementsProperties");
+        xmlWriter.writeAttribute("projectGoal",
+                this.getProjectGoal());
+        xmlWriter.writeAttribute("fieldOfApplication",
+                this.getFieldOfApplication());
+        xmlWriter.writeCharacters("\t");
 
+        this._functionalRequirements.exportAsXML(xmlWriter);
+        this._nonFunctionalRequirements.exportAsXML(xmlWriter);
+        this._comments.exportAsXML(xmlWriter);
+
+        xmlWriter.writeStartElement("QualityRequirements");
+        for (I_QualityRequirementEntry currentEntry : this.getQualityRequirementEntries())
+        {
+            xmlWriter.writeCharacters("\t");
+            xmlWriter.writeStartElement("QualityRequirementsEntry");
+            xmlWriter.writeAttribute("priority", Integer.toString(currentEntry.getPriority().ordinal()));
+            xmlWriter.writeEndElement();
+        }
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeEndElement();
     }
 
     @Override
