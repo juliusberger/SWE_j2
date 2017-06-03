@@ -7,6 +7,7 @@ import app.models.interfaces.Glossary.I_GlossaryEntry;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
+import java.util.ArrayList;
 
 /**
  * Erstellt von Julius am 24/04/2017.
@@ -37,5 +38,9 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
 
     @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
+        ArrayList<String> glossaryEntryArguments = new ArrayList<>();
+        glossaryEntryArguments.add(xmlReader.getAttributeValue(0));
+        glossaryEntryArguments.add(xmlReader.getAttributeValue(1));
+        this.addEntryWithProperties(glossaryEntryArguments);
     }
 }
