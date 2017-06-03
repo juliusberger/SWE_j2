@@ -70,7 +70,12 @@ class ProjectEditor implements I_ProjectEditor {
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        
+        xmlWriter.writeStartElement("ProjectEditor");
+        xmlWriter.writeAttribute( "projectEditorSurname",
+                this.getSurname());
+        xmlWriter.writeAttribute( "projectEditorName",
+                this.getName());
+        xmlWriter.writeEndElement();
     }
 
     @Override

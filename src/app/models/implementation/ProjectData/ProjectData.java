@@ -85,7 +85,16 @@ public class ProjectData implements I_ProjectData {
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
+        xmlWriter.writeStartElement("ProjectDataProperties");
+        xmlWriter.writeAttribute( "projectDataName",
+                this.getName());
+        xmlWriter.writeAttribute( "projectDataDueDate",
+                this.getDueDate());
 
+        this.getProjectEditor().exportAsXML(xmlWriter);
+        this.getCustomer().exportAsXML(xmlWriter);
+
+        xmlWriter.writeEndElement();
     }
 
     @Override

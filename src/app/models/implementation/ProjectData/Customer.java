@@ -173,7 +173,24 @@ class Customer implements I_Customer {
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-
+        xmlWriter.writeStartElement("Customer");
+        xmlWriter.writeAttribute( "customerSurname",
+                this.getSurname());
+        xmlWriter.writeAttribute( "customerName",
+                this.getName());
+        xmlWriter.writeAttribute( "customerTelephone",
+                this.getTelephone());
+        xmlWriter.writeAttribute( "customerEmail",
+                this.getEmail());
+        xmlWriter.writeAttribute( "customerCompanyName",
+                this.getCompanyName());
+        xmlWriter.writeAttribute( "customerCompanyStreet",
+                this.getCompanyStreet());
+        xmlWriter.writeAttribute( "customerCompanyPLZ",
+                this.getCompanyPLZ());
+        xmlWriter.writeAttribute( "customerCompanyLocation",
+                this.getCompanyLocation());
+        xmlWriter.writeEndElement();
     }
 
     @Override
