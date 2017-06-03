@@ -10,7 +10,7 @@ import app.models.interfaces.Requirements.I_Requirements;
 /**
  * Erstellt von Julius am 30/04/2017.
  */
-public interface I_Project extends I_ModelPropertyAdaptor {
+public interface I_Project extends I_ModelPropertyAdaptor, I_XMLExportable, I_XMLImportable {
     String getName();
 
     SimpleStringProperty nameProperty();

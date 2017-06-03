@@ -14,6 +14,8 @@ import app.models.interfaces.I_Project;
 import app.models.interfaces.ProjectData.I_ProjectData;
 import app.models.interfaces.Requirements.I_Requirements;
 
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
 
 /**
@@ -121,4 +123,13 @@ public class Project implements I_Project {
     }
 
 
+    @Override
+    public void exportAsXML(XMLStreamWriter xmlWriter) {
+        
+    }
+
+    @Override
+    public boolean importFromXML(XMLStreamReader xmlReader) {
+        return false;
+    }
 }
