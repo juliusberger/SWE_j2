@@ -7,6 +7,7 @@ import app.models.interfaces.Requirements.I_Comments;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
+import java.util.ArrayList;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -37,6 +38,9 @@ class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Commen
 
     @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-
+        ArrayList<String> commentEntryArguments = new ArrayList<>();
+        commentEntryArguments.add(xmlReader.getAttributeValue(0));
+        commentEntryArguments.add(xmlReader.getAttributeValue(1));
+        this.addEntryWithProperties(commentEntryArguments);
     }
 }
