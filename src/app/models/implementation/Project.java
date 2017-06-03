@@ -126,6 +126,11 @@ public class Project implements I_Project {
 
     @Override
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
+        xmlWriter.writeStartElement( "ProjectProperties" );
+        xmlWriter.writeAttribute( "name", this.getName());
+        xmlWriter.writeAttribute("fileLocation",
+                this.getFileLocation());
+        xmlWriter.writeEndElement();
     }
 
     @Override
