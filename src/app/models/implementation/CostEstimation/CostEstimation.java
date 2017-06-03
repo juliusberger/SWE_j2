@@ -3,6 +3,7 @@ package app.models.implementation.CostEstimation;
 import app.models.interfaces.CostEstimation.I_CostEstimation;
 import app.models.interfaces.CostEstimation.I_CostEstimationEntry;
 
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
@@ -26,12 +27,11 @@ public class CostEstimation implements I_CostEstimation {
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) {
+    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
 
     }
 
     @Override
-    public boolean importFromXML(XMLStreamReader xmlReader) {
-        return false;
+    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
     }
 }

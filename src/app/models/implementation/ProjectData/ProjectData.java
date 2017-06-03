@@ -5,6 +5,7 @@ import app.models.interfaces.ProjectData.I_Customer;
 import app.models.interfaces.ProjectData.I_ProjectData;
 import app.models.interfaces.ProjectData.I_ProjectEditor;
 
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
@@ -83,12 +84,11 @@ public class ProjectData implements I_ProjectData {
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) {
+    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
 
     }
 
     @Override
-    public boolean importFromXML(XMLStreamReader xmlReader) {
-        return false;
+    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
     }
 }

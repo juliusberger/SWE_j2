@@ -3,6 +3,7 @@ package app.models.implementation.Requirements;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.Requirements.*;
 
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
@@ -95,12 +96,11 @@ public class Requirements implements I_Requirements {
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) {
-        
+    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
+
     }
 
     @Override
-    public boolean importFromXML(XMLStreamReader xmlReader) {
-        return false;
+    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
     }
 }

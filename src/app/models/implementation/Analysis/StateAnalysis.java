@@ -1,5 +1,6 @@
 package app.models.implementation.Analysis;
 
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
@@ -9,12 +10,11 @@ import javax.xml.stream.XMLStreamWriter;
 public class StateAnalysis extends Analysis {
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) {
+    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
 
     }
 
     @Override
-    public boolean importFromXML(XMLStreamReader xmlReader) {
-        return false;
+    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
     }
 }

@@ -4,6 +4,7 @@ import app.models.implementation.ObservableEntryHolder;
 import app.models.interfaces.Glossary.I_Glossary;
 import app.models.interfaces.Glossary.I_GlossaryEntry;
 
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
@@ -17,12 +18,11 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) {
+    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
 
     }
 
     @Override
-    public boolean importFromXML(XMLStreamReader xmlReader) {
-        return false;
+    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
     }
 }
