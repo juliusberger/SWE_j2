@@ -43,4 +43,9 @@ class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalReq
         nonFunctionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(1));
         this.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
     }
+
+    @Override
+    public void removeExistingData() {
+        this.getEntries().clear();
+    }
 }

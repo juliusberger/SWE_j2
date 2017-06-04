@@ -43,4 +43,9 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
         glossaryEntryArguments.add(xmlReader.getAttributeValue(1));
         this.addEntryWithProperties(glossaryEntryArguments);
     }
+
+    @Override
+    public void removeExistingData() {
+        this.getEntries().clear();
+    }
 }

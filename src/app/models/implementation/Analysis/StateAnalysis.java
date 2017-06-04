@@ -37,4 +37,9 @@ public class StateAnalysis extends Analysis {
         stateAnalysisEntryArguments.add(xmlReader.getAttributeValue(1));
         this.addEntryWithProperties(stateAnalysisEntryArguments);
     }
+
+    @Override
+    public void removeExistingData() {
+        this.getEntries().clear();
+    }
 }

@@ -138,4 +138,10 @@ public class Project implements I_Project {
         this.setName(xmlReader.getAttributeValue(0));
         this.setFileLocation(xmlReader.getAttributeValue(1));
     }
+
+    @Override
+    public void removeExistingData() {
+        this.setName("");
+        this.setFileLocation("");
+    }
 }

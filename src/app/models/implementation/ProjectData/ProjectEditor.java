@@ -83,4 +83,10 @@ class ProjectEditor implements I_ProjectEditor {
         this.setSurname(xmlReader.getAttributeValue(0));
         this.setName(xmlReader.getAttributeValue(1));
     }
+
+    @Override
+    public void removeExistingData() {
+        this.setSurname("");
+        this.setName("");
+    }
 }

@@ -37,4 +37,9 @@ public class FutureAnalysis extends Analysis {
         futureAnalysisEntryArguments.add(xmlReader.getAttributeValue(1));
         this.addEntryWithProperties(futureAnalysisEntryArguments);
     }
+
+    @Override
+    public void removeExistingData() {
+        this.getEntries().clear();
+    }
 }

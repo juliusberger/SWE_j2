@@ -46,4 +46,9 @@ class FunctionalRequirements extends ObservableEntryHolder<I_FunctionalRequireme
         functionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(2));
         this.addEntryWithProperties(functionalRequirementsEntryArguments);
     }
+
+    @Override
+    public void removeExistingData() {
+        this.getEntries().clear();
+    }
 }

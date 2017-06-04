@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-public class Requirements implements I_Requirements {
+class Requirements implements I_Requirements {
     private final SimpleStringProperty _projectGoal = new SimpleStringProperty("");
     private final SimpleStringProperty _fieldOfApplication = new SimpleStringProperty("");
 
@@ -125,5 +125,11 @@ public class Requirements implements I_Requirements {
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
         this.setProjectGoal(xmlReader.getAttributeValue(0));
         this.setFieldOfApplication(xmlReader.getAttributeValue(1));
+    }
+
+    @Override
+    public void removeExistingData() {
+        this.setProjectGoal("");
+        this.setFieldOfApplication("");
     }
 }

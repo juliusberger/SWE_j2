@@ -204,4 +204,16 @@ class Customer implements I_Customer {
         this.setCompanyPLZ(xmlReader.getAttributeValue(10));
         this.setCompanyLocation(xmlReader.getAttributeValue(11));
     }
+
+    @Override
+    public void removeExistingData() {
+        this.setSurname("");
+        this.setName("");
+        this.setTelephone("");
+        this.setEmail("");
+        this.setCompanyName("");
+        this.setCompanyStreet("");
+        this.setCompanyPLZ("");
+        this.setCompanyLocation("");
+    }
 }

@@ -43,4 +43,9 @@ class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Commen
         commentEntryArguments.add(xmlReader.getAttributeValue(1));
         this.addEntryWithProperties(commentEntryArguments);
     }
+
+    @Override
+    public void removeExistingData() {
+        this.getEntries().clear();
+    }
 }

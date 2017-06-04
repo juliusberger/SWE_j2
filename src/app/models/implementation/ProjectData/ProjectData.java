@@ -103,4 +103,10 @@ public class ProjectData implements I_ProjectData {
         this.setName(xmlReader.getAttributeValue(0));
         this.setDueDate(xmlReader.getAttributeValue(1));
     }
+
+    @Override
+    public void removeExistingData() {
+        this.setName("");
+        this.setDueDate("");
+    }
 }
