@@ -70,14 +70,23 @@ public class XMLImporter {
 
                 event = xmlReader.next();
             }
+
+            System.out.println("XML-Datei erfolgreich eingelesen");
+            LogWriter.writeLog("XML-Export wurde erfolgreich eingelesen. Pfad zur Datei: " + fileName);
+            InfoDialog dialog = new InfoDialog("XML-Import erfolgreich",
+                    "XML-Import erfolgreich abgeschlossen");
         }
         catch (FileNotFoundException ex)
         {
-
+            LogWriter.writeLog("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+            InfoDialog dialog = new InfoDialog("XML-Import nicht erfolgreich",
+                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
         }
         catch (XMLStreamException ex)
         {
-
+            LogWriter.writeLog("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+            InfoDialog dialog = new InfoDialog("XML-Import nicht erfolgreich",
+                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
         }
     }
 }
