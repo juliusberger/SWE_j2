@@ -43,6 +43,7 @@ public class XMLExporter {
             xmlWriter.writeEndElement();
             xmlWriter.writeEndDocument();
 
+            //TODO: Konsolen-Ausgabebefehl löschen, wenn nicht mehr zu Debugging-Zwecken notwendig
             System.out.println("XML-Datei erfolgreich erstellt");
             LogWriter.writeLog("XML-Export wurde erfolgreich erstellt. Pfad zur Datei: " + fileName);
             InfoDialog dialog = new InfoDialog("XML-Export erfolgreich",
