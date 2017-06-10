@@ -113,7 +113,12 @@ public class Requirements implements I_Requirements {
         {
             xmlWriter.writeCharacters("\t");
             xmlWriter.writeStartElement("QualityRequirementsEntry");
-            xmlWriter.writeAttribute("priority", Integer.toString(currentEntry.getPriority().ordinal()));
+            if (currentEntry.getPriority() != null){
+                xmlWriter.writeAttribute("priority", Integer.toString(currentEntry.getPriority().ordinal()));
+            }
+            else {
+                xmlWriter.writeAttribute("priority", "");
+            }
             xmlWriter.writeEndElement();
         }
         xmlWriter.writeEndElement();
