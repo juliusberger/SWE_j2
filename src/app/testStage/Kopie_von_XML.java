@@ -1,3 +1,5 @@
+/*
+
 package app.testStage;
 
 import app.helpers.InfoDialog;
@@ -19,10 +21,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+*/
 
 /**
  * Created by Michi on 01.05.2017.
  */
+/*
 public final class Kopie_von_XML
 {
     // Klasse soll nicht-instanziierbar sein
@@ -485,3 +489,4 @@ public final class Kopie_von_XML
         //</editor-fold>
     }
 }
+*/

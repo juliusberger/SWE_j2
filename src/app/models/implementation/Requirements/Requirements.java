@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-class Requirements implements I_Requirements {
+public class Requirements implements I_Requirements {
     private final SimpleStringProperty _projectGoal = new SimpleStringProperty("");
     private final SimpleStringProperty _fieldOfApplication = new SimpleStringProperty("");
 
