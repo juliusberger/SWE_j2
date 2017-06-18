@@ -1,5 +1,6 @@
 package app.models.implementation.Requirements;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.Requirements.*;
 
@@ -81,6 +82,21 @@ public class Requirements implements I_Requirements {
 
 
     @Override
+    public List<I_XmlModelEntity> getChildren() {
+        List<I_XmlModelEntity> children = new ArrayList<>();
+        children.add(getFunctionalRequirements());
+        children.add(getNonFunctionalRequirements());
+        children.addAll(getQualityRequirementEntries());
+        children.add(getComments());
+        return children;
+    }
+
+    @Override
+    public String getTag() {
+        return "Requirements";
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         this.setProjectGoal(propertyStrings.get(0));
         this.setFieldOfApplication(propertyStrings.get(1));
@@ -93,43 +109,6 @@ public class Requirements implements I_Requirements {
         stringProperties.add(this.getFieldOfApplication());
 
         return stringProperties;
-    }
-
-    @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("RequirementsProperties");
-        xmlWriter.writeAttribute("projectGoal",
-                this.getProjectGoal());
-        xmlWriter.writeAttribute("fieldOfApplication",
-                this.getFieldOfApplication());
-        xmlWriter.writeCharacters("\t");
-
-        this._functionalRequirements.exportAsXML(xmlWriter);
-        this._nonFunctionalRequirements.exportAsXML(xmlWriter);
-        this._comments.exportAsXML(xmlWriter);
-
-        xmlWriter.writeStartElement("QualityRequirements");
-        for (I_QualityRequirementEntry currentEntry : this.getQualityRequirementEntries())
-        {
-            xmlWriter.writeCharacters("\t");
-            xmlWriter.writeStartElement("QualityRequirementsEntry");
-            if (currentEntry.getPriority() != null){
-                xmlWriter.writeAttribute("priority", Integer.toString(currentEntry.getPriority().ordinal()));
-            }
-            else {
-                xmlWriter.writeAttribute("priority", "");
-            }
-            xmlWriter.writeEndElement();
-        }
-        xmlWriter.writeEndElement();
-
-        xmlWriter.writeEndElement();
-    }
-
-    @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        this.setProjectGoal(xmlReader.getAttributeValue(0));
-        this.setFieldOfApplication(xmlReader.getAttributeValue(1));
     }
 
     @Override

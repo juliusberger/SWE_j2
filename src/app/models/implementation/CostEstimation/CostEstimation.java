@@ -27,15 +27,6 @@ public class CostEstimation implements I_CostEstimation {
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-
-    }
-
-    @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-    }
-
-    @Override
     public void removeExistingData() {
 
     }

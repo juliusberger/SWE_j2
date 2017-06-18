@@ -1,5 +1,6 @@
 package app.models.implementation.ProjectData;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.ProjectData.I_Customer;
 
@@ -7,6 +8,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -137,6 +139,15 @@ class Customer implements I_Customer {
         this._companyLocation.set(companyLocation);
     }
 
+    @Override
+    public List<I_XmlModelEntity> getChildren() {
+        return null;
+    }
+
+    @Override
+    public String getTag() {
+        return "Customer";
+    }
 
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
@@ -171,39 +182,7 @@ class Customer implements I_Customer {
         return stringProperties;
     }
 
-    @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("Customer");
-        xmlWriter.writeAttribute( "customerSurname",
-                this.getSurname());
-        xmlWriter.writeAttribute( "customerName",
-                this.getName());
-        xmlWriter.writeAttribute( "customerTelephone",
-                this.getTelephone());
-        xmlWriter.writeAttribute( "customerEmail",
-                this.getEmail());
-        xmlWriter.writeAttribute( "customerCompanyName",
-                this.getCompanyName());
-        xmlWriter.writeAttribute( "customerCompanyStreet",
-                this.getCompanyStreet());
-        xmlWriter.writeAttribute( "customerCompanyPLZ",
-                this.getCompanyPLZ());
-        xmlWriter.writeAttribute( "customerCompanyLocation",
-                this.getCompanyLocation());
-        xmlWriter.writeEndElement();
-    }
 
-    @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        this.setSurname(xmlReader.getAttributeValue(4));
-        this.setName(xmlReader.getAttributeValue(5));
-        this.setTelephone(xmlReader.getAttributeValue(6));
-        this.setEmail(xmlReader.getAttributeValue(7));
-        this.setCompanyName(xmlReader.getAttributeValue(8));
-        this.setCompanyStreet(xmlReader.getAttributeValue(9));
-        this.setCompanyPLZ(xmlReader.getAttributeValue(10));
-        this.setCompanyLocation(xmlReader.getAttributeValue(11));
-    }
 
     @Override
     public void removeExistingData() {

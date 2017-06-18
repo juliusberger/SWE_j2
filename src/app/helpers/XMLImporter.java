@@ -14,13 +14,13 @@ import java.io.FileNotFoundException;
  */
 public class XMLImporter {
     XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-    String fileName = "";
+    private String fileName = "";
 
     public XMLImporter(String fileName) {
         this.fileName = fileName;
     }
 
-    public void importFromXML()
+    /*public void importFromXML()
     {
         try {
             XMLStreamReader xmlReader = xmlInputFactory.createXMLStreamReader(new FileInputStream(fileName));
@@ -42,10 +42,10 @@ public class XMLImporter {
                         Project.getInstance().getProjectData().getProjectEditor().importFromXML(xmlReader);
                     }
                     else if (xmlReader.getLocalName().equals("StateAnalysisEntry")){
-                        Project.getInstance().getStateAnalysis().importFromXML(xmlReader);
+                        //Project.getInstance().getStateAnalysis().importFromXML(xmlReader);
                     }
                     else if (xmlReader.getLocalName().equals("FutureAnalysisEntry")){
-                        Project.getInstance().getFutureAnalysis().importFromXML(xmlReader);
+                        //Project.getInstance().getFutureAnalysis().importFromXML(xmlReader);
                     }
                     else if (xmlReader.getLocalName().equals("RequirementsProperties")){
                         Project.getInstance().getRequirements().importFromXML(xmlReader);
@@ -88,5 +88,5 @@ public class XMLImporter {
             InfoDialog dialog = new InfoDialog("XML-Import nicht erfolgreich",
                     "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
         }
-    }
+    }*/
 }

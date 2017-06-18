@@ -1,5 +1,6 @@
 package app.models.implementation.ProjectData;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.ProjectData.I_ProjectEditor;
 
@@ -7,6 +8,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -50,6 +52,16 @@ class ProjectEditor implements I_ProjectEditor {
     }
 
     @Override
+    public List<I_XmlModelEntity> getChildren() {
+        return null;
+    }
+
+    @Override
+    public String getTag() {
+        return "ProjectEditor";
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             this.setSurname(propertyStrings.get(0));
@@ -68,21 +80,6 @@ class ProjectEditor implements I_ProjectEditor {
         return stringProperties;
     }
 
-    @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("ProjectEditor");
-        xmlWriter.writeAttribute( "projectEditorSurname",
-                this.getSurname());
-        xmlWriter.writeAttribute( "projectEditorName",
-                this.getName());
-        xmlWriter.writeEndElement();
-    }
-
-    @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        this.setSurname(xmlReader.getAttributeValue(0));
-        this.setName(xmlReader.getAttributeValue(1));
-    }
 
     @Override
     public void removeExistingData() {

@@ -1,6 +1,5 @@
 package app.testStage.XML;
 
-import app.helpers.XML;
 import app.models.implementation.Project;
 import app.models.interfaces.Analysis.I_Analysis;
 import app.models.interfaces.Glossary.I_Glossary;
@@ -43,8 +42,6 @@ public class Main {
         I_Comments comments = requirements.getComments();
         I_Glossary glossar = project.getGlossary();
 
-        project.setName("Testprojekt1");
-        project.setFileLocation("C:/Users/Michi/Desktop/Temp/");
 
         projectData.setDueDate("01.01.1970");
         projectData.setName("Musterprojekt");
@@ -61,22 +58,22 @@ public class Main {
         customer.setSurname("Mustermann");
         customer.setTelephone("12345 123456789");
 
-        ArrayList<String> stateAnalysisEntry1 = new ArrayList<String>();
+        ArrayList<String> stateAnalysisEntry1 = new ArrayList<>();
         stateAnalysisEntry1.add("Fakt 1");
         stateAnalysisEntry1.add("Test test test");
         stateAnalysis.addEntryWithProperties(stateAnalysisEntry1);
 
-        ArrayList<String> stateAnalysisEntry2 = new ArrayList<String>();
+        ArrayList<String> stateAnalysisEntry2 = new ArrayList<>();
         stateAnalysisEntry2.add("Fakt 2");
         stateAnalysisEntry2.add("Test2 test2 test2");
         stateAnalysis.addEntryWithProperties(stateAnalysisEntry2);
 
-        ArrayList<String> futureAnalysisEntry1 = new ArrayList<String>();
+        ArrayList<String> futureAnalysisEntry1 = new ArrayList<>();
         futureAnalysisEntry1.add("Future Fakt 1");
         futureAnalysisEntry1.add("Test test test");
         futureAnalysis.addEntryWithProperties(futureAnalysisEntry1);
 
-        ArrayList<String> futureAnalysisEntry2 = new ArrayList<String>();
+        ArrayList<String> futureAnalysisEntry2 = new ArrayList<>();
         futureAnalysisEntry2.add("Future Fakt 2");
         futureAnalysisEntry2.add("Test2 test2 test2");
         futureAnalysis.addEntryWithProperties(futureAnalysisEntry2);
@@ -84,27 +81,27 @@ public class Main {
         requirements.setFieldOfApplication("Testgebiet");
         requirements.setProjectGoal("Alles Testen, was man testen kann");
 
-        ArrayList<String> func1 = new ArrayList<String>();
+        ArrayList<String> func1 = new ArrayList<>();
         func1.add("Funktion 1");
         func1.add("Das ist Test Nr. 1");
         func1.add("Teststakeholder");
         functionalRequirements.addEntryWithProperties(func1);
-        ArrayList<String> func2 = new ArrayList<String>();
+        ArrayList<String> func2 = new ArrayList<>();
         func2.add("Funktion 2");
         func2.add("Das ist Test Nr. 2");
         func2.add("Teststakeholder");
         functionalRequirements.addEntryWithProperties(func2);
-        ArrayList<String> func3 = new ArrayList<String>();
+        ArrayList<String> func3 = new ArrayList<>();
         func3.add("Funktion 3");
         func3.add("Das ist Test Nr. 3");
         func3.add("Teststakeholder");
         functionalRequirements.addEntryWithProperties(func3);
 
-        ArrayList<String> nonFunc1 = new ArrayList<String>();
+        ArrayList<String> nonFunc1 = new ArrayList<>();
         nonFunc1.add("NonFunktion 1");
         nonFunc1.add("Das ist Test Nr. 1");
         nonFunctionalRequirements.addEntryWithProperties(nonFunc1);
-        ArrayList<String> nonFunc2 = new ArrayList<String>();
+        ArrayList<String> nonFunc2 = new ArrayList<>();
         nonFunc2.add("NonFunktion 2");
         nonFunc2.add("Das ist Test Nr. 2");
         nonFunctionalRequirements.addEntryWithProperties(nonFunc2);
@@ -114,29 +111,29 @@ public class Main {
         qualityRequirements.get(2).setPriority(I_QualityRequirementEntry.Priority.LOW);
         qualityRequirements.get(3).setPriority(I_QualityRequirementEntry.Priority.IRRELEVANT);
 
-        ArrayList<String> comment1 = new ArrayList<String>();
+        ArrayList<String> comment1 = new ArrayList<>();
         comment1.add("Kommentar 1");
         comment1.add("Das ist Test Nr. 1");
         comments.addEntryWithProperties(comment1);
-        ArrayList<String> comment2 = new ArrayList<String>();
+        ArrayList<String> comment2 = new ArrayList<>();
         comment2.add("Kommentar 2");
         comment2.add("Das ist Test Nr. 2");
         comments.addEntryWithProperties(comment2);
-        ArrayList<String> comment3 = new ArrayList<String>();
+        ArrayList<String> comment3 = new ArrayList<>();
         comment3.add("Kommentar 3");
         comment3.add("Das ist Test Nr. 3");
         comments.addEntryWithProperties(comment3);
 
-        ArrayList<String> glossary1 = new ArrayList<String>();
+        ArrayList<String> glossary1 = new ArrayList<>();
         glossary1.add("Glossareintrag 1");
         glossary1.add("Das ist Test Nr. 1");
         glossar.addEntryWithProperties(glossary1);
-        ArrayList<String> glossary2 = new ArrayList<String>();
+        ArrayList<String> glossary2 = new ArrayList<>();
         glossary2.add("Glossareintrag 2");
         glossary2.add("Das ist Test Nr. 2");
         glossar.addEntryWithProperties(glossary2);
 
-        XML.exportXML("C:/Users/Michi/Desktop/Temp/Test_Auto1.xml");
+        //XML.exportXML("C:/Users/Julius/Desktop/Test_Auto1.xml");
 
     }
 }

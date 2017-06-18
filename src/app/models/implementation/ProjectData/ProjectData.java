@@ -1,14 +1,13 @@
 package app.models.implementation.ProjectData;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.ProjectData.I_Customer;
 import app.models.interfaces.ProjectData.I_ProjectData;
 import app.models.interfaces.ProjectData.I_ProjectEditor;
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -65,6 +64,19 @@ public class ProjectData implements I_ProjectData {
     }
 
     @Override
+    public List<I_XmlModelEntity> getChildren() {
+        List<I_XmlModelEntity> children = new ArrayList<>(2);
+        children.add(this.getProjectEditor());
+        children.add(this.getCustomer());
+        return children;
+    }
+
+    @Override
+    public String getTag() {
+        return "ProjectData";
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             this.setName(propertyStrings.get(0));
@@ -83,26 +95,6 @@ public class ProjectData implements I_ProjectData {
         return stringProperties;
     }
 
-    @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("ProjectDataProperties");
-        xmlWriter.writeAttribute( "projectDataName",
-                this.getName());
-        xmlWriter.writeAttribute( "projectDataDueDate",
-                this.getDueDate());
-        xmlWriter.writeCharacters("\t");
-
-        this.getProjectEditor().exportAsXML(xmlWriter);
-        this.getCustomer().exportAsXML(xmlWriter);
-
-        xmlWriter.writeEndElement();
-    }
-
-    @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        this.setName(xmlReader.getAttributeValue(0));
-        this.setDueDate(xmlReader.getAttributeValue(1));
-    }
 
     @Override
     public void removeExistingData() {

@@ -1,6 +1,7 @@
 package app.models.implementation.Requirements;
 
 import app.models.implementation.ObservableEntryHolder;
+import app.models.interfaces.I_XmlModelEntity;
 import app.models.interfaces.Requirements.I_NonFunctionalRequirementEntry;
 import app.models.interfaces.Requirements.I_NonFunctionalRequirements;
 
@@ -8,6 +9,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Michi on 23.04.2017.
@@ -19,29 +21,23 @@ class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalReq
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("NonFunctionalRequirements");
-
-        for(I_NonFunctionalRequirementEntry currentEntry : this.getEntries())
-        {
-            xmlWriter.writeCharacters("\t");
-            xmlWriter.writeStartElement("NonFunctionalRequirementsEntry");
-            xmlWriter.writeAttribute("businessProcess",
-                    currentEntry.getBusinessProcess());
-            xmlWriter.writeAttribute("description",
-                    currentEntry.getDescription());
-            xmlWriter.writeEndElement();
-        }
-
-        xmlWriter.writeEndElement();
+    public List<I_XmlModelEntity> getChildren() {
+        return new ArrayList<>(getEntries());
     }
 
     @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        ArrayList<String> nonFunctionalRequirementsEntryArguments = new ArrayList<>();
-        nonFunctionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(0));
-        nonFunctionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(1));
-        this.addEntryWithProperties(nonFunctionalRequirementsEntryArguments);
+    public String getTag() {
+        return "NonFunctionalRequirements";
+    }
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        return null;
     }
 
     @Override

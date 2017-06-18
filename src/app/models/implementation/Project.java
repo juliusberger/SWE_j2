@@ -1,5 +1,6 @@
 package app.models.implementation;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.implementation.Analysis.FutureAnalysis;
 import app.models.implementation.Analysis.StateAnalysis;
@@ -18,6 +19,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,11 +33,6 @@ public class Project implements I_Project {
         return Project._instance;
     }
 
-
-
-    private SimpleStringProperty _name = new SimpleStringProperty("");
-    private SimpleStringProperty _fileLocation = new SimpleStringProperty("");
-
     private I_ProjectData _projectData = new ProjectData();
     private I_Analysis _stateAnalysis = new StateAnalysis();
     private I_Analysis _futureAnalysis = new FutureAnalysis();
@@ -45,37 +42,6 @@ public class Project implements I_Project {
 
 
     private Project() {
-    }
-
-
-    @Override
-    public String getName() {
-        return this._name.get();
-    }
-
-    @Override
-    public SimpleStringProperty nameProperty() {
-        return this._name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this._name.set(name);
-    }
-
-    @Override
-    public String getFileLocation() {
-        return this._fileLocation.get();
-    }
-
-    @Override
-    public SimpleStringProperty fileLocationProperty() {
-        return this._fileLocation;
-    }
-
-    @Override
-    public void setFileLocation(String fileLocation) {
-        this._fileLocation.set(fileLocation);
     }
 
     @Override
@@ -109,39 +75,29 @@ public class Project implements I_Project {
     }
 
     @Override
+    public List<I_XmlModelEntity> getChildren() {
+        List<I_XmlModelEntity> children = new ArrayList<>(6);
+        children.add(this.getProjectData());
+        children.add(this.getStateAnalysis());
+        children.add(this.getFutureAnalysis());
+        children.add(this.getRequirements());
+        /*children.add(this.getCostEstimation());*/
+        children.add(this.getGlossary());
+        return children;
+    }
+
+    @Override
+    public String getTag() {
+        return "Project";
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
-        this.setName(propertyStrings.get(0));
-        this.setFileLocation(propertyStrings.get(1));
     }
 
     @Override
     public ArrayList<String> getAllProperties() {
-        ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getName());
-        stringProperties.add(this.getFileLocation());
-
-        return stringProperties;
+        return null;
     }
 
-
-    @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement( "ProjectProperties" );
-        xmlWriter.writeAttribute( "name", this.getName());
-        xmlWriter.writeAttribute("fileLocation",
-                this.getFileLocation());
-        xmlWriter.writeEndElement();
-    }
-
-    @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        this.setName(xmlReader.getAttributeValue(0));
-        this.setFileLocation(xmlReader.getAttributeValue(1));
-    }
-
-    @Override
-    public void removeExistingData() {
-        this.setName("");
-        this.setFileLocation("");
-    }
 }

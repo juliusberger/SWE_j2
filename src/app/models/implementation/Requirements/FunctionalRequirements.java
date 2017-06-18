@@ -1,6 +1,7 @@
 package app.models.implementation.Requirements;
 
 import app.models.implementation.ObservableEntryHolder;
+import app.models.interfaces.I_XmlModelEntity;
 import app.models.interfaces.Requirements.I_FunctionalRequirementEntry;
 import app.models.interfaces.Requirements.I_FunctionalRequirements;
 
@@ -8,6 +9,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Michi on 23.04.2017.
@@ -19,32 +21,23 @@ class FunctionalRequirements extends ObservableEntryHolder<I_FunctionalRequireme
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("FunctionalRequirements");
-
-        for(I_FunctionalRequirementEntry currentEntry : this.getEntries())
-        {
-            xmlWriter.writeCharacters("\t");
-            xmlWriter.writeStartElement("FunctionalRequirementsEntry");
-            xmlWriter.writeAttribute("function",
-                    currentEntry.getFunction());
-            xmlWriter.writeAttribute("descritpion",
-                    currentEntry.getDescription());
-            xmlWriter.writeAttribute("stakeholder",
-                    currentEntry.getStakeholder());
-            xmlWriter.writeEndElement();
-        }
-
-        xmlWriter.writeEndElement();
+    public List<I_XmlModelEntity> getChildren() {
+        return new ArrayList<>(getEntries());
     }
 
     @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        ArrayList<String> functionalRequirementsEntryArguments = new ArrayList<>();
-        functionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(0));
-        functionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(1));
-        functionalRequirementsEntryArguments.add(xmlReader.getAttributeValue(2));
-        this.addEntryWithProperties(functionalRequirementsEntryArguments);
+    public String getTag() {
+        return "FunctionalRequirements";
+    }
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        return null;
     }
 
     @Override

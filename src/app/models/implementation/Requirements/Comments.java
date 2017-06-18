@@ -1,6 +1,7 @@
 package app.models.implementation.Requirements;
 
 import app.models.implementation.ObservableEntryHolder;
+import app.models.interfaces.I_XmlModelEntity;
 import app.models.interfaces.Requirements.I_CommentEntry;
 import app.models.interfaces.Requirements.I_Comments;
 
@@ -8,6 +9,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -19,29 +21,23 @@ class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Commen
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("Comments");
-
-        for(I_CommentEntry currentEntry : this.getEntries())
-        {
-            xmlWriter.writeCharacters("\t");
-            xmlWriter.writeStartElement("CommentEntry");
-            xmlWriter.writeAttribute("keyword",
-                    currentEntry.getKeyword());
-            xmlWriter.writeAttribute("description",
-                    currentEntry.getDescription());
-            xmlWriter.writeEndElement();
-        }
-
-        xmlWriter.writeEndElement();
+    public List<I_XmlModelEntity> getChildren() {
+        return new ArrayList<>(getEntries());
     }
 
     @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        ArrayList<String> commentEntryArguments = new ArrayList<>();
-        commentEntryArguments.add(xmlReader.getAttributeValue(0));
-        commentEntryArguments.add(xmlReader.getAttributeValue(1));
-        this.addEntryWithProperties(commentEntryArguments);
+    public String getTag() {
+        return "Comments";
+    }
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
+        return null;
     }
 
     @Override

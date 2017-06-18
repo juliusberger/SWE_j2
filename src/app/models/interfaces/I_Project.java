@@ -10,18 +10,7 @@ import app.models.interfaces.Requirements.I_Requirements;
 /**
  * Erstellt von Julius am 30/04/2017.
  */
-public interface I_Project extends I_ModelPropertyAdaptor, I_XMLExportable, I_XMLImportable, I_Removable {
-    String getName();
-
-    SimpleStringProperty nameProperty();
-
-    void setName(String name);
-
-    String getFileLocation();
-
-    SimpleStringProperty fileLocationProperty();
-
-    void setFileLocation(String fileLocation);
+public interface I_Project extends I_ModelPropertyAdaptor, I_XmlModelEntity {
 
     I_ProjectData getProjectData();
 

@@ -1,9 +1,11 @@
 package app.models.implementation.Glossary;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.Glossary.I_GlossaryEntry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Erstellt von Julius am 24/04/2017.
@@ -43,6 +45,17 @@ public class GlossaryEntry implements I_GlossaryEntry {
     @Override
     public void setDefinition(String definition) {
         this._definition.set(definition);
+    }
+
+
+    @Override
+    public List<I_XmlModelEntity> getChildren() {
+        return null;
+    }
+
+    @Override
+    public String getTag() {
+        return "GlossaryEntry";
     }
 
     @Override

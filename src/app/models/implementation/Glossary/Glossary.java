@@ -3,11 +3,10 @@ package app.models.implementation.Glossary;
 import app.models.implementation.ObservableEntryHolder;
 import app.models.interfaces.Glossary.I_Glossary;
 import app.models.interfaces.Glossary.I_GlossaryEntry;
+import app.models.interfaces.I_XmlModelEntity;
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Erstellt von Julius am 24/04/2017.
@@ -19,29 +18,23 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
     }
 
     @Override
-    public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
-        xmlWriter.writeStartElement("GlossaryProperties");
+    public List<I_XmlModelEntity> getChildren() {
+        return new ArrayList<>(this.getEntries());
+    }
 
-        for(I_GlossaryEntry currentEntry : this.getEntries())
-        {
-            xmlWriter.writeCharacters("\t");
-            xmlWriter.writeStartElement("GlossaryEntry");
-            xmlWriter.writeAttribute("item",
-                    currentEntry.getItem());
-            xmlWriter.writeAttribute("definition",
-                    currentEntry.getDefinition());
-            xmlWriter.writeEndElement();
-        }
-        xmlWriter.writeEndElement();
+    @Override
+    public String getTag() {
+        return "Glossary";
+    }
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
 
     }
 
     @Override
-    public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
-        ArrayList<String> glossaryEntryArguments = new ArrayList<>();
-        glossaryEntryArguments.add(xmlReader.getAttributeValue(0));
-        glossaryEntryArguments.add(xmlReader.getAttributeValue(1));
-        this.addEntryWithProperties(glossaryEntryArguments);
+    public ArrayList<String> getAllProperties() {
+        return null;
     }
 
     @Override

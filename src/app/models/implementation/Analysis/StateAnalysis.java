@@ -13,6 +13,10 @@ import java.util.ArrayList;
 public class StateAnalysis extends Analysis {
 
     @Override
+    public String getTag() {
+        return "StateAnalysis";
+    }
+
     public void exportAsXML(XMLStreamWriter xmlWriter) throws XMLStreamException {
         xmlWriter.writeStartElement("StateAnalysisProperties");
 
@@ -30,7 +34,6 @@ public class StateAnalysis extends Analysis {
         xmlWriter.writeEndElement();
     }
 
-    @Override
     public void importFromXML(XMLStreamReader xmlReader) throws XMLStreamException {
         ArrayList<String> stateAnalysisEntryArguments = new ArrayList<>();
         stateAnalysisEntryArguments.add(xmlReader.getAttributeValue(0));
@@ -38,7 +41,6 @@ public class StateAnalysis extends Analysis {
         this.addEntryWithProperties(stateAnalysisEntryArguments);
     }
 
-    @Override
     public void removeExistingData() {
         this.getEntries().clear();
     }

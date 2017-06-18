@@ -1,6 +1,8 @@
 package app.helpers;
 
 import app.models.implementation.Project;
+import app.models.interfaces.I_Project;
+import app.models.interfaces.I_XmlModelEntity;
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 
 import javax.xml.stream.XMLOutputFactory;
@@ -13,53 +15,61 @@ import java.io.FileOutputStream;
  * Created by Michi on 03.06.2017.
  */
 public class XMLExporter {
-    XMLStreamWriter xmlWriter;
-    String fileName = "";
-    XMLOutputFactory factory = XMLOutputFactory.newInstance();
+    private String _fileName = "";
+
+    XMLOutputFactory _factory = XMLOutputFactory.newInstance();
 
     public XMLExporter(String fileName) {
-        this.fileName = fileName;
+        this._fileName = fileName;
     }
 
+    private static void traverse(XMLStreamWriter writer,
+                                 I_XmlModelEntity entity) throws XMLStreamException {
+        writer.writeStartElement(entity.getTag());
+        if (entity.getAllProperties() != null) {
+            writer.writeStartElement("Properties");
+            for (String property : entity.getAllProperties()) {
+                writer.writeStartElement("Property");
+                writer.writeAttribute("data",
+                        property);
+                writer.writeEndElement();
+            }
+            writer.writeEndElement();
+        }
+        if (entity.getChildren() != null && entity.getChildren().size() > 0) {
+            writer.writeStartElement("Children");
+            for (I_XmlModelEntity modelEntity : entity.getChildren()) {
+                traverse(writer, modelEntity);
+            }
+            writer.writeEndElement();
+        }
 
-    public void exportToXML()
-    {
+        writer.writeEndElement();
+    }
+
+    public void exportXML() {
         try {
-            xmlWriter = new IndentingXMLStreamWriter(factory.createXMLStreamWriter( new FileOutputStream(fileName)));
+            XMLOutputFactory factory = XMLOutputFactory.newInstance();
+            XMLStreamWriter writer = new IndentingXMLStreamWriter(factory.createXMLStreamWriter(new FileOutputStream(_fileName)));
 
-            // Der XML-Header wird erzeugt
-            xmlWriter.writeStartDocument();
-            xmlWriter.writeStartElement("ProjectExport");
+            writer.writeStartDocument();
 
-            //TODO: CostEstimation einfügen
-            Project.getInstance().exportAsXML(xmlWriter);
-            Project.getInstance().getProjectData().exportAsXML(xmlWriter);
-            Project.getInstance().getStateAnalysis().exportAsXML(xmlWriter);
-            Project.getInstance().getFutureAnalysis().exportAsXML(xmlWriter);
-            Project.getInstance().getRequirements().exportAsXML(xmlWriter);
-            Project.getInstance().getGlossary().exportAsXML(xmlWriter);
+            I_Project project = Project.getInstance();
+            traverse(writer, project);
 
-            // XML-Datei wird abgeschlossen
-            xmlWriter.writeEndElement();
-            xmlWriter.writeEndDocument();
+            writer.writeEndDocument();
 
             //TODO: Konsolen-Ausgabebefehl löschen, wenn nicht mehr zu Debugging-Zwecken notwendig
             System.out.println("XML-Datei erfolgreich erstellt");
-            LogWriter.writeLog("XML-Export wurde erfolgreich erstellt. Pfad zur Datei: " + fileName);
+            //LogWriter.writeLog("XML-Export wurde erfolgreich erstellt. Pfad zur Datei: " + _fileName);
             InfoDialog dialog = new InfoDialog("XML-Export erfolgreich",
                     "XML-Export erfolgreich abgeschlossen");
 
 
         }
-        catch (FileNotFoundException ex)
+        catch (FileNotFoundException | XMLStreamException ex)
         {
-            LogWriter.writeLog("XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog dialog = new InfoDialog("XML-Export nicht erfolgreich",
-                    "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
-        }
-        catch (XMLStreamException ex)
-        {
-            LogWriter.writeLog("XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+            //LogWriter.writeLog("XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
             InfoDialog dialog = new InfoDialog("XML-Export nicht erfolgreich",
                     "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
         }

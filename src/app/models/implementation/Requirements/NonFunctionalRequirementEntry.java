@@ -1,9 +1,11 @@
 package app.models.implementation.Requirements;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.Requirements.I_NonFunctionalRequirementEntry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -45,6 +47,15 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
         this._description.set(description);
     }
 
+    @Override
+    public List<I_XmlModelEntity> getChildren() {
+        return null;
+    }
+
+    @Override
+    public String getTag() {
+        return "NonFunctionalRequirementsEntry";
+    }
 
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {

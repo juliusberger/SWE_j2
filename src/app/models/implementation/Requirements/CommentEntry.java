@@ -1,9 +1,11 @@
 package app.models.implementation.Requirements;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.Requirements.I_CommentEntry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Michi on 23.04.2017.
@@ -43,6 +45,16 @@ public class CommentEntry implements I_CommentEntry {
     @Override
     public void setDescription(String description) {
         this._description.set(description);
+    }
+
+    @Override
+    public List<I_XmlModelEntity> getChildren() {
+        return null;
+    }
+
+    @Override
+    public String getTag() {
+        return "CommentEntry";
     }
 
     @Override

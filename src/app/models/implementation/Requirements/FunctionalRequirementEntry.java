@@ -1,9 +1,11 @@
 package app.models.implementation.Requirements;
 
+import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.Requirements.I_FunctionalRequirementEntry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Erstellt von Julius am 23/04/2017.
@@ -59,6 +61,16 @@ public class FunctionalRequirementEntry implements I_FunctionalRequirementEntry 
     @Override
     public void setDescription(String description) {
         this._description.set(description);
+    }
+
+    @Override
+    public List<I_XmlModelEntity> getChildren() {
+        return null;
+    }
+
+    @Override
+    public String getTag() {
+        return "FunctionalRequirementEntry";
     }
 
     @Override
