@@ -15,28 +15,24 @@ import javafx.stage.StageStyle;
  * Erstellt von Julius am 06/05/2017.
  */
 class InfoDialog {
+    static void show(String title, String message) {
+        Stage stage = new Stage();
 
-    private Stage stage;
-
-    InfoDialog(String title,
-               String message) {
-        this.stage = new Stage();
-
-        this.stage.initModality(Modality.APPLICATION_MODAL);
-        this.stage.initStyle(StageStyle.DECORATED);
-        this.stage.setTitle(title);
-        this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle(title);
+        stage.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
 
         VBox vBox = new VBox();
         vBox.setSpacing(10.0);
-        vBox.getStylesheets().add(this.getClass().getResource("../assets/global.css").toExternalForm());
+        vBox.getStylesheets().add(InfoDialog.class.getResource("../assets/global.css").toExternalForm());
         vBox.getStyleClass().add("p-10");
         vBox.setPrefWidth(300);
 
         vBox.getChildren().add(new Label(message));
 
         Button okButton = new Button("Ok");
-        okButton.setOnAction(event -> this.dismiss());
+        okButton.setOnAction(event -> stage.close());
         okButton.setMaxWidth(1.7976931348623157E308);
         HBox.setHgrow(okButton,
                 Priority.ALWAYS);
@@ -49,13 +45,7 @@ class InfoDialog {
 
         vBox.getChildren().add(buttonBox);
 
-        this.stage.setScene(new Scene(vBox));
-        this.stage.show();
+        stage.setScene(new Scene(vBox));
+        stage.show();
     }
-
-
-    private void dismiss() {
-        this.stage.close();
-    }
-
 }

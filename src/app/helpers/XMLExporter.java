@@ -63,7 +63,7 @@ public class XMLExporter {
 
             //TODO: Konsolen-Ausgabebefehl löschen, wenn nicht mehr zu Debugging-Zwecken notwendig
             Log.getLogger().info("XML-Export wurde erfolgreich erstellt. Pfad zur Datei: " + _fileName);
-            InfoDialog dialog = new InfoDialog("XML-Export erfolgreich",
+            InfoDialog.show("XML-Export erfolgreich",
                     "XML-Export erfolgreich abgeschlossen");
             // TODO: Statischer dialog
 
@@ -71,7 +71,7 @@ public class XMLExporter {
         } catch (FileNotFoundException | XMLStreamException ex) {
             Log.getLogger()
                     .info("XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog dialog = new InfoDialog("XML-Export nicht erfolgreich",
+            InfoDialog.show("XML-Export nicht erfolgreich",
                     "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
         }
     }

@@ -25,9 +25,6 @@ class Dialog extends Observable {
 
     private final Stage stage;
 
-    private final Label textFieldLabel;
-    private final List<Label> textAreaLabels = new ArrayList<>();
-
     private final TextField textField = new TextField();
     private final List<TextArea> textAreas = new ArrayList<>();
 
@@ -39,16 +36,17 @@ class Dialog extends Observable {
     Dialog(ArrayList<String> stringProperties) {
         this.stage = new Stage();
 
-        this.textFieldLabel = new Label(stringProperties.get(0));
-        this.textFieldLabel.getStyleClass().add("h3");
+        final Label textFieldLabel = new Label(stringProperties.get(0));
+        textFieldLabel.getStyleClass().add("h3");
 
         stringProperties.remove(0);
 
+        final List<Label> textAreaLabels = new ArrayList<>();
         for (String textAreaLabel : stringProperties) {
             Label label = new Label(textAreaLabel);
             label.getStyleClass().add("h3");
 
-            this.textAreaLabels.add(label);
+            textAreaLabels.add(label);
 
             TextArea textArea = new TextArea();
             textArea.setPrefHeight(80);
@@ -69,11 +67,11 @@ class Dialog extends Observable {
             vBox.setPrefWidth(300);
 
             {
-                vBox.getChildren().add(this.textFieldLabel);
+                vBox.getChildren().add(textFieldLabel);
                 vBox.getChildren().add(this.textField);
 
                 for (int index = 0; index < this.textAreas.size(); index++) {
-                    vBox.getChildren().add(this.textAreaLabels.get(index));
+                    vBox.getChildren().add(textAreaLabels.get(index));
                     vBox.getChildren().add(this.textAreas.get(index));
                 }
 
