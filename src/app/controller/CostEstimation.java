@@ -1,13 +1,12 @@
 package app.controller;
 
+import app.model.implementation.Project;
 import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_ClassificationEntry;
-import app.model.interfaces.CostEstimation.I_CostEstimationEntry;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import app.model.implementation.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -133,7 +132,7 @@ public class CostEstimation implements Initializable {
         sumInfluencingFactors += Integer.parseInt(_box5.toString());
         sumInfluencingFactors += Integer.parseInt(_box6.toString());
         sumInfluencingFactors += Integer.parseInt(_box7.toString());
-_
+
         return ((double) sumInfluencingFactors / 100) + 0.7;
     }
 
