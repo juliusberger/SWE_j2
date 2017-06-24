@@ -1,8 +1,8 @@
 package app.helpers;
 
-import app.models.implementation.Project;
-import app.models.interfaces.I_Project;
-import app.models.interfaces.I_XmlModelEntity;
+import app.model.implementation.Project;
+import app.model.interfaces.I_Project;
+import app.model.interfaces.I_XmlModelEntity;
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 
 import javax.xml.stream.XMLOutputFactory;
@@ -29,10 +29,9 @@ public class XMLExporter {
         if (entity.getAllProperties() != null) {
             writer.writeStartElement("Properties");
             for (String property : entity.getAllProperties()) {
-                writer.writeStartElement("Property");
+                writer.writeEmptyElement("Property");
                 writer.writeAttribute("data",
                         property);
-                writer.writeEndElement();
             }
             writer.writeEndElement();
         }

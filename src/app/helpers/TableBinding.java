@@ -5,8 +5,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import app.models.interfaces.I_ModelPropertyAdaptor;
-import app.models.interfaces.I_ObservableDataAdaptor;
+import app.model.interfaces.I_ModelPropertyAdaptor;
+import app.model.interfaces.I_ObservableDataAdaptor;
 
 import java.util.ArrayList;
 import java.util.Arrays;

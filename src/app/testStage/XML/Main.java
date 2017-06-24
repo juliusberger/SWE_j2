@@ -1,13 +1,13 @@
 package app.testStage.XML;
 
-import app.models.implementation.Project;
-import app.models.interfaces.Analysis.I_Analysis;
-import app.models.interfaces.Glossary.I_Glossary;
-import app.models.interfaces.I_Project;
-import app.models.interfaces.ProjectData.I_Customer;
-import app.models.interfaces.ProjectData.I_ProjectData;
-import app.models.interfaces.ProjectData.I_ProjectEditor;
-import app.models.interfaces.Requirements.*;
+import app.model.implementation.Project;
+import app.model.interfaces.Analysis.I_Analysis;
+import app.model.interfaces.Glossary.I_Glossary;
+import app.model.interfaces.I_Project;
+import app.model.interfaces.ProjectData.I_Customer;
+import app.model.interfaces.ProjectData.I_ProjectData;
+import app.model.interfaces.ProjectData.I_ProjectEditor;
+import app.model.interfaces.Requirements.*;
 
 import java.util.ArrayList;
 import java.util.List;

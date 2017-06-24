@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import app.models.implementation.Project;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -16,7 +15,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        AnchorPane root = FXMLLoader.load(this.getClass().getResource("components/rootView.fxml"));
+        AnchorPane root = FXMLLoader.load(this.getClass().getResource("view/rootView.fxml"));
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("ANTool");
