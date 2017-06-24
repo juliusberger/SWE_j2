@@ -30,6 +30,7 @@ public class CostEstimation implements Initializable {
     public Button manualOptimizationButton;
     public Button automaticOptimizationButton;
 
+
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
@@ -76,5 +77,9 @@ public class CostEstimation implements Initializable {
                         .get(6)
                         .getWeightProperty());
 
+        classifyRequirementsButton.setOnAction(event -> {
+            Classification classification = new Classification();
+            classification.show();
+        });
     }
 }

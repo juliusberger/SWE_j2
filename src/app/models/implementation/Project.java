@@ -1,5 +1,7 @@
 package app.models.implementation;
 
+import app.models.implementation.CostEstimation.Classification;
+import app.models.interfaces.CostEstimation.I_Classification;
 import app.models.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.implementation.Analysis.FutureAnalysis;
@@ -38,6 +40,7 @@ public class Project implements I_Project {
     private I_Analysis _futureAnalysis = new FutureAnalysis();
     private I_Requirements _requirements = new Requirements();
     private I_CostEstimation _costEstimation = new CostEstimation();
+    private I_Classification _classification = new Classification();
     private I_Glossary _glossary = new Glossary();
 
 
@@ -67,6 +70,11 @@ public class Project implements I_Project {
     @Override
     public I_CostEstimation getCostEstimation() {
         return this._costEstimation;
+    }
+
+    @Override
+    public I_Classification getClassification() {
+        return this._classification;
     }
 
     @Override

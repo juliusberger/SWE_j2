@@ -1,5 +1,6 @@
 package app.models.interfaces;
 
+import app.models.interfaces.CostEstimation.I_Classification;
 import javafx.beans.property.SimpleStringProperty;
 import app.models.interfaces.Analysis.I_Analysis;
 import app.models.interfaces.CostEstimation.I_CostEstimation;
@@ -19,6 +20,8 @@ public interface I_Project extends I_ModelPropertyAdaptor, I_XmlModelEntity {
     I_Analysis getFutureAnalysis();
 
     I_CostEstimation getCostEstimation();
+
+    I_Classification getClassification();
 
     I_Requirements getRequirements();
 

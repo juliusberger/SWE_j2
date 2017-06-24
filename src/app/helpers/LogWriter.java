@@ -70,7 +70,7 @@ public final class LogWriter
                 }
                 else {
                     fileWriter = new BufferedWriter(new FileWriter(fileName));
-                    fileWriter.write("Logfile für Projekt \"" + Project.getInstance().getName() + "\":");
+                    fileWriter.write("Logfile für Projekt \"" + Project.getInstance() + "\":");
                     fileWriter.newLine();
                     return true;
                 }
