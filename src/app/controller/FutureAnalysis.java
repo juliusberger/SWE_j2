@@ -30,9 +30,7 @@ public class FutureAnalysis implements Initializable {
                            ResourceBundle resources) {
 
         TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(this.futureAnalysisTable,
-                this.data,
-                "entryName",
-                "description");
+                this.data);
         tableBinding.bindAll(this.addEntryButton,
                 this.editEntryButton,
                 this.deleteEntryButton);

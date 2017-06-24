@@ -41,4 +41,9 @@ class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Commen
     public void removeExistingData() {
         this.getEntries().clear();
     }
+
+    @Override
+    public String[] getPropertyNames() {
+        return new String[]{"keyword", "description"};
+    }
 }

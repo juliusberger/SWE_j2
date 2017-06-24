@@ -53,18 +53,13 @@ public class Requirements implements Initializable {
         this.fieldOfApplicationText.textProperty().bindBidirectional(this.data.fieldOfApplicationProperty());
 
         TableBinding<I_FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>(this.functionalRequirementsTable,
-                this.data.getFunctionalRequirements(),
-                "function",
-                "description",
-                "stakeholder");
+                this.data.getFunctionalRequirements());
         functionalRequirementEntryTableBinding.bindAll(this.functionalRequirementsAddButton,
                 this.functionalRequirementsEditButton,
                 this.functionalRequirementsDeleteButton);
 
         TableBinding<I_NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>(this.nonFunctionalRequirementsTable,
-                this.data.getNonFunctionalRequirements(),
-                "businessProcess",
-                "description");
+                this.data.getNonFunctionalRequirements());
         nonFunctionalRequirementEntryTableBinding.bindAll(this.nonFunctionalRequirementsAddButton,
                 this.nonFunctionalRequirementsEditButton,
                 this.nonFunctionalRequirementsDeleteButton);
@@ -84,9 +79,7 @@ public class Requirements implements Initializable {
 
 
         TableBinding<I_CommentEntry> commentEntryTableBinding = new TableBinding<>(this.commentsTable,
-                this.data.getComments(),
-                "keyword",
-                "description");
+                this.data.getComments());
         commentEntryTableBinding.bindAll(this.commentsAddButton,
                 this.commentsEditButton,
                 this.commentsDeleteButton);

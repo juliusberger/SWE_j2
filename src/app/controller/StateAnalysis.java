@@ -31,9 +31,7 @@ public class StateAnalysis implements Initializable {
 
 
         TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(this.stateAnalysisTable,
-                this.data,
-                "entryName",
-                "description");
+                this.data);
         tableBinding.bindAll(this.addEntryButton,
                 this.editEntryButton,
                 this.deleteEntryButton);

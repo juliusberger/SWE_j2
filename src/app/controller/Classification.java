@@ -29,12 +29,12 @@ import java.util.Observable;
  */
 public class Classification extends Observable {
 
-    private Stage stage = new Stage();
-    private boolean saveClicked = false;
+    private Stage _stage = new Stage();
+    private boolean _saveClicked = false;
 
-    private TableView<I_ClassificationEntry> tableView = new TableView<I_ClassificationEntry>();
+    private TableView<I_ClassificationEntry> _tableView = new TableView<I_ClassificationEntry>();
 
-    private I_Classification dataModel = Project.getInstance().getClassification();
+    private I_Classification _dataModel = Project.getInstance().getClassification();
 
     private I_FunctionalRequirements functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
 
@@ -43,15 +43,15 @@ public class Classification extends Observable {
 
     public Classification() {
 
-        this.stage.initModality(Modality.APPLICATION_MODAL);
-        this.stage.initStyle(StageStyle.DECORATED);
-        this.stage.setTitle("Anforderungen klassifizieren");
-        this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
+        _stage.initModality(Modality.APPLICATION_MODAL);
+        _stage.initStyle(StageStyle.DECORATED);
+        _stage.setTitle("Anforderungen klassifizieren");
+        _stage.getIcons().add(new Image(getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
 
         final VBox vBox = new VBox();
 
         vBox.setSpacing(10.0);
-        vBox.getStylesheets().add(this.getClass().getResource("../assets/global.css").toExternalForm());
+        vBox.getStylesheets().add(getClass().getResource("../assets/global.css").toExternalForm());
         vBox.getStyleClass().add("p-10");
         vBox.setPrefWidth(700);
 
@@ -62,8 +62,8 @@ public class Classification extends Observable {
             TableColumn _category = new TableColumn("Kategorie");
             TableColumn _classification = new TableColumn("Klassifizierung");
 
-            tableView.getStyleClass().add("h3");
-            tableView.setMaxHeight(360.0);
+            _tableView.getStyleClass().add("h3");
+            _tableView.setMaxHeight(360.0);
 
             ObservableList<String> categoryList = FXCollections.observableArrayList("Eingabedaten (EI)", "Ausgabedaten (EO)", "Abfragen (EQ)", "Datenbestände (ILF)", "Referenzdaten (ELF)");
             _category.setCellFactory(ChoiceBoxTableCell.forTableColumn(categoryList));
@@ -71,56 +71,55 @@ public class Classification extends Observable {
             ObservableList<String> classificationList = FXCollections.observableArrayList("einfach", "mittel", "komplex");
             _classification.setCellFactory(ChoiceBoxTableCell.forTableColumn(classificationList));
 
-            tableView.getColumns().addAll(_function, _description, _stakeholder, _category, _classification);
-            tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+            _tableView.getColumns().addAll(_function, _description, _stakeholder, _category, _classification);
+            _tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-            tableView.setEditable(true);
+            _tableView.setEditable(true);
 
             int i = 0;
-            String[] propertyNames = {"function", "description", "stakeholder", "category", "classification"};
-            for (String propertyName : propertyNames) {
-                tableView.getColumns()
+            for (String propertyName : _dataModel.getPropertyNames()) {
+                _tableView.getColumns()
                         .get(i++)
                         .setCellValueFactory(new PropertyValueFactory<>(propertyName));
             }
 
-            //Bind Table to dataModel
+            //Bind Table to _dataModel
 
-            this.dataModel.removeExistingData();
+            _dataModel.removeExistingData();
 
-            if (categoryArrayList.size() != this.functionalRequirements.getEntries().size()){
+            if (categoryArrayList.size() != functionalRequirements.getEntries().size()){
 
                 categoryArrayList.clear();
                 classificationArrayList.clear();
 
-                for (int index = 0; index < this.functionalRequirements.getEntries().size(); index++) {
+                for (int index = 0; index < functionalRequirements.getEntries().size(); index++) {
                     categoryArrayList.add("");
                     classificationArrayList.add("");
                 }
             }
 
-            for (int index = 0; index < this.functionalRequirements.getEntries().size(); index++) {
+            for (int index = 0; index < functionalRequirements.getEntries().size(); index++) {
 
                 ArrayList<String> functionalRequirementEntry = functionalRequirements.getEntries().get(index).getAllProperties();
 
-                this.dataModel.addEntryWithProperties(functionalRequirementEntry);
+                _dataModel.addEntryWithProperties(functionalRequirementEntry);
 
-                this.dataModel.getEntries().get(index).setCategory(categoryArrayList.get(index));
-                this.dataModel.getEntries().get(index).setClassification(classificationArrayList.get(index));
+                _dataModel.getEntries().get(index).setCategory(categoryArrayList.get(index));
+                _dataModel.getEntries().get(index).setClassification(classificationArrayList.get(index));
             }
 
-            this.tableView.setItems(this.dataModel.getEntries());
+            _tableView.setItems(_dataModel.getEntries());
 
-            this.tableView.setEditable(true);
+            _tableView.setEditable(true);
 
-            vBox.getChildren().add(this.tableView);
+            vBox.getChildren().add(_tableView);
         }
 
         {
             Button saveButton = new Button("Speichern");
             Button cancelButton = new Button("Abbrechen");
-            saveButton.setOnAction(event -> this.save());
-            cancelButton.setOnAction(event -> this.close());
+            saveButton.setOnAction(event -> save());
+            cancelButton.setOnAction(event -> close());
             saveButton.setMaxWidth(1.7976931348623157E308);
             cancelButton.setMaxWidth(1.7976931348623157E308);
             HBox.setHgrow(saveButton,
@@ -138,33 +137,33 @@ public class Classification extends Observable {
             vBox.getChildren().add(buttonBox);
         }
 
-        this.stage.setScene(new Scene(vBox));
+        _stage.setScene(new Scene(vBox));
     }
 
     private void save() {
 
-        for (int index = 0; index < this.functionalRequirements.getEntries().size(); index++) {
+        for (int index = 0; index < functionalRequirements.getEntries().size(); index++) {
 
-            //categoryArrayList.set(index, this.dataModel.getEntries().get(index).getCategory());
-            categoryArrayList.set(index, this.tableView.getItems().get(index).getCategory());
-            classificationArrayList.set(index, this.tableView.getItems().get(index).getClassification());
+            //categoryArrayList.set(index, _dataModel.getEntries().get(index).getCategory());
+            categoryArrayList.set(index, _tableView.getItems().get(index).getCategory());
+            classificationArrayList.set(index, _tableView.getItems().get(index).getClassification());
         }
 
-        this.saveClicked = true;
-        this.close();
+        _saveClicked = true;
+        close();
     }
 
     private void close() {
-        this.stage.close();
-        this.setChanged();
-        this.notifyObservers();
+        _stage.close();
+        setChanged();
+        notifyObservers();
     }
 
     boolean isSaveClicked() {
-        return this.saveClicked;
+        return _saveClicked;
     }
 
     void show() {
-        this.stage.showAndWait();
+        _stage.showAndWait();
     }
 }

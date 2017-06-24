@@ -41,4 +41,9 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
     public void removeExistingData() {
         this.getEntries().clear();
     }
+
+    @Override
+    public String[] getPropertyNames() {
+        return new String[]{"item", "definition"};
+    }
 }

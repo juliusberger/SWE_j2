@@ -9,7 +9,6 @@ import app.model.interfaces.I_ModelPropertyAdaptor;
 import app.model.interfaces.I_ObservableDataAdaptor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Hilfsklasse zur einfachen Tabellenpopulation und Verknüpfung der Tabelleneinträge mit einem Datenmodel.
@@ -17,20 +16,17 @@ import java.util.Arrays;
  * S beschreibt den Typ eines Eintrages in der Tabelle, welcher das Interface {@link I_ModelPropertyAdaptor} implementieren muss. Damit sind die Implementierungen der benötigten Property-Funktionen gesichtert.
  */
 public class TableBinding<S extends I_ModelPropertyAdaptor> {
-    private final TableView<S> tableView;
-    private final I_ObservableDataAdaptor<S> dataModel;
-    private final ArrayList<String> propertyNames;
+    private final TableView<S> _tableView;
+    private final I_ObservableDataAdaptor<S> _dataModel;
 
     public TableBinding(TableView<S> tableView,
-                        I_ObservableDataAdaptor<S> dataModel,
-                        String... propertyNames) {
-        this.tableView = tableView;
-        this.dataModel = dataModel;
-        this.propertyNames = new ArrayList<>(Arrays.asList(propertyNames));
+                        I_ObservableDataAdaptor<S> dataModel) {
+        this._tableView = tableView;
+        this._dataModel = dataModel;
     }
 
     /**
-     * Binden der typischen Aktionen der Tabelle.
+     * Binden der typischen Aktionen der Tabelle (CRUD).
      * Binden der Buttons an die jeweiligen Aktionen.
      *
      * @param addButton    Hinzufügen-Button
@@ -53,13 +49,13 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
      */
     private void bindTableToData() {
         int index = 0;
-        for (String propertyName : this.propertyNames) {
-            this.tableView.getColumns()
+        for (String propertyName : this._dataModel.getPropertyNames()) {
+            this._tableView.getColumns()
                     .get(index++)
                     .setCellValueFactory(new PropertyValueFactory<>(propertyName));
         }
 
-        this.tableView.setItems(this.dataModel.getEntries());
+        this._tableView.setItems(this._dataModel.getEntries());
     }
 
     /**
@@ -72,7 +68,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
             b.setDisable(true);
         }
 
-        this.tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        this._tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 for (Button b : disableObservedButtons) {
                     b.setDisable(false);
@@ -91,8 +87,8 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
      * @param deleteButton Löschen-Button, an den die Aktion gebunden werden soll.
      */
     private void bindTableDeleteButton(Button deleteButton) {
-        deleteButton.setOnAction(e -> this.tableView.getItems()
-                .remove(this.tableView.getSelectionModel().getSelectedItem()));
+        deleteButton.setOnAction(e -> this._tableView.getItems()
+                .remove(this._tableView.getSelectionModel().getSelectedItem()));
     }
 
     /**
@@ -106,7 +102,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
             Dialog dialog = new Dialog(this.getColumnStringPropertyLabels());
             dialog.addObserver((o, arg) -> {
                 if (dialog.isSaveClicked()) {
-                    this.dataModel.addEntryWithProperties(dialog.getData());
+                    this._dataModel.addEntryWithProperties(dialog.getData());
                 }
                 dialog.deleteObservers();
             });
@@ -123,7 +119,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
      */
     private void bindTableEditButton(Button editButton) {
         editButton.setOnAction(event -> {
-            final S selectedEntry = this.tableView.getSelectionModel().getSelectedItem();
+            final S selectedEntry = this._tableView.getSelectionModel().getSelectedItem();
             Dialog dialog = new Dialog(this.getColumnStringPropertyLabels());
             dialog.addObserver((o, arg) -> {
                 if (dialog.isSaveClicked()) {
@@ -135,7 +131,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
             dialog.show();
         });
 
-        this.tableView.setRowFactory(tv -> {
+        this._tableView.setRowFactory(tv -> {
             TableRow<S> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && !row.isEmpty()) {
@@ -152,7 +148,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
      */
     private ArrayList<String> getColumnStringPropertyLabels() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        this.tableView.getColumns().forEach((TableColumn column) -> stringProperties.add(column.getText()));
+        this._tableView.getColumns().forEach((TableColumn column) -> stringProperties.add(column.getText()));
         return stringProperties;
     }
 

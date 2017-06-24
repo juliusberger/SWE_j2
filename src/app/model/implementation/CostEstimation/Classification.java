@@ -42,4 +42,9 @@ public class Classification extends ObservableEntryHolder<I_ClassificationEntry>
     public void removeExistingData() {
         this.getEntries().clear();
     }
+
+    @Override
+    public String[] getPropertyNames() {
+        return new String[]{"function", "description", "stakeholder", "category", "classification"};
+    }
 }

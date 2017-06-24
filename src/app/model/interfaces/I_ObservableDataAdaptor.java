@@ -21,4 +21,10 @@ public interface I_ObservableDataAdaptor<S extends I_ModelPropertyAdaptor> {
      */
     ObservableList<S> getEntries();
 
+    /**
+     *
+     * @return Liefert die NAmen aller Property-Srings, benötigt zum Populieren von Tables.
+     */
+    String[] getPropertyNames();
+
 }

@@ -13,4 +13,9 @@ public class FutureAnalysis extends Analysis {
     public void removeExistingData() {
         this.getEntries().clear();
     }
+
+    @Override
+    public String[] getPropertyNames() {
+        return new String[]{"entryName", "description"};
+    }
 }

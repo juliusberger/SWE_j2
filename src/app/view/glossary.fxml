@@ -14,7 +14,7 @@
 	<Label styleClass="h3">
 		Glossareinträge
 	</Label>
-	<TableView fx:id="glossaryTable">
+	<TableView fx:id="_glossaryTable">
 		<placeholder>
 			<Label text="Keine Einträge"/>
 		</placeholder>
@@ -27,14 +27,14 @@
 		</columnResizePolicy>
 	</TableView>
 	<HBox styleClass="button-hbox">
-		<Button fx:id="glossaryAddButton" maxWidth="1.7976931348623157E308"
+		<Button fx:id="_glossaryAddButton" maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag hinzufügen
 		</Button>
-		<Button fx:id="glossaryEditButton"
+		<Button fx:id="_glossaryEditButton"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag bearbeiten
 		</Button>
-		<Button fx:id="glossaryDeleteButton"
+		<Button fx:id="_glossaryDeleteButton"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag löschen
 		</Button>

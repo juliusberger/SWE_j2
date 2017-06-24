@@ -41,4 +41,9 @@ class FunctionalRequirements extends ObservableEntryHolder<I_FunctionalRequireme
     public void removeExistingData() {
         this.getEntries().clear();
     }
+
+    @Override
+    public String[] getPropertyNames() {
+        return new String[]{"function", "description", "stakeholder"};
+    }
 }
