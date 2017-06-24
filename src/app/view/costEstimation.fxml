@@ -1,225 +1,299 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<?import javafx.collections.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import java.lang.*?>
-<ScrollPane hbarPolicy="NEVER"
-            fitToWidth="true"
-            styleClass="p-10"
-            stylesheets="@../assets/global.css"
-            xmlns="http://javafx.com/javafx/8.0.112"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="app.controller.CostEstimation">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="p-10" stylesheets="@../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CostEstimation">
 	<VBox spacing="10.0">
 
 		<Label styleClass="h3">
 			Klassifikation
 		</Label>
 		<HBox>
-			<Button maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS"
-			        fx:id="classifyRequirementsButton">Anforderungen klassifizieren
+			<Button fx:id="classifyRequirementsButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Anforderungen klassifizieren
 			</Button>
 		</HBox>
 
-		<Separator/>
+		<Separator />
 
 		<Label styleClass="h3">
 			Einflussfaktoren
 		</Label>
-		<VBox spacing="10"
-		      styleClass="pt-5"
-		      HBox.hgrow="ALWAYS">
+		<VBox spacing="10" styleClass="pt-5" HBox.hgrow="ALWAYS">
 			<HBox>
 				<styleClass>
-					<String fx:value="border-bottom"/>
-					<String fx:value="center-left"/>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
 				</styleClass>
-				<Label maxWidth="1.7976931348623157E308"
-				       HBox.hgrow="ALWAYS">1 Verflechtung mit anderen Anwendungssystemen
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">1 Verflechtung mit anderen Anwendungssystemen
 				</Label>
 				<ChoiceBox fx:id="box1">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<String fx:value="0"/>
-							<String fx:value="1"/>
-							<String fx:value="2"/>
-							<String fx:value="3"/>
-							<String fx:value="4"/>
-							<String fx:value="5"/>
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
 						</FXCollections>
 					</items>
 				</ChoiceBox>
 			</HBox>
 			<HBox>
 				<styleClass>
-					<String fx:value="border-bottom"/>
-					<String fx:value="center-left"/>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
 				</styleClass>
-				<Label maxWidth="1.7976931348623157E308"
-				       HBox.hgrow="ALWAYS">2 Dezentrale Daten, dezentrale Verarbeitung
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">2 Dezentrale Daten, dezentrale Verarbeitung
 				</Label>
 				<ChoiceBox fx:id="box2">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<String fx:value="0"/>
-							<String fx:value="1"/>
-							<String fx:value="2"/>
-							<String fx:value="3"/>
-							<String fx:value="4"/>
-							<String fx:value="5"/>
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
 						</FXCollections>
 					</items>
 				</ChoiceBox>
 			</HBox>
 			<HBox>
 				<styleClass>
-					<String fx:value="border-bottom"/>
-					<String fx:value="center-left"/>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
 				</styleClass>
-				<Label maxWidth="1.7976931348623157E308"
-				       HBox.hgrow="ALWAYS">3 Transaktionsrate
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">3 Transaktionsrate
 				</Label>
 				<ChoiceBox fx:id="box3">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<String fx:value="0"/>
-							<String fx:value="1"/>
-							<String fx:value="2"/>
-							<String fx:value="3"/>
-							<String fx:value="4"/>
-							<String fx:value="5"/>
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
 						</FXCollections>
 					</items>
 				</ChoiceBox>
 			</HBox>
 			<HBox>
 				<styleClass>
-					<String fx:value="border-bottom"/>
-					<String fx:value="center-left"/>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
 				</styleClass>
-				<Label maxWidth="1.7976931348623157E308"
-				       HBox.hgrow="ALWAYS">4 Verarbeitungslogik
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">4 Verarbeitungslogik
 				</Label>
-				<ChoiceBox fx:id="box4">
+			</HBox>
+			<HBox>
+				<styleClass>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
+					<String fx:value="indented" />
+				</styleClass>
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">a) Rechenoperationen</Label>
+				<ChoiceBox fx:id="box4a">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<String fx:value="0"/>
-							<String fx:value="1"/>
-							<String fx:value="2"/>
-							<String fx:value="3"/>
-							<String fx:value="4"/>
-							<String fx:value="5"/>
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
+							<String fx:value="6" />
+							<String fx:value="7" />
+							<String fx:value="8" />
+							<String fx:value="9" />
+							<String fx:value="10" />
 						</FXCollections>
 					</items>
 				</ChoiceBox>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
 			</HBox>
 			<HBox>
 				<styleClass>
-					<String fx:value="border-bottom"/>
-					<String fx:value="center-left"/>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
+					<String fx:value="indented" />
 				</styleClass>
-				<Label maxWidth="1.7976931348623157E308"
-				       HBox.hgrow="ALWAYS">5 Wiederverwendbarkeit
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">b) Kontrollverfahren</Label>
+				<ChoiceBox fx:id="box4b">
+					<items>
+						<FXCollections fx:factory="observableArrayList">
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
+						</FXCollections>
+					</items>
+				</ChoiceBox>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+			</HBox>
+			<HBox>
+				<styleClass>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
+					<String fx:value="indented" />
+				</styleClass>
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">c) Ausnahmeregelungen</Label>
+				<ChoiceBox fx:id="box4c">
+					<items>
+						<FXCollections fx:factory="observableArrayList">
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
+							<String fx:value="6" />
+							<String fx:value="7" />
+							<String fx:value="8" />
+							<String fx:value="9" />
+							<String fx:value="10" />
+						</FXCollections>
+					</items>
+				</ChoiceBox>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+			</HBox>
+			<HBox>
+				<styleClass>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
+					<String fx:value="indented" />
+				</styleClass>
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">d) Logik</Label>
+				<ChoiceBox fx:id="box4d">
+					<items>
+						<FXCollections fx:factory="observableArrayList">
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
+						</FXCollections>
+					</items>
+				</ChoiceBox>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+			</HBox>
+			<HBox>
+				<styleClass>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
+				</styleClass>
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">5 Wiederverwendbarkeit
 				</Label>
 				<ChoiceBox fx:id="box5">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<String fx:value="0"/>
-							<String fx:value="1"/>
-							<String fx:value="2"/>
-							<String fx:value="3"/>
-							<String fx:value="4"/>
-							<String fx:value="5"/>
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
 						</FXCollections>
 					</items>
 				</ChoiceBox>
 			</HBox>
 			<HBox>
 				<styleClass>
-					<String fx:value="border-bottom"/>
-					<String fx:value="center-left"/>
+					<String fx:value="border-bottom" />
+					<String fx:value="center-left" />
 				</styleClass>
-				<Label maxWidth="1.7976931348623157E308"
-				       HBox.hgrow="ALWAYS">6 Datenbestandskonvertierungen
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">6 Datenbestandskonvertierungen
 				</Label>
 				<ChoiceBox fx:id="box6">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<String fx:value="0"/>
-							<String fx:value="1"/>
-							<String fx:value="2"/>
-							<String fx:value="3"/>
-							<String fx:value="4"/>
-							<String fx:value="5"/>
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
 						</FXCollections>
 					</items>
 				</ChoiceBox>
 			</HBox>
 			<HBox>
 				<styleClass>
-					<String fx:value="center-left"/>
+					<String fx:value="center-left" />
 				</styleClass>
-				<Label maxWidth="1.7976931348623157E308"
-				       HBox.hgrow="ALWAYS">7 Anpassbarkeit
+				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">7 Anpassbarkeit
 				</Label>
 				<ChoiceBox fx:id="box7">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<String fx:value="0"/>
-							<String fx:value="1"/>
-							<String fx:value="2"/>
-							<String fx:value="3"/>
-							<String fx:value="4"/>
-							<String fx:value="5"/>
+							<String fx:value="0" />
+							<String fx:value="1" />
+							<String fx:value="2" />
+							<String fx:value="3" />
+							<String fx:value="4" />
+							<String fx:value="5" />
 						</FXCollections>
 					</items>
 				</ChoiceBox>
 			</HBox>
 			<HBox style="-fx-padding: 10 0 0 0 ">
-				<Button maxWidth="1.7976931348623157E308"
-				        HBox.hgrow="ALWAYS">Aufwandsabschätzung durchführen
+				<Button maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Aufwandsabschätzung durchführen
 				</Button>
 			</HBox>
 		</VBox>
 
-		<Separator/>
+		<Separator />
 
 		<Label styleClass="h3">
 			Function Points
 		</Label>
 		<GridPane>
 			<Label>Berechnete Function Points:</Label>
-			<Label fx:id="calculatedFPLabel"
-			       GridPane.columnIndex="1">XX
+			<Label fx:id="calculatedFPLabel" GridPane.columnIndex="1">XX
 			</Label>
 
 			<Label GridPane.rowIndex="1">Personenmonate:</Label>
-			<Label fx:id="calculatedMMLabel"
-			       GridPane.rowIndex="1"
-			       GridPane.columnIndex="1">XX
+			<Label fx:id="calculatedMMLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">XX
 			</Label>
 
 			<columnConstraints>
-				<ColumnConstraints minWidth="250"/>
-				<ColumnConstraints/>
+				<ColumnConstraints minWidth="250" />
+				<ColumnConstraints />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints minHeight="30"/>
-				<RowConstraints minHeight="30"/>
+				<RowConstraints minHeight="30" />
+				<RowConstraints minHeight="30" />
 			</rowConstraints>
 		</GridPane>
 
 		<HBox styleClass="button-hbox">
-			<Button maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS"
-			        fx:id="manualOptimizationButton">Manuelle Optimierung
+			<Button fx:id="manualOptimizationButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Manuelle Optimierung
 			</Button>
-			<Button maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS"
-			        fx:id="automaticOptimizationButton">Automatische Optimierung
+			<Button fx:id="automaticOptimizationButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Automatische Optimierung
 			</Button>
 		</HBox>
 

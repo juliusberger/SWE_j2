@@ -19,7 +19,10 @@ public class CostEstimation implements Initializable {
     public ChoiceBox<String> box1;
     public ChoiceBox<String> box2;
     public ChoiceBox<String> box3;
-    public ChoiceBox<String> box4;
+    public ChoiceBox<String> box4a;
+    public ChoiceBox<String> box4b;
+    public ChoiceBox<String> box4c;
+    public ChoiceBox<String> box4d;
     public ChoiceBox<String> box5;
     public ChoiceBox<String> box6;
     public ChoiceBox<String> box7;
@@ -52,7 +55,25 @@ public class CostEstimation implements Initializable {
                         .getCostEstimationEntries()
                         .get(2)
                         .getWeightProperty());
-        this.box4.valueProperty()
+        this.box4a.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(3)
+                        .getWeightProperty());
+        this.box4b.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(3)
+                        .getWeightProperty());
+        this.box4c.valueProperty()
+                .bindBidirectional(Project.getInstance()
+                        .getCostEstimation()
+                        .getCostEstimationEntries()
+                        .get(3)
+                        .getWeightProperty());
+        this.box4d.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()

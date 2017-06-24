@@ -53,6 +53,10 @@
     -fx-alignment: center-left;
 }
 
+.indented {
+    -fx-padding: 0 0 10 10;
+}
+
 .invalid-input {
     -fx-text-box-border: red;
     -fx-focus-color: red;
