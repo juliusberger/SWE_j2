@@ -10,7 +10,7 @@ public class XMLImporter {
     private String fileName = "";
 
     public XMLImporter(String fileName) {
-        this.fileName = fileName;
+        fileName = fileName;
     }
 
     /*public void importFromXML()
