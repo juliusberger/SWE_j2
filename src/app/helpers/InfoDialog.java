@@ -23,7 +23,7 @@ class InfoDialog {
         this.stage = new Stage();
 
         this.stage.initModality(Modality.APPLICATION_MODAL);
-        this.stage.initStyle(StageStyle.UNIFIED);
+        this.stage.initStyle(StageStyle.DECORATED);
         this.stage.setTitle(title);
         this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
 

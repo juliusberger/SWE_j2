@@ -1,5 +1,6 @@
 package app;
 
+import app.helpers.MyLogger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,10 +20,12 @@ public class Main extends Application {
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("ANTool");
-        primaryStage.initStyle(StageStyle.UNIFIED);
+        primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("assets/ANTool_Icon2.png")));
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        MyLogger.getLogger().info("AnTool successfully started...");
     }
 
 }

@@ -58,7 +58,7 @@ class Dialog extends Observable {
 
         try {
             this.stage.initModality(Modality.APPLICATION_MODAL);
-            this.stage.initStyle(StageStyle.UNIFIED);
+            this.stage.initStyle(StageStyle.DECORATED);
             this.stage.setTitle("Eintrag hinzufügen");
             this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
 
