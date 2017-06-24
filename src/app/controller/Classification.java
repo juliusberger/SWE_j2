@@ -46,12 +46,12 @@ public class Classification extends Observable {
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.stage.initStyle(StageStyle.DECORATED);
         this.stage.setTitle("Anforderungen klassifizieren");
-        this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../../assets/ANTool_Icon2.png")));
+        this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
 
         final VBox vBox = new VBox();
 
         vBox.setSpacing(10.0);
-        vBox.getStylesheets().add(this.getClass().getResource("../../assets/global.css").toExternalForm());
+        vBox.getStylesheets().add(this.getClass().getResource("../assets/global.css").toExternalForm());
         vBox.getStyleClass().add("p-10");
         vBox.setPrefWidth(700);
 
