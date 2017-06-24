@@ -16,11 +16,11 @@
         </Label>
         <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
             <Label styleClass="ph-5">Name:</Label>
-	        <TextField fx:id="projectName"
+	        <TextField fx:id="_projectName"
 	                   GridPane.columnIndex="1"/>
 
             <Label styleClass="ph-5" GridPane.rowIndex="1">Abgabedatum:</Label>
-	        <TextField fx:id="projectDueDate"
+	        <TextField fx:id="_projectDueDate"
 	                   GridPane.columnIndex="1"
 	                   GridPane.rowIndex="1"/>
 
@@ -46,11 +46,11 @@
         </Label>
         <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
             <Label styleClass="ph-5">Name:</Label>
-	        <TextField fx:id="editorSurname"
+	        <TextField fx:id="_editorSurname"
 	                   GridPane.columnIndex="1"/>
 
             <Label styleClass="ph-5" GridPane.rowIndex="1">Vorname:</Label>
-	        <TextField fx:id="editorName"
+	        <TextField fx:id="_editorName"
 	                   GridPane.columnIndex="1"
 	                   GridPane.rowIndex="1"/>
 
@@ -76,40 +76,40 @@
         </Label>
         <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
             <Label styleClass="ph-5">Name:</Label>
-	        <TextField fx:id="customerSurname"
+	        <TextField fx:id="_customerSurname"
 	                   GridPane.columnIndex="1"/>
 
             <Label styleClass="ph-5" GridPane.rowIndex="1">Vorname:</Label>
-	        <TextField fx:id="customerName"
+	        <TextField fx:id="_customerName"
 	                   GridPane.columnIndex="1"
 	                   GridPane.rowIndex="1"/>
 
             <Label styleClass="ph-5" GridPane.rowIndex="2">Telefonnummer:</Label>
-	        <TextField fx:id="customerTelephone"
+	        <TextField fx:id="_customerTelephone"
 	                   GridPane.columnIndex="1"
 	                   GridPane.rowIndex="2"/>
 
             <Label styleClass="ph-5" GridPane.rowIndex="3">E-Mail-Adresse:</Label>
-	        <TextField fx:id="customerEmail"
+	        <TextField fx:id="_customerEmail"
 	                   GridPane.columnIndex="1"
 	                   GridPane.rowIndex="3"/>
 
 
             <Label styleClass="ph-5" GridPane.rowIndex="5">Firma:</Label>
-	        <TextField fx:id="customerCompanyName"
+	        <TextField fx:id="_customerCompanyName"
 	                   GridPane.columnIndex="1"
 	                   GridPane.rowIndex="5"/>
 
             <Label styleClass="ph-5" GridPane.rowIndex="6">Straße:</Label>
-	        <TextField fx:id="customerCompanyStreet"
+	        <TextField fx:id="_customerCompanyStreet"
 	                   GridPane.columnIndex="1"
 	                   GridPane.rowIndex="6"/>
 
             <Label styleClass="ph-5" GridPane.rowIndex="7">PLZ, Ort:</Label>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="7">
-	            <TextField fx:id="customerCompanyPLZ"
+	            <TextField fx:id="_customerCompanyPlz"
 	                       maxWidth="95"/>
-	            <TextField fx:id="customerCompanyLocation"
+	            <TextField fx:id="_customerCompanyLocation"
 	                       GridPane.columnIndex="1"/>
 
                 <columnConstraints>

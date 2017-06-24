@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.helpers.ValidateInput;
+import app.helpers.ValidateInput.Validator;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import app.model.implementation.Project;
@@ -14,21 +15,21 @@ import java.util.ResourceBundle;
  */
 public class ProjectData implements Initializable {
 
-    public TextField projectName;
-    public TextField projectDueDate;
+    public TextField _projectName;
+    public TextField _projectDueDate;
 
-    public TextField editorSurname;
-    public TextField editorName;
+    public TextField _editorSurname;
+    public TextField _editorName;
 
-    public TextField customerSurname;
-    public TextField customerName;
-    public TextField customerTelephone;
-    public TextField customerEmail;
+    public TextField _customerSurname;
+    public TextField _customerName;
+    public TextField _customerTelephone;
+    public TextField _customerEmail;
 
-    public TextField customerCompanyName;
-    public TextField customerCompanyStreet;
-    public TextField customerCompanyPLZ;
-    public TextField customerCompanyLocation;
+    public TextField _customerCompanyName;
+    public TextField _customerCompanyStreet;
+    public TextField _customerCompanyPlz;
+    public TextField _customerCompanyLocation;
 
     private final I_ProjectData _projectData = Project.getInstance().getProjectData();
 
@@ -36,46 +37,53 @@ public class ProjectData implements Initializable {
     public void initialize(URL location,
                            ResourceBundle resources) {
         //<editor-fold desc="Projekt-Eigenschaften">
-        this.projectName.textProperty().bindBidirectional(this._projectData.nameProperty());
+        _projectName.textProperty().bindBidirectional(_projectData.nameProperty());
+        ValidateInput.addValidator(_projectName, Validator.PLAIN_TEXT);
 
-        this.projectDueDate.textProperty().bindBidirectional(this._projectData.dueDateProperty());
-        this.projectDueDate.textProperty()
-                .addListener((ov, oldValue, newValue) -> ValidateInput.validateDateField(this.projectDueDate));
+        _projectDueDate.textProperty().bindBidirectional(_projectData.dueDateProperty());
+        ValidateInput.addValidator(_projectDueDate, Validator.DATE);
         //</editor-fold>
 
         //<editor-fold desc="Projekt-Bearbeiter">
-        this.editorName.textProperty()
-                .bindBidirectional(this._projectData.getProjectEditor()
+        _editorName.textProperty()
+                .bindBidirectional(_projectData.getProjectEditor()
                         .nameProperty());
-        this.editorSurname.textProperty()
-                .bindBidirectional(this._projectData.getProjectEditor()
+        ValidateInput.addValidator(_editorName, Validator.PLAIN_TEXT);
+
+        _editorSurname.textProperty()
+                .bindBidirectional(_projectData.getProjectEditor()
                         .surnameProperty());
+        ValidateInput.addValidator(_editorSurname, Validator.PLAIN_TEXT);
         //</editor-fold>
 
         //<editor-fold desc="Kundendaten">
-        this.customerSurname.textProperty().bindBidirectional(this._projectData.getCustomer().surnameProperty());
-        this.customerName.textProperty().bindBidirectional(this._projectData.getCustomer().nameProperty());
+        _customerSurname.textProperty().bindBidirectional(_projectData.getCustomer().surnameProperty());
+        ValidateInput.addValidator(_customerSurname, Validator.PLAIN_TEXT);
 
-        this.customerTelephone.textProperty().bindBidirectional(this._projectData.getCustomer().telephoneProperty());
-        this.customerTelephone.textProperty()
-                .addListener((ov, newValue, oldValue) -> ValidateInput.validatePhoneNumberField(this.customerTelephone));
+        _customerName.textProperty().bindBidirectional(_projectData.getCustomer().nameProperty());
+        ValidateInput.addValidator(_customerName, Validator.PLAIN_TEXT);
 
-        this.customerEmail.textProperty().bindBidirectional(this._projectData.getCustomer().emailProperty());
-        this.customerEmail.textProperty()
-                .addListener((observable, oldValue, newValue) -> ValidateInput.validateEmailField(this.customerEmail));
+        _customerTelephone.textProperty().bindBidirectional(_projectData.getCustomer().telephoneProperty());
+        ValidateInput.addValidator(_customerTelephone, Validator.PHONE_NUMBER);
 
-        this.customerCompanyName.textProperty()
-                .bindBidirectional(this._projectData.getCustomer().companyNameProperty());
-        this.customerCompanyStreet.textProperty()
-                .bindBidirectional(this._projectData.getCustomer().companyStreetProperty());
+        _customerEmail.textProperty().bindBidirectional(_projectData.getCustomer().emailProperty());
+        ValidateInput.addValidator(_customerEmail, Validator.EMAIL);
 
-        this.customerCompanyPLZ.textProperty().bindBidirectional(this._projectData.getCustomer().companyPLZProperty());
-        this.customerCompanyPLZ.textProperty()
-                .addListener((observable, oldValue, newValue) -> ValidateInput.validatePLZField(this.customerCompanyPLZ));
+        _customerCompanyName.textProperty()
+                .bindBidirectional(_projectData.getCustomer().companyNameProperty());
+        ValidateInput.addValidator(_customerCompanyName, Validator.PLAIN_TEXT);
+
+        _customerCompanyStreet.textProperty()
+                .bindBidirectional(_projectData.getCustomer().companyStreetProperty());
+        ValidateInput.addValidator(_customerCompanyStreet, Validator.PLAIN_TEXT);
+
+        _customerCompanyPlz.textProperty().bindBidirectional(_projectData.getCustomer().companyPLZProperty());
+        ValidateInput.addValidator(_customerCompanyPlz, Validator.PLZ);
 
 
-        this.customerCompanyLocation.textProperty()
-                .bindBidirectional(this._projectData.getCustomer().companyLocationProperty());
+        _customerCompanyLocation.textProperty()
+                .bindBidirectional(_projectData.getCustomer().companyLocationProperty());
+        ValidateInput.addValidator(_customerCompanyLocation, Validator.PLAIN_TEXT);
         //</editor-fold>
     }
 }
