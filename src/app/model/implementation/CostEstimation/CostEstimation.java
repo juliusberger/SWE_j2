@@ -18,7 +18,7 @@ public class CostEstimation implements I_CostEstimation {
     private final I_Classification _classification = new Classification();
 
     public CostEstimation() {
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i <= 9; i++) {
             this._costEstimationEntries.add(new CostEstimationEntry());
         }
     }

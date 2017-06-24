@@ -65,37 +65,37 @@ public class CostEstimation implements Initializable {
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
-                        .get(3)
+                        .get(4)
                         .getWeightProperty());
         this.box4c.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
-                        .get(3)
+                        .get(5)
                         .getWeightProperty());
         this.box4d.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
-                        .get(3)
+                        .get(6)
                         .getWeightProperty());
         this.box5.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
-                        .get(4)
+                        .get(7)
                         .getWeightProperty());
         this.box6.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
-                        .get(5)
+                        .get(8)
                         .getWeightProperty());
         this.box7.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
-                        .get(6)
+                        .get(9)
                         .getWeightProperty());
 
         classifyRequirementsButton.setOnAction(event -> {
