@@ -19,7 +19,7 @@ abstract class Analysis extends ObservableEntryHolder<I_AnalysisEntry> implement
 
     @Override
     public List<I_XmlModelEntity> getChildren() {
-        return new ArrayList<>(this.getEntries());
+        return new ArrayList<>(getEntries());
     }
 
 

@@ -26,114 +26,114 @@ class Customer implements I_Customer {
 
     @Override
     public String getSurname() {
-        return this._surname.get();
+        return _surname.get();
     }
 
     @Override
     public SimpleStringProperty surnameProperty() {
-        return this._surname;
+        return _surname;
     }
 
     public void setSurname(String surname) {
-        this._surname.set(surname);
+        _surname.set(surname);
     }
 
     @Override
     public String getName() {
-        return this._name.get();
+        return _name.get();
     }
 
     @Override
     public SimpleStringProperty nameProperty() {
-        return this._name;
+        return _name;
     }
 
     public void setName(String name) {
-        this._name.set(name);
+        _name.set(name);
     }
 
     @Override
     public String getTelephone() {
-        return this._telephone.get();
+        return _telephone.get();
     }
 
     @Override
     public SimpleStringProperty telephoneProperty() {
-        return this._telephone;
+        return _telephone;
     }
 
     public void setTelephone(String telephone) {
-        this._telephone.set(telephone);
+        _telephone.set(telephone);
     }
 
     @Override
     public String getEmail() {
-        return this._email.get();
+        return _email.get();
     }
 
     @Override
     public SimpleStringProperty emailProperty() {
-        return this._email;
+        return _email;
     }
 
     public void setEmail(String email) {
-        this._email.set(email);
+        _email.set(email);
     }
 
     @Override
     public String getCompanyName() {
-        return this._companyName.get();
+        return _companyName.get();
     }
 
     @Override
     public SimpleStringProperty companyNameProperty() {
-        return this._companyName;
+        return _companyName;
     }
 
     public void setCompanyName(String companyName) {
-        this._companyName.set(companyName);
+        _companyName.set(companyName);
     }
 
     @Override
     public String getCompanyStreet() {
-        return this._companyStreet.get();
+        return _companyStreet.get();
     }
 
     @Override
     public SimpleStringProperty companyStreetProperty() {
-        return this._companyStreet;
+        return _companyStreet;
     }
 
     public void setCompanyStreet(String companyStreet) {
-        this._companyStreet.set(companyStreet);
+        _companyStreet.set(companyStreet);
     }
 
     @Override
     public String getCompanyPLZ() {
-        return this._companyPLZ.get();
+        return _companyPLZ.get();
     }
 
     @Override
     public SimpleStringProperty companyPLZProperty() {
-        return this._companyPLZ;
+        return _companyPLZ;
     }
 
     public void setCompanyPLZ(String companyPLZ) {
-        this._companyPLZ.set(companyPLZ);
+        _companyPLZ.set(companyPLZ);
     }
 
     @Override
     public String getCompanyLocation() {
-        return this._companyLocation.get();
+        return _companyLocation.get();
     }
 
     @Override
     public SimpleStringProperty companyLocationProperty() {
-        return this._companyLocation;
+        return _companyLocation;
     }
 
     public void setCompanyLocation(String companyLocation) {
-        this._companyLocation.set(companyLocation);
+        _companyLocation.set(companyLocation);
     }
 
     @Override
@@ -149,15 +149,15 @@ class Customer implements I_Customer {
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setSurname(propertyStrings.get(0));
-            this.setName(propertyStrings.get(1));
-            this.setTelephone(propertyStrings.get(2));
-            this.setEmail(propertyStrings.get(3));
+            setSurname(propertyStrings.get(0));
+            setName(propertyStrings.get(1));
+            setTelephone(propertyStrings.get(2));
+            setEmail(propertyStrings.get(3));
 
-            this.setCompanyName(propertyStrings.get(4));
-            this.setCompanyStreet(propertyStrings.get(5));
-            this.setCompanyPLZ(propertyStrings.get(6));
-            this.setCompanyLocation(propertyStrings.get(7));
+            setCompanyName(propertyStrings.get(4));
+            setCompanyStreet(propertyStrings.get(5));
+            setCompanyPLZ(propertyStrings.get(6));
+            setCompanyLocation(propertyStrings.get(7));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
@@ -166,15 +166,15 @@ class Customer implements I_Customer {
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getSurname());
-        stringProperties.add(this.getName());
-        stringProperties.add(this.getTelephone());
-        stringProperties.add(this.getEmail());
+        stringProperties.add(getSurname());
+        stringProperties.add(getName());
+        stringProperties.add(getTelephone());
+        stringProperties.add(getEmail());
 
-        stringProperties.add(this.getCompanyName());
-        stringProperties.add(this.getCompanyStreet());
-        stringProperties.add(this.getCompanyPLZ());
-        stringProperties.add(this.getCompanyLocation());
+        stringProperties.add(getCompanyName());
+        stringProperties.add(getCompanyStreet());
+        stringProperties.add(getCompanyPLZ());
+        stringProperties.add(getCompanyLocation());
 
         return stringProperties;
     }
@@ -183,13 +183,13 @@ class Customer implements I_Customer {
 
     @Override
     public void removeExistingData() {
-        this.setSurname("");
-        this.setName("");
-        this.setTelephone("");
-        this.setEmail("");
-        this.setCompanyName("");
-        this.setCompanyStreet("");
-        this.setCompanyPLZ("");
-        this.setCompanyLocation("");
+        setSurname("");
+        setName("");
+        setTelephone("");
+        setEmail("");
+        setCompanyName("");
+        setCompanyStreet("");
+        setCompanyPLZ("");
+        setCompanyLocation("");
     }
 }

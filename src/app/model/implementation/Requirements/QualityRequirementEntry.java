@@ -15,12 +15,12 @@ class QualityRequirementEntry implements I_QualityRequirementEntry {
 
     @Override
     public Priority getPriority() {
-        return this._priority;
+        return _priority;
     }
 
     @Override
     public void setPriority(Priority priority) {
-        this._priority = priority;
+        _priority = priority;
     }
 
     @Override

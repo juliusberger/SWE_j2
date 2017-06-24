@@ -39,7 +39,7 @@ class FunctionalRequirements extends ObservableEntryHolder<I_FunctionalRequireme
 
     @Override
     public void removeExistingData() {
-        this.getEntries().clear();
+        getEntries().clear();
     }
 
     @Override

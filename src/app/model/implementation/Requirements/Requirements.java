@@ -23,58 +23,58 @@ public class Requirements implements I_Requirements {
 
     public Requirements() {
         for (int i = 0; i < 5; i++) {
-            this._qualityRequirementEntries.add(new QualityRequirementEntry());
+            _qualityRequirementEntries.add(new QualityRequirementEntry());
         }
     }
 
     @Override
     public String getProjectGoal() {
-        return this._projectGoal.get();
+        return _projectGoal.get();
     }
 
     @Override
     public SimpleStringProperty projectGoalProperty() {
-        return this._projectGoal;
+        return _projectGoal;
     }
 
     @Override
     public void setProjectGoal(String projectGoal) {
-        this._projectGoal.set(projectGoal);
+        _projectGoal.set(projectGoal);
     }
 
     @Override
     public String getFieldOfApplication() {
-        return this._fieldOfApplication.get();
+        return _fieldOfApplication.get();
     }
 
     @Override
     public SimpleStringProperty fieldOfApplicationProperty() {
-        return this._fieldOfApplication;
+        return _fieldOfApplication;
     }
 
     @Override
     public void setFieldOfApplication(String fieldOfApplication) {
-        this._fieldOfApplication.set(fieldOfApplication);
+        _fieldOfApplication.set(fieldOfApplication);
     }
 
     @Override
     public I_FunctionalRequirements getFunctionalRequirements() {
-        return this._functionalRequirements;
+        return _functionalRequirements;
     }
 
     @Override
     public I_NonFunctionalRequirements getNonFunctionalRequirements() {
-        return this._nonFunctionalRequirements;
+        return _nonFunctionalRequirements;
     }
 
     @Override
     public List<I_QualityRequirementEntry> getQualityRequirementEntries() {
-        return this._qualityRequirementEntries;
+        return _qualityRequirementEntries;
     }
 
     @Override
     public I_Comments getComments() {
-        return this._comments;
+        return _comments;
     }
 
 
@@ -95,22 +95,22 @@ public class Requirements implements I_Requirements {
 
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
-        this.setProjectGoal(propertyStrings.get(0));
-        this.setFieldOfApplication(propertyStrings.get(1));
+        setProjectGoal(propertyStrings.get(0));
+        setFieldOfApplication(propertyStrings.get(1));
     }
 
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getProjectGoal());
-        stringProperties.add(this.getFieldOfApplication());
+        stringProperties.add(getProjectGoal());
+        stringProperties.add(getFieldOfApplication());
 
         return stringProperties;
     }
 
     @Override
     public void removeExistingData() {
-        this.setProjectGoal("");
-        this.setFieldOfApplication("");
+        setProjectGoal("");
+        setFieldOfApplication("");
     }
 }

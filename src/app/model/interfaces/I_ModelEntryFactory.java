@@ -1,7 +1,7 @@
 package app.model.interfaces;
 
 /**
- * Factory für die Erstellung von ModelEntry-Typen unter Vewendung der generischen Interfaces {@link I_ModelPropertyAdaptor} und {@link I_ObservableDataAdaptor}
+ * Factory für die Erstellung von ModelEntry-Typen unter Verwendung der generischen Interfaces {@link I_ModelPropertyAdaptor} und {@link I_ObservableDataAdaptor}
  */
 public interface I_ModelEntryFactory<S> {
     /**

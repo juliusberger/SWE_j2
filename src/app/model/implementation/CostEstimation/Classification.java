@@ -40,7 +40,7 @@ public class Classification extends ObservableEntryHolder<I_ClassificationEntry>
 
     @Override
     public void removeExistingData() {
-        this.getEntries().clear();
+        getEntries().clear();
     }
 
     @Override

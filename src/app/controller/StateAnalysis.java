@@ -18,11 +18,11 @@ public class StateAnalysis implements Initializable {
 
     public TableView<I_AnalysisEntry> stateAnalysisTable;
 
-    public Button addEntryButton;
-    public Button editEntryButton;
-    public Button deleteEntryButton;
+    public Button _addEntryButton;
+    public Button _editEntryButton;
+    public Button _deleteEntryButton;
 
-    private final I_Analysis data = Project.getInstance().getStateAnalysis();
+    private final I_Analysis _data = Project.getInstance().getStateAnalysis();
 
 
     @Override
@@ -30,11 +30,11 @@ public class StateAnalysis implements Initializable {
                            ResourceBundle resources) {
 
 
-        TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(this.stateAnalysisTable,
-                this.data);
-        tableBinding.bindAll(this.addEntryButton,
-                this.editEntryButton,
-                this.deleteEntryButton);
+        TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(stateAnalysisTable,
+                _data);
+        tableBinding.bindAll(_addEntryButton,
+                _editEntryButton,
+                _deleteEntryButton);
 
     }
 }

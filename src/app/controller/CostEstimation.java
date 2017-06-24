@@ -14,91 +14,91 @@ import java.util.ResourceBundle;
  */
 public class CostEstimation implements Initializable {
 
-    public Button classifyRequirementsButton;
+    public Button _classifyRequirementsButton;
 
-    public ChoiceBox<String> box1;
-    public ChoiceBox<String> box2;
-    public ChoiceBox<String> box3;
-    public ChoiceBox<String> box4a;
-    public ChoiceBox<String> box4b;
-    public ChoiceBox<String> box4c;
-    public ChoiceBox<String> box4d;
-    public ChoiceBox<String> box5;
-    public ChoiceBox<String> box6;
-    public ChoiceBox<String> box7;
+    public ChoiceBox<String> _box1;
+    public ChoiceBox<String> _box2;
+    public ChoiceBox<String> _box3;
+    public ChoiceBox<String> _box4a;
+    public ChoiceBox<String> _box4b;
+    public ChoiceBox<String> _box4c;
+    public ChoiceBox<String> _box4d;
+    public ChoiceBox<String> _box5;
+    public ChoiceBox<String> _box6;
+    public ChoiceBox<String> _box7;
 
-    public Label calculatedFPLabel;
-    public Label calculatedMMLabel;
+    public Label _calculatedFPLabel;
+    public Label _calculatedMMLabel;
 
-    public Button manualOptimizationButton;
-    public Button automaticOptimizationButton;
+    public Button _manualOptimizationButton;
+    public Button _automaticOptimizationButton;
 
 
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
-        this.box1.valueProperty()
+        _box1.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(0)
                         .getWeightProperty());
-        this.box2.valueProperty()
+        _box2.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(1)
                         .getWeightProperty());
-        this.box3.valueProperty()
+        _box3.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(2)
                         .getWeightProperty());
-        this.box4a.valueProperty()
+        _box4a.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(3)
                         .getWeightProperty());
-        this.box4b.valueProperty()
+        _box4b.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(4)
                         .getWeightProperty());
-        this.box4c.valueProperty()
+        _box4c.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(5)
                         .getWeightProperty());
-        this.box4d.valueProperty()
+        _box4d.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(6)
                         .getWeightProperty());
-        this.box5.valueProperty()
+        _box5.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(7)
                         .getWeightProperty());
-        this.box6.valueProperty()
+        _box6.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(8)
                         .getWeightProperty());
-        this.box7.valueProperty()
+        _box7.valueProperty()
                 .bindBidirectional(Project.getInstance()
                         .getCostEstimation()
                         .getCostEstimationEntries()
                         .get(9)
                         .getWeightProperty());
 
-        classifyRequirementsButton.setOnAction(event -> {
+        _classifyRequirementsButton.setOnAction(event -> {
             Classification classification = new Classification();
             classification.show();
         });

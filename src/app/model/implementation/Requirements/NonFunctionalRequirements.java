@@ -39,7 +39,7 @@ class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalReq
 
     @Override
     public void removeExistingData() {
-        this.getEntries().clear();
+        getEntries().clear();
     }
 
     @Override

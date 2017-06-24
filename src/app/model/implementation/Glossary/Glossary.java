@@ -19,7 +19,7 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
 
     @Override
     public List<I_XmlModelEntity> getChildren() {
-        return new ArrayList<>(this.getEntries());
+        return new ArrayList<>(getEntries());
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
 
     @Override
     public void removeExistingData() {
-        this.getEntries().clear();
+        getEntries().clear();
     }
 
     @Override

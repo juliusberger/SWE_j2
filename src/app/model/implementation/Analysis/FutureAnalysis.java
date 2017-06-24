@@ -11,7 +11,7 @@ public class FutureAnalysis extends Analysis {
 
 
     public void removeExistingData() {
-        this.getEntries().clear();
+        getEntries().clear();
     }
 
     @Override

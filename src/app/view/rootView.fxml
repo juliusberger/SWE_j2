@@ -7,7 +7,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.112"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="app.controller.RootView"
-            fx:id="anchorPane">
+            fx:id="_anchorPane">
 	<VBox
 			prefHeight="600.0"
 			prefWidth="700.0"
@@ -16,23 +16,23 @@
 		<MenuBar>
 			<Menu mnemonicParsing="false"
 			      text="Datei">
-				<MenuItem fx:id="newProjectItem"
+				<MenuItem fx:id="_newProjectItem"
 				          mnemonicParsing="false"
 				          text="Neues Projekt"/>
 				<SeparatorMenuItem mnemonicParsing="false"/>
 
-				<MenuItem fx:id="openProjectItem"
+				<MenuItem fx:id="_openProjectItem"
 				          mnemonicParsing="false"
 				          text="Projekt öffnen"/>
-				<MenuItem fx:id="saveProjectItem"
+				<MenuItem fx:id="_saveProjectItem"
 				          mnemonicParsing="false"
 				          text="Projekt speichern"/>
 				<SeparatorMenuItem mnemonicParsing="false"/>
 
-				<MenuItem fx:id="XMLImportItem"
+				<MenuItem fx:id="_XmlImportItem"
 				          mnemonicParsing="false"
 				          text="XML-Import"/>
-				<MenuItem fx:id="XMLExportItem"
+				<MenuItem fx:id="_XmlExportItem"
 				          mnemonicParsing="false"
 				          text="XML-Export"/>
 			</Menu>

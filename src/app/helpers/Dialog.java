@@ -21,12 +21,12 @@ import java.util.Observable;
  * Hilfsklasse zur einheitlichen Erstellung von JavaFX-Dialogen. Wird hauptsächlich von {@link TableBinding} genutzt, um Kontextaktionen für Tabelleneinträge durchzuführen.
  */
 class Dialog extends Observable {
-    private boolean saveClicked = false;
+    private boolean _saveClicked = false;
 
-    private final Stage stage;
+    private final Stage _stage;
 
-    private final TextField textField = new TextField();
-    private final List<TextArea> textAreas = new ArrayList<>();
+    private final TextField _textField = new TextField();
+    private final List<TextArea> _textAreas = new ArrayList<>();
 
     /**
      * Initialisiert das Grundgerüst des Dialogs.
@@ -34,7 +34,7 @@ class Dialog extends Observable {
      * @param stringProperties Strings für die jeweiligen Überschriften der Textfelder. Das erste Feld ist ein einzeiliges Textfeld, die anderen mehrzeilige Textareas
      */
     Dialog(ArrayList<String> stringProperties) {
-        this.stage = new Stage();
+        _stage = new Stage();
 
         final Label textFieldLabel = new Label(stringProperties.get(0));
         textFieldLabel.getStyleClass().add("h3");
@@ -51,28 +51,28 @@ class Dialog extends Observable {
             TextArea textArea = new TextArea();
             textArea.setPrefHeight(80);
             textArea.setWrapText(true);
-            this.textAreas.add(textArea);
+            _textAreas.add(textArea);
         }
 
         try {
-            this.stage.initModality(Modality.APPLICATION_MODAL);
-            this.stage.initStyle(StageStyle.DECORATED);
-            this.stage.setTitle("Eintrag hinzufügen");
-            this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
+            _stage.initModality(Modality.APPLICATION_MODAL);
+            _stage.initStyle(StageStyle.DECORATED);
+            _stage.setTitle("Eintrag hinzufügen");
+            _stage.getIcons().add(new Image(getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
 
             VBox vBox = new VBox();
             vBox.setSpacing(10.0);
-            vBox.getStylesheets().add(this.getClass().getResource("../assets/global.css").toExternalForm());
+            vBox.getStylesheets().add(getClass().getResource("../assets/global.css").toExternalForm());
             vBox.getStyleClass().add("p-10");
             vBox.setPrefWidth(300);
 
             {
                 vBox.getChildren().add(textFieldLabel);
-                vBox.getChildren().add(this.textField);
+                vBox.getChildren().add(_textField);
 
-                for (int index = 0; index < this.textAreas.size(); index++) {
+                for (int index = 0; index < _textAreas.size(); index++) {
                     vBox.getChildren().add(textAreaLabels.get(index));
-                    vBox.getChildren().add(this.textAreas.get(index));
+                    vBox.getChildren().add(_textAreas.get(index));
                 }
 
             }
@@ -80,8 +80,8 @@ class Dialog extends Observable {
             {
                 Button saveButton = new Button("Speichern");
                 Button cancelButton = new Button("Abbrechen");
-                saveButton.setOnAction(event -> this.save());
-                cancelButton.setOnAction(event -> this.close());
+                saveButton.setOnAction(event -> save());
+                cancelButton.setOnAction(event -> close());
                 saveButton.setMaxWidth(1.7976931348623157E308);
                 cancelButton.setMaxWidth(1.7976931348623157E308);
                 HBox.setHgrow(saveButton,
@@ -100,7 +100,7 @@ class Dialog extends Observable {
             }
 
 
-            this.stage.setScene(new Scene(vBox));
+            _stage.setScene(new Scene(vBox));
         } catch (Exception e) {
             System.out.println("Error while creating the Dialog.");
         }
@@ -110,38 +110,38 @@ class Dialog extends Observable {
      * Baut den Dialog auf und zeigt ihn als Overlay über der App.
      */
     void show() {
-        this.stage.showAndWait();
+        _stage.showAndWait();
     }
 
     /**
      * Setzt das save-Flag auf true und schließt den Dialog.
      */
     private void save() {
-        this.saveClicked = true;
-        this.close();
+        _saveClicked = true;
+        close();
     }
 
     /**
      * Schließt den Dialog und benachrichtigt Observer.
      */
     private void close() {
-        this.stage.close();
-        this.setChanged();
-        this.notifyObservers();
+        _stage.close();
+        setChanged();
+        notifyObservers();
     }
 
     /**
      * @return boolean, ob beim Schließen des Dialogs "Speichern" gedrückt wurde
      */
     boolean isSaveClicked() {
-        return this.saveClicked;
+        return _saveClicked;
     }
 
 //    public String getData(int i) {
 //        if (i == 0) {
-//            return this.textField.getText();
+//            return _textField.getText();
 //        } else {
-//            return this.textAreas.get(i - 1).getText();
+//            return _textAreas.get(i - 1).getText();
 //        }
 //    }
 
@@ -150,8 +150,8 @@ class Dialog extends Observable {
      */
     ArrayList<String> getData() {
         ArrayList<String> strings = new ArrayList<>();
-        strings.add(this.textField.getText());
-        for (TextArea textArea : this.textAreas) {
+        strings.add(_textField.getText());
+        for (TextArea textArea : _textAreas) {
             strings.add(textArea.getText());
         }
         return strings;
@@ -160,9 +160,9 @@ class Dialog extends Observable {
 //    public void setData(int i,
 //                        String text) {
 //        if (i == 0) {
-//            this.textField.setText(text);
+//            _textField.setText(text);
 //        } else {
-//            this.textAreas.get(i - 1).setText(text);
+//            _textAreas.get(i - 1).setText(text);
 //        }
 //    }
 
@@ -171,9 +171,9 @@ class Dialog extends Observable {
      * @param texts ArrayList an Strings, die der Reihenfolge nach in die Textfelder des Dialogs eingesetzt werden
      */
     void setData(ArrayList<String> texts) {
-        this.textField.setText(texts.get(0));
-        for (int index = 0; index < this.textAreas.size(); index++) {
-            this.textAreas.get(index).setText(texts.get(index + 1));
+        _textField.setText(texts.get(0));
+        for (int index = 0; index < _textAreas.size(); index++) {
+            _textAreas.get(index).setText(texts.get(index + 1));
         }
     }
 }

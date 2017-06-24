@@ -19,32 +19,32 @@ public class CommentEntry implements I_CommentEntry {
 
     @Override
     public String getKeyword() {
-        return this._keyword.get();
+        return _keyword.get();
     }
 
     @Override
     public SimpleStringProperty keywordProperty() {
-        return this._keyword;
+        return _keyword;
     }
 
     @Override
     public void setKeyword(String keyword) {
-        this._keyword.set(keyword);
+        _keyword.set(keyword);
     }
 
     @Override
     public String getDescription() {
-        return this._description.get();
+        return _description.get();
     }
 
     @Override
     public SimpleStringProperty descriptionProperty() {
-        return this._description;
+        return _description;
     }
 
     @Override
     public void setDescription(String description) {
-        this._description.set(description);
+        _description.set(description);
     }
 
     @Override
@@ -60,8 +60,8 @@ public class CommentEntry implements I_CommentEntry {
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setKeyword(propertyStrings.get(0));
-            this.setDescription(propertyStrings.get(1));
+            setKeyword(propertyStrings.get(0));
+            setDescription(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
@@ -70,8 +70,8 @@ public class CommentEntry implements I_CommentEntry {
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getKeyword());
-        stringProperties.add(this.getDescription());
+        stringProperties.add(getKeyword());
+        stringProperties.add(getDescription());
 
         return stringProperties;
     }

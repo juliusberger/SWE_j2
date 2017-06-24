@@ -9,8 +9,8 @@ import java.util.logging.SimpleFormatter;
  * Created by Julius on 24.06.17.
  */
 public class Log {
-    static Logger _logger;
-    static FileHandler _fileHandler;
+    private static Logger _logger;
+    private static FileHandler _fileHandler;
 
     private static void createLogger() {
         try {

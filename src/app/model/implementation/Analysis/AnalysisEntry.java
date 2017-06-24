@@ -19,32 +19,32 @@ public class AnalysisEntry implements I_AnalysisEntry {
 
     @Override
     public String getEntryName() {
-        return this._entryName.get();
+        return _entryName.get();
     }
 
     @Override
     public SimpleStringProperty entryNameProperty() {
-        return this._entryName;
+        return _entryName;
     }
 
     @Override
     public void setEntryName(String entryName) {
-        this._entryName.set(entryName);
+        _entryName.set(entryName);
     }
 
     @Override
     public String getDescription() {
-        return this._description.get();
+        return _description.get();
     }
 
     @Override
     public SimpleStringProperty descriptionProperty() {
-        return this._description;
+        return _description;
     }
 
     @Override
     public void setDescription(String description) {
-        this._description.set(description);
+        _description.set(description);
     }
 
 
@@ -61,8 +61,8 @@ public class AnalysisEntry implements I_AnalysisEntry {
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setEntryName(propertyStrings.get(0));
-            this.setDescription(propertyStrings.get(1));
+            setEntryName(propertyStrings.get(0));
+            setDescription(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
@@ -71,8 +71,8 @@ public class AnalysisEntry implements I_AnalysisEntry {
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getEntryName());
-        stringProperties.add(this.getDescription());
+        stringProperties.add(getEntryName());
+        stringProperties.add(getDescription());
 
         return stringProperties;
     }

@@ -19,13 +19,13 @@ public class CostEstimation implements I_CostEstimation {
 
     public CostEstimation() {
         for (int i = 0; i <= 9; i++) {
-            this._costEstimationEntries.add(new CostEstimationEntry());
+            _costEstimationEntries.add(new CostEstimationEntry());
         }
     }
 
     @Override
     public List<I_CostEstimationEntry> getCostEstimationEntries() {
-        return this._costEstimationEntries;
+        return _costEstimationEntries;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class CostEstimation implements I_CostEstimation {
 
     @Override
     public I_Classification getClassification() {
-        return this._classification;
+        return _classification;
     }
 
     @Override

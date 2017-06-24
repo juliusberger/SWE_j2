@@ -17,72 +17,73 @@ import java.util.ResourceBundle;
  */
 public class Requirements implements Initializable {
 
-    public TextArea projectGoalText;
-    public TextArea fieldOfApplicationText;
+    public TextArea _projectGoalText;
+    public TextArea _fieldOfApplicationText;
 
-    public TableView<I_FunctionalRequirementEntry> functionalRequirementsTable;
-    public Button functionalRequirementsAddButton;
-    public Button functionalRequirementsEditButton;
-    public Button functionalRequirementsDeleteButton;
+    public TableView<I_FunctionalRequirementEntry> _functionalRequirementsTable;
+    public Button _functionalRequirementsAddButton;
+    public Button _functionalRequirementsEditButton;
+    public Button _functionalRequirementsDeleteButton;
 
-    public TableView<I_NonFunctionalRequirementEntry> nonFunctionalRequirementsTable;
-    public Button nonFunctionalRequirementsAddButton;
-    public Button nonFunctionalRequirementsEditButton;
-    public Button nonFunctionalRequirementsDeleteButton;
-
-
-    public ToggleGroup tg1;
-    public ToggleGroup tg2;
-    public ToggleGroup tg3;
-    public ToggleGroup tg4;
-    public ToggleGroup tg5;
+    public TableView<I_NonFunctionalRequirementEntry> _nonFunctionalRequirementsTable;
+    public Button _nonFunctionalRequirementsAddButton;
+    public Button _nonFunctionalRequirementsEditButton;
+    public Button _nonFunctionalRequirementsDeleteButton;
 
 
-    public TableView<I_CommentEntry> commentsTable;
-    public Button commentsAddButton;
-    public Button commentsEditButton;
-    public Button commentsDeleteButton;
+    // TODO: ordentliche Namen
+    public ToggleGroup _tg1;
+    public ToggleGroup _tg2;
+    public ToggleGroup _tg3;
+    public ToggleGroup _tg4;
+    public ToggleGroup _tg5;
 
 
-    private final I_Requirements data = Project.getInstance().getRequirements();
+    public TableView<I_CommentEntry> _commentsTable;
+    public Button _commentsAddButton;
+    public Button _commentsEditButton;
+    public Button _commentsDeleteButton;
+
+
+    private final I_Requirements _data = Project.getInstance().getRequirements();
 
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
-        this.projectGoalText.textProperty().bindBidirectional(this.data.projectGoalProperty());
-        this.fieldOfApplicationText.textProperty().bindBidirectional(this.data.fieldOfApplicationProperty());
+        _projectGoalText.textProperty().bindBidirectional(_data.projectGoalProperty());
+        _fieldOfApplicationText.textProperty().bindBidirectional(_data.fieldOfApplicationProperty());
 
-        TableBinding<I_FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>(this.functionalRequirementsTable,
-                this.data.getFunctionalRequirements());
-        functionalRequirementEntryTableBinding.bindAll(this.functionalRequirementsAddButton,
-                this.functionalRequirementsEditButton,
-                this.functionalRequirementsDeleteButton);
+        TableBinding<I_FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>(_functionalRequirementsTable,
+                _data.getFunctionalRequirements());
+        functionalRequirementEntryTableBinding.bindAll(_functionalRequirementsAddButton,
+                _functionalRequirementsEditButton,
+                _functionalRequirementsDeleteButton);
 
-        TableBinding<I_NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>(this.nonFunctionalRequirementsTable,
-                this.data.getNonFunctionalRequirements());
-        nonFunctionalRequirementEntryTableBinding.bindAll(this.nonFunctionalRequirementsAddButton,
-                this.nonFunctionalRequirementsEditButton,
-                this.nonFunctionalRequirementsDeleteButton);
+        TableBinding<I_NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>(_nonFunctionalRequirementsTable,
+                _data.getNonFunctionalRequirements());
+        nonFunctionalRequirementEntryTableBinding.bindAll(_nonFunctionalRequirementsAddButton,
+                _nonFunctionalRequirementsEditButton,
+                _nonFunctionalRequirementsDeleteButton);
 
-        ToggleGroup[] toggleGroups = {this.tg1, this.tg2, this.tg3, this.tg4, this.tg5};
+        ToggleGroup[] toggleGroups = {_tg1, _tg2, _tg3, _tg4, _tg5};
         for (int i = 0; i < toggleGroups.length; i++) {
             int finalI = i;
             toggleGroups[i].selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
-                this.data.getQualityRequirementEntries()
+                _data.getQualityRequirementEntries()
                         .get(finalI)
                         .setPriority(I_QualityRequirementEntry.Priority.values()[Integer.parseInt(toggleGroups[finalI].getSelectedToggle()
                                 .getUserData()
                                 .toString())]);
-                System.out.println(this.data.getQualityRequirementEntries().get(finalI).getPriority().toString());
+                System.out.println(_data.getQualityRequirementEntries().get(finalI).getPriority().toString());
             });
         }
 
 
-        TableBinding<I_CommentEntry> commentEntryTableBinding = new TableBinding<>(this.commentsTable,
-                this.data.getComments());
-        commentEntryTableBinding.bindAll(this.commentsAddButton,
-                this.commentsEditButton,
-                this.commentsDeleteButton);
+        TableBinding<I_CommentEntry> commentEntryTableBinding = new TableBinding<>(_commentsTable,
+                _data.getComments());
+        commentEntryTableBinding.bindAll(_commentsAddButton,
+                _commentsEditButton,
+                _commentsDeleteButton);
 
     }
 }

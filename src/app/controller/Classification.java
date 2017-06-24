@@ -36,10 +36,10 @@ public class Classification extends Observable {
 
     private I_Classification _dataModel = Project.getInstance().getClassification();
 
-    private I_FunctionalRequirements functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
+    private I_FunctionalRequirements _functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
 
-    public final ArrayList<String> categoryArrayList = new ArrayList<>();
-    public final ArrayList<String> classificationArrayList = new ArrayList<>();
+    public final ArrayList<String> _categoryArrayList = new ArrayList<>();
+    public final ArrayList<String> _classificationArrayList = new ArrayList<>();
 
     public Classification() {
 
@@ -87,25 +87,25 @@ public class Classification extends Observable {
 
             _dataModel.removeExistingData();
 
-            if (categoryArrayList.size() != functionalRequirements.getEntries().size()){
+            if (_categoryArrayList.size() != _functionalRequirements.getEntries().size()){
 
-                categoryArrayList.clear();
-                classificationArrayList.clear();
+                _categoryArrayList.clear();
+                _classificationArrayList.clear();
 
-                for (int index = 0; index < functionalRequirements.getEntries().size(); index++) {
-                    categoryArrayList.add("");
-                    classificationArrayList.add("");
+                for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
+                    _categoryArrayList.add("");
+                    _classificationArrayList.add("");
                 }
             }
 
-            for (int index = 0; index < functionalRequirements.getEntries().size(); index++) {
+            for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
 
-                ArrayList<String> functionalRequirementEntry = functionalRequirements.getEntries().get(index).getAllProperties();
+                ArrayList<String> functionalRequirementEntry = _functionalRequirements.getEntries().get(index).getAllProperties();
 
                 _dataModel.addEntryWithProperties(functionalRequirementEntry);
 
-                _dataModel.getEntries().get(index).setCategory(categoryArrayList.get(index));
-                _dataModel.getEntries().get(index).setClassification(classificationArrayList.get(index));
+                _dataModel.getEntries().get(index).setCategory(_categoryArrayList.get(index));
+                _dataModel.getEntries().get(index).setClassification(_classificationArrayList.get(index));
             }
 
             _tableView.setItems(_dataModel.getEntries());
@@ -142,11 +142,11 @@ public class Classification extends Observable {
 
     private void save() {
 
-        for (int index = 0; index < functionalRequirements.getEntries().size(); index++) {
+        for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
 
-            //categoryArrayList.set(index, _dataModel.getEntries().get(index).getCategory());
-            categoryArrayList.set(index, _tableView.getItems().get(index).getCategory());
-            classificationArrayList.set(index, _tableView.getItems().get(index).getClassification());
+            //_categoryArrayList.set(index, _dataModel.getEntries().get(index).getCategory());
+            _categoryArrayList.set(index, _tableView.getItems().get(index).getCategory());
+            _classificationArrayList.set(index, _tableView.getItems().get(index).getClassification());
         }
 
         _saveClicked = true;

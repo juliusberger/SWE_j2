@@ -20,32 +20,32 @@ class ProjectEditor implements I_ProjectEditor {
 
     @Override
     public String getSurname() {
-        return this._surname.get();
+        return _surname.get();
     }
 
     @Override
     public SimpleStringProperty surnameProperty() {
-        return this._surname;
+        return _surname;
     }
 
     @Override
     public void setSurname(String surname) {
-        this._surname.set(surname);
+        _surname.set(surname);
     }
 
     @Override
     public String getName() {
-        return this._name.get();
+        return _name.get();
     }
 
     @Override
     public SimpleStringProperty nameProperty() {
-        return this._name;
+        return _name;
     }
 
     @Override
     public void setName(String name) {
-        this._name.set(name);
+        _name.set(name);
     }
 
     @Override
@@ -61,8 +61,8 @@ class ProjectEditor implements I_ProjectEditor {
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setSurname(propertyStrings.get(0));
-            this.setName(propertyStrings.get(1));
+            setSurname(propertyStrings.get(0));
+            setName(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
@@ -71,8 +71,8 @@ class ProjectEditor implements I_ProjectEditor {
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getSurname());
-        stringProperties.add(this.getName());
+        stringProperties.add(getSurname());
+        stringProperties.add(getName());
 
         return stringProperties;
     }
@@ -80,7 +80,7 @@ class ProjectEditor implements I_ProjectEditor {
 
     @Override
     public void removeExistingData() {
-        this.setSurname("");
-        this.setName("");
+        setSurname("");
+        setName("");
     }
 }

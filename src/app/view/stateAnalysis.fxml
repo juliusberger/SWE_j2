@@ -24,16 +24,16 @@
 		</columnResizePolicy>
 	</TableView>
 	<HBox styleClass="button-hbox">
-		<Button fx:id="addEntryButton"
+		<Button fx:id="_addEntryButton"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag hinzufügen
 		</Button>
-		<Button fx:id="editEntryButton"
+		<Button fx:id="_editEntryButton"
 		        disable="true"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag bearbeiten
 		</Button>
-		<Button fx:id="deleteEntryButton"
+		<Button fx:id="_deleteEntryButton"
 		        disable="true"
 		        maxWidth="1.7976931348623157E308"
 		        HBox.hgrow="ALWAYS">Eintrag löschen

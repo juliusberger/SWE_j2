@@ -16,11 +16,11 @@ import java.util.ResourceBundle;
  */
 public class FutureAnalysis implements Initializable {
 
-    public TableView<I_AnalysisEntry> futureAnalysisTable;
+    public TableView<I_AnalysisEntry> _futureAnalysisTable;
 
-    public Button addEntryButton;
-    public Button editEntryButton;
-    public Button deleteEntryButton;
+    public Button _addEntryButton;
+    public Button _editEntryButton;
+    public Button _deleteEntryButton;
 
     private final I_Analysis data = Project.getInstance().getFutureAnalysis();
 
@@ -29,11 +29,11 @@ public class FutureAnalysis implements Initializable {
     public void initialize(URL location,
                            ResourceBundle resources) {
 
-        TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(this.futureAnalysisTable,
-                this.data);
-        tableBinding.bindAll(this.addEntryButton,
-                this.editEntryButton,
-                this.deleteEntryButton);
+        TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(_futureAnalysisTable,
+                data);
+        tableBinding.bindAll(_addEntryButton,
+                _editEntryButton,
+                _deleteEntryButton);
 
     }
 }

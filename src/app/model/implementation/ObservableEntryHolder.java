@@ -20,14 +20,14 @@ public abstract class ObservableEntryHolder<S extends I_ModelPropertyAdaptor> im
 
     @Override
     public ObservableList<S> getEntries() {
-        return this._entries;
+        return _entries;
     }
 
     @Override
     public void addEntryWithProperties(ArrayList<String> propertyStrings) {
-        S entry = this.createEntry();
+        S entry = createEntry();
         entry.setAllProperties(propertyStrings);
 
-        this.getEntries().add(entry);
+        getEntries().add(entry);
     }
 }

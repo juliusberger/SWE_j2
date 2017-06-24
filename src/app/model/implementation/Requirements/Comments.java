@@ -39,7 +39,7 @@ class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Commen
 
     @Override
     public void removeExistingData() {
-        this.getEntries().clear();
+        getEntries().clear();
     }
 
     @Override

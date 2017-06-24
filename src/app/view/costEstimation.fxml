@@ -21,7 +21,7 @@
 			Klassifikation
 		</Label>
 		<HBox>
-			<Button fx:id="classifyRequirementsButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Anforderungen klassifizieren
+			<Button fx:id="_classifyRequirementsButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Anforderungen klassifizieren
 			</Button>
 		</HBox>
 
@@ -38,7 +38,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">1 Verflechtung mit anderen Anwendungssystemen
 				</Label>
-				<ChoiceBox fx:id="box1">
+				<ChoiceBox fx:id="_box1">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -58,7 +58,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">2 Dezentrale Daten, dezentrale Verarbeitung
 				</Label>
-				<ChoiceBox fx:id="box2">
+				<ChoiceBox fx:id="_box2">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -78,7 +78,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">3 Transaktionsrate
 				</Label>
-				<ChoiceBox fx:id="box3">
+				<ChoiceBox fx:id="_box3">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -106,7 +106,7 @@
 					<String fx:value="indented" />
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">a) Rechenoperationen</Label>
-				<ChoiceBox fx:id="box4a">
+				<ChoiceBox fx:id="_box4a">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -134,7 +134,7 @@
 					<String fx:value="indented" />
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">b) Kontrollverfahren</Label>
-				<ChoiceBox fx:id="box4b">
+				<ChoiceBox fx:id="_box4b">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -157,7 +157,7 @@
 					<String fx:value="indented" />
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">c) Ausnahmeregelungen</Label>
-				<ChoiceBox fx:id="box4c">
+				<ChoiceBox fx:id="_box4c">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -185,7 +185,7 @@
 					<String fx:value="indented" />
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">d) Logik</Label>
-				<ChoiceBox fx:id="box4d">
+				<ChoiceBox fx:id="_box4d">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -208,7 +208,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">5 Wiederverwendbarkeit
 				</Label>
-				<ChoiceBox fx:id="box5">
+				<ChoiceBox fx:id="_box5">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -228,7 +228,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">6 Datenbestandskonvertierungen
 				</Label>
-				<ChoiceBox fx:id="box6">
+				<ChoiceBox fx:id="_box6">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -247,7 +247,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">7 Anpassbarkeit
 				</Label>
-				<ChoiceBox fx:id="box7">
+				<ChoiceBox fx:id="_box7">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value="0" />
@@ -273,11 +273,11 @@
 		</Label>
 		<GridPane>
 			<Label>Berechnete Function Points:</Label>
-			<Label fx:id="calculatedFPLabel" GridPane.columnIndex="1">XX
+			<Label fx:id="_calculatedFPLabel" GridPane.columnIndex="1">XX
 			</Label>
 
 			<Label GridPane.rowIndex="1">Personenmonate:</Label>
-			<Label fx:id="calculatedMMLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">XX
+			<Label fx:id="_calculatedMMLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">XX
 			</Label>
 
 			<columnConstraints>
@@ -291,9 +291,9 @@
 		</GridPane>
 
 		<HBox styleClass="button-hbox">
-			<Button fx:id="manualOptimizationButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Manuelle Optimierung
+			<Button fx:id="_manualOptimizationButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Manuelle Optimierung
 			</Button>
-			<Button fx:id="automaticOptimizationButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Automatische Optimierung
+			<Button fx:id="_automaticOptimizationButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Automatische Optimierung
 			</Button>
 		</HBox>
 

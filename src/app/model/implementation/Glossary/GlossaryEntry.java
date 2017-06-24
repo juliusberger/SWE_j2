@@ -19,32 +19,32 @@ public class GlossaryEntry implements I_GlossaryEntry {
 
     @Override
     public String getItem() {
-        return this._item.get();
+        return _item.get();
     }
 
     @Override
     public SimpleStringProperty itemProperty() {
-        return this._item;
+        return _item;
     }
 
     @Override
     public void setItem(String item) {
-        this._item.set(item);
+        _item.set(item);
     }
 
     @Override
     public String getDefinition() {
-        return this._definition.get();
+        return _definition.get();
     }
 
     @Override
     public SimpleStringProperty definitionProperty() {
-        return this._definition;
+        return _definition;
     }
 
     @Override
     public void setDefinition(String definition) {
-        this._definition.set(definition);
+        _definition.set(definition);
     }
 
 
@@ -61,8 +61,8 @@ public class GlossaryEntry implements I_GlossaryEntry {
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setItem(propertyStrings.get(0));
-            this.setDefinition(propertyStrings.get(1));
+            setItem(propertyStrings.get(0));
+            setDefinition(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
@@ -71,8 +71,8 @@ public class GlossaryEntry implements I_GlossaryEntry {
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getItem());
-        stringProperties.add(this.getDefinition());
+        stringProperties.add(getItem());
+        stringProperties.add(getDefinition());
 
         return stringProperties;
     }

@@ -19,32 +19,32 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
 
     @Override
     public String getBusinessProcess() {
-        return this._businessProcess.get();
+        return _businessProcess.get();
     }
 
     @Override
     public SimpleStringProperty businessProcessProperty() {
-        return this._businessProcess;
+        return _businessProcess;
     }
 
     @Override
     public void setBusinessProcess(String businessProcess) {
-        this._businessProcess.set(businessProcess);
+        _businessProcess.set(businessProcess);
     }
 
     @Override
     public String getDescription() {
-        return this._description.get();
+        return _description.get();
     }
 
     @Override
     public SimpleStringProperty descriptionProperty() {
-        return this._description;
+        return _description;
     }
 
     @Override
     public void setDescription(String description) {
-        this._description.set(description);
+        _description.set(description);
     }
 
     @Override
@@ -60,8 +60,8 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setBusinessProcess(propertyStrings.get(0));
-            this.setDescription(propertyStrings.get(1));
+            setBusinessProcess(propertyStrings.get(0));
+            setDescription(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
@@ -70,8 +70,8 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getBusinessProcess());
-        stringProperties.add(this.getDescription());
+        stringProperties.add(getBusinessProcess());
+        stringProperties.add(getDescription());
 
         return stringProperties;
     }

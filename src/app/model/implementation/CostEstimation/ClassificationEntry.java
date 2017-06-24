@@ -22,32 +22,32 @@ public class ClassificationEntry implements I_ClassificationEntry {
 
     @Override
     public String getFunction() {
-        return this._function.get();
+        return _function.get();
     }
 
     @Override
     public SimpleStringProperty functionProperty() {
-        return this._function;
+        return _function;
     }
 
     @Override
     public void setFunction(String function) {
-        this._function.set(function);
+        _function.set(function);
     }
 
     @Override
     public String getStakeholder() {
-        return this._stakeholder.get();
+        return _stakeholder.get();
     }
 
     @Override
     public SimpleStringProperty stakeholderProperty() {
-        return this._stakeholder;
+        return _stakeholder;
     }
 
     @Override
     public void setStakeholder(String stakeholder) {
-        this._stakeholder.set(stakeholder);
+        _stakeholder.set(stakeholder);
     }
 
     @Override
@@ -67,47 +67,47 @@ public class ClassificationEntry implements I_ClassificationEntry {
 
     @Override
     public String getDescription() {
-        return this._description.get();
+        return _description.get();
     }
 
     @Override
     public SimpleStringProperty descriptionProperty() {
-        return this._description;
+        return _description;
     }
 
     @Override
     public void setDescription(String description) {
-        this._description.set(description);
+        _description.set(description);
     }
 
     @Override
     public String getCategory() {
-        return this._category.get();
+        return _category.get();
     }
 
     @Override
     public SimpleStringProperty categoryProperty() {
-        return this._category;
+        return _category;
     }
 
     @Override
     public void setCategory(String category) {
-        this._category.set(category);
+        _category.set(category);
     }
 
     @Override
     public String getClassification() {
-        return this._classification.get();
+        return _classification.get();
     }
 
     @Override
     public SimpleStringProperty classificationProperty() {
-        return this._classification;
+        return _classification;
     }
 
     @Override
     public void setClassification(String classification) {
-        this._classification.set(classification);
+        _classification.set(classification);
     }
 
     @Override
@@ -123,11 +123,11 @@ public class ClassificationEntry implements I_ClassificationEntry {
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setFunction(propertyStrings.get(0));
-            this.setDescription(propertyStrings.get(1));
-            this.setStakeholder(propertyStrings.get(2));
-            this.setCategory(propertyStrings.get(3));
-            this.setClassification(propertyStrings.get(4));
+            setFunction(propertyStrings.get(0));
+            setDescription(propertyStrings.get(1));
+            setStakeholder(propertyStrings.get(2));
+            setCategory(propertyStrings.get(3));
+            setClassification(propertyStrings.get(4));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
@@ -136,11 +136,11 @@ public class ClassificationEntry implements I_ClassificationEntry {
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getFunction());
-        stringProperties.add(this.getDescription());
-        stringProperties.add(this.getStakeholder());
-        stringProperties.add(this.getCategory());
-        stringProperties.add(this.getClassification());
+        stringProperties.add(getFunction());
+        stringProperties.add(getDescription());
+        stringProperties.add(getStakeholder());
+        stringProperties.add(getCategory());
+        stringProperties.add(getClassification());
 
         return stringProperties;
     }

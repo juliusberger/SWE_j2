@@ -25,49 +25,49 @@ public class ProjectData implements I_ProjectData {
 
     @Override
     public String getName() {
-        return this._name.get();
+        return _name.get();
     }
 
     @Override
     public SimpleStringProperty nameProperty() {
-        return this._name;
+        return _name;
     }
 
     @Override
     public void setName(String name) {
-        this._name.set(name);
+        _name.set(name);
     }
 
     @Override
     public String getDueDate() {
-        return this._dueDate.get();
+        return _dueDate.get();
     }
 
     @Override
     public SimpleStringProperty dueDateProperty() {
-        return this._dueDate;
+        return _dueDate;
     }
 
     @Override
     public void setDueDate(String dueDate) {
-        this._dueDate.set(dueDate);
+        _dueDate.set(dueDate);
     }
 
     @Override
     public I_ProjectEditor getProjectEditor() {
-        return this._projectEditor;
+        return _projectEditor;
     }
 
     @Override
     public I_Customer getCustomer() {
-        return this._customer;
+        return _customer;
     }
 
     @Override
     public List<I_XmlModelEntity> getChildren() {
         List<I_XmlModelEntity> children = new ArrayList<>(2);
-        children.add(this.getProjectEditor());
-        children.add(this.getCustomer());
+        children.add(getProjectEditor());
+        children.add(getCustomer());
         return children;
     }
 
@@ -79,8 +79,8 @@ public class ProjectData implements I_ProjectData {
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
-            this.setName(propertyStrings.get(0));
-            this.setDueDate(propertyStrings.get(1));
+            setName(propertyStrings.get(0));
+            setDueDate(propertyStrings.get(1));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
@@ -89,8 +89,8 @@ public class ProjectData implements I_ProjectData {
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(this.getName());
-        stringProperties.add(this.getDueDate());
+        stringProperties.add(getName());
+        stringProperties.add(getDueDate());
 
         return stringProperties;
     }
@@ -98,7 +98,7 @@ public class ProjectData implements I_ProjectData {
 
     @Override
     public void removeExistingData() {
-        this.setName("");
-        this.setDueDate("");
+        setName("");
+        setDueDate("");
     }
 }

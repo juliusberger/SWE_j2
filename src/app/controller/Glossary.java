@@ -21,15 +21,15 @@ public class Glossary implements Initializable {
     public Button _glossaryEditButton;
     public Button _glossaryDeleteButton;
 
-    private final I_Glossary data = Project.getInstance().getGlossary();
+    private final I_Glossary _data = Project.getInstance().getGlossary();
 
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
-        TableBinding<I_GlossaryEntry> glossaryEntryTableBinding = new TableBinding<>(this._glossaryTable,
-                this.data);
-        glossaryEntryTableBinding.bindAll(this._glossaryAddButton,
-                this._glossaryEditButton,
-                this._glossaryDeleteButton);
+        TableBinding<I_GlossaryEntry> glossaryEntryTableBinding = new TableBinding<>(_glossaryTable,
+                _data);
+        glossaryEntryTableBinding.bindAll(_glossaryAddButton,
+                _glossaryEditButton,
+                _glossaryDeleteButton);
     }
 }

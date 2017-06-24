@@ -31,13 +31,13 @@ public class Project implements I_Project {
         return Project._instance;
     }
 
-    private I_ProjectData _projectData = new ProjectData();
-    private I_Analysis _stateAnalysis = new StateAnalysis();
-    private I_Analysis _futureAnalysis = new FutureAnalysis();
-    private I_Requirements _requirements = new Requirements();
-    private I_CostEstimation _costEstimation = new CostEstimation();
-    private I_Classification _classification = new Classification();
-    private I_Glossary _glossary = new Glossary();
+    private final I_ProjectData _projectData = new ProjectData();
+    private final I_Analysis _stateAnalysis = new StateAnalysis();
+    private final I_Analysis _futureAnalysis = new FutureAnalysis();
+    private final I_Requirements _requirements = new Requirements();
+    private final I_CostEstimation _costEstimation = new CostEstimation();
+    private final I_Classification _classification = new Classification();
+    private final I_Glossary _glossary = new Glossary();
 
 
     private Project() {
@@ -45,48 +45,48 @@ public class Project implements I_Project {
 
     @Override
     public I_ProjectData getProjectData() {
-        return this._projectData;
+        return _projectData;
     }
 
     @Override
     public I_Analysis getStateAnalysis() {
-        return this._stateAnalysis;
+        return _stateAnalysis;
     }
 
     @Override
     public I_Analysis getFutureAnalysis() {
-        return this._futureAnalysis;
+        return _futureAnalysis;
     }
 
     @Override
     public I_Requirements getRequirements() {
-        return this._requirements;
+        return _requirements;
     }
 
     @Override
     public I_CostEstimation getCostEstimation() {
-        return this._costEstimation;
+        return _costEstimation;
     }
 
     @Override
     public I_Classification getClassification() {
-        return this._classification;
+        return _classification;
     }
 
     @Override
     public I_Glossary getGlossary() {
-        return this._glossary;
+        return _glossary;
     }
 
     @Override
     public List<I_XmlModelEntity> getChildren() {
         List<I_XmlModelEntity> children = new ArrayList<>(6);
-        children.add(this.getProjectData());
-        children.add(this.getStateAnalysis());
-        children.add(this.getFutureAnalysis());
-        children.add(this.getRequirements());
-        /*children.add(this.getCostEstimation());*/
-        children.add(this.getGlossary());
+        children.add(getProjectData());
+        children.add(getStateAnalysis());
+        children.add(getFutureAnalysis());
+        children.add(getRequirements());
+        /*children.add(getCostEstimation());*/
+        children.add(getGlossary());
         return children;
     }
 

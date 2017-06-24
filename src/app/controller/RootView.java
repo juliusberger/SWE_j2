@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.helpers.XMLExporter;
+import app.helpers.XmlExporter;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -15,13 +15,13 @@ import java.util.ResourceBundle;
  */
 public class RootView implements Initializable {
 
-    public AnchorPane anchorPane;
+    public AnchorPane _anchorPane;
 
-    public MenuItem newProjectItem;
-    public MenuItem openProjectItem;
-    public MenuItem saveProjectItem;
-    public MenuItem XMLImportItem;
-    public MenuItem XMLExportItem;
+    public MenuItem _newProjectItem;
+    public MenuItem _openProjectItem;
+    public MenuItem _saveProjectItem;
+    public MenuItem _XmlImportItem;
+    public MenuItem _XmlExportItem;
 
     @Override
     public void initialize(URL location,
@@ -34,41 +34,41 @@ public class RootView implements Initializable {
         final FileChooser.ExtensionFilter XMLExtensionFilter = new FileChooser.ExtensionFilter("XML-Datei",
                 "*.xml");
 
-        this.newProjectItem.setOnAction(event -> this.onNewProject());
+        _newProjectItem.setOnAction(event -> onNewProject());
 
-        this.openProjectItem.setOnAction(event -> {
+        _openProjectItem.setOnAction(event -> {
             fileChooser.setTitle("Projekt öffnen");
             fileChooser.getExtensionFilters().setAll(projectExtensionFilter);
-            final File file = fileChooser.showOpenDialog(this.anchorPane.getScene().getWindow());
+            final File file = fileChooser.showOpenDialog(_anchorPane.getScene().getWindow());
             if (file != null) {
-                this.onLoadFile(file);
+                onLoadFile(file);
             }
         });
 
-        this.saveProjectItem.setOnAction(event -> {
+        _saveProjectItem.setOnAction(event -> {
             fileChooser.setTitle("Projekt speichern");
             fileChooser.getExtensionFilters().setAll(projectExtensionFilter);
-            final File file = fileChooser.showSaveDialog(this.anchorPane.getScene().getWindow());
+            final File file = fileChooser.showSaveDialog(_anchorPane.getScene().getWindow());
             if (file != null) {
-                this.onSaveFile(file);
+                onSaveFile(file);
             }
         });
 
-        this.XMLImportItem.setOnAction(event -> {
+        _XmlImportItem.setOnAction(event -> {
             fileChooser.setTitle("XML importieren");
             fileChooser.getExtensionFilters().setAll(XMLExtensionFilter);
-            final File file = fileChooser.showOpenDialog(this.anchorPane.getScene().getWindow());
+            final File file = fileChooser.showOpenDialog(_anchorPane.getScene().getWindow());
             if (file != null) {
-                this.onLoadFile(file);
+                onLoadFile(file);
             }
         });
 
-        this.XMLExportItem.setOnAction(event -> {
+        _XmlExportItem.setOnAction(event -> {
             fileChooser.setTitle("XML exportieren");
             fileChooser.getExtensionFilters().setAll(XMLExtensionFilter);
-            final File file = fileChooser.showSaveDialog(this.anchorPane.getScene().getWindow());
+            final File file = fileChooser.showSaveDialog(_anchorPane.getScene().getWindow());
             if (file != null) {
-                this.onSaveFile(file);
+                onSaveFile(file);
             }
         });
     }
@@ -83,9 +83,9 @@ public class RootView implements Initializable {
 
     private void onSaveFile(File file) {
 /*
-        XML.exportXML(file.getAbsolutePath());
+        XML.export(file.getAbsolutePath());
 */
-        XMLExporter exporter = new XMLExporter(file.getAbsolutePath());
-        exporter.exportXML();
+        XmlExporter exporter = new XmlExporter(file.getAbsolutePath());
+        exporter.export();
     }
 }
