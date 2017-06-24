@@ -1,6 +1,6 @@
 package app;
 
-import app.helpers.MyLogger;
+import app.helpers.Log;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,9 +23,13 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("assets/ANTool_Icon2.png")));
         primaryStage.setScene(scene);
+
+        // TODO: Irgendwelche Checks vorm Beenden?
+        primaryStage.setOnCloseRequest(event -> Log.getLogger().info("AnTool wird beendet..."));
+
         primaryStage.show();
 
-        MyLogger.getLogger().info("AnTool successfully started...");
+        Log.getLogger().info("AnTool erfolgreich gestartet.");
     }
 
 }
