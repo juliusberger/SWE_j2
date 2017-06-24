@@ -1,10 +1,13 @@
 package app.controller;
 
+import app.model.interfaces.CostEstimation.I_Classification;
+import app.model.interfaces.CostEstimation.I_ClassificationEntry;
+import app.model.interfaces.CostEstimation.I_CostEstimationEntry;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import app.model.implementation.Project;
+import app.model.implementation.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +29,8 @@ public class CostEstimation implements Initializable {
     public ChoiceBox<String> box5;
     public ChoiceBox<String> box6;
     public ChoiceBox<String> box7;
+
+    public Button performCostEstimationButton;
 
     public Label calculatedFPLabel;
     public Label calculatedMMLabel;
@@ -102,5 +107,128 @@ public class CostEstimation implements Initializable {
             Classification classification = new Classification();
             classification.show();
         });
+    }
+
+    private void performCostEstimation()
+    {
+        I_Classification classification = Project.getInstance().getClassification();
+
+        int functionTypesSum = calculateFunctionTypesSums(classification);
+        double impactFactor = calculateImpactFactor();
+
+        calculatedFPLabel.setText(Double.toString(functionTypesSum * impactFactor));        
+    }
+
+    private double calculateImpactFactor()
+    {
+        int sumInfluencingFactors = 0;
+
+        sumInfluencingFactors += Integer.parseInt(box1.toString());
+        sumInfluencingFactors += Integer.parseInt(box2.toString());
+        sumInfluencingFactors += Integer.parseInt(box3.toString());
+        sumInfluencingFactors += Integer.parseInt(box4a.toString());
+        sumInfluencingFactors += Integer.parseInt(box4b.toString());
+        sumInfluencingFactors += Integer.parseInt(box4c.toString());
+        sumInfluencingFactors += Integer.parseInt(box4d.toString());
+        sumInfluencingFactors += Integer.parseInt(box5.toString());
+        sumInfluencingFactors += Integer.parseInt(box6.toString());
+        sumInfluencingFactors += Integer.parseInt(box7.toString());
+
+        return ((double) sumInfluencingFactors / 100) + 0.7;
+    }
+
+    private int calculateFunctionTypesSums(I_Classification classification)
+    {
+        int sumEi = 0;
+        int sumEo = 0;
+        int sumEq = 0;
+        int sumIlf = 0;
+        int sumElf = 0;
+
+        for (int indexClassificationEntries = 0; indexClassificationEntries < classification.getEntries().size(); indexClassificationEntries++)
+        {
+            I_ClassificationEntry currentClassificationEntry = classification.getEntries().get(indexClassificationEntries);
+
+            if (currentClassificationEntry.getCategory().equals("Eingabedaten (EI)"))
+            {
+                if (currentClassificationEntry.getClassification().equals("einfach"))
+                {
+                    sumEi += 3;
+                }
+                else if (currentClassificationEntry.getClassification().equals("mittel"))
+                {
+                    sumEi += 4;
+                }
+                else if (currentClassificationEntry.getClassification().equals("komplex"))
+                {
+                    sumEi += 6;
+                }
+            }
+            else if (currentClassificationEntry.getCategory().equals("Ausgabedaten (EO)"))
+            {
+                if (currentClassificationEntry.getClassification().equals("einfach"))
+                {
+                    sumEo += 4;
+                }
+                else if (currentClassificationEntry.getClassification().equals("mittel"))
+                {
+                    sumEo += 5;
+                }
+                else if (currentClassificationEntry.getClassification().equals("komplex"))
+                {
+                    sumEo += 7;
+                }
+            }
+            else if (currentClassificationEntry.getCategory().equals("Abfragen (EQ)"))
+            {
+                if (currentClassificationEntry.getClassification().equals("einfach"))
+                {
+                    sumEq += 3;
+                }
+                else if (currentClassificationEntry.getClassification().equals("mittel"))
+                {
+                    sumEq += 4;
+                }
+                else if (currentClassificationEntry.getClassification().equals("komplex"))
+                {
+                    sumEq += 6;
+                }
+            }
+            else if (currentClassificationEntry.getCategory().equals("Datenbestände (ILF)"))
+            {
+                if (currentClassificationEntry.getClassification().equals("einfach"))
+                {
+                    sumIlf += 7;
+                }
+                else if (currentClassificationEntry.getClassification().equals("mittel"))
+                {
+                    sumIlf += 10;
+                }
+                else if (currentClassificationEntry.getClassification().equals("komplex"))
+                {
+                    sumIlf += 15;
+                }
+            }
+            else if (currentClassificationEntry.getCategory().equals("Referenzdaten (ELF)"))
+            {
+                if (currentClassificationEntry.getClassification().equals("einfach"))
+                {
+                    sumElf += 5;
+                }
+                else if (currentClassificationEntry.getClassification().equals("mittel"))
+                {
+                    sumElf += 7;
+                }
+                else if (currentClassificationEntry.getClassification().equals("komplex"))
+                {
+                    sumElf += 10;
+                }
+            }
+
+
+
+        }
+
+        return sumEi + sumEo + sumEq + sumIlf + sumElf;
     }
 }
