@@ -106,6 +106,8 @@ public class CostEstimation implements Initializable {
             Classification classification = new Classification();
             classification.show();
         });
+
+        _performCostEstimationButton.setOnAction(event -> performCostEstimation());
     }
 
     private void performCostEstimation()
@@ -122,16 +124,16 @@ public class CostEstimation implements Initializable {
     {
         int sumInfluencingFactors = 0;
 
-        sumInfluencingFactors += Integer.parseInt(_box1.toString());
-        sumInfluencingFactors += Integer.parseInt(_box2.toString());
-        sumInfluencingFactors += Integer.parseInt(_box3.toString());
-        sumInfluencingFactors += Integer.parseInt(_box4a.toString());
-        sumInfluencingFactors += Integer.parseInt(_box4b.toString());
-        sumInfluencingFactors += Integer.parseInt(_box4c.toString());
-        sumInfluencingFactors += Integer.parseInt(_box4d.toString());
-        sumInfluencingFactors += Integer.parseInt(_box5.toString());
-        sumInfluencingFactors += Integer.parseInt(_box6.toString());
-        sumInfluencingFactors += Integer.parseInt(_box7.toString());
+        sumInfluencingFactors += _box1.getValue().equals("") ? 0 : Integer.parseInt(_box1.getValue());
+        sumInfluencingFactors += _box2.getValue().equals("") ? 0 : Integer.parseInt(_box2.getValue());
+        sumInfluencingFactors += _box3.getValue().equals("") ? 0 : Integer.parseInt(_box3.getValue());
+        sumInfluencingFactors += _box4a.getValue().equals("") ? 0 : Integer.parseInt(_box4a.getValue());
+        sumInfluencingFactors += _box4b.getValue().equals("") ? 0 : Integer.parseInt(_box4b.getValue());
+        sumInfluencingFactors += _box4c.getValue().equals("") ? 0 : Integer.parseInt(_box4c.getValue());
+        sumInfluencingFactors += _box4d.getValue().equals("") ? 0 : Integer.parseInt(_box4d.getValue());
+        sumInfluencingFactors += _box5.getValue().equals("") ? 0 : Integer.parseInt(_box5.getValue());
+        sumInfluencingFactors += _box6.getValue().equals("") ? 0 : Integer.parseInt(_box6.getValue());
+        sumInfluencingFactors += _box7.getValue().equals("") ? 0 : Integer.parseInt(_box7.getValue());
 
         return ((double) sumInfluencingFactors / 100) + 0.7;
     }
