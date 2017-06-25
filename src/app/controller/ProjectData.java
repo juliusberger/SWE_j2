@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.helpers.I_ValidateInput;
+import app.helpers.ValidateInput;
 import app.helpers.ValidateInput.Validator;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -38,52 +38,52 @@ public class ProjectData implements Initializable {
                            ResourceBundle resources) {
         //<editor-fold desc="Projekt-Eigenschaften">
         _projectName.textProperty().bindBidirectional(_projectData.nameProperty());
-        I_ValidateInput.addValidator(_projectName, Validator.PLAIN_TEXT);
+        ValidateInput.addValidator(_projectName, Validator.PLAIN_TEXT);
 
         _projectDueDate.textProperty().bindBidirectional(_projectData.dueDateProperty());
-        I_ValidateInput.addValidator(_projectDueDate, Validator.DATE);
+        ValidateInput.addValidator(_projectDueDate, Validator.DATE);
         //</editor-fold>
 
         //<editor-fold desc="Projekt-Bearbeiter">
         _editorName.textProperty()
                 .bindBidirectional(_projectData.getProjectEditor()
                         .nameProperty());
-        I_ValidateInput.addValidator(_editorName, Validator.PLAIN_TEXT);
+        ValidateInput.addValidator(_editorName, Validator.PLAIN_TEXT);
 
         _editorSurname.textProperty()
                 .bindBidirectional(_projectData.getProjectEditor()
                         .surnameProperty());
-        I_ValidateInput.addValidator(_editorSurname, Validator.PLAIN_TEXT);
+        ValidateInput.addValidator(_editorSurname, Validator.PLAIN_TEXT);
         //</editor-fold>
 
         //<editor-fold desc="Kundendaten">
         _customerSurname.textProperty().bindBidirectional(_projectData.getCustomer().surnameProperty());
-        I_ValidateInput.addValidator(_customerSurname, Validator.PLAIN_TEXT);
+        ValidateInput.addValidator(_customerSurname, Validator.PLAIN_TEXT);
 
         _customerName.textProperty().bindBidirectional(_projectData.getCustomer().nameProperty());
-        I_ValidateInput.addValidator(_customerName, Validator.PLAIN_TEXT);
+        ValidateInput.addValidator(_customerName, Validator.PLAIN_TEXT);
 
         _customerTelephone.textProperty().bindBidirectional(_projectData.getCustomer().telephoneProperty());
-        I_ValidateInput.addValidator(_customerTelephone, Validator.PHONE_NUMBER);
+        ValidateInput.addValidator(_customerTelephone, Validator.PHONE_NUMBER);
 
         _customerEmail.textProperty().bindBidirectional(_projectData.getCustomer().emailProperty());
-        I_ValidateInput.addValidator(_customerEmail, Validator.EMAIL);
+        ValidateInput.addValidator(_customerEmail, Validator.EMAIL);
 
         _customerCompanyName.textProperty()
                 .bindBidirectional(_projectData.getCustomer().companyNameProperty());
-        I_ValidateInput.addValidator(_customerCompanyName, Validator.PLAIN_TEXT);
+        ValidateInput.addValidator(_customerCompanyName, Validator.PLAIN_TEXT);
 
         _customerCompanyStreet.textProperty()
                 .bindBidirectional(_projectData.getCustomer().companyStreetProperty());
-        I_ValidateInput.addValidator(_customerCompanyStreet, Validator.PLAIN_TEXT);
+        ValidateInput.addValidator(_customerCompanyStreet, Validator.PLAIN_TEXT);
 
         _customerCompanyPlz.textProperty().bindBidirectional(_projectData.getCustomer().companyPLZProperty());
-        I_ValidateInput.addValidator(_customerCompanyPlz, Validator.PLZ);
+        ValidateInput.addValidator(_customerCompanyPlz, Validator.PLZ);
 
 
         _customerCompanyLocation.textProperty()
                 .bindBidirectional(_projectData.getCustomer().companyLocationProperty());
-        I_ValidateInput.addValidator(_customerCompanyLocation, Validator.PLAIN_TEXT);
+        ValidateInput.addValidator(_customerCompanyLocation, Validator.PLAIN_TEXT);
         //</editor-fold>
     }
 }
