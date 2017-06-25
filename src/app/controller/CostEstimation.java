@@ -121,8 +121,8 @@ public class CostEstimation implements Initializable {
         double functionPoints = functionTypesSum * impactFactor;
         double menMonths = calculateMenMonths(functionPoints);
 
-        _calculatedFPLabel.setText(Double.toString(functionPoints));
-        _calculatedMMLabel.setText(Double.toString(menMonths));
+        _calculatedFPLabel.setText(Double.toString(Math.round(functionPoints * 100) / 100.0));
+        _calculatedMMLabel.setText(Double.toString(Math.round(menMonths * 100.0) / 100.0));
     }
 
     private double calculateImpactFactor()
