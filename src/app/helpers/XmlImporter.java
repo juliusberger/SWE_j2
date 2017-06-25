@@ -14,9 +14,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
- * Created by Julius on 25.06.17.
+ * Diese Klasse repräsentiert die zu {@link XmlExporter} gehörige Import-Logik.
  */
-public class XmlImporter {
+public class XmlImporter implements I_XmlImporter {
     private final String PROPERTIES_TAG = "Properties";
     private final String PROPERTY_TAG = "Property";
     private final String CHILDREN_TAG = "Children";
@@ -41,6 +41,29 @@ public class XmlImporter {
         }
     }
 
+
+    /**
+     * Importiert die beim Erstellen der Klasse angegebene Datei. S. {@link XmlImporter#readXmlRecursively(I_XmlModelEntity)}
+     */
+    @Override
+    public void importXml() {
+        try {
+            I_Project project = Project.getInstance();
+
+            _reader.nextTag();
+            readXmlRecursively(project);
+
+            Log.getLogger().info("XML-Import wurde erfolgreich eingelesen. Pfad zur Datei: " + _fileName);
+            InfoDialog.show("XML-Import erfolgreich",
+                    "XML-Import erfolgreich abgeschlossen");
+        } catch (XMLStreamException ex) {
+            Log.getLogger()
+                    .info("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+            InfoDialog.show("XML-Import nicht erfolgreich",
+                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
+        }
+    }
+
     private String getName() {
         return _reader.getName().toString();
     }
@@ -52,25 +75,17 @@ public class XmlImporter {
     private boolean isEndElem() {
         return _reader.getEventType() == XMLStreamConstants.END_ELEMENT;
     }
+    
 
-    private ArrayList<String> processProperties() throws XMLStreamException {
-        ArrayList<String> properties = new ArrayList<>();
-        _reader.nextTag();
-        while (getName().equals(PROPERTY_TAG)) {
-            if (_reader.getEventType() != XMLStreamConstants.END_ELEMENT && _reader.getAttributeCount() > 0 && _reader
-                    .getAttributeName(0)
-                    .toString()
-                    .equals("data")) {
-                properties.add(_reader.getAttributeValue(0));
-            }
-            _reader.nextTag();
-        }
-        return properties;
-    }
-
+    /**
+     * Traversiert die XML-Elemente und behandelt dabei besondere Tags entsprechend.
+     * @param model Das Model zum jeweiligen XML-Elementbaum.
+     * @throws XMLStreamException Falls das Model nicht zum XML-Baum passt.
+     */
     private void readXmlRecursively(I_XmlModelEntity model) throws XMLStreamException {
         if (_reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
             String rootName = getName();
+            if (!model.getTag().equals(rootName)) throw new XMLStreamException("Nicht wohlgeformt XML-Dokument. Für den Import muss die XML-Datei zuvor durch AnTool exportiert worden sein.");
 
             _reader.nextTag();
 
@@ -78,7 +93,7 @@ public class XmlImporter {
                 String name = getName();
                 switch (name) {
                     case CHILDREN_TAG:
-                        if (model != null && model.getChildren() != null) {
+                        if (model.getChildren() != null) {
                             if (model.getChildren().size() > 0) {
                                 for (I_XmlModelEntity entity : model.getChildren()) {
                                     _reader.nextTag();
@@ -98,9 +113,7 @@ public class XmlImporter {
                         }
                         break;
                     case PROPERTIES_TAG:
-                        if (model != null) {
-                            model.setAllProperties(processProperties());
-                        }
+                        model.setAllProperties(processProperties());
                         break;
                     default:
                         _reader.nextTag();
@@ -114,22 +127,24 @@ public class XmlImporter {
         }
     }
 
-
-    public void importXml() {
-        try {
-            I_Project project = Project.getInstance();
-
+    /**
+     * Liest die innerhalb von <Properties></Properties> angegebenen Properties.
+     * @return Gibt die gelesenen Properties als String-ArrayList zurück
+     * @throws XMLStreamException Falls allgemeine XML-Fehler auftreten sollten.
+     */
+    private ArrayList<String> processProperties() throws XMLStreamException {
+        ArrayList<String> properties = new ArrayList<>();
+        _reader.nextTag();
+        while (getName().equals(PROPERTY_TAG)) {
+            if (_reader.getEventType() != XMLStreamConstants.END_ELEMENT && _reader.getAttributeCount() > 0 && _reader
+                    .getAttributeName(0)
+                    .toString()
+                    .equals("data")) {
+                properties.add(_reader.getAttributeValue(0));
+            }
             _reader.nextTag();
-            readXmlRecursively(project);
-
-            Log.getLogger().info("XML-Import wurde erfolgreich eingelesen. Pfad zur Datei: " + _fileName);
-            InfoDialog.show("XML-Import erfolgreich",
-                    "XML-Import erfolgreich abgeschlossen");
-        } catch (XMLStreamException ex) {
-            Log.getLogger()
-                    .info("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog.show("XML-Import nicht erfolgreich",
-                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
         }
+        return properties;
     }
+
 }

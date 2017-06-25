@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -53,13 +54,13 @@ public class Requirements implements Initializable {
         _projectGoalText.textProperty().bindBidirectional(_data.projectGoalProperty());
         _fieldOfApplicationText.textProperty().bindBidirectional(_data.fieldOfApplicationProperty());
 
-        TableBinding<I_FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>(_functionalRequirementsTable,
+        I_TableBinding functionalRequirementEntryTableBinding = new TableBinding<>(_functionalRequirementsTable,
                 _data.getFunctionalRequirements());
         functionalRequirementEntryTableBinding.bindAll(_functionalRequirementsAddButton,
                 _functionalRequirementsEditButton,
                 _functionalRequirementsDeleteButton);
 
-        TableBinding<I_NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>(_nonFunctionalRequirementsTable,
+        I_TableBinding nonFunctionalRequirementEntryTableBinding = new TableBinding<>(_nonFunctionalRequirementsTable,
                 _data.getNonFunctionalRequirements());
         nonFunctionalRequirementEntryTableBinding.bindAll(_nonFunctionalRequirementsAddButton,
                 _nonFunctionalRequirementsEditButton,
@@ -79,7 +80,7 @@ public class Requirements implements Initializable {
         }
 
 
-        TableBinding<I_CommentEntry> commentEntryTableBinding = new TableBinding<>(_commentsTable,
+        I_TableBinding commentEntryTableBinding = new TableBinding<>(_commentsTable,
                 _data.getComments());
         commentEntryTableBinding.bindAll(_commentsAddButton,
                 _commentsEditButton,

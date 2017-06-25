@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 /**
  * Created by Michi on 03.06.2017.
  */
-public class XmlExporter {
+public class XmlExporter implements I_XmlExporter {
     private String _fileName;
     private XMLStreamWriter _writer;
 
@@ -64,6 +64,7 @@ public class XmlExporter {
         _writer.writeEndElement();
     }
 
+    @Override
     public void exportXml() {
         try {
 

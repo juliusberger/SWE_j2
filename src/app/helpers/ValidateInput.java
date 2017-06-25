@@ -7,10 +7,7 @@ import java.util.regex.Pattern;
 /**
  * Erstellt von Julius am 01/05/2017.
  */
-public class ValidateInput {
-    public enum Validator {
-        PHONE_NUMBER, DATE, EMAIL, PLZ, PLAIN_TEXT
-    }
+public class ValidateInput implements I_ValidateInput {
 
     private static boolean isValidString(String input, String regex) {
         return Pattern.matches(regex,
@@ -76,10 +73,6 @@ public class ValidateInput {
                 textField.getStyleClass().add("invalid-input");
             }
         }
-    }
-
-    public static void addValidator(TextField textField, Validator validator) {
-        textField.textProperty().addListener((ov, oldValue, newValue) -> validateField(textField, validator));
     }
 
 }

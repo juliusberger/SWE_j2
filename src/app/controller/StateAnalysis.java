@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -30,7 +31,7 @@ public class StateAnalysis implements Initializable {
                            ResourceBundle resources) {
 
 
-        TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(stateAnalysisTable,
+        I_TableBinding tableBinding = new TableBinding<>(stateAnalysisTable,
                 _data);
         tableBinding.bindAll(_addEntryButton,
                 _editEntryButton,

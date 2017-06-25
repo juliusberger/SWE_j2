@@ -1,5 +1,7 @@
 package app.controller;
 
+import app.helpers.I_XmlExporter;
+import app.helpers.I_XmlImporter;
 import app.helpers.XmlExporter;
 import app.helpers.XmlImporter;
 import javafx.fxml.Initializable;
@@ -79,7 +81,7 @@ public class RootView implements Initializable {
     }
 
     private void onLoadFile(File file) {
-        XmlImporter importer = new XmlImporter(file.getAbsolutePath());
+        I_XmlImporter importer = new XmlImporter(file.getAbsolutePath());
         importer.importXml();
         //XML.importXML(file.getAbsolutePath());
     }
@@ -88,7 +90,7 @@ public class RootView implements Initializable {
 /*
         XML.exportXml(file.getAbsolutePath());
 */
-        XmlExporter exporter = new XmlExporter(file.getAbsolutePath());
+        I_XmlExporter exporter = new XmlExporter(file.getAbsolutePath());
         exporter.exportXml();
     }
 }

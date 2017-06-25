@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,7 +30,7 @@ public class FutureAnalysis implements Initializable {
     public void initialize(URL location,
                            ResourceBundle resources) {
 
-        TableBinding<I_AnalysisEntry> tableBinding = new TableBinding<>(_futureAnalysisTable,
+        I_TableBinding tableBinding = new TableBinding<>(_futureAnalysisTable,
                 data);
         tableBinding.bindAll(_addEntryButton,
                 _editEntryButton,

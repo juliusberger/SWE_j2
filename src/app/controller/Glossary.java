@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -26,7 +27,7 @@ public class Glossary implements Initializable {
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
-        TableBinding<I_GlossaryEntry> glossaryEntryTableBinding = new TableBinding<>(_glossaryTable,
+        I_TableBinding glossaryEntryTableBinding = new TableBinding<>(_glossaryTable,
                 _data);
         glossaryEntryTableBinding.bindAll(_glossaryAddButton,
                 _glossaryEditButton,

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * S beschreibt den Typ eines Eintrages in der Tabelle, welcher das Interface {@link I_ModelPropertyAdaptor} implementieren muss. Damit sind die Implementierungen der benötigten Property-Funktionen gesichtert.
  */
-public class TableBinding<S extends I_ModelPropertyAdaptor> {
+public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBinding {
     private final TableView<S> _tableView;
     private final I_ObservableDataAdaptor<S> _dataModel;
 
@@ -33,6 +33,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> {
      * @param editButton   Bearbeiten-Button
      * @param deleteButton Löschen-Button
      */
+    @Override
     public void bindAll(Button addButton,
                         Button editButton,
                         Button deleteButton) {
