@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.helpers.Constants;
 import app.model.implementation.Project;
 import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_ClassificationEntry;
@@ -9,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -116,8 +118,11 @@ public class CostEstimation implements Initializable {
 
         int functionTypesSum = calculateFunctionTypesSums(classification);
         double impactFactor = calculateImpactFactor();
+        double functionPoints = functionTypesSum * impactFactor;
+        double menMonths = calculateMenMonths(functionPoints);
 
-        _calculatedFPLabel.setText(Double.toString(functionTypesSum * impactFactor));
+        _calculatedFPLabel.setText(Double.toString(functionPoints));
+        _calculatedMMLabel.setText(Double.toString(menMonths));
     }
 
     private double calculateImpactFactor()
@@ -231,5 +236,37 @@ public class CostEstimation implements Initializable {
         }
 
         return sumEi + sumEo + sumEq + sumIlf + sumElf;
+    }
+
+    private double calculateMenMonths(double functionPoints)
+    {
+        double menMonths = 0.0;
+
+        // falls FunctionPoints nicht zwischen 50 und 2900 liegen, wird Schätzfunktion von Jones genutzt,
+        // andernfalls die IBM-Korrespondeztabelle von 1984
+
+        if (functionPoints < 50 || functionPoints > 2900)
+        {
+            menMonths = Math.pow(functionPoints, 0.4);
+        }
+        else
+        {
+            for (Map.Entry<Integer, Integer> currentCorrelationEntry : Constants.Function_Points_Men_Months_Correlation.entrySet())
+            {
+                // falls Bedingung wahr ist, ist untere Grenze des Intervalls gefunden
+                if (currentCorrelationEntry.getKey() < functionPoints)
+                {
+                    double lowerBoundFunctionPoints = currentCorrelationEntry.getKey();
+                    double upperBoundFunctionPoints = Constants.Function_Points_Men_Months_Correlation.higherKey(currentCorrelationEntry.getKey());
+                    double lowerBoundMenMonths = currentCorrelationEntry.getValue();
+                    double upperBoundMenMonths = Constants.Function_Points_Men_Months_Correlation.get(Constants.Function_Points_Men_Months_Correlation.higherKey(currentCorrelationEntry.getKey()));
+
+                    // lineare Interpolation zwischen den Intervallgrenzen
+                    menMonths = ((upperBoundMenMonths - lowerBoundMenMonths) / (upperBoundFunctionPoints - lowerBoundFunctionPoints)) * (functionPoints - lowerBoundFunctionPoints) + lowerBoundMenMonths;
+                }
+            }
+        }
+
+        return menMonths;
     }
 }
