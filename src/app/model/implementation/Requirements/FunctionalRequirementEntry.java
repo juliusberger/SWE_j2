@@ -69,6 +69,11 @@ public class FunctionalRequirementEntry implements I_FunctionalRequirementEntry 
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "FunctionalRequirementEntry";
     }

@@ -11,8 +11,6 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
     public static void main(String[] args) {
-        /*XmlImporter_new i = new XmlImporter_new("C:\\Users\\Julius\\Desktop\\test2.xml");
-        i.importXml();*/
         launch(args);
     }
 

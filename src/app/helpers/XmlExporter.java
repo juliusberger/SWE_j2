@@ -64,7 +64,7 @@ public class XmlExporter {
         _writer.writeEndElement();
     }
 
-    public void export() {
+    public void exportXml() {
         try {
 
             _writer.writeStartDocument();

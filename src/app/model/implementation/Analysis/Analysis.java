@@ -23,6 +23,8 @@ abstract class Analysis extends ObservableEntryHolder<I_AnalysisEntry> implement
     }
 
 
+
+
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
 

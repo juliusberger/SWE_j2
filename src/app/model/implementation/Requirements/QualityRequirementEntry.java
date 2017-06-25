@@ -29,6 +29,11 @@ class QualityRequirementEntry implements I_QualityRequirementEntry {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "QualityRequirementEntry";
     }

@@ -91,6 +91,11 @@ public class Project implements I_Project {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "Project";
     }

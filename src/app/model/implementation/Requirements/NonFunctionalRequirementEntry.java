@@ -53,6 +53,11 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "NonFunctionalRequirementsEntry";
     }

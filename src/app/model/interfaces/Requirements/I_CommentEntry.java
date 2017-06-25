@@ -1,8 +1,8 @@
 package app.model.interfaces.Requirements;
 
+import app.model.interfaces.I_ModelPropertyAdaptor;
 import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
-import app.model.interfaces.I_ModelPropertyAdaptor;
 
 /**
  * Erstellt von Julius am 29/04/2017.

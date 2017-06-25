@@ -54,6 +54,11 @@ public class AnalysisEntry implements I_AnalysisEntry {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "AnalysisEntry";
     }

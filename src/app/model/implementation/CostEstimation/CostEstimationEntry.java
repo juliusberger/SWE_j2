@@ -49,6 +49,11 @@ class CostEstimationEntry implements I_CostEstimationEntry {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return null;
     }

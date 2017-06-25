@@ -1,85 +1,135 @@
 package app.helpers;
 
+
+import app.model.implementation.Project;
+import app.model.interfaces.I_Project;
+import app.model.interfaces.I_XmlModelEntity;
+
 import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 /**
- * Created by Michi on 03.06.2017.
+ * Created by Julius on 25.06.17.
  */
-public class XMLImporter {
-    XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-    private String fileName = "";
+public class XmlImporter {
+    private final String PROPERTIES_TAG = "Properties";
+    private final String PROPERTY_TAG = "Property";
+    private final String CHILDREN_TAG = "Children";
 
-    public XMLImporter(String fileName) {
-        fileName = fileName;
+    private String _fileName = "";
+    private XMLStreamReader _reader;
+
+    public XmlImporter(String fileName) {
+        _fileName = fileName;
+        try {
+            _reader = XMLInputFactory.newFactory().createXMLStreamReader(new FileInputStream(_fileName));
+        } catch (XMLStreamException e) {
+            Log.getLogger()
+                    .info("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + e.getMessage());
+            InfoDialog.show("XML-Import nicht erfolgreich",
+                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + e.getMessage());
+        } catch (FileNotFoundException e) {
+            Log.getLogger()
+                    .info("XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht geladen werden. " + e.getMessage());
+            InfoDialog.show("XML-Import nicht erfolgreich",
+                    "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht geladen werden. \n" + e.getMessage());
+        }
     }
 
-    /*public void importFromXML()
-    {
-        try {
-            XMLStreamReader xmlReader = xmlInputFactory.createXMLStreamReader(new FileInputStream(fileName));
+    private String getName() {
+        return _reader.getName().toString();
+    }
 
-            //TODO: RemoveAllExisitingData
+    private boolean isStartElem() {
+        return _reader.getEventType() == XMLStreamConstants.START_ELEMENT;
+    }
 
-            int event = xmlReader.getEventType();
-            while (xmlReader.hasNext()) {
-                if (event == XMLStreamConstants.START_ELEMENT) {
-                    if (xmlReader.getLocalName().equals("ProjectProperties")) {
-                        Project.getInstance().importFromXML(xmlReader);
-                    } else if (xmlReader.getLocalName().equals("ProjectDataProperties")){
-                        Project.getInstance().getProjectData().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("Customer")){
-                        Project.getInstance().getProjectData().getCustomer().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("ProjectEditor")){
-                        Project.getInstance().getProjectData().getProjectEditor().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("StateAnalysisEntry")){
-                        //Project.getInstance().getStateAnalysis().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("FutureAnalysisEntry")){
-                        //Project.getInstance().getFutureAnalysis().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("RequirementsProperties")){
-                        Project.getInstance().getRequirements().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("FunctionalRequirementsEntry")){
-                        Project.getInstance().getRequirements().getFunctionalRequirements().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("NonFunctionalRequirementsEntry")){
-                        Project.getInstance().getRequirements().getNonFunctionalRequirements().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("QualityRequirementsEntry")){
-                        //TODO: Vorgang für Import der QualityRequirements überlegen
-                    }
-                    else if (xmlReader.getLocalName().equals("CommentEntry")){
-                        Project.getInstance().getRequirements().getComments().importFromXML(xmlReader);
-                    }
-                    else if (xmlReader.getLocalName().equals("GlossaryEntry")){
-                        Project.getInstance().getGlossary().importFromXML(xmlReader);
-                    }
-                    //TODO: CostEstimation
+    private boolean isEndElem() {
+        return _reader.getEventType() == XMLStreamConstants.END_ELEMENT;
+    }
+
+    private ArrayList<String> processProperties() throws XMLStreamException {
+        ArrayList<String> properties = new ArrayList<>();
+        _reader.nextTag();
+        while (getName().equals(PROPERTY_TAG)) {
+            if (_reader.getEventType() != XMLStreamConstants.END_ELEMENT && _reader.getAttributeCount() > 0 && _reader
+                    .getAttributeName(0)
+                    .toString()
+                    .equals("data")) {
+                properties.add(_reader.getAttributeValue(0));
+            }
+            _reader.nextTag();
+        }
+        return properties;
+    }
+
+    private void readXmlRecursively(I_XmlModelEntity model) throws XMLStreamException {
+        if (_reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
+            String rootName = getName();
+
+            _reader.nextTag();
+
+            while (!(getName().equals(rootName) && isEndElem())) {
+                String name = getName();
+                switch (name) {
+                    case CHILDREN_TAG:
+                        if (model != null && model.getChildren() != null) {
+                            if (model.getChildren().size() > 0) {
+                                for (I_XmlModelEntity entity : model.getChildren()) {
+                                    _reader.nextTag();
+                                    if (isStartElem()) {
+                                        readXmlRecursively(entity);
+                                    }
+                                }
+                                _reader.nextTag();
+                            } else {
+                                while (!(getName().equals(name) && isEndElem())) {
+                                    _reader.nextTag();
+                                    if (isStartElem() && getName().equals(PROPERTIES_TAG)) {
+                                        model.addEntryWithProperties(processProperties());
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case PROPERTIES_TAG:
+                        if (model != null) {
+                            model.setAllProperties(processProperties());
+                        }
+                        break;
+                    default:
+                        _reader.nextTag();
+                        readXmlRecursively(model);
+                        _reader.nextTag();
+                        break;
                 }
 
-                event = xmlReader.next();
+                _reader.nextTag();
             }
+        }
+    }
 
-            System.out.println("XML-Datei erfolgreich eingelesen");
-            LogWriter.writeLog("XML-Export wurde erfolgreich eingelesen. Pfad zur Datei: " + fileName);
-            InfoDialog dialog = new InfoDialog("XML-Import erfolgreich",
+
+    public void importXml() {
+        try {
+            I_Project project = Project.getInstance();
+
+            _reader.nextTag();
+            readXmlRecursively(project);
+
+            Log.getLogger().info("XML-Import wurde erfolgreich eingelesen. Pfad zur Datei: " + _fileName);
+            InfoDialog.show("XML-Import erfolgreich",
                     "XML-Import erfolgreich abgeschlossen");
-        }
-        catch (FileNotFoundException ex)
-        {
-            LogWriter.writeLog("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog dialog = new InfoDialog("XML-Import nicht erfolgreich",
+        } catch (XMLStreamException ex) {
+            Log.getLogger()
+                    .info("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+            InfoDialog.show("XML-Import nicht erfolgreich",
                     "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
         }
-        catch (XMLStreamException ex)
-        {
-            LogWriter.writeLog("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog dialog = new InfoDialog("XML-Import nicht erfolgreich",
-                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
-        }
-    }*/
+    }
 }

@@ -54,6 +54,11 @@ class ProjectEditor implements I_ProjectEditor {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "ProjectEditor";
     }

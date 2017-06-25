@@ -53,6 +53,11 @@ public class CommentEntry implements I_CommentEntry {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "CommentEntry";
     }

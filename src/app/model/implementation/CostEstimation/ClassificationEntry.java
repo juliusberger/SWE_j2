@@ -116,6 +116,11 @@ public class ClassificationEntry implements I_ClassificationEntry {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "ClassificationEntry";
     }

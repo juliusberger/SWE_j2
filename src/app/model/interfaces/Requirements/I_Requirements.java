@@ -1,9 +1,9 @@
 package app.model.interfaces.Requirements;
 
 import app.model.interfaces.I_Clearable;
+import app.model.interfaces.I_ModelPropertyAdaptor;
 import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
-import app.model.interfaces.I_ModelPropertyAdaptor;
 
 import java.util.List;
 

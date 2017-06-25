@@ -72,6 +72,11 @@ public class ProjectData implements I_ProjectData {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "ProjectData";
     }

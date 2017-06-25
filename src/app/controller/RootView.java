@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.helpers.XmlExporter;
+import app.helpers.XmlImporter;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -78,14 +79,16 @@ public class RootView implements Initializable {
     }
 
     private void onLoadFile(File file) {
+        XmlImporter importer = new XmlImporter(file.getAbsolutePath());
+        importer.importXml();
         //XML.importXML(file.getAbsolutePath());
     }
 
     private void onSaveFile(File file) {
 /*
-        XML.export(file.getAbsolutePath());
+        XML.exportXml(file.getAbsolutePath());
 */
         XmlExporter exporter = new XmlExporter(file.getAbsolutePath());
-        exporter.export();
+        exporter.exportXml();
     }
 }

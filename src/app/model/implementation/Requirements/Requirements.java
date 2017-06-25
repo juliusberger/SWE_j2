@@ -89,6 +89,11 @@ public class Requirements implements I_Requirements {
     }
 
     @Override
+    public void addEntryWithProperties(ArrayList<String> properties) {
+
+    }
+
+    @Override
     public String getTag() {
         return "Requirements";
     }
