@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Observable;
 
 /**
@@ -30,16 +31,12 @@ import java.util.Observable;
 public class Classification extends Observable {
 
     private Stage _stage = new Stage();
-    private boolean _saveClicked = false;
 
     private TableView<I_ClassificationEntry> _tableView = new TableView<I_ClassificationEntry>();
 
     private I_Classification _dataModel = Project.getInstance().getClassification();
 
     private I_FunctionalRequirements _functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
-
-    public final ArrayList<String> _categoryArrayList = new ArrayList<>();
-    public final ArrayList<String> _classificationArrayList = new ArrayList<>();
 
     public Classification() {
 
@@ -76,6 +73,8 @@ public class Classification extends Observable {
 
             _tableView.setEditable(true);
 
+            //Bind Table to _dataModel
+
             int i = 0;
             for (String propertyName : _dataModel.getPropertyNames()) {
                 _tableView.getColumns()
@@ -83,29 +82,19 @@ public class Classification extends Observable {
                         .setCellValueFactory(new PropertyValueFactory<>(propertyName));
             }
 
-            //Bind Table to _dataModel
-
-            _dataModel.removeExistingData();
-
-            if (_categoryArrayList.size() != _functionalRequirements.getEntries().size()){
-
-                _categoryArrayList.clear();
-                _classificationArrayList.clear();
-
-                for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
-                    _categoryArrayList.add("");
-                    _classificationArrayList.add("");
-                }
-            }
-
             for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
+                boolean duplicate = false;
 
                 ArrayList<String> functionalRequirementEntry = _functionalRequirements.getEntries().get(index).getAllProperties();
 
-                _dataModel.addEntryWithProperties(functionalRequirementEntry);
-
-                _dataModel.getEntries().get(index).setCategory(_categoryArrayList.get(index));
-                _dataModel.getEntries().get(index).setClassification(_classificationArrayList.get(index));
+                for (int h = 0; h < _dataModel.getEntries().size(); h++) {
+                    if (Objects.equals(functionalRequirementEntry.get(0), _dataModel.getEntries().get(h).getFunction())) {
+                        duplicate = true;
+                    }
+                }
+                if (!duplicate) {
+                    _dataModel.addEntryWithProperties(functionalRequirementEntry);
+                }
             }
 
             _tableView.setItems(_dataModel.getEntries());
@@ -117,22 +106,15 @@ public class Classification extends Observable {
 
         {
             Button saveButton = new Button("Speichern");
-            Button cancelButton = new Button("Abbrechen");
             saveButton.setOnAction(event -> save());
-            cancelButton.setOnAction(event -> close());
             saveButton.setMaxWidth(1.7976931348623157E308);
-            cancelButton.setMaxWidth(1.7976931348623157E308);
             HBox.setHgrow(saveButton,
                     Priority.ALWAYS);
-            HBox.setHgrow(cancelButton,
-                    Priority.ALWAYS);
-
             HBox buttonBox = new HBox();
             buttonBox.getStyleClass().add("button-hbox");
 
             buttonBox.getChildren()
-                    .addAll(saveButton,
-                            cancelButton);
+                    .addAll(saveButton);
 
             vBox.getChildren().add(buttonBox);
         }
@@ -141,26 +123,9 @@ public class Classification extends Observable {
     }
 
     private void save() {
-
-        for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
-
-            //_categoryArrayList.set(index, _dataModel.getEntries().get(index).getCategory());
-            _categoryArrayList.set(index, _tableView.getItems().get(index).getCategory());
-            _classificationArrayList.set(index, _tableView.getItems().get(index).getClassification());
-        }
-
-        _saveClicked = true;
-        close();
-    }
-
-    private void close() {
         _stage.close();
         setChanged();
         notifyObservers();
-    }
-
-    boolean isSaveClicked() {
-        return _saveClicked;
     }
 
     void show() {

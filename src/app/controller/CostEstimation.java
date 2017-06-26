@@ -110,6 +110,12 @@ public class CostEstimation implements Initializable {
         });
 
         _performCostEstimationButton.setOnAction(event -> performCostEstimation());
+
+        _manualOptimizationButton.setOnAction(event -> {
+            Classification classification = new Classification();
+            classification.show();
+            performCostEstimation();
+        });
     }
 
     private void performCostEstimation()
