@@ -7,7 +7,7 @@
       stylesheets="@../assets/global.css"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.controller.FutureAnalysis">
+      fx:controller="app.controller.FutureAnalysisController">
 	<Label styleClass="h3">
 		SOLL-Analyse
 	</Label>

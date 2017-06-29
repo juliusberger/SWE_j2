@@ -7,7 +7,7 @@
       stylesheets="@../assets/global.css"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.controller.StateAnalysis">
+      fx:controller="app.controller.StateAnalysisController">
 	<Label styleClass="h3">
 		IST-Analyse
 	</Label>

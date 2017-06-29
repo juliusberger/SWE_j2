@@ -9,7 +9,7 @@
       stylesheets="@../assets/global.css"
       xmlns="http://javafx.com/javafx/8.0.112"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="app.controller.ProjectData">
+      fx:controller="app.controller.ProjectDataController">
     <VBox>
 	    <Label styleClass="h3">
             Projekt

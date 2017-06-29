@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="p-10" stylesheets="@../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CostEstimation">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="p-10" stylesheets="@../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CostEstimationController">
 	<VBox spacing="10.0">
 
 		<Label styleClass="h3">

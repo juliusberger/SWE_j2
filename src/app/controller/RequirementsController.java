@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 /**
  * Erstellt von Julius am 23/04/2017.
  */
-public class Requirements implements Initializable {
+public class RequirementsController implements Initializable {
 
     public TextArea _projectGoalText;
     public TextArea _fieldOfApplicationText;

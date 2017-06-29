@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 /**
  * Erstellt von Julius am 22/04/2017.
  */
-public class ProjectData implements Initializable {
+public class ProjectDataController implements Initializable {
 
     public TextField _projectName;
     public TextField _projectDueDate;

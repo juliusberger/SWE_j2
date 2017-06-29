@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 /**
  * Erstellt von Julius am 22/04/2017.
  */
-public class RootView implements Initializable {
+public class RootViewController implements Initializable {
 
     public AnchorPane _anchorPane;
 
