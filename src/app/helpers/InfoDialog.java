@@ -1,8 +1,10 @@
 package app.helpers;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -14,9 +16,43 @@ import javafx.stage.StageStyle;
 /**
  * Erstellt von Julius am 06/05/2017.
  */
-class InfoDialog {
-    static void show(String title, String message) {
-        Stage stage = new Stage();
+public class InfoDialog {
+
+    public static void show(String title, String header, String message, AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+
+        DialogPane alertPane = alert.getDialogPane();
+
+        for (ButtonType type : alertPane.getButtonTypes()) {
+            ((Button) alertPane.lookupButton(type)).setOnAction(e -> {
+                alertPane.getScene().getWindow().hide();
+            });
+        }
+
+        alertPane.getScene().setRoot(new Label());
+
+        Scene scene = new Scene(alertPane);
+        Stage dialog = new Stage();
+        dialog.setScene(scene);
+        dialog.setTitle(title);
+        dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
+
+        dialog.showAndWait();
+    }
+
+    public static void show(String title, String header, String message) {
+        show(title, header, message, AlertType.INFORMATION);
+    }
+
+    public static void show(String title, String message, AlertType alertType) {
+        show(title, null, message, alertType);
+    }
+
+    public static void show(String title, String message) {
+        show(title, null, message, AlertType.INFORMATION);
+        /*Stage stage = new Stage();
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.DECORATED);
@@ -46,6 +82,9 @@ class InfoDialog {
         vBox.getChildren().add(buttonBox);
 
         stage.setScene(new Scene(vBox));
-        stage.show();
+        stage.show();*/
     }
+
+
+
 }

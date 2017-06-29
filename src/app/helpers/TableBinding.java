@@ -49,7 +49,8 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
      * Bindet die Tabellenpopulation an das Datenmodel. Dies geschieht (bei JavaFX) über PropertyValueFactories,
      * die mit den String-Propertynames des Models initialisiert werden.
      */
-    private void bindTableToData() {
+    @Override
+    public void bindTableToData() {
         int index = 0;
         for (String propertyName : _dataModel.getPropertyNames()) {
             _tableView.getColumns()
@@ -133,11 +134,19 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
             dialog.show();
         });
 
+        enableDoubleClickToEdit(editButton);
+    }
+
+    /**
+     * Aktiviert den "Bearbeitn"-Dialog beim Doppelklick auf einen Eintrag. Dabei wird das reguläre Event ausgelöst, dass beim Klick auf "Bearbeiten" ausgelöst wird.
+     * @param originalEditButton
+     */
+    private void enableDoubleClickToEdit(Button originalEditButton) {
         _tableView.setRowFactory(tv -> {
             TableRow<S> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && !row.isEmpty()) {
-                    editButton.getOnAction().handle(null);
+                    originalEditButton.getOnAction().handle(null);
                 }
             });
             return row;

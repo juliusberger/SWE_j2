@@ -9,4 +9,5 @@ public interface I_TableBinding {
     void bindAll(Button addButton,
                  Button editButton,
                  Button deleteButton);
+    void bindTableToData();
 }
