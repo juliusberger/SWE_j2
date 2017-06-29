@@ -15,7 +15,7 @@ import java.io.FileOutputStream;
  * Created by Michi on 03.06.2017.
  */
 public class XmlExporter implements I_XmlExporter {
-    private String _fileName;
+    private final String _fileName;
     private XMLStreamWriter _writer;
 
     public XmlExporter(String fileName) {

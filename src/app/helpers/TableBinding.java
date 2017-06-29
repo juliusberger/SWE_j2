@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Hilfsklasse zur einfachen Tabellenpopulation und Verknüpfung der Tabelleneinträge mit einem Datenmodel.
  *
- * S beschreibt den Typ eines Eintrages in der Tabelle, welcher das Interface {@link I_ModelPropertyAdaptor} implementieren muss. Damit sind die Implementierungen der benötigten Property-Funktionen gesichtert.
+ * S beschreibt den Typ eines Eintrages in der Tabelle, welcher das Interface {@link I_ModelPropertyAdaptor} implementieren muss. Damit sind die Implementierungen der benötigten Property-Funktionen gesichert.
  */
 public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBinding {
     private final TableView<S> _tableView;
@@ -138,7 +138,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
     }
 
     /**
-     * Aktiviert den "Bearbeitn"-Dialog beim Doppelklick auf einen Eintrag. Dabei wird das reguläre Event ausgelöst, dass beim Klick auf "Bearbeiten" ausgelöst wird.
+     * Aktiviert den "Bearbeiten"-Dialog beim Doppelklick auf einen Eintrag. Dabei wird das reguläre Event ausgelöst, dass beim Klick auf "Bearbeiten" ausgelöst wird.
      * @param originalEditButton
      */
     private void enableDoubleClickToEdit(Button originalEditButton) {

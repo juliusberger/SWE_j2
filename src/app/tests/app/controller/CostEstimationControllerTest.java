@@ -18,7 +18,7 @@ class CostEstimationControllerTest {
 
     // test method: calculateMenMonths(double functionPoints)
     private Method _testCalculateMenMonths;
-    private static String CALCULATE_MEN_MONTH_NAME = "calculateMenMonths";
+    private static final String CALCULATE_MEN_MONTH_NAME = "calculateMenMonths";
     private Class[] parameterTypes_CALCULATE_MEN_MONTH;
     private Object[] parameters_CALCULATE_MEN_MONTH;
 
@@ -83,7 +83,7 @@ class CostEstimationControllerTest {
     //
     @Test
     public void testCalculateFunctionTypesSums() throws Exception {
-        I_Classification classification = (I_Classification) new Classification();
+        I_Classification classification = new Classification();
         // Die ersten drei Einträge sind bei dieser Methode nicht relevant, weshalb hier jeweils "Test" als Platzhalter gewählt wurde
         // Die klassifizierten Anforderungen entsprechen in der Anzahl der von uns im 3. Semester angefertigten Aufwandsschätzung als Teil der Spezifikation
         // das bedeutet:

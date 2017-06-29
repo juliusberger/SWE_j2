@@ -1,17 +1,10 @@
 package app.helpers;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * Erstellt von Julius am 06/05/2017.
@@ -26,9 +19,7 @@ public class InfoDialog {
         DialogPane alertPane = alert.getDialogPane();
 
         for (ButtonType type : alertPane.getButtonTypes()) {
-            ((Button) alertPane.lookupButton(type)).setOnAction(e -> {
-                alertPane.getScene().getWindow().hide();
-            });
+            ((Button) alertPane.lookupButton(type)).setOnAction(e -> alertPane.getScene().getWindow().hide());
         }
 
         alertPane.getScene().setRoot(new Label());

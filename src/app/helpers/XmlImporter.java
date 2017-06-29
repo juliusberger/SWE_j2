@@ -4,7 +4,6 @@ package app.helpers;
 import app.model.implementation.Project;
 import app.model.interfaces.I_Project;
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.scene.control.Alert;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;

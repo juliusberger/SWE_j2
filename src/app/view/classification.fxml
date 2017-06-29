@@ -13,7 +13,7 @@
     <TableView fx:id="_classificationTable" editable="true" maxHeight="360.0">
         <columns>
             <TableColumn text="Funktion"/>
-            <TableColumn text="Bschreibung"/>
+            <TableColumn text="Beschreibung"/>
             <TableColumn text="Akteur"/>
             <TableColumn fx:id="_categoryColumn" text="Kategorie"/>
             <TableColumn fx:id="_classificationColumn" text="Klassifizierung"/>

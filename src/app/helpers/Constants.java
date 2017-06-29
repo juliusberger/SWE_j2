@@ -7,7 +7,7 @@ import java.util.TreeMap;
  * Created by Michi on 25.06.2017.
  */
 public class Constants {
-    public static final NavigableMap<Integer, Integer> Function_Points_Men_Months_Correlation = new TreeMap<Integer, Integer>();
+    public static final NavigableMap<Integer, Integer> Function_Points_Men_Months_Correlation = new TreeMap<>();
     static {
         Function_Points_Men_Months_Correlation.put(50, 5);
         Function_Points_Men_Months_Correlation.put(100, 8);

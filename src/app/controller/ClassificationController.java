@@ -41,8 +41,8 @@ public class ClassificationController implements Initializable {
 
     public Button _classificationSaveButton;
 
-    private I_Classification _dataModel = Project.getInstance().getClassification();
-    private I_FunctionalRequirements _functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
+    private final I_Classification _dataModel = Project.getInstance().getClassification();
+    private final I_FunctionalRequirements _functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
 
     static void showClassificationDialog() {
         final Stage stage = new Stage();
