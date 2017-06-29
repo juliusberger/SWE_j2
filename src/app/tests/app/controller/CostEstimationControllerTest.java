@@ -48,12 +48,12 @@ class CostEstimationControllerTest {
         parameters_CALCULATE_FUNCTION_TYPES_SUMS = new Object[1];
     }
 
-    // 4,68 < 50
+    // 45 < 50
     @Test
     public void testCalculateMenMonths0() throws Exception {
-        parameters_CALCULATE_MEN_MONTH[0] = 4.68;
+        parameters_CALCULATE_MEN_MONTH[0] = 45;
         double result = (Double) _testCalculateMenMonths.invoke(_costEstimation, parameters_CALCULATE_MEN_MONTH);
-        assertEquals(result, 26.24);
+        assertEquals(Math.round(100.0 * result) / 100.0, 4.58);
     }
 
     // 50 <= 233,0 <= 2900
@@ -61,7 +61,7 @@ class CostEstimationControllerTest {
     public void testCalculateMenMonths1() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 233.0;
         double result = (Double) _testCalculateMenMonths.invoke(_costEstimation, parameters_CALCULATE_MEN_MONTH);
-        assertEquals(result, 15.98);
+        assertEquals(Math.round(100.0 * result) / 100.0, 15.98);
     }
 
     // 50 <= 233,0 <= 2900
@@ -69,7 +69,7 @@ class CostEstimationControllerTest {
     public void testCalculateMenMonths2() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 378.0;
         double result = (Double) _testCalculateMenMonths.invoke(_costEstimation, parameters_CALCULATE_MEN_MONTH);
-        assertEquals(result, 26.24);
+        assertEquals(Math.round(100.0 * result) / 100.0, 26.24);
     }
 
     // 3576,49 < 2900
@@ -77,7 +77,7 @@ class CostEstimationControllerTest {
     public void testCalculateMenMonths3() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 3576.49;
         double result = (Double) _testCalculateMenMonths.invoke(_costEstimation, parameters_CALCULATE_MEN_MONTH);
-        assertEquals(result, 26.39);
+        assertEquals(Math.round(100.0 * result) / 100.0, 26.39);
     }
 
     //

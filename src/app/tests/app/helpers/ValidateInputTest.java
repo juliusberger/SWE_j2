@@ -246,9 +246,9 @@ class ValidateInputTest {
 
     @Test
     public void testIsValidEmailAddress0() throws Exception {
-        parameters_IS_VALID_EMAIL_ADDRESS[0] = "max.mustermann@mail.ungueltig";
+        parameters_IS_VALID_EMAIL_ADDRESS[0] = "max.mustermann@mail.gueltig";
         boolean result = (boolean) _testIsValidEmailAddress.invoke(_validateInput, parameters_IS_VALID_EMAIL_ADDRESS);
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test
