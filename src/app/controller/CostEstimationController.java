@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Julius on 26.04.17.
  */
-public class CostEstimation implements Initializable {
+public class CostEstimationController implements Initializable {
 
     public Button _classifyRequirementsButton;
 
@@ -112,10 +112,7 @@ public class CostEstimation implements Initializable {
                         .get(9)
                         .getWeightProperty());
 
-        _classifyRequirementsButton.setOnAction(event -> {
-            Classification classification = new Classification();
-            classification.show();
-        });
+        _classifyRequirementsButton.setOnAction(event -> ClassificationController.showClassificationDialog());
 
         _performCostEstimationButton.setOnAction(event -> {
             performCostEstimation();
@@ -123,8 +120,7 @@ public class CostEstimation implements Initializable {
         });
 
         _manualOptimizationButton.setOnAction(event -> {
-            Classification classification = new Classification();
-            classification.show();
+            ClassificationController.showClassificationDialog();
             performCostEstimation();
         });
 
