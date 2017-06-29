@@ -2,6 +2,7 @@ package app.controller;
 
 
 import app.helpers.I_TableBinding;
+import app.helpers.InfoDialog;
 import app.helpers.TableBinding;
 import app.model.implementation.Project;
 import app.model.interfaces.CostEstimation.I_Classification;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,17 +44,23 @@ public class ClassificationController implements Initializable {
     private I_Classification _dataModel = Project.getInstance().getClassification();
     private I_FunctionalRequirements _functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
 
-    static void showClassificationDialog() throws IOException {
+    static void showClassificationDialog() {
         final Stage stage = new Stage();
 
-        VBox vBox = FXMLLoader.load(ClassificationController.class.getResource("../view/classification.fxml"));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle("Anforderungen klassifizieren");
-        stage.getIcons().add(new Image(ClassificationController.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
-        stage.setScene(new Scene(vBox));
+        try {
+            VBox vBox = FXMLLoader.load(ClassificationController.class.getResource("../view/classification.fxml"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setTitle("Anforderungen klassifizieren");
+            stage.getIcons().add(new Image(ClassificationController.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
+            stage.setScene(new Scene(vBox));
 
-        stage.showAndWait();
+            stage.showAndWait();
+        } catch (IOException e) {
+            InfoDialog.show("Fehler", "Programmfehler", "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+
     }
 
     @Override
