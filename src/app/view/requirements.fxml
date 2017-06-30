@@ -2,297 +2,518 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<ScrollPane hbarPolicy="NEVER"
-            fitToWidth="true"
-            styleClass="p-10"
-            stylesheets="@../assets/global.css"
-            xmlns="http://javafx.com/javafx/8.0.112"
-            xmlns:fx="http://javafx.com/fxml/1"
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" hbarPolicy="NEVER" fitToWidth="true" styleClass="p-10"
+            stylesheets="@../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
             fx:controller="app.controller.RequirementsController">
-	<VBox spacing="10.0">
-		<fx:define>
-			<ToggleGroup fx:id="_tg1"/>
-			<ToggleGroup fx:id="_tg2"/>
-			<ToggleGroup fx:id="_tg3"/>
-			<ToggleGroup fx:id="_tg4"/>
-			<ToggleGroup fx:id="_tg5"/>
-		</fx:define>
+    <VBox spacing="10.0">
+        <fx:define>
+            <ToggleGroup fx:id="_tg1"/>
+            <ToggleGroup fx:id="_tg2"/>
+            <ToggleGroup fx:id="_tg3"/>
+            <ToggleGroup fx:id="_tg4"/>
+            <ToggleGroup fx:id="_tg5"/>
+            <ToggleGroup fx:id="_tg6"/>
+            <ToggleGroup fx:id="_tg7"/>
+            <ToggleGroup fx:id="_tg8"/>
+            <ToggleGroup fx:id="_tg9"/>
+            <ToggleGroup fx:id="_tg10"/>
+            <ToggleGroup fx:id="_tg11"/>
+            <ToggleGroup fx:id="_tg12"/>
+            <ToggleGroup fx:id="_tg13"/>
+            <ToggleGroup fx:id="_tg14"/>
+            <ToggleGroup fx:id="_tg15"/>
+            <ToggleGroup fx:id="_tg16"/>
+            <ToggleGroup fx:id="_tg17"/>
+            <ToggleGroup fx:id="_tg18"/>
+            <ToggleGroup fx:id="_tg19"/>
+            <ToggleGroup fx:id="_tg20"/>
+            <ToggleGroup fx:id="_tg21"/>
+            <ToggleGroup fx:id="_tg22"/>
+            <ToggleGroup fx:id="_tg23"/>
+            <ToggleGroup fx:id="_tg24"/>
+            <ToggleGroup fx:id="_tg25"/>
+            <ToggleGroup fx:id="_tg26"/>
+            <ToggleGroup fx:id="_tg27"/>
+            <ToggleGroup fx:id="_tg28"/>
+        </fx:define>
 
 
-		<Label styleClass="h3">
-			Zielbestimmung
-		</Label>
-		<TextArea wrapText="true"
-		          fx:id="_projectGoalText"
-		          maxHeight="60.0"/>
+        <Label styleClass="h3">
+            Zielbestimmung
+        </Label>
+        <TextArea wrapText="true" fx:id="_projectGoalText" maxHeight="60.0"/>
 
-		<Separator/>
+        <Separator/>
 
-		<Label styleClass="h3">
-			Produkteinsatz
-		</Label>
-		<TextArea wrapText="true"
-		          fx:id="_fieldOfApplicationText"
-		          maxHeight="60.0"/>
+        <Label styleClass="h3">
+            Produkteinsatz
+        </Label>
+        <TextArea wrapText="true" fx:id="_fieldOfApplicationText" maxHeight="60.0"/>
 
-		<Separator/>
+        <Separator/>
 
-		<Label styleClass="h3">
-			Funktionale Anforderungen
-		</Label>
-		<TableView fx:id="_functionalRequirementsTable"
-		           maxHeight="120.0">
-			<placeholder>
-				<Label text="Keine Einträge"/>
-			</placeholder>
-			<columns>
-				<TableColumn text="Funktion"/>
-				<TableColumn text="Beschreibung"/>
-				<TableColumn text="Akteur"/>
-			</columns>
-			<columnResizePolicy>
-				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-			</columnResizePolicy>
-		</TableView>
-		<HBox styleClass="button-hbox">
-			<Button fx:id="_functionalRequirementsAddButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">
-				Eintrag hinzufügen
-			</Button>
-			<Button fx:id="_functionalRequirementsEditButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">
-				Eintrag bearbeiten
-			</Button>
-			<Button fx:id="_functionalRequirementsDeleteButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">
-				Eintrag löschen
-			</Button>
-		</HBox>
+        <Label styleClass="h3">
+            Funktionale Anforderungen
+        </Label>
+        <TableView fx:id="_functionalRequirementsTable" maxHeight="120.0">
+            <placeholder>
+                <Label text="Keine Einträge"/>
+            </placeholder>
+            <columns>
+                <TableColumn text="Funktion"/>
+                <TableColumn text="Beschreibung"/>
+                <TableColumn text="Akteur"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+        <HBox styleClass="button-hbox">
+            <Button fx:id="_functionalRequirementsAddButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                Eintrag hinzufügen
+            </Button>
+            <Button fx:id="_functionalRequirementsEditButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                Eintrag bearbeiten
+            </Button>
+            <Button fx:id="_functionalRequirementsDeleteButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                Eintrag löschen
+            </Button>
+        </HBox>
 
-		<Separator/>
+        <Separator/>
 
-		<Label styleClass="h3">
-			Nicht-Funktionale Anforderungen
-		</Label>
-		<TableView fx:id="_nonFunctionalRequirementsTable"
-		           maxHeight="120.0">
-			<placeholder>
-				<Label text="Keine Einträge"/>
-			</placeholder>
-			<columns>
-				<TableColumn text="Geschäftsprozess"/>
-				<TableColumn text="Beschreibung"/>
-			</columns>
-			<columnResizePolicy>
-				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-			</columnResizePolicy>
-		</TableView>
-		<HBox styleClass="button-hbox">
-			<Button fx:id="_nonFunctionalRequirementsAddButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">
-				Eintrag hinzufügen
-			</Button>
-			<Button fx:id="_nonFunctionalRequirementsEditButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">
-				Eintrag bearbeiten
-			</Button>
-			<Button fx:id="_nonFunctionalRequirementsDeleteButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">
-				Eintrag löschen
-			</Button>
-		</HBox>
+        <Label styleClass="h3">
+            Nicht-Funktionale Anforderungen
+        </Label>
+        <TableView fx:id="_nonFunctionalRequirementsTable" maxHeight="120.0">
+            <placeholder>
+                <Label text="Keine Einträge"/>
+            </placeholder>
+            <columns>
+                <TableColumn text="Geschäftsprozess"/>
+                <TableColumn text="Beschreibung"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+        <HBox styleClass="button-hbox">
+            <Button fx:id="_nonFunctionalRequirementsAddButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                Eintrag hinzufügen
+            </Button>
+            <Button fx:id="_nonFunctionalRequirementsEditButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                Eintrag bearbeiten
+            </Button>
+            <Button fx:id="_nonFunctionalRequirementsDeleteButton" maxWidth="1.7976931348623157E308"
+                    HBox.hgrow="ALWAYS">
+                Eintrag löschen
+            </Button>
+        </HBox>
 
-		<Separator/>
-
-		<Label styleClass="h3">
-			Qualitätsanforderungen
-		</Label>
-		<GridPane styleClass="pt-5"
-		          HBox.hgrow="ALWAYS">
-			<Label GridPane.columnIndex="1">Wichtig</Label>
-			<Label GridPane.columnIndex="2">Mittel</Label>
-			<Label GridPane.columnIndex="3">Niedrig</Label>
-			<Label GridPane.columnIndex="4">Irrelevant</Label>
-
-			<Label styleClass="ph-5"
-			       GridPane.rowIndex="1">Funktionalität:
-			</Label>
-			<RadioButton userData="0"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg1}"
-			             GridPane.columnIndex="1"
-			             GridPane.rowIndex="1"/>
-			<RadioButton userData="1"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg1}"
-			             GridPane.columnIndex="2"
-			             GridPane.rowIndex="1"/>
-			<RadioButton userData="2"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg1}"
-			             GridPane.columnIndex="3"
-			             GridPane.rowIndex="1"/>
-			<RadioButton userData="3"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg1}"
-			             GridPane.columnIndex="4"
-			             GridPane.rowIndex="1"/>
-
-			<Label styleClass="ph-5"
-			       GridPane.rowIndex="2">Zuverlässigkeit:
-			</Label>
-			<RadioButton userData="0"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg2}"
-			             GridPane.columnIndex="1"
-			             GridPane.rowIndex="2"/>
-			<RadioButton userData="1"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg2}"
-			             GridPane.columnIndex="2"
-			             GridPane.rowIndex="2"/>
-			<RadioButton userData="2"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg2}"
-			             GridPane.columnIndex="3"
-			             GridPane.rowIndex="2"/>
-			<RadioButton userData="3"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg2}"
-			             GridPane.columnIndex="4"
-			             GridPane.rowIndex="2"/>
-
-			<Label styleClass="ph-5"
-			       GridPane.rowIndex="3">Effizienz:
-			</Label>
-			<RadioButton userData="0"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg3}"
-			             GridPane.columnIndex="1"
-			             GridPane.rowIndex="3"/>
-			<RadioButton userData="1"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg3}"
-			             GridPane.columnIndex="2"
-			             GridPane.rowIndex="3"/>
-			<RadioButton userData="2"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg3}"
-			             GridPane.columnIndex="3"
-			             GridPane.rowIndex="3"/>
-			<RadioButton userData="3"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg3}"
-			             GridPane.columnIndex="4"
-			             GridPane.rowIndex="3"/>
-
-			<Label styleClass="ph-5"
-			       GridPane.rowIndex="4">Wartbarkeit/Änderbarkeit:
-			</Label>
-			<RadioButton userData="0"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg4}"
-			             GridPane.columnIndex="1"
-			             GridPane.rowIndex="4"/>
-			<RadioButton userData="1"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg4}"
-			             GridPane.columnIndex="2"
-			             GridPane.rowIndex="4"/>
-			<RadioButton userData="2"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg4}"
-			             GridPane.columnIndex="3"
-			             GridPane.rowIndex="4"/>
-			<RadioButton userData="3"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg4}"
-			             GridPane.columnIndex="4"
-			             GridPane.rowIndex="4"/>
-
-			<Label styleClass="ph-5"
-			       GridPane.rowIndex="5">Übertragbarkeit:
-			</Label>
-			<RadioButton userData="0"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg5}"
-			             GridPane.columnIndex="1"
-			             GridPane.rowIndex="5"/>
-			<RadioButton userData="1"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg5}"
-			             GridPane.columnIndex="2"
-			             GridPane.rowIndex="5"/>
-			<RadioButton userData="2"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg5}"
-			             GridPane.columnIndex="3"
-			             GridPane.rowIndex="5"/>
-			<RadioButton userData="3"
-			             mnemonicParsing="false"
-			             toggleGroup="${_tg5}"
-			             GridPane.columnIndex="4"
-			             GridPane.rowIndex="5"/>
+        <Separator/>
 
 
-			<columnConstraints>
-				<ColumnConstraints prefWidth="150"/>
-				<ColumnConstraints halignment="CENTER"
-				                   hgrow="SOMETIMES"/>
-				<ColumnConstraints halignment="CENTER"
-				                   hgrow="SOMETIMES"/>
-				<ColumnConstraints halignment="CENTER"
-				                   hgrow="SOMETIMES"/>
-				<ColumnConstraints halignment="CENTER"
-				                   hgrow="SOMETIMES"/>
-			</columnConstraints>
-			<rowConstraints>
-				<RowConstraints minHeight="30.0"/>
-				<RowConstraints minHeight="20.0"/>
-				<RowConstraints minHeight="20.0"/>
-				<RowConstraints minHeight="20.0"/>
-				<RowConstraints minHeight="20.0"/>
-				<RowConstraints minHeight="20.0"/>
-			</rowConstraints>
-		</GridPane>
+        <Label styleClass="h3">
+            Qualitätsanforderungen
+        </Label>
+        <GridPane styleClass="pt-5" HBox.hgrow="ALWAYS">
+            <Label GridPane.columnIndex="1">Wichtig</Label>
+            <Label GridPane.columnIndex="2">Mittel</Label>
+            <Label GridPane.columnIndex="3">Niedrig</Label>
+            <Label GridPane.columnIndex="4">Irrelevant</Label>
 
-		<Separator/>
 
-		<Label styleClass="h3">
-			Ergänzungen
-		</Label>
-		<TableView fx:id="_commentsTable"
-		           maxHeight="120.0">
-			<placeholder>
-				<Label text="Keine Einträge"/>
-			</placeholder>
-			<columns>
-				<TableColumn text="Thema/Rubrik/Schlagwort"/>
-				<TableColumn text="Beschreibung"/>
-			</columns>
-			<columnResizePolicy>
-				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-			</columnResizePolicy>
-		</TableView>
-		<HBox styleClass="button-hbox">
-			<Button fx:id="_commentsAddButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">Eintrag hinzufügen
-			</Button>
-			<Button fx:id="_commentsEditButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">Eintrag bearbeiten
-			</Button>
-			<Button fx:id="_commentsDeleteButton"
-			        maxWidth="1.7976931348623157E308"
-			        HBox.hgrow="ALWAYS">Eintrag löschen
-			</Button>
-		</HBox>
-	</VBox>
+            <Label GridPane.rowIndex="1">
+                <styleClass>ph-5</styleClass>
+                <styleClass>h4</styleClass>
+                Funktionalität
+            </Label>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="2">Angemessenheit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg1}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="2"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg1}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="2"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg1}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="2"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg1}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="2"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="3">Richtigkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg2}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="3"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg2}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="3"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg2}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="3"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg2}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="3"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="4">Interoperabilität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg3}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="4"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg3}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="4"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg3}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="4"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg3}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="4"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="5">Sicherheit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg4}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="5"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg4}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="5"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg4}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="5"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg4}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="5"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="6">Ordnungsmäßigkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg5}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="6"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg5}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="6"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg5}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="6"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg5}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="6"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="7">Konformität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg6}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="7"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg6}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="7"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg6}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="7"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg6}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="7"/>
+
+
+            <Label GridPane.rowIndex="8">
+                <styleClass>ph-5</styleClass>
+                <styleClass>h4</styleClass>
+                Zuverlässigkeit
+            </Label>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="9">Reife:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg7}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="9"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg7}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="9"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg7}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="9"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg7}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="9"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="10">Fehlertoleranz:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg8}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="10"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg8}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="10"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg8}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="10"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg8}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="10"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="11">Wiederherstellbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg9}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="11"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg9}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="11"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg9}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="11"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg9}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="11"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="12">Konformität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg10}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="12"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg10}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="12"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg10}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="12"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg10}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="12"/>
+
+
+            <Label GridPane.rowIndex="13">
+                <styleClass>ph-5</styleClass>
+                <styleClass>h4</styleClass>
+                Benutzbarkeit
+            </Label>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="14">Verständlichkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg11}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="14"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg11}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="14"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg11}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="14"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg11}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="14"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="15">Erlernbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg12}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="15"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg12}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="15"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg12}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="15"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg12}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="15"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="16">Bedienbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg13}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="16"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg13}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="16"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg13}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="16"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg13}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="16"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="17">Attraktivität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg14}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="17"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg14}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="17"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg14}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="17"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg14}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="17"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="18">Konformität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg15}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="18"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg15}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="18"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg15}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="18"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg15}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="18"/>
+
+
+            <Label GridPane.rowIndex="19">
+                <styleClass>ph-5</styleClass>
+                <styleClass>h4</styleClass>
+                Effizienz
+            </Label>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="20">Zeitverhalten:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg16}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="20"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg16}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="20"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg16}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="20"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg16}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="20"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="21">Verbrauchsverhalten:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg17}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="21"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg17}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="21"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg17}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="21"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg17}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="21"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="22">Konformität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg18}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="22"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg18}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="22"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg18}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="22"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg18}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="22"/>
+
+
+            <Label GridPane.rowIndex="23">
+                <styleClass>ph-5</styleClass>
+                <styleClass>h4</styleClass>
+                Wartbarkeit/Änderbarkeit
+            </Label>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="24">Analysierbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg19}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="24"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg19}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="24"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg19}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="24"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg19}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="24"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="25">Modifizierbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg20}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="25"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg20}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="25"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg20}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="25"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg20}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="25"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="26">Stabilität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg21}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="26"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg21}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="26"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg21}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="26"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg21}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="26"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="27">Testbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg22}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="27"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg22}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="27"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg22}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="27"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg22}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="27"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="28">Konformität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg23}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="28"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg23}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="28"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg23}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="28"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg23}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="28"/>
+
+
+            <Label GridPane.rowIndex="29">
+                <styleClass>ph-5</styleClass>
+                <styleClass>h4</styleClass>
+                Übertragbarkeit
+            </Label>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="30">Anpassbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg24}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="30"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg24}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="30"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg24}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="30"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg24}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="30"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="31">Installierbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg25}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="31"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg25}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="31"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg25}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="31"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg25}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="31"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="32">Koexistenz:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg26}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="32"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg26}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="32"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg26}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="32"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg26}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="32"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="33">Austauschbarkeit:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg27}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="33"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg27}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="33"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg27}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="33"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg27}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="33"/>
+
+            <Label styleClass="ph-5" GridPane.rowIndex="34">Konformität:
+            </Label>
+            <RadioButton userData="0" mnemonicParsing="false" toggleGroup="${_tg28}" GridPane.columnIndex="1"
+                         GridPane.rowIndex="34"/>
+            <RadioButton userData="1" mnemonicParsing="false" toggleGroup="${_tg28}" GridPane.columnIndex="2"
+                         GridPane.rowIndex="34"/>
+            <RadioButton userData="2" mnemonicParsing="false" toggleGroup="${_tg28}" GridPane.columnIndex="3"
+                         GridPane.rowIndex="34"/>
+            <RadioButton userData="3" mnemonicParsing="false" toggleGroup="${_tg28}" GridPane.columnIndex="4"
+                         GridPane.rowIndex="34"/>
+
+
+            <columnConstraints>
+                <ColumnConstraints prefWidth="150"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="30.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+            </rowConstraints>
+        </GridPane>
+
+        <Separator/>
+
+        <Label styleClass="h3">
+            Ergänzungen
+        </Label>
+        <TableView fx:id="_commentsTable" maxHeight="120.0">
+            <placeholder>
+                <Label text="Keine Einträge"/>
+            </placeholder>
+            <columns>
+                <TableColumn text="Thema/Rubrik/Schlagwort"/>
+                <TableColumn text="Beschreibung"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+        <HBox styleClass="button-hbox">
+            <Button fx:id="_commentsAddButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Eintrag hinzufügen
+            </Button>
+            <Button fx:id="_commentsEditButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Eintrag bearbeiten
+            </Button>
+            <Button fx:id="_commentsDeleteButton" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">Eintrag löschen
+            </Button>
+        </HBox>
+    </VBox>
 </ScrollPane>
