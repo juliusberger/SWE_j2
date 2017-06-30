@@ -1,8 +1,9 @@
 package app.model.implementation.Requirements;
 
+import app.model.interfaces.I_Clearable;
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.beans.property.SimpleStringProperty;
 import app.model.interfaces.Requirements.*;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Requirements implements I_Requirements {
     private final I_Comments _comments = new Comments();
 
     public Requirements() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 28; i++) {
             _qualityRequirementEntries.add(new QualityRequirementEntry());
         }
     }
@@ -33,13 +34,13 @@ public class Requirements implements I_Requirements {
     }
 
     @Override
-    public SimpleStringProperty projectGoalProperty() {
-        return _projectGoal;
+    public void setProjectGoal(String projectGoal) {
+        _projectGoal.set(projectGoal);
     }
 
     @Override
-    public void setProjectGoal(String projectGoal) {
-        _projectGoal.set(projectGoal);
+    public SimpleStringProperty projectGoalProperty() {
+        return _projectGoal;
     }
 
     @Override
@@ -48,13 +49,13 @@ public class Requirements implements I_Requirements {
     }
 
     @Override
-    public SimpleStringProperty fieldOfApplicationProperty() {
-        return _fieldOfApplication;
+    public void setFieldOfApplication(String fieldOfApplication) {
+        _fieldOfApplication.set(fieldOfApplication);
     }
 
     @Override
-    public void setFieldOfApplication(String fieldOfApplication) {
-        _fieldOfApplication.set(fieldOfApplication);
+    public SimpleStringProperty fieldOfApplicationProperty() {
+        return _fieldOfApplication;
     }
 
     @Override
@@ -99,12 +100,6 @@ public class Requirements implements I_Requirements {
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
-        setProjectGoal(propertyStrings.get(0));
-        setFieldOfApplication(propertyStrings.get(1));
-    }
-
-    @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
         stringProperties.add(getProjectGoal());
@@ -114,8 +109,18 @@ public class Requirements implements I_Requirements {
     }
 
     @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        setProjectGoal(propertyStrings.get(0));
+        setFieldOfApplication(propertyStrings.get(1));
+    }
+
+    @Override
     public void removeExistingData() {
         setProjectGoal("");
         setFieldOfApplication("");
+        getFunctionalRequirements().removeExistingData();
+        getNonFunctionalRequirements().removeExistingData();
+        getQualityRequirementEntries().forEach(I_Clearable::removeExistingData);
+        getComments().removeExistingData();
     }
 }

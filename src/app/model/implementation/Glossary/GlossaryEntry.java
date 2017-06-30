@@ -1,8 +1,8 @@
 package app.model.implementation.Glossary;
 
+import app.model.interfaces.Glossary.I_GlossaryEntry;
 import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
-import app.model.interfaces.Glossary.I_GlossaryEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +23,13 @@ public class GlossaryEntry implements I_GlossaryEntry {
     }
 
     @Override
-    public SimpleStringProperty itemProperty() {
-        return _item;
+    public void setItem(String item) {
+        _item.set(item);
     }
 
     @Override
-    public void setItem(String item) {
-        _item.set(item);
+    public SimpleStringProperty itemProperty() {
+        return _item;
     }
 
     @Override
@@ -38,15 +38,14 @@ public class GlossaryEntry implements I_GlossaryEntry {
     }
 
     @Override
-    public SimpleStringProperty definitionProperty() {
-        return _definition;
-    }
-
-    @Override
     public void setDefinition(String definition) {
         _definition.set(definition);
     }
 
+    @Override
+    public SimpleStringProperty definitionProperty() {
+        return _definition;
+    }
 
     @Override
     public List<I_XmlModelEntity> getChildren() {
@@ -64,6 +63,15 @@ public class GlossaryEntry implements I_GlossaryEntry {
     }
 
     @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(getItem());
+        stringProperties.add(getDefinition());
+
+        return stringProperties;
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             setItem(propertyStrings.get(0));
@@ -73,12 +81,4 @@ public class GlossaryEntry implements I_GlossaryEntry {
         }
     }
 
-    @Override
-    public ArrayList<String> getAllProperties() {
-        ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(getItem());
-        stringProperties.add(getDefinition());
-
-        return stringProperties;
-    }
 }

@@ -1,8 +1,8 @@
 package app.model.implementation.CostEstimation;
 
+import app.model.interfaces.CostEstimation.I_CostEstimationEntry;
 import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
-import app.model.interfaces.CostEstimation.I_CostEstimationEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,20 +28,6 @@ class CostEstimationEntry implements I_CostEstimationEntry {
         return _weight;
     }
 
-    @Override
-    public String getDescription() {
-        return null;
-    }
-
-    @Override
-    public SimpleStringProperty descriptionProperty() {
-        return null;
-    }
-
-    @Override
-    public void setDescription(String description) {
-
-    }
 
     @Override
     public List<I_XmlModelEntity> getChildren() {
@@ -55,16 +41,25 @@ class CostEstimationEntry implements I_CostEstimationEntry {
 
     @Override
     public String getTag() {
-        return null;
-    }
-
-    @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
-
+        return "CostEstimationEntry";
     }
 
     @Override
     public ArrayList<String> getAllProperties() {
-        return null;
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(getWeight());
+
+        return stringProperties;
     }
+
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        try {
+            setWeight(propertyStrings.get(0));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
+
+
 }

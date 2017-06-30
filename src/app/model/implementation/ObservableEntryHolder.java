@@ -30,4 +30,9 @@ public abstract class ObservableEntryHolder<S extends I_XmlModelEntity> implemen
 
         getEntries().add(entry);
     }
+
+    @Override
+    public void removeExistingData() {
+        getEntries().clear();
+    }
 }

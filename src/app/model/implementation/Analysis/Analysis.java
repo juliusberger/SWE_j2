@@ -22,16 +22,14 @@ abstract class Analysis extends ObservableEntryHolder<I_AnalysisEntry> implement
         return new ArrayList<>(getEntries());
     }
 
-
-
+    @Override
+    public ArrayList<String> getAllProperties() {
+        return null;
+    }
 
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
 
     }
 
-    @Override
-    public ArrayList<String> getAllProperties() {
-        return null;
-    }
 }

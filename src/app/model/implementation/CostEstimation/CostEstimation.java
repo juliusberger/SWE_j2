@@ -13,8 +13,9 @@ import java.util.List;
  */
 public class CostEstimation implements I_CostEstimation {
 
-    private final List<I_CostEstimationEntry> _costEstimationEntries = new ArrayList<>(7);
+    private final List<I_CostEstimationEntry> _costEstimationEntries = new ArrayList<>(9);
 
+    // TODO: hier nicht vom project holen?
     private final I_Classification _classification = new Classification();
 
     public CostEstimation() {
@@ -30,7 +31,7 @@ public class CostEstimation implements I_CostEstimation {
 
     @Override
     public void removeExistingData() {
-
+        _costEstimationEntries.forEach(entry -> entry.setWeight(""));
     }
 
     @Override
@@ -40,7 +41,7 @@ public class CostEstimation implements I_CostEstimation {
 
     @Override
     public List<I_XmlModelEntity> getChildren() {
-        return null;
+        return new ArrayList<>(getCostEstimationEntries());
     }
 
     @Override
@@ -50,16 +51,16 @@ public class CostEstimation implements I_CostEstimation {
 
     @Override
     public String getTag() {
+        return "CostEstimation";
+    }
+
+    @Override
+    public ArrayList<String> getAllProperties() {
         return null;
     }
 
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
 
-    }
-
-    @Override
-    public ArrayList<String> getAllProperties() {
-        return null;
     }
 }

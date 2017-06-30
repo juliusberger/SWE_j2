@@ -26,13 +26,13 @@ public class ClassificationEntry implements I_ClassificationEntry {
     }
 
     @Override
-    public SimpleStringProperty functionProperty() {
-        return _function;
+    public void setFunction(String function) {
+        _function.set(function);
     }
 
     @Override
-    public void setFunction(String function) {
-        _function.set(function);
+    public SimpleStringProperty functionProperty() {
+        return _function;
     }
 
     @Override
@@ -41,13 +41,13 @@ public class ClassificationEntry implements I_ClassificationEntry {
     }
 
     @Override
-    public SimpleStringProperty stakeholderProperty() {
-        return _stakeholder;
+    public void setStakeholder(String stakeholder) {
+        _stakeholder.set(stakeholder);
     }
 
     @Override
-    public void setStakeholder(String stakeholder) {
-        _stakeholder.set(stakeholder);
+    public SimpleStringProperty stakeholderProperty() {
+        return _stakeholder;
     }
 
     @Override
@@ -71,13 +71,13 @@ public class ClassificationEntry implements I_ClassificationEntry {
     }
 
     @Override
-    public SimpleStringProperty descriptionProperty() {
-        return _description;
+    public void setDescription(String description) {
+        _description.set(description);
     }
 
     @Override
-    public void setDescription(String description) {
-        _description.set(description);
+    public SimpleStringProperty descriptionProperty() {
+        return _description;
     }
 
     @Override
@@ -86,13 +86,13 @@ public class ClassificationEntry implements I_ClassificationEntry {
     }
 
     @Override
-    public SimpleStringProperty categoryProperty() {
-        return _category;
+    public void setCategory(String category) {
+        _category.set(category);
     }
 
     @Override
-    public void setCategory(String category) {
-        _category.set(category);
+    public SimpleStringProperty categoryProperty() {
+        return _category;
     }
 
     @Override
@@ -101,13 +101,13 @@ public class ClassificationEntry implements I_ClassificationEntry {
     }
 
     @Override
-    public SimpleStringProperty classificationProperty() {
-        return _classification;
+    public void setClassification(String classification) {
+        _classification.set(classification);
     }
 
     @Override
-    public void setClassification(String classification) {
-        _classification.set(classification);
+    public SimpleStringProperty classificationProperty() {
+        return _classification;
     }
 
     @Override
@@ -126,6 +126,18 @@ public class ClassificationEntry implements I_ClassificationEntry {
     }
 
     @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(getFunction());
+        stringProperties.add(getDescription());
+        stringProperties.add(getStakeholder());
+        stringProperties.add(getCategory());
+        stringProperties.add(getClassification());
+
+        return stringProperties;
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             setFunction(propertyStrings.get(0));
@@ -138,15 +150,4 @@ public class ClassificationEntry implements I_ClassificationEntry {
         }
     }
 
-    @Override
-    public ArrayList<String> getAllProperties() {
-        ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(getFunction());
-        stringProperties.add(getDescription());
-        stringProperties.add(getStakeholder());
-        stringProperties.add(getCategory());
-        stringProperties.add(getClassification());
-
-        return stringProperties;
-    }
 }

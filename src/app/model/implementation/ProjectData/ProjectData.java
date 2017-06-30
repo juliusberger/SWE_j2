@@ -1,10 +1,10 @@
 package app.model.implementation.ProjectData;
 
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.beans.property.SimpleStringProperty;
 import app.model.interfaces.ProjectData.I_Customer;
 import app.model.interfaces.ProjectData.I_ProjectData;
 import app.model.interfaces.ProjectData.I_ProjectEditor;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +29,13 @@ public class ProjectData implements I_ProjectData {
     }
 
     @Override
-    public SimpleStringProperty nameProperty() {
-        return _name;
+    public void setName(String name) {
+        _name.set(name);
     }
 
     @Override
-    public void setName(String name) {
-        _name.set(name);
+    public SimpleStringProperty nameProperty() {
+        return _name;
     }
 
     @Override
@@ -44,13 +44,13 @@ public class ProjectData implements I_ProjectData {
     }
 
     @Override
-    public SimpleStringProperty dueDateProperty() {
-        return _dueDate;
+    public void setDueDate(String dueDate) {
+        _dueDate.set(dueDate);
     }
 
     @Override
-    public void setDueDate(String dueDate) {
-        _dueDate.set(dueDate);
+    public SimpleStringProperty dueDateProperty() {
+        return _dueDate;
     }
 
     @Override
@@ -82,6 +82,15 @@ public class ProjectData implements I_ProjectData {
     }
 
     @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(getName());
+        stringProperties.add(getDueDate());
+
+        return stringProperties;
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             setName(propertyStrings.get(0));
@@ -92,18 +101,10 @@ public class ProjectData implements I_ProjectData {
     }
 
     @Override
-    public ArrayList<String> getAllProperties() {
-        ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(getName());
-        stringProperties.add(getDueDate());
-
-        return stringProperties;
-    }
-
-
-    @Override
     public void removeExistingData() {
         setName("");
         setDueDate("");
+        getCustomer().removeExistingData();
+        getProjectEditor().removeExistingData();
     }
 }

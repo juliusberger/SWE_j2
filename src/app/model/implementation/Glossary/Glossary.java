@@ -28,18 +28,13 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
-
-    }
-
-    @Override
     public ArrayList<String> getAllProperties() {
         return null;
     }
 
     @Override
-    public void removeExistingData() {
-        getEntries().clear();
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+
     }
 
     @Override

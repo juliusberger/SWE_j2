@@ -92,7 +92,7 @@ public class RequirementsController implements Initializable {
                     currentQualityRequirementEnrty.setPriority(Priority.values()[Integer.parseInt(currentToggleGroup.getSelectedToggle().getUserData().toString())]);
             });
 
-            currentQualityRequirementEnrty.priorityPropertyProperty().addListener((observable, oldValue, newValue) -> {
+            currentQualityRequirementEnrty.priorityProperty().addListener((observable, oldValue, newValue) -> {
                 if (currentQualityRequirementEnrty.getPriority() == Priority.UNSET) {
                     currentToggleGroup.selectToggle(null);
                 } else {

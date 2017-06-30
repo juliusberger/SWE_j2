@@ -13,10 +13,4 @@ public interface I_CostEstimationEntry extends I_ModelPropertyAdaptor, I_XmlMode
     void setWeight(String weight);
 
     SimpleStringProperty getWeightProperty();
-
-    String getDescription();
-
-    SimpleStringProperty descriptionProperty();
-
-    void setDescription(String description);
 }

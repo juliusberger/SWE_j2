@@ -29,18 +29,13 @@ public class Classification extends ObservableEntryHolder<I_ClassificationEntry>
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
-
-    }
-
-    @Override
     public ArrayList<String> getAllProperties() {
         return null;
     }
 
     @Override
-    public void removeExistingData() {
-        getEntries().clear();
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+
     }
 
     @Override

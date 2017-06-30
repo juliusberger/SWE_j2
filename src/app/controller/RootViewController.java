@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.helpers.importExport.ProjectExportImportManager;
+import app.model.implementation.Project;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -36,7 +37,7 @@ public class RootViewController implements Initializable {
     }
 
     private void onNewProject() {
-        // TODO: handle new project
+        Project.getInstance().removeExistingData();
     }
 
 

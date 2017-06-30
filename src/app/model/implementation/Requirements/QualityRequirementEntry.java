@@ -2,6 +2,7 @@ package app.model.implementation.Requirements;
 
 import app.model.interfaces.I_XmlModelEntity;
 import app.model.interfaces.Requirements.I_QualityRequirementEntry;
+import javafx.beans.property.SimpleObjectProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +11,21 @@ import java.util.List;
  * Created by Michi on 23.04.2017.
  */
 class QualityRequirementEntry implements I_QualityRequirementEntry {
-    private Priority _priority;
-
+    private SimpleObjectProperty<Priority> _priority = new SimpleObjectProperty<>(Priority.UNSET);
 
     @Override
-    public Priority getPriority() {
+    public SimpleObjectProperty<Priority> priorityProperty() {
         return _priority;
     }
 
     @Override
+    public Priority getPriority() {
+        return _priority.get();
+    }
+
+    @Override
     public void setPriority(Priority priority) {
-        _priority = priority;
+        _priority.set(priority);
     }
 
     @Override
@@ -39,6 +44,14 @@ class QualityRequirementEntry implements I_QualityRequirementEntry {
     }
 
     @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        if (getPriority() != null)
+            stringProperties.add(getPriority().toString());
+        return stringProperties;
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             setPriority(Priority.valueOf(propertyStrings.get(0)));
@@ -48,10 +61,7 @@ class QualityRequirementEntry implements I_QualityRequirementEntry {
     }
 
     @Override
-    public ArrayList<String> getAllProperties() {
-        ArrayList<String> stringProperties = new ArrayList<>();
-        if (getPriority() != null)
-            stringProperties.add(getPriority().toString());
-        return stringProperties;
+    public void removeExistingData() {
+        setPriority(Priority.UNSET);
     }
 }
