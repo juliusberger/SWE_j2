@@ -4,10 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.112"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="app.controller.RootViewController"
-            fx:id="_anchorPane">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+			xmlns="http://javafx.com/javafx/8.0.112"
+			fx:controller="app.controller.RootViewController"
+			fx:id="_anchorPane">
 	<VBox
 			prefHeight="600.0"
 			prefWidth="700.0"
@@ -21,9 +21,9 @@
 				          text="Neues Projekt"/>
 				<SeparatorMenuItem mnemonicParsing="false"/>
 
-				<MenuItem fx:id="_openProjectItem"
-				          mnemonicParsing="false"
-				          text="Projekt öffnen"/>
+				<MenuItem fx:id="_loadProjectItem"
+						  mnemonicParsing="false"
+						  text="Projekt öffnen"/>
 				<MenuItem fx:id="_saveProjectItem"
 				          mnemonicParsing="false"
 				          text="Projekt speichern"/>

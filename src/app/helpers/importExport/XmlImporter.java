@@ -1,9 +1,13 @@
-package app.helpers;
+package app.helpers.importExport;
 
 
+import app.Constants;
+import app.InfoDialog;
+import app.Log;
 import app.model.implementation.Project;
 import app.model.interfaces.I_Project;
 import app.model.interfaces.I_XmlModelEntity;
+import javafx.scene.control.Alert;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -12,9 +16,10 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 /**
- * Diese Klasse repräsentiert die zu {@link XmlExporter} gehörige Import-Logik.
+ * Diese Klasse repräsentiert die zu {@link XmlImporter} gehörige Import-Logik.
  */
 public class XmlImporter implements I_XmlImporter {
     private final String PROPERTIES_TAG = "Properties";
@@ -26,19 +31,6 @@ public class XmlImporter implements I_XmlImporter {
 
     public XmlImporter(String fileName) {
         _fileName = fileName;
-        try {
-            _reader = XMLInputFactory.newFactory().createXMLStreamReader(new FileInputStream(_fileName));
-        } catch (XMLStreamException e) {
-            Log.getLogger()
-                    .info("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + e.getMessage());
-            InfoDialog.show("XML-Import nicht erfolgreich",
-                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + e.getMessage());
-        } catch (FileNotFoundException e) {
-            Log.getLogger()
-                    .info("XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht geladen werden. " + e.getMessage());
-            InfoDialog.show("XML-Import nicht erfolgreich",
-                    "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht geladen werden. \n" + e.getMessage());
-        }
     }
 
 
@@ -46,22 +38,36 @@ public class XmlImporter implements I_XmlImporter {
      * Importiert die beim Erstellen der Klasse angegebene Datei. S. {@link XmlImporter#readXmlRecursively(I_XmlModelEntity)}
      */
     @Override
-    public void importXml() {
+    public boolean importXml() {
         try {
+            _reader = XMLInputFactory.newFactory().createXMLStreamReader(new FileInputStream(_fileName));
+
             I_Project project = Project.getInstance();
 
             _reader.nextTag();
             readXmlRecursively(project);
 
-            Log.getLogger().info("XML-Import wurde erfolgreich eingelesen. Pfad zur Datei: " + _fileName);
-            InfoDialog.show("XML-Import", "XML-Import erfolgreich",
-                    "XML-Import erfolgreich abgeschlossen.");
+
+            Log.getLogger().info("XML-Import erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
+            return true;
         } catch (XMLStreamException ex) {
             Log.getLogger()
-                    .info("XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog.show("XML-Import nicht erfolgreich",
-                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
+                    .log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Import fehlgeschlagen",
+                    "Import nicht erfolgreich abgeschlossen.", Alert.AlertType.ERROR);
+        } catch (FileNotFoundException e) {
+            Log.getLogger()
+                    .log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Laden",
+                    "Fehler beim Laden der Datei. Die Datei konnte nicht geöffnet werden.", Alert.AlertType.ERROR);
+        } catch (MalformedXmlException e) {
+            Log.getLogger()
+                    .log(Level.SEVERE, "Fehler beim Laden. Nicht wohlgeformtes XML-Dokument.");
+
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Ungültige Datei", "Nicht wohlgeformte Datei. Für den Import muss die Datei zuvor durch AnTool Exportiert worden sein.", Alert.AlertType.ERROR);
         }
+        return false;
     }
 
     private String getName() {
@@ -75,17 +81,18 @@ public class XmlImporter implements I_XmlImporter {
     private boolean isEndElem() {
         return _reader.getEventType() == XMLStreamConstants.END_ELEMENT;
     }
-    
+
 
     /**
      * Traversiert die XML-Elemente und behandelt dabei besondere Tags entsprechend.
+     *
      * @param model Das Model zum jeweiligen XML-Elementbaum.
      * @throws XMLStreamException Falls das Model nicht zum XML-Baum passt.
      */
-    private void readXmlRecursively(I_XmlModelEntity model) throws XMLStreamException {
+    private void readXmlRecursively(I_XmlModelEntity model) throws XMLStreamException, MalformedXmlException {
         if (_reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
             String rootName = getName();
-            if (!model.getTag().equals(rootName)) throw new XMLStreamException("Nicht wohlgeformt XML-Dokument. Für den Import muss die XML-Datei zuvor durch AnTool exportiert worden sein.");
+            if (!model.getTag().equals(rootName)) throw new MalformedXmlException();
 
             _reader.nextTag();
 
@@ -129,6 +136,7 @@ public class XmlImporter implements I_XmlImporter {
 
     /**
      * Liest die innerhalb von <Properties></Properties> angegebenen Properties.
+     *
      * @return Gibt die gelesenen Properties als String-ArrayList zurück
      * @throws XMLStreamException Falls allgemeine XML-Fehler auftreten sollten.
      */

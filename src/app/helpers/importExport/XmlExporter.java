@@ -1,15 +1,20 @@
-package app.helpers;
+package app.helpers.importExport;
 
+import app.Constants;
+import app.InfoDialog;
+import app.Log;
 import app.model.implementation.Project;
 import app.model.interfaces.I_Project;
 import app.model.interfaces.I_XmlModelEntity;
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
+import javafx.scene.control.Alert;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.logging.Level;
 
 /**
  * Created by Michi on 03.06.2017.
@@ -20,21 +25,6 @@ public class XmlExporter implements I_XmlExporter {
 
     public XmlExporter(String fileName) {
         _fileName = fileName;
-        try {
-            _writer = new IndentingXMLStreamWriter(XMLOutputFactory.newFactory().createXMLStreamWriter(new FileOutputStream(
-                    fileName)));
-        } catch (XMLStreamException e) {
-            Log.getLogger()
-                    .info("XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + e.getMessage());
-            InfoDialog.show("XML-Export nicht erfolgreich",
-                    "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + e.getMessage());
-        } catch (FileNotFoundException e) {
-            Log.getLogger()
-                    .info("XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
-            InfoDialog.show("XML-Export nicht erfolgreich",
-                    "XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. \n" + e.getMessage());
-        }
-
     }
 
     private void writeXmlRecursively(I_XmlModelEntity entity) throws XMLStreamException {
@@ -65,8 +55,10 @@ public class XmlExporter implements I_XmlExporter {
     }
 
     @Override
-    public void exportXml() {
+    public boolean exportXml() {
         try {
+            _writer = new IndentingXMLStreamWriter(XMLOutputFactory.newFactory().createXMLStreamWriter(new FileOutputStream(
+                    _fileName)));
 
             _writer.writeStartDocument();
 
@@ -75,18 +67,20 @@ public class XmlExporter implements I_XmlExporter {
 
             _writer.writeEndDocument();
 
-            //TODO: Konsolen-Ausgabebefehl löschen, wenn nicht mehr zu Debugging-Zwecken notwendig
-            Log.getLogger().info("XML-Export wurde erfolgreich erstellt. Pfad zur Datei: " + _fileName);
-            InfoDialog.show("XML-Export erfolgreich",
-                    "XML-Export erfolgreich abgeschlossen");
-            // TODO: Statischer dialog
-
-
+            Log.getLogger().info("XML-Export erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
+            return true;
         } catch (XMLStreamException ex) {
             Log.getLogger()
-                    .info("XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog.show("XML-Export nicht erfolgreich",
-                    "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage());
+                    .log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Export fehlgeschlagen",
+                    "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage(), Alert.AlertType.ERROR);
+        } catch (FileNotFoundException e) {
+            Log.getLogger()
+                    .log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Speichern",
+                    "Fehler beim Speichern der Datei. Die Datei konnte nicht erstellt werden.", Alert.AlertType.ERROR);
         }
+        return false;
     }
 }
