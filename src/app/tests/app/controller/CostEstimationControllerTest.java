@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.components.CostEstimationCalculation;
 import app.model.implementation.CostEstimation.Classification;
 import app.model.interfaces.CostEstimation.I_Classification;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Created by Michi on 26.06.2017.
  */
 class CostEstimationControllerTest {
-    private CostEstimationController _costEstimation;
+    private CostEstimationCalculation _costEstimation;
 
     // test method: calculateMenMonths(double functionPoints)
     private Method _testCalculateMenMonths;
@@ -31,7 +32,7 @@ class CostEstimationControllerTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        _costEstimation = new CostEstimationController();
+        _costEstimation = new CostEstimationCalculation();
 
         // test method: calculateMenMonths(double functionPoints)
         parameterTypes_CALCULATE_MEN_MONTH = new Class[1];

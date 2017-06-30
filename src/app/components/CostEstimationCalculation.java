@@ -1,4 +1,4 @@
-package app.controller;
+package app.components;
 
 import app.Constants;
 import app.InfoDialog;
@@ -20,7 +20,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     private double _calculatedMenMonths;
     private boolean _isOptimized = false;
 
-    CostEstimationCalculation(String... influenceFactors) throws IllegalArgumentException {
+    public CostEstimationCalculation(String... influenceFactors) throws IllegalArgumentException {
         if (influenceFactors.length < 10) throw new IllegalArgumentException("Nicht genügend Einflussfaktoren");
         _influenceFactors.put("1", influenceFactors[0]);
         _influenceFactors.put("2", influenceFactors[1]);
