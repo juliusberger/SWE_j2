@@ -15,11 +15,9 @@ import java.util.Map;
  */
 public class CostEstimationCalculation implements I_CostEstimationCalculation {
     private static final I_Classification _classification = Project.getInstance().getClassification();
+    private final HashMap<String, String> _influenceFactors = new HashMap<>();
     private double _calculatedFunctionPoints;
     private double _calculatedMenMonths;
-
-    private HashMap<String, String> _influenceFactors = new HashMap<>();
-
     private boolean _isOptimized = false;
 
     CostEstimationCalculation(String... influenceFactors) throws IllegalArgumentException {

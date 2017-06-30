@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Created by Michi on 28.06.2017.
  */
 class ValidateInputTest {
-    private static String IS_VALID_PLAIN_STRING_NAME = "isValidPlainString";
-    private static String IS_VALID_DATE_NAME = "isValidDate";
-    private static String IS_VALID_PHONE_NUMBER_NAME = "isValidPhoneNumber";
-    private static String IS_VALID_PLZ_NAME = "isValidPlz";
-    private static String IS_VALID_EMAIL_ADDRESS_NAME = "isValidEmailAddress";
+    private static final String IS_VALID_PLAIN_STRING_NAME = "isValidPlainString";
+    private static final String IS_VALID_DATE_NAME = "isValidDate";
+    private static final String IS_VALID_PHONE_NUMBER_NAME = "isValidPhoneNumber";
+    private static final String IS_VALID_PLZ_NAME = "isValidPlz";
+    private static final String IS_VALID_EMAIL_ADDRESS_NAME = "isValidEmailAddress";
     private ValidateInput _validateInput;
     // test method: isValidPlainString(String input)
     private Method _testIsValidPlainString;

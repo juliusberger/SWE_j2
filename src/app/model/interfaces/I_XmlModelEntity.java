@@ -10,5 +10,4 @@ public interface I_XmlModelEntity extends I_ModelPropertyAdaptor {
     String getTag();
     List<I_XmlModelEntity> getChildren();
     void addEntryWithProperties(ArrayList<String> properties);
-
 }

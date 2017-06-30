@@ -51,7 +51,7 @@ public class ProjectExportImportManager {
         final File file = fileChooser.showOpenDialog(Main.getPrimaryStage().getScene().getWindow());
         if (file != null) {
             if (onLoadFile(file)) {
-                InfoDialog.show("XML importieren", "Import erfolgreich!", "Die XML-Datei wurde erfolgreich importiert.");
+                InfoDialog.show(Constants.CONTEXT_TITLE_XML_IMPORT, "Import erfolgreich!", "Die XML-Datei wurde erfolgreich importiert.");
                 return true;
             }
         }
@@ -68,12 +68,12 @@ public class ProjectExportImportManager {
             continueAnyway = InfoDialog.confirm(Constants.CONTEXT_TITLE_XML_EXPORT, "Fehlerhafte Textfelder", "Es sind noch unausgefüllte Textfelder vorhanden. Trotzdem exportieren?");
         }
         if (continueAnyway) {
-            fileChooser.setTitle("XML exportieren");
+            fileChooser.setTitle(Constants.CONTEXT_TITLE_XML_EXPORT);
             fileChooser.getExtensionFilters().setAll(XMLExtensionFilter);
             final File file = fileChooser.showSaveDialog(Main.getPrimaryStage().getScene().getWindow());
             if (file != null) {
                 if (onSaveFile(file)) {
-                    InfoDialog.show("XML exportieren", "Export erfolgreich!", "Die XML-Datei wurde erfolgreich exportiert.");
+                    InfoDialog.show(Constants.CONTEXT_TITLE_XML_EXPORT, "Export erfolgreich!", "Die XML-Datei wurde erfolgreich exportiert.");
                     return true;
                 }
             }
