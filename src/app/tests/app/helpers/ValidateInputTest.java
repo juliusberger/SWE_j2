@@ -5,47 +5,43 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by Michi on 28.06.2017.
  */
 class ValidateInputTest {
+    private static String IS_VALID_PLAIN_STRING_NAME = "isValidPlainString";
+    private static String IS_VALID_DATE_NAME = "isValidDate";
+    private static String IS_VALID_PHONE_NUMBER_NAME = "isValidPhoneNumber";
+    private static String IS_VALID_PLZ_NAME = "isValidPlz";
+    private static String IS_VALID_EMAIL_ADDRESS_NAME = "isValidEmailAddress";
     private ValidateInput _validateInput;
-
     // test method: isValidPlainString(String input)
     private Method _testIsValidPlainString;
-    private static String IS_VALID_PLAIN_STRING_NAME = "isValidPlainString";
     private Class[] parameterTypes_IS_VALID_PLAIN_STRING;
     private Object[] parameters_IS_VALID_PLAIN_STRING;
-
     // test method: isValidDate(String input)
     private Method _testIsValidDate;
-    private static String IS_VALID_DATE_NAME = "isValidDate";
     private Class[] parameterTypes_IS_VALID_DATE;
     private Object[] parameters_IS_VALID_DATE;
-
     // test method: isValidPhoneNumber(String input)
     private Method _testIsValidPhoneNumber;
-    private static String IS_VALID_PHONE_NUMBER_NAME = "isValidPhoneNumber";
     private Class[] parameterTypes_IS_VALID_PHONE_NUMBER;
     private Object[] parameters_IS_VALID_PHONE_NUMBER;
-
     // test method: isValidPlz(String input)
     private Method _testIsValidPlz;
-    private static String IS_VALID_PLZ_NAME = "isValidPlz";
     private Class[] parameterTypes_IS_VALID_PLZ;
     private Object[] parameters_IS_VALID_PLZ;
-
     // test method: isValidEmailAddress(String input)
     private Method _testIsValidEmailAddress;
-    private static String IS_VALID_EMAIL_ADDRESS_NAME = "isValidEmailAddress";
     private Class[] parameterTypes_IS_VALID_EMAIL_ADDRESS;
     private Object[] parameters_IS_VALID_EMAIL_ADDRESS;
 
     @BeforeEach
     public void setUp() throws Exception {
-        _validateInput = new ValidateInput();
+        _validateInput = new ValidateInput(null, null);
 
         // test method: isValidPlainString(String input)
         parameterTypes_IS_VALID_PLAIN_STRING = new Class[1];

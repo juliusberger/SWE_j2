@@ -60,4 +60,7 @@
 .invalid-input {
     -fx-text-box-border: red;
     -fx-focus-color: red;
+    -fx-background-image: url('ic_error_black_24dp_1x.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right center;
 }
