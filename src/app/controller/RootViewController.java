@@ -1,5 +1,7 @@
 package app.controller;
 
+import app.Constants;
+import app.InfoDialog;
 import app.helpers.importExport.ProjectExportImportManager;
 import app.model.implementation.Project;
 import javafx.fxml.Initializable;
@@ -23,8 +25,7 @@ public class RootViewController implements Initializable {
     public MenuItem _XmlExportItem;
 
     @Override
-    public void initialize(URL location,
-                           ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
         _newProjectItem.setOnAction(event -> onNewProject());
 
         _loadProjectItem.setOnAction(event -> ProjectExportImportManager.loadProject());
@@ -37,7 +38,8 @@ public class RootViewController implements Initializable {
     }
 
     private void onNewProject() {
-        Project.getInstance().removeExistingData();
+        if (InfoDialog.confirm(Constants.CONTEXT_TITLE_COMMON, "Neues Projekt anlegen", "Alle nicht gespeicherten Änderungen gehen verloren. Fortfahren?"))
+            Project.getInstance().removeExistingData();
     }
 
 

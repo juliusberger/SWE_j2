@@ -1,6 +1,7 @@
 package app.controller;
 
 
+import app.Constants;
 import app.InfoDialog;
 import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
@@ -36,6 +37,7 @@ import java.util.ResourceBundle;
 public class ClassificationController implements Initializable {
     private final I_Classification _dataModel = Project.getInstance().getClassification();
     private final I_FunctionalRequirements _functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
+
     public TableView<I_ClassificationEntry> _classificationTable;
     public TableColumn<I_ClassificationEntry, String> _categoryColumn;
     public TableColumn<I_ClassificationEntry, String> _classificationColumn;
@@ -54,7 +56,7 @@ public class ClassificationController implements Initializable {
 
             stage.showAndWait();
         } catch (IOException e) {
-            InfoDialog.show("Fehler", "Programmfehler", "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.", Alert.AlertType.ERROR);
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Programmfehler", "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.", Alert.AlertType.ERROR);
         }
 
     }

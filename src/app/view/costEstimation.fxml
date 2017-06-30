@@ -31,7 +31,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">1 Verflechtung mit anderen Anwendungssystemen
 				</Label>
-				<ChoiceBox fx:id="_box1" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox1" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -52,7 +52,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">2 Dezentrale Daten, dezentrale Verarbeitung
 				</Label>
-				<ChoiceBox fx:id="_box2" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox2" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -73,7 +73,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">3 Transaktionsrate
 				</Label>
-				<ChoiceBox fx:id="_box3" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox3" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -102,7 +102,7 @@
 					<String fx:value="indented" />
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">a) Rechenoperationen</Label>
-				<ChoiceBox fx:id="_box4a" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox4a" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -131,7 +131,7 @@
 					<String fx:value="indented" />
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">b) Kontrollverfahren</Label>
-				<ChoiceBox fx:id="_box4b" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox4b" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -155,7 +155,7 @@
 					<String fx:value="indented" />
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">c) Ausnahmeregelungen</Label>
-				<ChoiceBox fx:id="_box4c" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox4c" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -184,7 +184,7 @@
 					<String fx:value="indented" />
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">d) Logik</Label>
-				<ChoiceBox fx:id="_box4d" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox4d" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -208,7 +208,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">5 Wiederverwendbarkeit
 				</Label>
-				<ChoiceBox fx:id="_box5" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox5" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -229,7 +229,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">6 Datenbestandskonvertierungen
 				</Label>
-				<ChoiceBox fx:id="_box6" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox6" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -249,7 +249,7 @@
 				</styleClass>
 				<Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">7 Anpassbarkeit
 				</Label>
-				<ChoiceBox fx:id="_box7" minWidth="50.0">
+				<ChoiceBox fx:id="_influenceFactorBox7" minWidth="50.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:value=""/>
@@ -276,11 +276,11 @@
 		</Label>
 		<GridPane>
 			<Label>Berechnete Function Points:</Label>
-			<Label fx:id="_calculatedFPLabel" GridPane.columnIndex="1">XX
+			<Label fx:id="_calculatedFunctionPointsLabel" GridPane.columnIndex="1">XX
 			</Label>
 
 			<Label GridPane.rowIndex="1">Personenmonate:</Label>
-			<Label fx:id="_calculatedMMLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">XX
+			<Label fx:id="_calculatedMenMonthsLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">XX
 			</Label>
 
 			<columnConstraints>
