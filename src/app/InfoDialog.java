@@ -1,9 +1,12 @@
-package app.helpers;
+package app;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 /**
@@ -76,6 +79,38 @@ public class InfoDialog {
         stage.show();*/
     }
 
+    public static boolean confirm(String title, String header, String message) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
+        ButtonType buttonJa = new ButtonType("Ja", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonNein = new ButtonType("Nein", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(buttonJa, buttonNein);
+
+        DialogPane alertPane = alert.getDialogPane();
+
+        ObjectProperty<ButtonType> result = new SimpleObjectProperty<>();
+        for (ButtonType type : alertPane.getButtonTypes()) {
+            ((Button) alertPane.lookupButton(type)).setOnAction(e -> {
+                result.set(type);
+                alertPane.getScene().getWindow().hide();
+            });
+        }
+
+        alertPane.getScene().setRoot(new Label());
+
+        Scene scene = new Scene(alertPane);
+        Stage dialog = new Stage();
+        dialog.setScene(scene);
+        dialog.setTitle(title);
+        dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
+
+        dialog.showAndWait();
+        return (result.get() != null) && (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE);
+    }
 
 }

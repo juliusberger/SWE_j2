@@ -20,20 +20,18 @@ import java.util.Observable;
 /**
  * Hilfsklasse zur einheitlichen Erstellung von JavaFX-Dialogen. Wird hauptsächlich von {@link TableBinding} genutzt, um Kontextaktionen für Tabelleneinträge durchzuführen.
  */
-class Dialog extends Observable {
-    private boolean _saveClicked = false;
-
+class AddEntryDialog extends Observable {
     private final Stage _stage;
-
     private final TextField _textField = new TextField();
     private final List<TextArea> _textAreas = new ArrayList<>();
+    private boolean _saveClicked = false;
 
     /**
      * Initialisiert das Grundgerüst des Dialogs.
      *
      * @param stringProperties Strings für die jeweiligen Überschriften der Textfelder. Das erste Feld ist ein einzeiliges Textfeld, die anderen mehrzeilige Textareas
      */
-    Dialog(ArrayList<String> stringProperties) {
+    AddEntryDialog(ArrayList<String> stringProperties) {
         _stage = new Stage();
 
         final Label textFieldLabel = new Label(stringProperties.get(0));
@@ -102,19 +100,19 @@ class Dialog extends Observable {
 
             _stage.setScene(new Scene(vBox));
         } catch (Exception e) {
-            System.out.println("Error while creating the Dialog.");
+            System.out.println("Error while creating the AddEntryDialog.");
         }
     }
 
     /**
-     * Baut den Dialog auf und zeigt ihn als Overlay über der App.
+     * Baut den AddEntryDialog auf und zeigt ihn als Overlay über der App.
      */
     void show() {
         _stage.showAndWait();
     }
 
     /**
-     * Setzt das save-Flag auf true und schließt den Dialog.
+     * Setzt das save-Flag auf true und schließt den AddEntryDialog.
      */
     private void save() {
         _saveClicked = true;
@@ -122,7 +120,7 @@ class Dialog extends Observable {
     }
 
     /**
-     * Schließt den Dialog und benachrichtigt Observer.
+     * Schließt den AddEntryDialog und benachrichtigt Observer.
      */
     private void close() {
         _stage.close();

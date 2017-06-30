@@ -1,12 +1,12 @@
 package app.helpers;
 
+import app.model.interfaces.I_ModelPropertyAdaptor;
+import app.model.interfaces.I_ObservableDataAdaptor;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import app.model.interfaces.I_ModelPropertyAdaptor;
-import app.model.interfaces.I_ObservableDataAdaptor;
 
 import java.util.ArrayList;
 
@@ -95,26 +95,26 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
     }
 
     /**
-     * Bindet den Hinzufügen-Button. Erstellt beim Klick eine neue {@link Dialog}-Instanz und öffnet einen Dialog mit Feldern mit den Überschriften der Tabellen-Spalten-Überschriften.
+     * Bindet den Hinzufügen-Button. Erstellt beim Klick eine neue {@link AddEntryDialog}-Instanz und öffnet einen AddEntryDialog mit Feldern mit den Überschriften der Tabellen-Spalten-Überschriften.
      * Beim Klick auf "Speichern" wird durch den Aufruf der Factory-Methode ein neues Element des Typs S erstellt und dem Daten-Model hinzugefügt (und damit auch der Tabelle).
      *
      * @param addButton Hinzufügen-Button, an den die Aktion gebunden werden soll.
      */
     private void bindTableAddButton(Button addButton) {
         addButton.setOnAction(event -> {
-            Dialog dialog = new Dialog(getColumnStringPropertyLabels());
-            dialog.addObserver((o, arg) -> {
-                if (dialog.isSaveClicked()) {
-                    _dataModel.addEntryWithProperties(dialog.getData());
+            AddEntryDialog addEntryDialog = new AddEntryDialog(getColumnStringPropertyLabels());
+            addEntryDialog.addObserver((o, arg) -> {
+                if (addEntryDialog.isSaveClicked()) {
+                    _dataModel.addEntryWithProperties(addEntryDialog.getData());
                 }
-                dialog.deleteObservers();
+                addEntryDialog.deleteObservers();
             });
-            dialog.show();
+            addEntryDialog.show();
         });
     }
 
     /**
-     * Bindet den Bearbeiten-Button. Erstellt beim Klick eine neue {@link Dialog}-Instanz und öffnet einen Dialog mit Feldern mit den Überschriften der Tabellen-Spalten-Überschriften.
+     * Bindet den Bearbeiten-Button. Erstellt beim Klick eine neue {@link AddEntryDialog}-Instanz und öffnet einen AddEntryDialog mit Feldern mit den Überschriften der Tabellen-Spalten-Überschriften.
      * Die Daten werden aus dem jeweiligen Eintrag geladen (Eintrag ist vom Typ {@link I_ModelPropertyAdaptor}) und in die Felder des Dialogs vorgesetzt.
      * Beim Klick auf "Speichern" wird durch den Aufruf der Factory-Methode ein neues Element des Typs S erstellt und dem Daten-Model hinzugefügt (und damit auch der Tabelle).
      *
@@ -123,23 +123,23 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
     private void bindTableEditButton(Button editButton) {
         editButton.setOnAction(event -> {
             final S selectedEntry = _tableView.getSelectionModel().getSelectedItem();
-            Dialog dialog = new Dialog(getColumnStringPropertyLabels());
-            dialog.addObserver((o, arg) -> {
-                if (dialog.isSaveClicked()) {
-                    selectedEntry.setAllProperties(dialog.getData());
+            AddEntryDialog addEntryDialog = new AddEntryDialog(getColumnStringPropertyLabels());
+            addEntryDialog.addObserver((o, arg) -> {
+                if (addEntryDialog.isSaveClicked()) {
+                    selectedEntry.setAllProperties(addEntryDialog.getData());
                 }
-                dialog.deleteObservers();
+                addEntryDialog.deleteObservers();
             });
-            dialog.setData(selectedEntry.getAllProperties());
-            dialog.show();
+            addEntryDialog.setData(selectedEntry.getAllProperties());
+            addEntryDialog.show();
         });
 
         enableDoubleClickToEdit(editButton);
     }
 
     /**
-     * Aktiviert den "Bearbeiten"-Dialog beim Doppelklick auf einen Eintrag. Dabei wird das reguläre Event ausgelöst, dass beim Klick auf "Bearbeiten" ausgelöst wird.
-     * @param originalEditButton
+     * Aktiviert den "Bearbeiten"-AddEntryDialog beim Doppelklick auf einen Eintrag. Dabei wird das reguläre Event ausgelöst, dass beim Klick auf "Bearbeiten" ausgelöst wird.
+     * @param originalEditButton Regulärer Edit-Button
      */
     private void enableDoubleClickToEdit(Button originalEditButton) {
         _tableView.setRowFactory(tv -> {

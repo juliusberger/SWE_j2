@@ -1,8 +1,8 @@
 package app.controller;
 
 
+import app.InfoDialog;
 import app.helpers.I_TableBinding;
-import app.helpers.InfoDialog;
 import app.helpers.TableBinding;
 import app.model.implementation.Project;
 import app.model.interfaces.CostEstimation.I_Classification;
@@ -34,15 +34,12 @@ import java.util.ResourceBundle;
  * Created by Matthias on 24.06.2017.
  */
 public class ClassificationController implements Initializable {
-    public TableView<I_ClassificationEntry> _classificationTable;
-
-    public TableColumn<I_ClassificationEntry, String> _categoryColumn;
-    public TableColumn<I_ClassificationEntry, String> _classificationColumn;
-
-    public Button _classificationSaveButton;
-
     private final I_Classification _dataModel = Project.getInstance().getClassification();
     private final I_FunctionalRequirements _functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
+    public TableView<I_ClassificationEntry> _classificationTable;
+    public TableColumn<I_ClassificationEntry, String> _categoryColumn;
+    public TableColumn<I_ClassificationEntry, String> _classificationColumn;
+    public Button _classificationSaveButton;
 
     static void showClassificationDialog() {
         final Stage stage = new Stage();
@@ -58,7 +55,6 @@ public class ClassificationController implements Initializable {
             stage.showAndWait();
         } catch (IOException e) {
             InfoDialog.show("Fehler", "Programmfehler", "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.", Alert.AlertType.ERROR);
-            e.printStackTrace();
         }
 
     }
