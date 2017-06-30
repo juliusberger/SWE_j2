@@ -19,7 +19,7 @@ import java.util.logging.Level;
 /**
  * Created by Michi on 03.06.2017.
  */
-public class XmlExporter implements I_XmlExporter {
+class XmlExporter implements I_XmlExporter {
     private final String _fileName;
     private XMLStreamWriter _writer;
 

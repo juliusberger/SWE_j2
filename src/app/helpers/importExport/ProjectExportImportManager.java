@@ -61,11 +61,11 @@ public class ProjectExportImportManager {
     public static boolean exportXml() {
         boolean continueAnyway = true;
         if (!ValidateInput.areAllFieldsFilled() && !ValidateInput.areAllFieldsValid()) {
-            continueAnyway = InfoDialog.confirm(Constants.CONTEXT_TITLE_XML_EXPORT, "Fehlerhafte und leere Felder", "Es sind noch unausgefüllte und fehlerhafte Felder vorhanden. Trotzdem exportieren?");
+            continueAnyway = InfoDialog.confirm(Constants.CONTEXT_TITLE_XML_EXPORT, "Fehlerhafte und leere Textfelder", "Es sind noch unausgefüllte und fehlerhafte Textfelder vorhanden. Trotzdem exportieren?");
         } else if (!ValidateInput.areAllFieldsValid()) {
-            continueAnyway = InfoDialog.confirm(Constants.CONTEXT_TITLE_XML_EXPORT, "Fehlerhafte Felder", "Es sind noch fehlerhafte Felder vorhanden. Trotzdem exportieren?");
+            continueAnyway = InfoDialog.confirm(Constants.CONTEXT_TITLE_XML_EXPORT, "Fehlerhafte Textfelder", "Es sind noch fehlerhafte Textfelder vorhanden. Trotzdem exportieren?");
         } else if (!ValidateInput.areAllFieldsFilled()) {
-            continueAnyway = InfoDialog.confirm(Constants.CONTEXT_TITLE_XML_EXPORT, "Fehlerhafte Felder", "Es sind noch unausgefüllte Felder vorhanden. Trotzdem exportieren?");
+            continueAnyway = InfoDialog.confirm(Constants.CONTEXT_TITLE_XML_EXPORT, "Fehlerhafte Textfelder", "Es sind noch unausgefüllte Textfelder vorhanden. Trotzdem exportieren?");
         }
         if (continueAnyway) {
             fileChooser.setTitle("XML exportieren");

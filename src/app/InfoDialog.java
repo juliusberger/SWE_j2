@@ -31,7 +31,7 @@ public class InfoDialog {
         Stage dialog = new Stage();
         dialog.setScene(scene);
         dialog.setTitle(title);
-        dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
+        dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("assets/ANTool_Icon2.png")));
 
         dialog.showAndWait();
     }
@@ -107,7 +107,7 @@ public class InfoDialog {
         Stage dialog = new Stage();
         dialog.setScene(scene);
         dialog.setTitle(title);
-        dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
+        dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("assets/ANTool_Icon2.png")));
 
         dialog.showAndWait();
         return (result.get() != null) && (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE);

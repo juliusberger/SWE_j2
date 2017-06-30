@@ -21,7 +21,7 @@ import java.util.logging.Level;
 /**
  * Diese Klasse repräsentiert die zu {@link XmlImporter} gehörige Import-Logik.
  */
-public class XmlImporter implements I_XmlImporter {
+class XmlImporter implements I_XmlImporter {
     private final String PROPERTIES_TAG = "Properties";
     private final String PROPERTY_TAG = "Property";
     private final String CHILDREN_TAG = "Children";
@@ -43,6 +43,7 @@ public class XmlImporter implements I_XmlImporter {
             _reader = XMLInputFactory.newFactory().createXMLStreamReader(new FileInputStream(_fileName));
 
             I_Project project = Project.getInstance();
+            project.removeExistingData();
 
             _reader.nextTag();
             readXmlRecursively(project);

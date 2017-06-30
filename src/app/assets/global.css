@@ -35,6 +35,11 @@
     -fx-font-weight: bold;
 }
 
+.h4 {
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+}
+
 .bold {
     -fx-font-weight: bold;
 }
