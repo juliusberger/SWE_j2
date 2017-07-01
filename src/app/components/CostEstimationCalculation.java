@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by eju8fe on 6/30/2017.
+ * Führt die Aufwandsschätzung sowie deren Optimierung durch
  */
 public class CostEstimationCalculation implements I_CostEstimationCalculation {
     private static final I_Classification _classification = Project.getInstance().getClassification();
@@ -20,8 +20,13 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     private double _calculatedMenMonths;
     private boolean _isOptimized = false;
 
+    /**
+     * Befüllt Hashmap mit allen übergebenenen Parameterwerten, die zuvor in den View eingegeben wurden
+     * @param influenceFactors Enthält Einflussfaktor-Kategorie sowie zugehörigen Faktor
+     * @throws IllegalArgumentException Wird ausgeführt, falls nicht genau zehn Werte übergeben werden
+     */
     public CostEstimationCalculation(String... influenceFactors) throws IllegalArgumentException {
-        if (influenceFactors.length < 10) throw new IllegalArgumentException("Nicht genügend Einflussfaktoren");
+        if (influenceFactors.length != 10) throw new IllegalArgumentException("Anzahl der Einflussfaktoren fehlerhaft");
         _influenceFactors.put("1", influenceFactors[0]);
         _influenceFactors.put("2", influenceFactors[1]);
         _influenceFactors.put("3", influenceFactors[2]);
@@ -49,6 +54,10 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         return _influenceFactors;
     }
 
+    /**
+     * Einstiegspunkt der Aufwandsschätzung-Berechnung. Weist anhand der Berechnungen die Werte für Function Points
+     * und Mannmonate mit jeweils zwei Nachkommastellen zu.
+     */
     @Override
     public void performCostEstimation() {
         int functionTypesSum = calculateFunctionTypesSums();
@@ -56,11 +65,15 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         double functionPoints = functionTypesSum * impactFactor;
         double menMonths = calculateMenMonths(functionPoints);
 
-        _calculatedFunctionPoints = Math.round(functionPoints * 100) / 100.0;
+        _calculatedFunctionPoints = Math.round(functionPoints * 100.0) / 100.0;
         _calculatedMenMonths = Math.round(menMonths * 100.0) / 100.0;
     }
 
-
+    /**
+     * Berechnet die Summe aller eingegebener Einflussfaktoren und erechnet anschließend den daraus resultierenden
+     * Multiplikationsfaktor für die Function-Points-Summe
+     * @return Berechneter Einflussfaktor
+     */
     private double calculateImpactFactor() {
         int _sumInfluencingFactors = 0;
 
@@ -78,6 +91,10 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         return ((double) _sumInfluencingFactors / 100) + 0.7;
     }
 
+    /**
+     * Berechnet die Summe der Einflussfaktoren nach IBM-Methode (7 Einflussfaktoren)
+     * @return Gesamtsumme der eingegebenen Einflussfaktoren
+     */
     private int calculateFunctionTypesSums() {
         int _sumEi = 0;
         int _sumEo = 0;
@@ -85,6 +102,8 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         int _sumIlf = 0;
         int _sumElf = 0;
 
+        // durchläuft jeden Eintrag der klassifizierten Anforderungen und addiert abhängig von jeweiliger
+        // Kategorie und Klassifizierung das zugehörige Gewicht
         for (int indexClassificationEntries = 0; indexClassificationEntries < _classification.getEntries().size(); indexClassificationEntries++) {
             I_ClassificationEntry currentClassificationEntry = _classification.getEntries().get(indexClassificationEntries);
 
@@ -134,6 +153,12 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         return _sumEi + _sumEo + _sumEq + _sumIlf + _sumElf;
     }
 
+    /**
+     * Berechnet anhand der Function Points die benötigten Mannmonate durch lineare Interpolation nach IBM-Tabelle (1984) oder
+     * nach Schätzfunktion von Jones
+     * @param _functionPoints Die Anzahl der berechneten Function Points
+     * @return Die Anzahl der benötigten Mannmonate
+     */
     private double calculateMenMonths(double _functionPoints) {
         double menMonths = 0.0;
 
@@ -146,12 +171,13 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
             for (Map.Entry<Integer, Integer> currentCorrelationEntry : Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.entrySet()) {
                 // falls Bedingung wahr ist, ist untere Grenze des Intervalls gefunden
                 if (currentCorrelationEntry.getKey() < _functionPoints) {
+                    // obere und untere Grenze des Function-Points-Intervalls sowie der zugehörigen Mannmonate auslesen
                     double lowerBoundFunctionPoints = currentCorrelationEntry.getKey();
                     double upperBoundFunctionPoints = Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.higherKey(currentCorrelationEntry.getKey());
                     double lowerBoundMenMonths = currentCorrelationEntry.getValue();
                     double upperBoundMenMonths = Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.get(Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.higherKey(currentCorrelationEntry.getKey()));
 
-                    // lineare Interpolation zwischen den Intervallgrenzen
+                    // lineare Interpolation zwischen den Intervallgrenzen zur Berechnung der Mannmonate
                     menMonths = ((upperBoundMenMonths - lowerBoundMenMonths) / (upperBoundFunctionPoints - lowerBoundFunctionPoints)) * (_functionPoints - lowerBoundFunctionPoints) + lowerBoundMenMonths;
                 }
             }
@@ -160,6 +186,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         return menMonths;
     }
 
+    //TODO: Kommentieren!!!
     @Override
     public void performAutomaticOptimization() {
         if (!areInfluenceBoxesValid()) {
@@ -231,6 +258,10 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         }
     }
 
+    /**
+     * Überprüft, ob alle Eingabefelder in Integer konvertiert und somit weiterverarbeitet werden können
+     * @return Wahrheitswert, ob Einflussfaktoren-Felder verarbeitet werden können oder nicht
+     */
     private boolean areInfluenceBoxesValid() {
         boolean validFields = false;
         try {
