@@ -83,7 +83,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPlainString(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPlainString0() throws Exception {
@@ -95,7 +95,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPlainString(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPlainString1() throws Exception {
@@ -107,7 +107,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPlainString(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPlainString2() throws Exception {
@@ -119,7 +119,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidDate(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidDate0() throws Exception {
@@ -131,7 +131,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidDate(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidDate1() throws Exception {
@@ -143,7 +143,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidDate(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidDate2() throws Exception {
@@ -155,7 +155,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidDate(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidDate3() throws Exception {
@@ -167,7 +167,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidDate(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidDate4() throws Exception {
@@ -179,7 +179,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidDate(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidDate5() throws Exception {
@@ -191,7 +191,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidDate(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidDate6() throws Exception {
@@ -203,7 +203,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPhoneNumber0() throws Exception {
@@ -215,7 +215,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPhoneNumber1() throws Exception {
@@ -227,7 +227,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPhoneNumber2() throws Exception {
@@ -239,7 +239,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPhoneNumber3() throws Exception {
@@ -251,7 +251,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPhoneNumber4() throws Exception {
@@ -263,7 +263,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPhoneNumber5() throws Exception {
@@ -275,7 +275,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPhoneNumber6() throws Exception {
@@ -287,7 +287,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPhoneNumber7() throws Exception {
@@ -299,7 +299,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPlz(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPlz0() throws Exception {
@@ -311,7 +311,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPlz(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPlz1() throws Exception {
@@ -323,7 +323,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPlz(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPlz2() throws Exception {
@@ -335,7 +335,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPlz(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPlz3() throws Exception {
@@ -347,7 +347,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidPlz(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidPlz4() throws Exception {
@@ -359,7 +359,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidEmailAddress0() throws Exception {
@@ -371,7 +371,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
      * Erwartetes Ergebnis: false
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidEmailAddress1() throws Exception {
@@ -383,7 +383,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidEmailAddress2() throws Exception {
@@ -395,7 +395,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidEmailAddress3() throws Exception {
@@ -407,7 +407,7 @@ class ValidateInputTest {
     /**
      * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
      * Erwartetes Ergebnis: true
-     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testIsValidEmailAddress4() throws Exception {

@@ -2,6 +2,7 @@ package app.components;
 
 import app.Constants;
 import app.InfoDialog;
+import app.Log;
 import app.model.implementation.Project;
 import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_ClassificationEntry;
@@ -9,6 +10,7 @@ import javafx.scene.control.Alert;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * Führt die Aufwandsschätzung sowie deren Optimierung durch
@@ -77,18 +79,31 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     private double calculateImpactFactor() {
         int _sumInfluencingFactors = 0;
 
-        _sumInfluencingFactors += _influenceFactors.get("1").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("1"));
-        _sumInfluencingFactors += _influenceFactors.get("2").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("2"));
-        _sumInfluencingFactors += _influenceFactors.get("3").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("3"));
-        _sumInfluencingFactors += _influenceFactors.get("4a").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4a"));
-        _sumInfluencingFactors += _influenceFactors.get("4b").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4b"));
-        _sumInfluencingFactors += _influenceFactors.get("4c").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4c"));
-        _sumInfluencingFactors += _influenceFactors.get("4d").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4d"));
-        _sumInfluencingFactors += _influenceFactors.get("5").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("5"));
-        _sumInfluencingFactors += _influenceFactors.get("6").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("6"));
-        _sumInfluencingFactors += _influenceFactors.get("7").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("7"));
+        // falls ungültige Eingaben existieren, wird 0 zurückgegeben
+        if (areInfluenceBoxesValid())
+        {
+            _sumInfluencingFactors += _influenceFactors.get("1").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("1"));
+            _sumInfluencingFactors += _influenceFactors.get("2").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("2"));
+            _sumInfluencingFactors += _influenceFactors.get("3").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("3"));
+            _sumInfluencingFactors += _influenceFactors.get("4a").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4a"));
+            _sumInfluencingFactors += _influenceFactors.get("4b").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4b"));
+            _sumInfluencingFactors += _influenceFactors.get("4c").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4c"));
+            _sumInfluencingFactors += _influenceFactors.get("4d").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4d"));
+            _sumInfluencingFactors += _influenceFactors.get("5").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("5"));
+            _sumInfluencingFactors += _influenceFactors.get("6").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("6"));
+            _sumInfluencingFactors += _influenceFactors.get("7").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("7"));
 
-        return ((double) _sumInfluencingFactors / 100) + 0.7;
+            return ((double) _sumInfluencingFactors / 100) + 0.7;
+        }
+        else
+        {
+            InfoDialog.show("Aufwandsschätzung","Fehler bei Aufwandsschätzung" ,"Ungültige Werte bei Einflussfaktoren verwendet", Alert.AlertType.ERROR);
+            Log.getLogger().log(Level.SEVERE, "Fehler bei Aufwandsschätzung - Ungültige Werte bei Einflussfaktoren verwendet");
+
+            return 0;
+        }
+
+
     }
 
     /**
@@ -191,6 +206,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     public void performAutomaticOptimization() {
         if (!areInfluenceBoxesValid()) {
             InfoDialog.show("Automatische Optimierung", "Fehler bei der Optimierung", "Für die automatische Optimierung müssen alle Einflussfaktoren gesetzt sein!", Alert.AlertType.ERROR);
+            Log.getLogger().log(Level.SEVERE, "Fehler bei Optimierung der Aufwandsschätzung - Für die automatische Optimierung müssen alle Einflussfaktoren gesetzt sein!");
         } else {
             if (_isOptimized) {
                 InfoDialog.show("Automatische Optimierung", "Optimierung bereits durchgeführt", "Automatische Optimierung der Einflussfaktoren wurde bereits einmal durchgeführt!", Alert.AlertType.ERROR);

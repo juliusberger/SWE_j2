@@ -47,7 +47,12 @@ class CostEstimationCalculationTest {
         parameters_CALCULATE_FUNCTION_TYPES_SUMS = new Object[1];
     }
 
-    // 45 < 50
+    /**
+     * Testmethode für {@link CostEstimationCalculation#calculateMenMonths(double)}
+     * Erwartetes Ergebnis: 4,58
+     * Function Points: 45 < 50 (Jones-Schätzung)
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
     @Test
     public void testCalculateMenMonths0() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 45;
@@ -55,7 +60,12 @@ class CostEstimationCalculationTest {
         assertEquals(4.58, Math.round(100.0 * result) / 100.0);
     }
 
-    // 50 <= 233,0 <= 2900
+    /**
+     * Testmethode für {@link CostEstimationCalculation#calculateMenMonths(double)}
+     * Erwartetes Ergebnis: 15,98
+     * Function Points: 50 <= 233,0 <= 2900 (IBM-Korrespondenztabelle)
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
     @Test
     public void testCalculateMenMonths1() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 233.0;
@@ -63,7 +73,12 @@ class CostEstimationCalculationTest {
         assertEquals(15.98, Math.round(100.0 * result) / 100.0);
     }
 
-    // 50 <= 233,0 <= 2900
+    /**
+     * Testmethode für {@link CostEstimationCalculation#calculateMenMonths(double)}
+     * Erwartetes Ergebnis: 26,24
+     * Function Points: 50 <= 378,0 <= 2900 (IBM-Korrespondenztabelle)
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
     @Test
     public void testCalculateMenMonths2() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 378.0;
@@ -71,7 +86,12 @@ class CostEstimationCalculationTest {
         assertEquals(26.24, Math.round(100.0 * result) / 100.0);
     }
 
-    // 3576,49 < 2900
+    /**
+     * Testmethode für {@link CostEstimationCalculation#calculateMenMonths(double)}
+     * Erwartetes Ergebnis: 26,39
+     * Function Points: 3576,49 > 2900 (Jones-Schätzung)
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
     @Test
     public void testCalculateMenMonths3() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 3576.49;
@@ -79,7 +99,11 @@ class CostEstimationCalculationTest {
         assertEquals(26.39, Math.round(100.0 * result) / 100.0);
     }
 
-    //
+    /**
+     * Testmethode für {@link CostEstimationCalculation#calculateFunctionTypesSums()}
+     * Erwartetes Ergebnis: 221
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
     @Test
     public void testCalculateFunctionTypesSums() throws Exception {
         I_Classification classification = Project.getInstance().getClassification();
