@@ -3,6 +3,7 @@ package app.controller;
 
 import app.Constants;
 import app.InfoDialog;
+import app.Log;
 import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
 import app.model.implementation.Project;
@@ -28,11 +29,14 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 /**
- * Created by Matthias on 24.06.2017.
+ * Controller für die Klassifizierung (view/classification.fxml).
+ * Dieser Controller ist verantwortlich für die Erstellung des Klassifizierungs-Dialogs, ausgelöst durch den {@link CostEstimationController}.
  */
 public class ClassificationController implements Initializable {
     private final I_Classification _dataModel = Project.getInstance().getClassification();
@@ -43,6 +47,10 @@ public class ClassificationController implements Initializable {
     public TableColumn<I_ClassificationEntry, String> _classificationColumn;
     public Button _classificationSaveButton;
 
+    /**
+     * Erstellt ein neues Fenster für den Klassifizierungs-Dialog und zeigt es an.
+     * Durch showAndWait wird sichergestellt, dass der aufrufende Controller so lange blockiert, bis die Daten eingegeben und das Fenster geschlossen ist.
+     */
     static void showClassificationDialog() {
         final Stage stage = new Stage();
 
@@ -56,6 +64,8 @@ public class ClassificationController implements Initializable {
 
             stage.showAndWait();
         } catch (IOException e) {
+            Log.getLogger().log(Level.SEVERE, "Fehler beim Erstellen des Klassifizierungs-Dialogs: " + Arrays.toString(e
+                    .getStackTrace()));
             InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Programmfehler", "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.", Alert.AlertType.ERROR);
         }
 
