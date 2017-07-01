@@ -96,7 +96,7 @@ class XmlImporter implements I_XmlImporter {
      * @throws XMLStreamException Falls das Model nicht zum XML-Baum passt, demnach die zu importierende Datei eine nicht valide Struktur enthält (also nicht durch ANTool exportiert, oder nachträglich verändert wurde) wird der Importvorgang abgebrochen.
      */
     private void readXmlRecursively(I_XmlModelEntity model) throws XMLStreamException, MalformedXmlException {
-        if (_reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
+        if (isStartElem()) {
             String rootName = getCurrentTagName();
             if (!model.getTag().equals(rootName)) throw new MalformedXmlException();
 
