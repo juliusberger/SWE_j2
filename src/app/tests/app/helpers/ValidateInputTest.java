@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Created by Michi on 28.06.2017.
+ * Testklasse für {@link ValidateInput}
  */
 class ValidateInputTest {
     private static final String IS_VALID_PLAIN_STRING_NAME = "isValidPlainString";
@@ -79,6 +79,11 @@ class ValidateInputTest {
         parameters_IS_VALID_EMAIL_ADDRESS = new Object[1];
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPlainString(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPlainString0() throws Exception {
         parameters_IS_VALID_PLAIN_STRING[0] = "123456789";
@@ -86,6 +91,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPlainString(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPlainString1() throws Exception {
         parameters_IS_VALID_PLAIN_STRING[0] = "test";
@@ -93,6 +103,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPlainString(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPlainString2() throws Exception {
         parameters_IS_VALID_PLAIN_STRING[0] = "test123";
@@ -100,6 +115,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidDate(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidDate0() throws Exception {
         parameters_IS_VALID_DATE[0] = "01/01/1970";
@@ -107,6 +127,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidDate(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidDate1() throws Exception {
         parameters_IS_VALID_DATE[0] = "01/01/70";
@@ -114,6 +139,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidDate(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidDate2() throws Exception {
         parameters_IS_VALID_DATE[0] = "01.01. 1970";
@@ -121,6 +151,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidDate(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidDate3() throws Exception {
         parameters_IS_VALID_DATE[0] = "1/1/70";
@@ -128,6 +163,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidDate(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidDate4() throws Exception {
         parameters_IS_VALID_DATE[0] = "1.1.70";
@@ -135,6 +175,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidDate(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidDate5() throws Exception {
         parameters_IS_VALID_DATE[0] = "1.1.1970";
@@ -142,6 +187,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidDate(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidDate6() throws Exception {
         parameters_IS_VALID_DATE[0] = "01.01.1970";
@@ -149,6 +199,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPhoneNumber0() throws Exception {
         parameters_IS_VALID_PHONE_NUMBER[0] = "+49 123 456789";
@@ -156,6 +211,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPhoneNumber1() throws Exception {
         parameters_IS_VALID_PHONE_NUMBER[0] = "+491234567891011";
@@ -163,6 +223,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPhoneNumber2() throws Exception {
         parameters_IS_VALID_PHONE_NUMBER[0] = "+4912345";
@@ -170,6 +235,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPhoneNumber3() throws Exception {
         parameters_IS_VALID_PHONE_NUMBER[0] = "012345/33";
@@ -177,6 +247,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPhoneNumber4() throws Exception {
         parameters_IS_VALID_PHONE_NUMBER[0] = "+49123456789";
@@ -184,6 +259,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPhoneNumber5() throws Exception {
         parameters_IS_VALID_PHONE_NUMBER[0] = "0123456789";
@@ -191,6 +271,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPhoneNumber6() throws Exception {
         parameters_IS_VALID_PHONE_NUMBER[0] = "+491234567-8910";
@@ -198,6 +283,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPhoneNumber(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPhoneNumber7() throws Exception {
         parameters_IS_VALID_PHONE_NUMBER[0] = "01234567-891011";
@@ -205,6 +295,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPlz(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPlz0() throws Exception {
         parameters_IS_VALID_PLZ[0] = "123456";
@@ -212,6 +307,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPlz(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPlz1() throws Exception {
         parameters_IS_VALID_PLZ[0] = "1234a";
@@ -219,6 +319,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPlz(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPlz2() throws Exception {
         parameters_IS_VALID_PLZ[0] = "1234";
@@ -226,6 +331,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPlz(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPlz3() throws Exception {
         parameters_IS_VALID_PLZ[0] = "12345";
@@ -233,6 +343,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidPlz(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidPlz4() throws Exception {
         parameters_IS_VALID_PLZ[0] = "06789";
@@ -240,6 +355,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidEmailAddress0() throws Exception {
         parameters_IS_VALID_EMAIL_ADDRESS[0] = "max.mustermann@mail.gueltig";
@@ -247,6 +367,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
+     * Erwartetes Ergebnis: false
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidEmailAddress1() throws Exception {
         parameters_IS_VALID_EMAIL_ADDRESS[0] = "max.mustermann.de";
@@ -254,6 +379,11 @@ class ValidateInputTest {
         assertFalse(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidEmailAddress2() throws Exception {
         parameters_IS_VALID_EMAIL_ADDRESS[0] = "max@mustermann.de";
@@ -261,6 +391,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidEmailAddress3() throws Exception {
         parameters_IS_VALID_EMAIL_ADDRESS[0] = "max.mustermann@mail.de";
@@ -268,6 +403,11 @@ class ValidateInputTest {
         assertTrue(result);
     }
 
+    /**
+     * Testmethode für {@link ValidateInput#isValidEmailAddress(String)}
+     * Erwartetes Ergebnis: true
+     * @throws Exception Wird geworfen, falls Test nicht auführbar
+     */
     @Test
     public void testIsValidEmailAddress4() throws Exception {
         parameters_IS_VALID_EMAIL_ADDRESS[0] = "max.mustermann@mail.net";
