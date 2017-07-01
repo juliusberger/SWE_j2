@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 24/04/2017.
+ * Model-Implementierung von {@link I_GlossaryEntry}
  */
 public class GlossaryEntry implements I_GlossaryEntry {
     private final SimpleStringProperty _item = new SimpleStringProperty("");
     private final SimpleStringProperty _definition = new SimpleStringProperty("");
+    private final SimpleStringProperty _distinction = new SimpleStringProperty("");
+    private final SimpleStringProperty _validity = new SimpleStringProperty("");
+    private final SimpleStringProperty _label = new SimpleStringProperty("");
 
-    GlossaryEntry() {
-    }
 
     @Override
     public String getItem() {
@@ -45,6 +46,51 @@ public class GlossaryEntry implements I_GlossaryEntry {
     @Override
     public SimpleStringProperty definitionProperty() {
         return _definition;
+    }
+
+    @Override
+    public String getDistinction() {
+        return _distinction.get();
+    }
+
+    @Override
+    public SimpleStringProperty distinctionProperty() {
+        return _distinction;
+    }
+
+    @Override
+    public void setDistinction(String distinction) {
+        _distinction.set(distinction);
+    }
+
+    @Override
+    public String getValidity() {
+        return _validity.get();
+    }
+
+    @Override
+    public SimpleStringProperty validityProperty() {
+        return _validity;
+    }
+
+    @Override
+    public void setValidity(String validity) {
+        _validity.set(validity);
+    }
+
+    @Override
+    public String getLabel() {
+        return _label.get();
+    }
+
+    @Override
+    public SimpleStringProperty labelProperty() {
+        return _label;
+    }
+
+    @Override
+    public void setLabel(String label) {
+        _label.set(label);
     }
 
     @Override

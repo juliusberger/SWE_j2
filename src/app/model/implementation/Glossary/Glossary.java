@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 24/04/2017.
+ * Model-Implementierung von {@link I_Glossary}
  */
 public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements I_Glossary {
     @Override
@@ -34,11 +34,10 @@ public class Glossary extends ObservableEntryHolder<I_GlossaryEntry> implements 
 
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
-
     }
 
     @Override
     public String[] getPropertyNames() {
-        return new String[]{"item", "definition"};
+        return new String[]{"item", "definition", "distinction", "validity", "label"};
     }
 }

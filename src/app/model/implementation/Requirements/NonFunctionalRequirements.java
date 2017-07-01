@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Michi on 23.04.2017.
+ * Model-Implementierung von {@link I_NonFunctionalRequirements}
  */
 class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalRequirementEntry> implements I_NonFunctionalRequirements {
     @Override

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Model-Implementierung von {@link I_ProjectData}
  */
 public class ProjectData implements I_ProjectData {
     private final SimpleStringProperty _name = new SimpleStringProperty("");

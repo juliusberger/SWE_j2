@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Model-Implementierung von {@link I_ProjectEditor}
  */
 class ProjectEditor implements I_ProjectEditor {
     private final SimpleStringProperty _surname = new SimpleStringProperty("");
@@ -51,7 +51,6 @@ class ProjectEditor implements I_ProjectEditor {
 
     @Override
     public void addEntryWithProperties(ArrayList<String> properties) {
-
     }
 
     @Override

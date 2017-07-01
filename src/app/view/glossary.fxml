@@ -19,6 +19,9 @@
 		<columns>
 			<TableColumn text="Begriff" />
 			<TableColumn text="Erklärung/Definition" />
+			<TableColumn text="Abgrenzung" />
+			<TableColumn text="Gültigkeit" />
+			<TableColumn text="Bezeichnung" />
 		</columns>
 		<columnResizePolicy>
 			<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

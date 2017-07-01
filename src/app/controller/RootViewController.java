@@ -41,9 +41,7 @@ public class RootViewController implements Initializable {
 
         _xmlExportItem.setOnAction(event -> ProjectExportImportManager.exportXml());
 
-        _antoolCloseItem.setOnAction(event -> {
-            _anchorPane.getScene().getWindow().fireEvent(new WindowEvent(_anchorPane.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST));
-        });
+        _antoolCloseItem.setOnAction(event -> _anchorPane.getScene().getWindow().fireEvent(new WindowEvent(_anchorPane.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST)));
     }
 
     private void onNewProject() {

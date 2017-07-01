@@ -1,17 +1,12 @@
 package app.model.implementation.Analysis;
 
 /**
- * Created by Michi on 23.04.2017.
+ * Model-Instanz von {@link Analysis} für die Soll-Analyse
  */
 public class FutureAnalysis extends Analysis {
     @Override
     public String getTag() {
         return "FutureAnalysis";
-    }
-
-
-    public void removeExistingData() {
-        getEntries().clear();
     }
 
     @Override

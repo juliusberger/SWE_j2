@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Michi on 23.04.2017.
+ * Model-Implementierung von {@link I_CommentEntry}
  */
 public class CommentEntry implements I_CommentEntry {
     private final SimpleStringProperty _keyword = new SimpleStringProperty("");
@@ -54,7 +54,6 @@ public class CommentEntry implements I_CommentEntry {
 
     @Override
     public void addEntryWithProperties(ArrayList<String> properties) {
-
     }
 
     @Override

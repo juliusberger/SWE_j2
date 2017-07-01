@@ -1,17 +1,12 @@
 package app.model.implementation.Analysis;
 
 /**
- * Created by Michi on 23.04.2017.
+ * Model-Instanz von {@link Analysis} für die Ist-Analyse
  */
 public class StateAnalysis extends Analysis {
-
     @Override
     public String getTag() {
         return "StateAnalysis";
-    }
-
-    public void removeExistingData() {
-        getEntries().clear();
     }
 
     @Override

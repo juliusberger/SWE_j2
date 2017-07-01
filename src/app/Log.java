@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
- * Created by Julius on 24.06.17.
+ * Gemeinsamer Logger für alle Komponenten. Schreib die Ausgabe des Logs in das Logfile log.txt.
  */
 public enum Log {
     ;

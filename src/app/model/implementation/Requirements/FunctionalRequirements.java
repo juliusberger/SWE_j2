@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Michi on 23.04.2017.
+ * Model-Implementierung von {@link I_FunctionalRequirementEntry}
  */
 class FunctionalRequirements extends ObservableEntryHolder<I_FunctionalRequirementEntry> implements I_FunctionalRequirements {
     @Override

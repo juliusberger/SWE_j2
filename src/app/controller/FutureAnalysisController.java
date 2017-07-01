@@ -32,7 +32,10 @@ public class FutureAnalysisController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        I_TableBinding tableBinding = new TableBinding<>(_futureAnalysisTable, _dataModel);
-        tableBinding.bindAll(_addEntryButton, _editEntryButton, _deleteEntryButton);
+        I_TableBinding<I_AnalysisEntry> analysisTableBinding = new TableBinding<>();
+        analysisTableBinding.setTableView(_futureAnalysisTable);
+        analysisTableBinding.setDataModel(_dataModel);
+        analysisTableBinding.bindTableToData();
+        analysisTableBinding.bindButtonsToTableActions(_addEntryButton, _editEntryButton, _deleteEntryButton);
     }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Model-Implementierung von {@link I_Comments}
  */
 class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Comments {
     @Override
@@ -29,17 +29,11 @@ class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Commen
 
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
-
     }
 
     @Override
     public ArrayList<String> getAllProperties() {
         return null;
-    }
-
-    @Override
-    public void removeExistingData() {
-        getEntries().clear();
     }
 
     @Override

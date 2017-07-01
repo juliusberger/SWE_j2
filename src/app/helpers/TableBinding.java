@@ -12,37 +12,30 @@ import java.util.ArrayList;
 
 /**
  * Hilfsklasse zur einfachen Tabellenpopulation und Verknüpfung der Tabelleneinträge mit einem Datenmodel.
- *
  * S beschreibt den Typ eines Eintrages in der Tabelle, welcher das Interface {@link I_ModelPropertyAdaptor} implementieren muss. Damit sind die Implementierungen der benötigten Property-Funktionen gesichert.
  */
-public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBinding {
-    private final TableView<S> _tableView;
-    private final I_ObservableDataAdaptor<S> _dataModel;
+public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBinding<S> {
+    private TableView<S> _tableView = null;
+    private I_ObservableDataAdaptor<S> _dataModel = null;
 
-    public TableBinding(TableView<S> tableView,
-                        I_ObservableDataAdaptor<S> dataModel) {
+    @Override
+    public void setTableView(TableView<S> tableView) {
         _tableView = tableView;
+    }
+
+    @Override
+    public void setDataModel(I_ObservableDataAdaptor<S> dataModel) {
         _dataModel = dataModel;
     }
 
-    /**
-     * Binden der typischen Aktionen der Tabelle (CRUD).
-     * Binden der Buttons an die jeweiligen Aktionen.
-     *
-     * @param addButton    Hinzufügen-Button
-     * @param editButton   Bearbeiten-Button
-     * @param deleteButton Löschen-Button
-     */
     @Override
-    public void bindAll(Button addButton,
-                        Button editButton,
-                        Button deleteButton) {
-        bindTableToData();
-        bindTableAddButton(addButton);
-        bindTableEditButton(editButton);
-        bindTableDeleteButton(deleteButton);
-        observeDisabledButtonState(editButton,
-                deleteButton);
+    public void bindButtonsToTableActions(Button addButton, Button editButton, Button deleteButton) {
+        if (_tableView != null) {
+            bindTableAddButton(addButton);
+            bindTableEditButton(editButton);
+            bindTableDeleteButton(deleteButton);
+            observeDisabledButtonState(editButton, deleteButton);
+        }
     }
 
     /**
@@ -51,14 +44,13 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
      */
     @Override
     public void bindTableToData() {
-        int index = 0;
-        for (String propertyName : _dataModel.getPropertyNames()) {
-            _tableView.getColumns()
-                    .get(index++)
-                    .setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        if ((_tableView != null) && (_dataModel != null)) {
+            int index = 0;
+            for (String propertyName : _dataModel.getPropertyNames()) {
+                _tableView.getColumns().get(index++).setCellValueFactory(new PropertyValueFactory<>(propertyName));
+            }
+            _tableView.setItems(_dataModel.getEntries());
         }
-
-        _tableView.setItems(_dataModel.getEntries());
     }
 
     /**
@@ -90,8 +82,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
      * @param deleteButton Löschen-Button, an den die Aktion gebunden werden soll.
      */
     private void bindTableDeleteButton(Button deleteButton) {
-        deleteButton.setOnAction(e -> _tableView.getItems()
-                .remove(_tableView.getSelectionModel().getSelectedItem()));
+        deleteButton.setOnAction(e -> _tableView.getItems().remove(_tableView.getSelectionModel().getSelectedItem()));
     }
 
     /**
@@ -139,6 +130,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
 
     /**
      * Aktiviert den "Bearbeiten"-AddEntryDialog beim Doppelklick auf einen Eintrag. Dabei wird das reguläre Event ausgelöst, dass beim Klick auf "Bearbeiten" ausgelöst wird.
+     *
      * @param originalEditButton Regulärer Edit-Button
      */
     private void enableDoubleClickToEdit(Button originalEditButton) {
@@ -155,6 +147,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
 
     /**
      * Zieht die Überschriften der Spalten aus der Tabelle.
+     *
      * @return Gibt die Strings der Tabellen-Spalten-Überschriften zurück.
      */
     private ArrayList<String> getColumnStringPropertyLabels() {

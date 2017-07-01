@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Model-Implementierung von {@link I_NonFunctionalRequirementEntry}
  */
 public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirementEntry {
     private final SimpleStringProperty _businessProcess = new SimpleStringProperty("");

@@ -31,7 +31,10 @@ public class GlossaryController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        I_TableBinding glossaryEntryTableBinding = new TableBinding<>(_glossaryTable, _dataModel);
-        glossaryEntryTableBinding.bindAll(_glossaryAddButton, _glossaryEditButton, _glossaryDeleteButton);
+        I_TableBinding<I_GlossaryEntry> glossaryEntryTableBinding = new TableBinding<>();
+        glossaryEntryTableBinding.setTableView(_glossaryTable);
+        glossaryEntryTableBinding.setDataModel(_dataModel);
+        glossaryEntryTableBinding.bindTableToData();
+        glossaryEntryTableBinding.bindButtonsToTableActions(_glossaryAddButton, _glossaryEditButton, _glossaryDeleteButton);
     }
 }

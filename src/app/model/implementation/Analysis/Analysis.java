@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Model-Implementierung von {@link I_Analysis}
  */
 abstract class Analysis extends ObservableEntryHolder<I_AnalysisEntry> implements I_Analysis {
     @Override
@@ -29,7 +29,6 @@ abstract class Analysis extends ObservableEntryHolder<I_AnalysisEntry> implement
 
     @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
-
     }
 
 }

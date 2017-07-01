@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Matthias on 24.06.2017.
+ * Model-Implementierung von {@link I_Classification}
  */
 public class Classification extends ObservableEntryHolder<I_ClassificationEntry> implements I_Classification {
 

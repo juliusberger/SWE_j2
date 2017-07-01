@@ -23,7 +23,7 @@ import java.util.Observable;
 class AddEntryDialog extends Observable {
     private final Stage _addEntryDialog;
     private final List<TextArea> _inputTextAreas = new ArrayList<>();
-    private boolean _saveClicked;
+    private boolean _saveClicked = false;
 
     /**
      * Initialisiert das Grundgerüst des Dialogs.

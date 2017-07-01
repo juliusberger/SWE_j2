@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Michi on 23.04.2017.
+ * Model-Implementierung von {@link I_QualityRequirementEntry}
  */
 class QualityRequirementEntry implements I_QualityRequirementEntry {
     private final SimpleObjectProperty<Priority> _priority = new SimpleObjectProperty<>(Priority.UNSET);

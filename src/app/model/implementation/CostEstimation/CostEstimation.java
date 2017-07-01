@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 01/05/2017.
+ * Model-Implementierung von {@link I_CostEstimation}
  */
 public class CostEstimation implements I_CostEstimation {
 
@@ -42,7 +42,6 @@ public class CostEstimation implements I_CostEstimation {
 
     @Override
     public void addEntryWithProperties(ArrayList<String> properties) {
-
     }
 
     @Override

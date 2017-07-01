@@ -11,12 +11,21 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 /**
- * Erstellt von Julius am 06/05/2017.
+ * Klasse zum erstellen einfacher Dialoge. Entweder als Informationen mit verschiedener Dringlichkeit, oder als Bestätigungsdialoge mit Ja/Nein Auswahl.
  */
 public enum InfoDialog {
     ;
 
+    /**
+     * Erstellt einen Informationsdialog mit angegebener Dringlichkeit.
+     * @param title Titel, der in der Fensterleiste angezeigt werden soll.
+     * @param header Header kurze Überschrift des Problems
+     * @param message Ausführliche Nachricht, die angezeigt werden soll.
+     * @param alertType Dringlichkeit des Dialogs.
+     */
     public static void show(String title, String header, String message, AlertType alertType) {
+        if (alertType == AlertType.CONFIRMATION) return;
+
         Alert alert = new Alert(alertType);
         alert.setHeaderText(header);
         alert.setContentText(message);
@@ -42,45 +51,12 @@ public enum InfoDialog {
         show(title, header, message, AlertType.INFORMATION);
     }
 
-    public static void show(String title, String message, AlertType alertType) {
-        show(title, null, message, alertType);
-    }
-
-    public static void show(String title, String message) {
-        show(title, null, message, AlertType.INFORMATION);
-        /*Stage stage = new Stage();
-
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle(title);
-        stage.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
-
-        VBox vBox = new VBox();
-        vBox.setSpacing(10.0);
-        vBox.getStylesheets().add(InfoDialog.class.getResource("../assets/global.css").toExternalForm());
-        vBox.getStyleClass().add("p-10");
-        vBox.setPrefWidth(300);
-
-        vBox.getChildren().add(new Label(message));
-
-        Button okButton = new Button("Ok");
-        okButton.setOnAction(event -> stage.close());
-        okButton.setMaxWidth(1.7976931348623157E308);
-        HBox.setHgrow(okButton,
-                Priority.ALWAYS);
-
-        HBox buttonBox = new HBox();
-        buttonBox.getStyleClass().add("button-hbox");
-
-        buttonBox.getChildren()
-                .addAll(okButton);
-
-        vBox.getChildren().add(buttonBox);
-
-        stage.setScene(new Scene(vBox));
-        stage.show();*/
-    }
-
+    /**
+     * Erstellt einen Bestätigungsdialog mit Ja/Nein Auswahl.
+     * @param title Titel, der in der Fensterleiste angezeigt werden soll.
+     * @param header Header kurze Überschrift des Problems
+     * @param message Ausführliche Nachricht, die angezeigt werden soll.
+     */
     public static boolean confirm(String title, String header, String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText(header);

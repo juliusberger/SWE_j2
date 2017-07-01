@@ -8,14 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Model-Implementierung von {@link I_AnalysisEntry}
  */
 public class AnalysisEntry implements I_AnalysisEntry {
     private final SimpleStringProperty _entryName = new SimpleStringProperty("");
     private final SimpleStringProperty _description = new SimpleStringProperty("");
-
-    AnalysisEntry() {
-    }
 
     @Override
     public String getEntryName() {
@@ -46,7 +43,6 @@ public class AnalysisEntry implements I_AnalysisEntry {
     public void setDescription(String description) {
         _description.set(description);
     }
-
 
     @Override
     public List<I_XmlModelEntity> getChildren() {

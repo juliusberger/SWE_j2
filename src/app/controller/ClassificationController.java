@@ -42,7 +42,9 @@ public class ClassificationController implements Initializable {
         ObservableList<String> classificationList = FXCollections.observableArrayList("einfach", "mittel", "komplex");
         _classificationColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn(classificationList));
 
-        I_TableBinding classificationTableBinding = new TableBinding<>(_classificationTable, _dataModel);
+        I_TableBinding<I_ClassificationEntry> classificationTableBinding = new TableBinding<>();
+        classificationTableBinding.setTableView(_classificationTable);
+        classificationTableBinding.setDataModel(_dataModel);
         classificationTableBinding.bindTableToData();
 
         _classificationSaveButton.setOnAction(event -> ((Stage) _classificationSaveButton.getScene().getWindow()).close());

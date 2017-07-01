@@ -8,15 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Model-Implementierung von {@link I_FunctionalRequirementEntry}
  */
 public class FunctionalRequirementEntry implements I_FunctionalRequirementEntry {
     private final SimpleStringProperty _function = new SimpleStringProperty("");
     private final SimpleStringProperty _description = new SimpleStringProperty("");
     private final SimpleStringProperty _stakeholder = new SimpleStringProperty("");
-
-    FunctionalRequirementEntry() {
-    }
 
     @Override
     public String getFunction() {
@@ -99,7 +96,4 @@ public class FunctionalRequirementEntry implements I_FunctionalRequirementEntry 
         return stringProperties;
     }
 
-    //    public String toString() {
-//        return "Name: " + getKeyword() + "\nDescription: " + getDescription();
-//    }
 }

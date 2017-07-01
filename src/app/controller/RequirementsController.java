@@ -87,11 +87,17 @@ public class RequirementsController implements Initializable {
         _fieldOfApplicationText.textProperty().bindBidirectional(_dataModel.fieldOfApplicationProperty());
         new ValidateInput(_fieldOfApplicationText, Validator.PLAIN_TEXT);
 
-        I_TableBinding functionalRequirementEntryTableBinding = new TableBinding<>(_functionalRequirementsTable, _dataModel.getFunctionalRequirements());
-        functionalRequirementEntryTableBinding.bindAll(_functionalRequirementsAddButton, _functionalRequirementsEditButton, _functionalRequirementsDeleteButton);
+        I_TableBinding<I_FunctionalRequirementEntry> functionalRequirementEntryTableBinding = new TableBinding<>();
+        functionalRequirementEntryTableBinding.setTableView(_functionalRequirementsTable);
+        functionalRequirementEntryTableBinding.setDataModel(_dataModel.getFunctionalRequirements());
+        functionalRequirementEntryTableBinding.bindTableToData();
+        functionalRequirementEntryTableBinding.bindButtonsToTableActions(_functionalRequirementsAddButton, _functionalRequirementsEditButton, _functionalRequirementsDeleteButton);
 
-        I_TableBinding nonFunctionalRequirementEntryTableBinding = new TableBinding<>(_nonFunctionalRequirementsTable, _dataModel.getNonFunctionalRequirements());
-        nonFunctionalRequirementEntryTableBinding.bindAll(_nonFunctionalRequirementsAddButton, _nonFunctionalRequirementsEditButton, _nonFunctionalRequirementsDeleteButton);
+        I_TableBinding<I_NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>();
+        nonFunctionalRequirementEntryTableBinding.setTableView(_nonFunctionalRequirementsTable);
+        nonFunctionalRequirementEntryTableBinding.setDataModel(_dataModel.getNonFunctionalRequirements());
+        nonFunctionalRequirementEntryTableBinding.bindTableToData();
+        nonFunctionalRequirementEntryTableBinding.bindButtonsToTableActions(_nonFunctionalRequirementsAddButton, _nonFunctionalRequirementsEditButton, _nonFunctionalRequirementsDeleteButton);
 
         ToggleGroup[] qualityRequirementToggleGroups = {_qualityRequirementToggleGroup1, _qualityRequirementToggleGroup2, _qualityRequirementToggleGroup3, _qualityRequirementToggleGroup4, _qualityRequirementToggleGroup5, _qualityRequirementToggleGroup6, _qualityRequirementToggleGroup7, _qualityRequirementToggleGroup8, _qualityRequirementToggleGroup9, _qualityRequirementToggleGroup10, _qualityRequirementToggleGroup11, _qualityRequirementToggleGroup12, _qualityRequirementToggleGroup13, _qualityRequirementToggleGroup14, _qualityRequirementToggleGroup15, _qualityRequirementToggleGroup16, _qualityRequirementToggleGroup17, _qualityRequirementToggleGroup18, _qualityRequirementToggleGroup19, _qualityRequirementToggleGroup20, _qualityRequirementToggleGroup21, _qualityRequirementToggleGroup22, _qualityRequirementToggleGroup23, _qualityRequirementToggleGroup24, _qualityRequirementToggleGroup25, _qualityRequirementToggleGroup26, _qualityRequirementToggleGroup27, _qualityRequirementToggleGroup28};
         for (int i = 0; i < qualityRequirementToggleGroups.length; i++) {
@@ -112,7 +118,10 @@ public class RequirementsController implements Initializable {
             });
         }
 
-        I_TableBinding commentEntryTableBinding = new TableBinding<>(_commentsTable, _dataModel.getComments());
-        commentEntryTableBinding.bindAll(_commentsAddButton, _commentsEditButton, _commentsDeleteButton);
+        I_TableBinding<I_CommentEntry> commentEntryTableBinding = new TableBinding<>();
+        commentEntryTableBinding.setTableView(_commentsTable);
+        commentEntryTableBinding.setDataModel(_dataModel.getComments());
+        commentEntryTableBinding.bindTableToData();
+        commentEntryTableBinding.bindButtonsToTableActions(_commentsAddButton, _commentsEditButton, _commentsDeleteButton);
     }
 }

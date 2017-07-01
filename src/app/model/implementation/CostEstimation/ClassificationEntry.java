@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Matthias on 24.06.2017.
+ * Model-Implementierung von {@link I_ClassificationEntry}
  */
 public class ClassificationEntry implements I_ClassificationEntry {
     private final SimpleStringProperty _function = new SimpleStringProperty("");

@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model-Implementierung von {@link I_Project}
  */
 public final class Project implements I_Project {
-    private static I_Project _instance;
+    private static I_Project _instance = new Project();
 
     private final I_ProjectData _projectData = new ProjectData();
     private final I_Analysis _stateAnalysis = new StateAnalysis();
@@ -37,7 +37,6 @@ public final class Project implements I_Project {
     }
 
     public static I_Project getInstance() {
-        if (_instance == null) _instance = new Project();
         return _instance;
     }
 

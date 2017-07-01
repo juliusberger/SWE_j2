@@ -19,4 +19,22 @@ public interface I_GlossaryEntry extends I_XmlModelEntity, I_ModelPropertyAdapto
     SimpleStringProperty definitionProperty();
 
     void setDefinition(String definition);
+
+    String getDistinction();
+
+    SimpleStringProperty distinctionProperty();
+
+    void setDistinction(String distinction);
+
+    String getValidity();
+
+    SimpleStringProperty validityProperty();
+
+    void setValidity(String validity);
+
+    String getLabel();
+
+    SimpleStringProperty labelProperty();
+
+    void setLabel(String label);
 }
