@@ -22,7 +22,7 @@ import java.util.List;
 /**
  *
  */
-public class Project implements I_Project {
+public final class Project implements I_Project {
     private static I_Project _instance;
 
     private final I_ProjectData _projectData = new ProjectData();
@@ -37,8 +37,8 @@ public class Project implements I_Project {
     }
 
     public static I_Project getInstance() {
-        if (Project._instance == null) Project._instance = new Project();
-        return Project._instance;
+        if (_instance == null) _instance = new Project();
+        return _instance;
     }
 
     @Override

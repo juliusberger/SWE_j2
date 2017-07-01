@@ -1,15 +1,29 @@
 package app.controller;
 
+import app.Constants;
+import app.InfoDialog;
+import app.Log;
 import app.components.CostEstimationCalculation;
 import app.components.I_CostEstimationCalculation;
 import app.model.implementation.Project;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 /**
  * Created by Julius on 26.04.17.
@@ -38,6 +52,30 @@ public class CostEstimationController implements Initializable {
 
     private I_CostEstimationCalculation _costEstimationCalculation;
 
+    /**
+     * Erstellt ein neues Fenster für den Klassifizierungs-Dialog und zeigt es an.
+     * Durch showAndWait wird sichergestellt, dass der aufrufende Controller so lange blockiert, bis die Daten eingegeben und das Fenster geschlossen ist.
+     */
+    static void showClassificationDialog() {
+        Stage stage = new Stage();
+
+        try {
+            VBox vBox = FXMLLoader.load(ClassificationController.class.getResource("../view/classification.fxml"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setTitle("Anforderungen klassifizieren");
+            stage.getIcons().add(new Image(ClassificationController.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
+            stage.setScene(new Scene(vBox));
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            Log.getLogger().log(Level.SEVERE, "Fehler beim Erstellen des Klassifizierungs-Dialogs: " + Arrays.toString(e
+                    .getStackTrace()));
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Programmfehler", "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.", AlertType.ERROR);
+        }
+
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,7 +90,7 @@ public class CostEstimationController implements Initializable {
         _influenceFactorBox6.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(8).getWeightProperty());
         _influenceFactorBox7.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(9).getWeightProperty());
 
-        _classifyRequirementsButton.setOnAction(event -> ClassificationController.showClassificationDialog());
+        _classifyRequirementsButton.setOnAction(event -> showClassificationDialog());
 
         _performCostEstimationButton.setOnAction(event -> {
             _costEstimationCalculation = new CostEstimationCalculation(_influenceFactorBox1.getValue(), _influenceFactorBox2.getValue(), _influenceFactorBox3.getValue(), _influenceFactorBox4a.getValue(), _influenceFactorBox4b.getValue(), _influenceFactorBox4c.getValue(), _influenceFactorBox4d.getValue(), _influenceFactorBox5.getValue(), _influenceFactorBox6.getValue(), _influenceFactorBox7.getValue());
@@ -61,7 +99,7 @@ public class CostEstimationController implements Initializable {
         });
 
         _manualOptimizationButton.setOnAction(event -> {
-            ClassificationController.showClassificationDialog();
+            showClassificationDialog();
 
             updateCalculationLabels();
         });

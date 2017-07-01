@@ -8,7 +8,8 @@ import java.util.logging.SimpleFormatter;
 /**
  * Created by Julius on 24.06.17.
  */
-public class Log {
+public enum Log {
+    ;
     private static Logger _logger;
     private static FileHandler _fileHandler;
 
@@ -20,7 +21,7 @@ public class Log {
             SimpleFormatter formatter = new SimpleFormatter();
             _fileHandler.setFormatter(formatter);
         } catch (SecurityException | IOException e) {
-            System.out.println("Fehler beim Erstellen der Logdatei...");
+            System.err.println("Fehler beim Erstellen der Logdatei...");
             e.printStackTrace();
         }
     }

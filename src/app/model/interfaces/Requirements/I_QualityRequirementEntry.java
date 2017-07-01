@@ -5,7 +5,7 @@ import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**
- * Erstellt von Julius am 29/04/2017.
+ * Model für einen Eintrag für die Auflistung der Qualitätsanforderungen.
  */
 public interface I_QualityRequirementEntry extends I_XmlModelEntity, I_Clearable {
     SimpleObjectProperty<Priority> priorityProperty();

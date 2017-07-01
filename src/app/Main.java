@@ -21,7 +21,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws java.io.IOException {
         _primaryStage = primaryStage;
 
         AnchorPane root = FXMLLoader.load(getClass().getResource("view/rootView.fxml"));

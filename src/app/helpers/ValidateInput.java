@@ -4,14 +4,15 @@ import javafx.scene.control.TextInputControl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 /**
  * Erstellt von Julius am 01/05/2017.
  */
 public class ValidateInput {
-    private static final HashMap<TextInputControl, Boolean> _textInputControlValidity = new HashMap<>();
-    private static final HashMap<TextInputControl, Boolean> _textInputControlEmptiness = new HashMap<>();
+    private static final Map<TextInputControl, Boolean> _textInputControlValidity = new HashMap<>();
+    private static final Map<TextInputControl, Boolean> _textInputControlEmptiness = new HashMap<>();
 
     private final TextInputControl _textInputControl;
     private final Validator _validator;
@@ -59,7 +60,7 @@ public class ValidateInput {
 
     public static Boolean areAllFieldsValid() {
         Boolean allFieldsValid = Boolean.TRUE;
-        for (Map.Entry<TextInputControl, Boolean> entry : _textInputControlValidity.entrySet()) {
+        for (Entry<TextInputControl, Boolean> entry : _textInputControlValidity.entrySet()) {
             if (entry.getValue() == Boolean.FALSE) allFieldsValid = Boolean.FALSE;
         }
         return allFieldsValid;
@@ -67,7 +68,7 @@ public class ValidateInput {
 
     public static Boolean areAllFieldsFilled() {
         Boolean allFieldsFilled = Boolean.TRUE;
-        for (Map.Entry<TextInputControl, Boolean> entry : _textInputControlEmptiness.entrySet()) {
+        for (Entry<TextInputControl, Boolean> entry : _textInputControlEmptiness.entrySet()) {
             if (entry.getValue() == Boolean.TRUE) allFieldsFilled = Boolean.FALSE;
         }
         return allFieldsFilled;
@@ -116,15 +117,15 @@ public class ValidateInput {
     }
 
     private void setValidity(Boolean valid) {
-        if (!_textInputControlValidity.containsKey(_textInputControl))
-            _textInputControlValidity.put(_textInputControl, valid);
-        else _textInputControlValidity.replace(_textInputControl, valid);
+        if (_textInputControlValidity.containsKey(_textInputControl))
+            _textInputControlValidity.replace(_textInputControl, valid);
+        else _textInputControlValidity.put(_textInputControl, valid);
     }
 
     private void setEmptiness(Boolean empty) {
-        if (!_textInputControlEmptiness.containsKey(_textInputControl))
-            _textInputControlEmptiness.put(_textInputControl, empty);
-        else _textInputControlEmptiness.replace(_textInputControl, empty);
+        if (_textInputControlEmptiness.containsKey(_textInputControl))
+            _textInputControlEmptiness.replace(_textInputControl, empty);
+        else _textInputControlEmptiness.put(_textInputControl, empty);
     }
 
     public enum Validator {

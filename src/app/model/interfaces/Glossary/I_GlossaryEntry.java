@@ -5,7 +5,7 @@ import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Erstellt von Julius am 29/04/2017.
+ * Model für einen Eintrag für die Tabelle des Glossars.
  */
 public interface I_GlossaryEntry extends I_XmlModelEntity, I_ModelPropertyAdaptor {
     String getItem();

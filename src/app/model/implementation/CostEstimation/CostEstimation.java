@@ -6,6 +6,7 @@ import app.model.interfaces.CostEstimation.I_CostEstimationEntry;
 import app.model.interfaces.I_XmlModelEntity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,17 +27,12 @@ public class CostEstimation implements I_CostEstimation {
 
     @Override
     public List<I_CostEstimationEntry> getCostEstimationEntries() {
-        return _costEstimationEntries;
+        return Collections.unmodifiableList(_costEstimationEntries);
     }
 
     @Override
     public void removeExistingData() {
         _costEstimationEntries.forEach(entry -> entry.setWeight(""));
-    }
-
-    @Override
-    public I_Classification getClassification() {
-        return _classification;
     }
 
     @Override

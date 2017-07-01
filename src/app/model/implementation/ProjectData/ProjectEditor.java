@@ -14,10 +14,6 @@ class ProjectEditor implements I_ProjectEditor {
     private final SimpleStringProperty _surname = new SimpleStringProperty("");
     private final SimpleStringProperty _name = new SimpleStringProperty("");
 
-    ProjectEditor() {
-
-    }
-
     @Override
     public String getSurname() {
         return _surname.get();

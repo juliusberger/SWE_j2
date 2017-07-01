@@ -1,9 +1,6 @@
 package app.controller;
 
 
-import app.Constants;
-import app.InfoDialog;
-import app.Log;
 import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
 import app.model.implementation.Project;
@@ -12,27 +9,17 @@ import app.model.interfaces.CostEstimation.I_ClassificationEntry;
 import app.model.interfaces.Requirements.I_FunctionalRequirements;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ChoiceBoxTableCell;
-import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 
 /**
  * Controller für die Klassifizierung (view/classification.fxml).
@@ -47,37 +34,13 @@ public class ClassificationController implements Initializable {
     public TableColumn<I_ClassificationEntry, String> _classificationColumn;
     public Button _classificationSaveButton;
 
-    /**
-     * Erstellt ein neues Fenster für den Klassifizierungs-Dialog und zeigt es an.
-     * Durch showAndWait wird sichergestellt, dass der aufrufende Controller so lange blockiert, bis die Daten eingegeben und das Fenster geschlossen ist.
-     */
-    static void showClassificationDialog() {
-        final Stage stage = new Stage();
-
-        try {
-            VBox vBox = FXMLLoader.load(ClassificationController.class.getResource("../view/classification.fxml"));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Anforderungen klassifizieren");
-            stage.getIcons().add(new Image(ClassificationController.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
-            stage.setScene(new Scene(vBox));
-
-            stage.showAndWait();
-        } catch (IOException e) {
-            Log.getLogger().log(Level.SEVERE, "Fehler beim Erstellen des Klassifizierungs-Dialogs: " + Arrays.toString(e
-                    .getStackTrace()));
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Programmfehler", "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.", Alert.AlertType.ERROR);
-        }
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> _categoryList = FXCollections.observableArrayList("Eingabedaten (EI)", "Ausgabedaten (EO)", "Abfragen (EQ)", "Datenbestände (ILF)", "Referenzdaten (ELF)");
-        _categoryColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn(_categoryList));
+        ObservableList<String> categoryList = FXCollections.observableArrayList("Eingabedaten (EI)", "Ausgabedaten (EO)", "Abfragen (EQ)", "Datenbestände (ILF)", "Referenzdaten (ELF)");
+        _categoryColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn(categoryList));
 
-        ObservableList<String> _classificationList = FXCollections.observableArrayList("einfach", "mittel", "komplex");
-        _classificationColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn(_classificationList));
+        ObservableList<String> classificationList = FXCollections.observableArrayList("einfach", "mittel", "komplex");
+        _classificationColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn(classificationList));
 
         I_TableBinding classificationTableBinding = new TableBinding<>(_classificationTable, _dataModel);
         classificationTableBinding.bindTableToData();
@@ -86,16 +49,16 @@ public class ClassificationController implements Initializable {
 
 
         for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
-            boolean _duplicate = false;
+            boolean duplicate = false;
 
             ArrayList<String> functionalRequirementEntry = _functionalRequirements.getEntries().get(index).getAllProperties();
 
             for (int h = 0; h < _dataModel.getEntries().size(); h++) {
                 if (Objects.equals(functionalRequirementEntry.get(0), _dataModel.getEntries().get(h).getFunction())) {
-                    _duplicate = true;
+                    duplicate = true;
                 }
             }
-            if (!_duplicate) {
+            if (!duplicate) {
                 _dataModel.addEntryWithProperties(functionalRequirementEntry);
             }
         }

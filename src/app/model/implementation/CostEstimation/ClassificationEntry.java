@@ -17,9 +17,6 @@ public class ClassificationEntry implements I_ClassificationEntry {
     private final SimpleStringProperty _category = new SimpleStringProperty("");
     private final SimpleStringProperty _classification = new SimpleStringProperty("");
 
-    public ClassificationEntry() {
-    }
-
     @Override
     public String getFunction() {
         return _function.get();

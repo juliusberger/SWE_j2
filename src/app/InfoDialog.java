@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -12,7 +13,8 @@ import javafx.stage.Stage;
 /**
  * Erstellt von Julius am 06/05/2017.
  */
-public class InfoDialog {
+public enum InfoDialog {
+    ;
 
     public static void show(String title, String header, String message, AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -85,8 +87,8 @@ public class InfoDialog {
         alert.setContentText(message);
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
-        ButtonType buttonJa = new ButtonType("Ja", ButtonBar.ButtonData.OK_DONE);
-        ButtonType buttonNein = new ButtonType("Nein", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonJa = new ButtonType("Ja", ButtonData.OK_DONE);
+        ButtonType buttonNein = new ButtonType("Nein", ButtonData.CANCEL_CLOSE);
 
         alert.getButtonTypes().clear();
         alert.getButtonTypes().addAll(buttonJa, buttonNein);
@@ -110,7 +112,7 @@ public class InfoDialog {
         dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("assets/ANTool_Icon2.png")));
 
         dialog.showAndWait();
-        return (result.get() != null) && (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE);
+        return (result.get() != null) && (result.get().getButtonData() == ButtonData.OK_DONE);
     }
 
 }

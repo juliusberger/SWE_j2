@@ -7,24 +7,26 @@ import app.helpers.ValidateInput;
 import app.model.implementation.Project;
 import app.model.interfaces.I_Project;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 import java.io.File;
 
 /**
  * Created by eju8fe on 6/30/2017.
  */
-public class ProjectExportImportManager {
+public enum ProjectExportImportManager {
+    ;
     private static final FileChooser fileChooser = new FileChooser();
-    private static final FileChooser.ExtensionFilter projectExtensionFilter = new FileChooser.ExtensionFilter("ANTool Projekt",
+    private static final ExtensionFilter projectExtensionFilter = new ExtensionFilter("ANTool Projekt",
             "*.project");
-    private static final FileChooser.ExtensionFilter XMLExtensionFilter = new FileChooser.ExtensionFilter("XML-Datei",
+    private static final ExtensionFilter XMLExtensionFilter = new ExtensionFilter("XML-Datei",
             "*.xml");
 
 
     public static boolean loadProject() {
         fileChooser.setTitle("Projekt öffnen");
         fileChooser.getExtensionFilters().setAll(projectExtensionFilter);
-        final File file = fileChooser.showOpenDialog(Main.getPrimaryStage().getScene().getWindow());
+        File file = fileChooser.showOpenDialog(Main.getPrimaryStage().getScene().getWindow());
         if (file != null) {
             if (onLoadFile(file)) {
                 InfoDialog.show("Projekt laden", "Laden erfolgreich!", "Das Projekt wurde erfolgreich geladen.");
@@ -37,7 +39,7 @@ public class ProjectExportImportManager {
     public static boolean saveProject() {
         fileChooser.setTitle("Projekt speichern");
         fileChooser.getExtensionFilters().setAll(projectExtensionFilter);
-        final File file = fileChooser.showSaveDialog(Main.getPrimaryStage().getScene().getWindow());
+        File file = fileChooser.showSaveDialog(Main.getPrimaryStage().getScene().getWindow());
         if (file != null) {
             if (onSaveFile(file)) {
                 InfoDialog.show("Projekt speichern", "Speichern erfolgreich!", "Das Projekt wurde erfolgreich gespeichert.");
@@ -50,7 +52,7 @@ public class ProjectExportImportManager {
     public static boolean importXml() {
         fileChooser.setTitle("XML importieren");
         fileChooser.getExtensionFilters().setAll(XMLExtensionFilter);
-        final File file = fileChooser.showOpenDialog(Main.getPrimaryStage().getScene().getWindow());
+        File file = fileChooser.showOpenDialog(Main.getPrimaryStage().getScene().getWindow());
         if (file != null) {
             if (onLoadFile(file)) {
                 InfoDialog.show(Constants.CONTEXT_TITLE_XML_IMPORT, "Import erfolgreich!", "Die XML-Datei wurde erfolgreich importiert.");
@@ -72,7 +74,7 @@ public class ProjectExportImportManager {
         if (continueAnyway) {
             fileChooser.setTitle(Constants.CONTEXT_TITLE_XML_EXPORT);
             fileChooser.getExtensionFilters().setAll(XMLExtensionFilter);
-            final File file = fileChooser.showSaveDialog(Main.getPrimaryStage().getScene().getWindow());
+            File file = fileChooser.showSaveDialog(Main.getPrimaryStage().getScene().getWindow());
             if (file != null) {
                 if (onSaveFile(file)) {
                     InfoDialog.show(Constants.CONTEXT_TITLE_XML_EXPORT, "Export erfolgreich!", "Die XML-Datei wurde erfolgreich exportiert.");
@@ -87,13 +89,17 @@ public class ProjectExportImportManager {
     private static boolean onLoadFile(File file) {
         I_Project project = Project.getInstance();
         project.removeExistingData();
-        I_XmlImporter importer = new XmlImporter(file.getAbsolutePath(), project);
+        I_XmlImporter importer = new XmlImporter();
+        importer.setFileName(file.getAbsolutePath());
+        importer.setRootModel(project);
         return importer.importXml();
     }
 
     private static boolean onSaveFile(File file) {
         I_Project project = Project.getInstance();
-        I_XmlExporter exporter = new XmlExporter(file.getAbsolutePath(), project);
+        I_XmlExporter exporter = new XmlExporter();
+        exporter.setFileName(file.getAbsolutePath());
+        exporter.setRootModel(project);
         return exporter.exportXml();
     }
 }

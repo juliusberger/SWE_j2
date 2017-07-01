@@ -8,7 +8,11 @@ import javafx.beans.property.SimpleStringProperty;
 import java.util.List;
 
 /**
- * Erstellt von Julius am 29/04/2017.
+ * Model des Lastenhefts. Gedacht für Halterklassen von:
+ *  - {@link I_FunctionalRequirements}
+ *  - {@link I_NonFunctionalRequirements}
+ *  - {@link I_QualityRequirementEntry}
+ *  - {@link I_Comments}
  */
 public interface I_Requirements extends I_ModelPropertyAdaptor, I_XmlModelEntity, I_Clearable {
     String getProjectGoal();

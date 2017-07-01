@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -22,98 +21,78 @@ import java.util.Observable;
  * Der Dialog blockiert dabei, bis er durch Speichern oder Schliessen beendet wird. Danach koennen die eingegebenen Daten per {@link #getData()} abgerufen werden.
  */
 class AddEntryDialog extends Observable {
-    private final Stage _stage;
-    private final TextField _textField = new TextField();
-    private final List<TextArea> _textAreas = new ArrayList<>();
-    private boolean _saveClicked = false;
+    private final Stage _addEntryDialog;
+    private final List<TextArea> _inputTextAreas = new ArrayList<>();
+    private boolean _saveClicked;
 
     /**
      * Initialisiert das Grundgerüst des Dialogs.
      *
-     * @param stringProperties Strings für die jeweiligen Überschriften der Textfelder. Das erste Feld ist ein einzeiliges Textfeld, die anderen mehrzeilige Textareas.
+     * @param inputStringProperties Strings, genutzt für die jeweiligen Überschriften der Textfelder.
      */
-    AddEntryDialog(ArrayList<String> stringProperties) {
-        _stage = new Stage();
+    AddEntryDialog(Iterable<String> inputStringProperties) {
+        _addEntryDialog = new Stage();
 
-        final Label textFieldLabel = new Label(stringProperties.get(0));
-        textFieldLabel.getStyleClass().add("h3");
-
-        stringProperties.remove(0);
-
-        final List<Label> textAreaLabels = new ArrayList<>();
-        for (String textAreaLabel : stringProperties) {
-            Label label = new Label(textAreaLabel);
+        List<Label> inputTextAreaLabels = new ArrayList<>();
+        for (String inputStringProperty : inputStringProperties) {
+            Label label = new Label(inputStringProperty);
             label.getStyleClass().add("h3");
 
-            textAreaLabels.add(label);
+            inputTextAreaLabels.add(label);
 
-            TextArea textArea = new TextArea();
-            textArea.setPrefHeight(80);
-            textArea.setWrapText(true);
-            _textAreas.add(textArea);
+            TextArea inputTextArea = new TextArea();
+            inputTextArea.setPrefHeight(40.0);
+            inputTextArea.setWrapText(true);
+            _inputTextAreas.add(inputTextArea);
         }
 
-        try {
-            _stage.initModality(Modality.APPLICATION_MODAL);
-            _stage.initStyle(StageStyle.DECORATED);
-            _stage.setTitle("Eintrag hinzufügen");
-            _stage.getIcons().add(new Image(getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
+        _addEntryDialog.initModality(Modality.APPLICATION_MODAL);
+        _addEntryDialog.initStyle(StageStyle.DECORATED);
+        _addEntryDialog.setTitle("Eintrag hinzufügen");
+        _addEntryDialog.getIcons().add(new Image(getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
 
-            VBox vBox = new VBox();
-            vBox.setSpacing(10.0);
-            vBox.getStylesheets().add(getClass().getResource("../assets/global.css").toExternalForm());
-            vBox.getStyleClass().add("p-10");
-            vBox.setPrefWidth(300);
+        VBox vBox = new VBox();
+        vBox.setSpacing(10.0);
+        vBox.getStylesheets().add(getClass().getResource("../assets/global.css").toExternalForm());
+        vBox.getStyleClass().add("p-10");
+        vBox.setPrefWidth(400.0);
 
-            {
-                vBox.getChildren().add(textFieldLabel);
-                vBox.getChildren().add(_textField);
-
-                for (int index = 0; index < _textAreas.size(); index++) {
-                    vBox.getChildren().add(textAreaLabels.get(index));
-                    vBox.getChildren().add(_textAreas.get(index));
-                }
-
-            }
-
-            {
-                Button saveButton = new Button("Speichern");
-                Button cancelButton = new Button("Abbrechen");
-                saveButton.setOnAction(event -> save());
-                cancelButton.setOnAction(event -> close());
-                saveButton.setMaxWidth(1.7976931348623157E308);
-                cancelButton.setMaxWidth(1.7976931348623157E308);
-                HBox.setHgrow(saveButton,
-                        Priority.ALWAYS);
-                HBox.setHgrow(cancelButton,
-                        Priority.ALWAYS);
-
-                HBox buttonBox = new HBox();
-                buttonBox.getStyleClass().add("button-hbox");
-
-                buttonBox.getChildren()
-                        .addAll(saveButton,
-                                cancelButton);
-
-                vBox.getChildren().add(buttonBox);
-            }
-
-
-            _stage.setScene(new Scene(vBox));
-        } catch (Exception e) {
-            System.out.println("Error while creating the AddEntryDialog.");
+        for (int index = 0; index < _inputTextAreas.size(); index++) {
+            vBox.getChildren().add(inputTextAreaLabels.get(index));
+            vBox.getChildren().add(_inputTextAreas.get(index));
         }
+
+        Button saveButton = new Button("Speichern");
+        Button cancelButton = new Button("Abbrechen");
+
+        saveButton.setOnAction(event -> save());
+        cancelButton.setOnAction(event -> close());
+
+        saveButton.setMaxWidth(1.7976931348623157E308);
+        cancelButton.setMaxWidth(1.7976931348623157E308);
+
+        HBox.setHgrow(saveButton, Priority.ALWAYS);
+        HBox.setHgrow(cancelButton, Priority.ALWAYS);
+
+        HBox buttonBox = new HBox();
+        buttonBox.getStyleClass().add("button-hbox");
+
+        buttonBox.getChildren().addAll(saveButton, cancelButton);
+
+        vBox.getChildren().add(buttonBox);
+
+        _addEntryDialog.setScene(new Scene(vBox));
     }
 
     /**
      * Baut den AddEntryDialog auf und zeigt ihn als Overlay über der App.
      */
     void show() {
-        _stage.showAndWait();
+        _addEntryDialog.showAndWait();
     }
 
     /**
-     * Setzt das save-Flag auf true und schließt den AddEntryDialog.
+     * Setzt das save-Flag auf true und schließt den AddEntryDialog. Damit kann die aufrufende Methode weiter verfahren, und die eingegebenen Daten abrufen.
      */
     private void save() {
         _saveClicked = true;
@@ -124,55 +103,38 @@ class AddEntryDialog extends Observable {
      * Schließt den AddEntryDialog und benachrichtigt Observer.
      */
     private void close() {
-        _stage.close();
+        _addEntryDialog.close();
         setChanged();
         notifyObservers();
     }
 
     /**
-     * @return boolean, ob beim Schließen des Dialogs "Speichern" gedrückt wurde
+     * @return boolean, ob beim Schließen des Dialogs "Speichern" gedrückt wurde, und demnach die Daten abgerufen werden koennen, oder ignoriert werden sollen.
      */
     boolean isSaveClicked() {
         return _saveClicked;
     }
 
-//    public String getData(int i) {
-//        if (i == 0) {
-//            return _textField.getText();
-//        } else {
-//            return _textAreas.get(i - 1).getText();
-//        }
-//    }
 
     /**
      * @return Alle in Textfelder eingegebenen Daten als ArrayList
      */
     ArrayList<String> getData() {
         ArrayList<String> strings = new ArrayList<>();
-        strings.add(_textField.getText());
-        for (TextArea textArea : _textAreas) {
+        for (TextArea textArea : _inputTextAreas) {
             strings.add(textArea.getText());
         }
         return strings;
     }
 
-//    public void setData(int i,
-//                        String text) {
-//        if (i == 0) {
-//            _textField.setText(text);
-//        } else {
-//            _textAreas.get(i - 1).setText(text);
-//        }
-//    }
-
     /**
      * Setzt alle Textfelder mit den angegebenen Daten
+     *
      * @param texts ArrayList an Strings, die der Reihenfolge nach in die Textfelder des Dialogs eingesetzt werden
      */
-    void setData(ArrayList<String> texts) {
-        _textField.setText(texts.get(0));
-        for (int index = 0; index < _textAreas.size(); index++) {
-            _textAreas.get(index).setText(texts.get(index + 1));
+    void setData(List<String> texts) {
+        for (int index = 0; index < _inputTextAreas.size(); index++) {
+            _inputTextAreas.get(index).setText(texts.get(index));
         }
     }
 }

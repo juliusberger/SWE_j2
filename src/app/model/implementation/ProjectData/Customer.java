@@ -21,9 +21,6 @@ class Customer implements I_Customer {
     private final SimpleStringProperty _companyPLZ = new SimpleStringProperty("");
     private final SimpleStringProperty _companyLocation = new SimpleStringProperty("");
 
-    Customer() {
-    }
-
     @Override
     public String getSurname() {
         return _surname.get();

@@ -62,23 +62,23 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
     }
 
     /**
-     * Überwacht das Tableview, ob ein Eintrag ausgewählt ist. Ist dies der Fall, werden alle übergebenen Button aktiviert. Bei keiner Auswahl werden die angegebenen Button deaktiviert.
+     * Überwacht das Tableview, ob ein Eintrag ausgewählt ist. Ist dies der Fall, werden der Bearbeiten- und Loeschen-Button aktiviert. Bei keiner Auswahl werden die angegebenen Button deaktiviert.
      *
-     * @param disableObservedButtons Buttons, die zu aktivieren/deaktivieren sind (i.d.R. Bearbeiten- und Löschen-Button
+     * @param disableObservedButtons Buttons, die zu aktivieren/deaktivieren sind (i.d.R. Bearbeiten- und Löschen-Button)
      */
     private void observeDisabledButtonState(Button... disableObservedButtons) {
-        for (Button b : disableObservedButtons) {
-            b.setDisable(true);
+        for (Button button : disableObservedButtons) {
+            button.setDisable(true);
         }
 
         _tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                for (Button b : disableObservedButtons) {
-                    b.setDisable(false);
+                for (Button button : disableObservedButtons) {
+                    button.setDisable(false);
                 }
             } else {
-                for (Button b : disableObservedButtons) {
-                    b.setDisable(true);
+                for (Button button : disableObservedButtons) {
+                    button.setDisable(true);
                 }
             }
         });
@@ -96,7 +96,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
 
     /**
      * Bindet den Hinzufügen-Button. Erstellt beim Klick eine neue {@link AddEntryDialog}-Instanz und öffnet einen AddEntryDialog mit Feldern mit den Überschriften der Tabellen-Spalten-Überschriften.
-     * Beim Klick auf "Speichern" wird durch den Aufruf der Factory-Methode ein neues Element des Typs S erstellt und dem Daten-Model hinzugefügt (und damit auch der Tabelle).
+     * Beim Klick auf "Speichern" wird durch den Aufruf der Factory-Methode {@link I_ObservableDataAdaptor#addEntryWithProperties(ArrayList)} ein neues Element des Typs S erstellt und dem Daten-Model hinzugefügt (und damit auch der Tabelle).
      *
      * @param addButton Hinzufügen-Button, an den die Aktion gebunden werden soll.
      */
@@ -122,7 +122,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
      */
     private void bindTableEditButton(Button editButton) {
         editButton.setOnAction(event -> {
-            final S selectedEntry = _tableView.getSelectionModel().getSelectedItem();
+            S selectedEntry = _tableView.getSelectionModel().getSelectedItem();
             AddEntryDialog addEntryDialog = new AddEntryDialog(getColumnStringPropertyLabels());
             addEntryDialog.addObserver((o, arg) -> {
                 if (addEntryDialog.isSaveClicked()) {
@@ -145,7 +145,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
         _tableView.setRowFactory(tv -> {
             TableRow<S> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                if ((event.getClickCount() == 2) && !row.isEmpty()) {
                     originalEditButton.getOnAction().handle(null);
                 }
             });

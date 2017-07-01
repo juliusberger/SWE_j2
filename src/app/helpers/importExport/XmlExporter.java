@@ -5,7 +5,7 @@ import app.InfoDialog;
 import app.Log;
 import app.model.interfaces.I_XmlModelEntity;
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -26,12 +26,17 @@ import java.util.logging.Level;
  * - Enthält eine Model-Klasse weitere Model-Klassen (z.B. ModelEntry), so werden diese nach obigen Regeln innerhalb von <children></children> Tags gespeichert (Kindelemente über {@link I_XmlModelEntity#getChildren()}
  */
 class XmlExporter implements I_XmlExporter {
-    private final String _fileName;
-    private XMLStreamWriter _writer;
-    private final I_XmlModelEntity _rootModel;
+    private String _fileName = null;
+    private XMLStreamWriter _writer = null;
+    private I_XmlModelEntity _rootModel = null;
 
-    public XmlExporter(String fileName, I_XmlModelEntity rootModel) {
+    @Override
+    public void setFileName(String fileName) {
         _fileName = fileName;
+    }
+
+    @Override
+    public void setRootModel(I_XmlModelEntity rootModel) {
         _rootModel = rootModel;
     }
 
@@ -48,7 +53,7 @@ class XmlExporter implements I_XmlExporter {
 
             _writer.writeEndElement();
         }
-        if (entity.getChildren() != null && entity.getChildren().size() > 0) {
+        if ((entity.getChildren() != null) && !entity.getChildren().isEmpty()) {
             _writer.writeStartElement("Children");
 
             for (I_XmlModelEntity modelEntity : entity.getChildren()) {
@@ -63,24 +68,25 @@ class XmlExporter implements I_XmlExporter {
 
     @Override
     public boolean exportXml() {
-        try {
-            _writer = new IndentingXMLStreamWriter(XMLOutputFactory.newFactory().createXMLStreamWriter(new FileOutputStream(_fileName)));
+        if ((_rootModel != null) && (_fileName != null)) {
+            try {
+                _writer = new IndentingXMLStreamWriter(XMLOutputFactory.newFactory().createXMLStreamWriter(new FileOutputStream(_fileName)));
 
-            _writer.writeStartDocument();
+                _writer.writeStartDocument();
 
-            writeXmlRecursively(_rootModel);
+                writeXmlRecursively(_rootModel);
 
-            _writer.writeEndDocument();
+                _writer.writeEndDocument();
 
-            Log.getLogger().info("XML-Export erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
-            return true;
-        } catch (XMLStreamException ex) {
-            Log.getLogger().log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Export fehlgeschlagen", "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage(), Alert.AlertType.ERROR);
-        } catch (FileNotFoundException e) {
-            Log.getLogger().log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Speichern", "Fehler beim Speichern der Datei. Die Datei konnte nicht erstellt werden.", Alert.AlertType.ERROR);
+                Log.getLogger().info("XML-Export erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
+                return true;
+            } catch (XMLStreamException ex) {
+                Log.getLogger().log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+                InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Export fehlgeschlagen", "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage(), AlertType.ERROR);
+            } catch (FileNotFoundException e) {
+                Log.getLogger().log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
+                InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Speichern", "Fehler beim Speichern der Datei. Die Datei konnte nicht erstellt werden.", AlertType.ERROR);
+            }
         }
         return false;
     }

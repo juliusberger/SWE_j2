@@ -8,10 +8,9 @@ import app.model.interfaces.ProjectData.I_ProjectData;
 import app.model.interfaces.Requirements.I_Requirements;
 
 /**
- * Erstellt von Julius am 30/04/2017.
+ * Repräsentiert das root Model Projekt mit allen enthaltenen Model-Komponenten.
  */
 public interface I_Project extends I_ModelPropertyAdaptor, I_XmlModelEntity, I_Clearable {
-
     I_ProjectData getProjectData();
 
     I_Analysis getStateAnalysis();

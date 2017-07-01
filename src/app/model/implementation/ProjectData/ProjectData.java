@@ -20,9 +20,6 @@ public class ProjectData implements I_ProjectData {
 
     private final I_Customer _customer = new Customer();
 
-    public ProjectData() {
-    }
-
     @Override
     public String getName() {
         return _name.get();

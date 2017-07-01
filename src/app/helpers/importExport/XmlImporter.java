@@ -5,7 +5,7 @@ import app.Constants;
 import app.InfoDialog;
 import app.Log;
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -27,12 +27,17 @@ import java.util.logging.Level;
  * - Enthält eine Model-Klasse weitere Model-Klassen (z.B. ModelEntry), so werden diese nach obigen Regeln innerhalb von <children></children> Tags gespeichert (Kindelemente über {@link I_XmlModelEntity#getChildren()}
  */
 class XmlImporter implements I_XmlImporter {
-    private String _fileName = "";
-    private XMLStreamReader _reader;
-    private final I_XmlModelEntity _rootModel;
+    private String _fileName = null;
+    private XMLStreamReader _reader = null;
+    private I_XmlModelEntity _rootModel = null;
 
-    public XmlImporter(String fileName, I_XmlModelEntity rootModel) {
+    @Override
+    public void setFileName(String fileName) {
         _fileName = fileName;
+    }
+
+    @Override
+    public void setRootModel(I_XmlModelEntity rootModel) {
         _rootModel = rootModel;
     }
 
@@ -51,13 +56,13 @@ class XmlImporter implements I_XmlImporter {
             return true;
         } catch (FileNotFoundException e) {
             Log.getLogger().log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Laden", "Fehler beim Laden der Datei. Die Datei konnte nicht geöffnet werden.", Alert.AlertType.ERROR);
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Laden", "Fehler beim Laden der Datei. Die Datei konnte nicht geöffnet werden.", AlertType.ERROR);
         } catch (XMLStreamException ex) {
             Log.getLogger().log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Import fehlgeschlagen", "Import nicht erfolgreich abgeschlossen.", Alert.AlertType.ERROR);
-        } catch (MalformedXmlException e) {
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Import fehlgeschlagen", "Import nicht erfolgreich abgeschlossen.", AlertType.ERROR);
+        } catch (MalformedXmlException ignored) {
             Log.getLogger().log(Level.SEVERE, "Fehler beim Laden. Nicht wohlgeformtes XML-Dokument.");
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Ungültige Datei", "Nicht wohlgeformte Datei. Für den Import muss die Datei zuvor durch ANTool exportiert worden sein.", Alert.AlertType.ERROR);
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Ungültige Datei", "Nicht wohlgeformte Datei. Für den Import muss die Datei zuvor durch ANTool exportiert worden sein.", AlertType.ERROR);
         }
         return false;
     }
@@ -65,7 +70,7 @@ class XmlImporter implements I_XmlImporter {
     /**
      * @return Gibt den aktuellen Tag-Namen zurück.
      */
-    private String getName() {
+    private String getCurrentTagName() {
         return _reader.getName().toString();
     }
 
@@ -92,17 +97,17 @@ class XmlImporter implements I_XmlImporter {
      */
     private void readXmlRecursively(I_XmlModelEntity model) throws XMLStreamException, MalformedXmlException {
         if (_reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
-            String rootName = getName();
+            String rootName = getCurrentTagName();
             if (!model.getTag().equals(rootName)) throw new MalformedXmlException();
 
             _reader.nextTag();
 
-            while (!(getName().equals(rootName) && isEndElem())) {
-                String name = getName();
+            while (!(getCurrentTagName().equals(rootName) && isEndElem())) {
+                String name = getCurrentTagName();
                 switch (name) {
                     case Constants.XML_CHILDREN_TAG:
                         if (model.getChildren() != null) {
-                            if (model.getChildren().size() > 0) {
+                            if (!model.getChildren().isEmpty()) {
                                 for (I_XmlModelEntity entity : model.getChildren()) {
                                     _reader.nextTag();
                                     if (isStartElem()) {
@@ -111,9 +116,9 @@ class XmlImporter implements I_XmlImporter {
                                 }
                                 _reader.nextTag();
                             } else {
-                                while (!(getName().equals(name) && isEndElem())) {
+                                while (!(getCurrentTagName().equals(name) && isEndElem())) {
                                     _reader.nextTag();
-                                    if (isStartElem() && getName().equals(Constants.XML_PROPERTIES_TAG)) {
+                                    if (isStartElem() && getCurrentTagName().equals(Constants.XML_PROPERTIES_TAG)) {
                                         model.addEntryWithProperties(processProperties());
                                     }
                                 }
@@ -142,10 +147,10 @@ class XmlImporter implements I_XmlImporter {
      * @throws XMLStreamException Falls allgemeine XML-Fehler auftreten sollten.
      */
     private ArrayList<String> processProperties() throws XMLStreamException {
-        ArrayList<String> properties = new ArrayList<>();
         _reader.nextTag();
-        while (getName().equals(Constants.XML_PROPERTY_TAG)) {
-            if (_reader.getEventType() != XMLStreamConstants.END_ELEMENT && _reader.getAttributeCount() > 0 && _reader.getAttributeName(0).toString().equals("data")) {
+        ArrayList<String> properties = new ArrayList<>();
+        while (getCurrentTagName().equals(Constants.XML_PROPERTY_TAG)) {
+            if ((_reader.getEventType() != XMLStreamConstants.END_ELEMENT) && (_reader.getAttributeCount() > 0) && _reader.getAttributeName(0).toString().equals("data")) {
                 properties.add(_reader.getAttributeValue(0));
             }
             _reader.nextTag();

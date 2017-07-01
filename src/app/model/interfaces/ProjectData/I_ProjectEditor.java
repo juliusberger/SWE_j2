@@ -4,7 +4,7 @@ import app.model.interfaces.*;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Erstellt von Julius am 29/04/2017.
+ * Model für Daten des Projektbearbeiters
  */
 public interface I_ProjectEditor extends I_ModelPropertyAdaptor, I_XmlModelEntity, I_Clearable {
     String getSurname();

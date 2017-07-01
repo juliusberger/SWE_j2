@@ -12,7 +12,7 @@ public interface I_ObservableDataAdaptor<S extends I_ModelPropertyAdaptor> exten
     /**
      * Erstellt ein Objekt des Typs S und setzt die Properties gemäß setAllProperties.
      *
-     * @param propertyStrings s. setAllProperties in {@link I_ModelPropertyAdaptor}
+     * @param propertyStrings s. setAllProperties in {@link I_ModelPropertyAdaptor#setAllProperties(ArrayList)}
      */
     void addEntryWithProperties(ArrayList<String> propertyStrings);
 
@@ -22,8 +22,7 @@ public interface I_ObservableDataAdaptor<S extends I_ModelPropertyAdaptor> exten
     ObservableList<S> getEntries();
 
     /**
-     *
-     * @return Liefert die NAmen aller Property-Stings, benötigt zum Populieren von Tables.
+     * @return Liefert die NAmen aller Property-Stings, benötigt zum Populieren von TableViews.
      */
     String[] getPropertyNames();
 

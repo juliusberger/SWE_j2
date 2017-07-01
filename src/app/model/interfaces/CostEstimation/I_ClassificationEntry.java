@@ -3,7 +3,7 @@ package app.model.interfaces.CostEstimation;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Created by Matthias on 24.06.2017.
+ * Model für einen Eintrag für die Tabelle der Klassifizierung.
  */
 public interface I_ClassificationEntry extends I_CostEstimationEntry {
     String getFunction();

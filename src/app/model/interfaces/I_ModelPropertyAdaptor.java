@@ -1,5 +1,7 @@
 package app.model.interfaces;
 
+import com.sun.istack.internal.Nullable;
+
 import java.util.ArrayList;
 
 /**
@@ -19,5 +21,6 @@ public interface I_ModelPropertyAdaptor {
     /**
      * @return Liefert alle Property-Strings der jew. in der Klasse angegebenen Properties.
      */
+    @Nullable
     ArrayList<String> getAllProperties();
 }

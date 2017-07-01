@@ -5,10 +5,9 @@ package app.helpers.importExport;
  */
 class MalformedXmlException extends Exception {
     MalformedXmlException() {
-        super();
     }
 
-    public MalformedXmlException(String msg) {
+    MalformedXmlException(String msg) {
         super(msg);
     }
 }

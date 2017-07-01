@@ -5,7 +5,7 @@ import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Erstellt von Julius am 29/04/2017.
+ * Model für einen Eintrag für die Tabelle der Ergänzungen.
  */
 public interface I_CommentEntry extends I_ModelPropertyAdaptor, I_XmlModelEntity {
     String getKeyword();

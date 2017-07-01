@@ -4,15 +4,15 @@ import java.util.NavigableMap;
 import java.util.TreeMap;
 
 /**
- * Created by Michi on 25.06.2017.
+ * Repräsentiert unspezifische Konstanten, die überall im Projekt verwendet werden.
  */
-public class Constants {
+public enum Constants {
+    ;
     public static final String CONTEXT_TITLE_COMMON = "ANTool";
     public static final String CONTEXT_TITLE_XML_EXPORT = "XML-Export";
     public static final String CONTEXT_TITLE_XML_IMPORT = "XML-Import";
 
     public static final String CONTEXT_TITLE_ERROR = "Fehler";
-
 
     public static final String CONTEXT_MSG_UNSAVED_CHANGES = "Alle nicht gespeicherten Änderungen gehen verloren. Fortfahren?";
 

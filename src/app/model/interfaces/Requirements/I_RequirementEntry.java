@@ -5,7 +5,7 @@ import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Gemeinsames Interface der {@link I_FunctionalRequirementEntry} und {@link I_NonFunctionalRequirementEntry}.
  */
 public interface I_RequirementEntry extends I_ModelPropertyAdaptor, I_XmlModelEntity {
     String getDescription();

@@ -5,7 +5,7 @@ import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Erstellt von Julius am 29/04/2017.
+ * Model für einen Eintrag für die Tabellen der Ist- und Soll-Analyse.
  */
 public interface I_AnalysisEntry extends I_XmlModelEntity, I_ModelPropertyAdaptor {
     String getEntryName();
