@@ -18,6 +18,7 @@ class ValidateInputTest {
     private static final String IS_VALID_PLZ_NAME = "isValidPlz";
     private static final String IS_VALID_EMAIL_ADDRESS_NAME = "isValidEmailAddress";
     private ValidateInput _validateInput;
+
     // test method: isValidPlainString(String input)
     private Method _testIsValidPlainString;
     private Class[] parameterTypes_IS_VALID_PLAIN_STRING;
