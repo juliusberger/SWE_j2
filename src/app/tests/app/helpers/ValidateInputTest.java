@@ -19,23 +19,23 @@ class ValidateInputTest {
     private static final String IS_VALID_EMAIL_ADDRESS_NAME = "isValidEmailAddress";
     private ValidateInput _validateInput;
 
-    // test method: isValidPlainString(String input)
+    // Testmethode: isValidPlainString(String input)
     private Method _testIsValidPlainString;
     private Class[] parameterTypes_IS_VALID_PLAIN_STRING;
     private Object[] parameters_IS_VALID_PLAIN_STRING;
-    // test method: isValidDate(String input)
+    // Testmethode: isValidDate(String input)
     private Method _testIsValidDate;
     private Class[] parameterTypes_IS_VALID_DATE;
     private Object[] parameters_IS_VALID_DATE;
-    // test method: isValidPhoneNumber(String input)
+    // Testmethode: isValidPhoneNumber(String input)
     private Method _testIsValidPhoneNumber;
     private Class[] parameterTypes_IS_VALID_PHONE_NUMBER;
     private Object[] parameters_IS_VALID_PHONE_NUMBER;
-    // test method: isValidPlz(String input)
+    // Testmethode: isValidPlz(String input)
     private Method _testIsValidPlz;
     private Class[] parameterTypes_IS_VALID_PLZ;
     private Object[] parameters_IS_VALID_PLZ;
-    // test method: isValidEmailAddress(String input)
+    // Testmethode: isValidEmailAddress(String input)
     private Method _testIsValidEmailAddress;
     private Class[] parameterTypes_IS_VALID_EMAIL_ADDRESS;
     private Object[] parameters_IS_VALID_EMAIL_ADDRESS;
@@ -44,35 +44,35 @@ class ValidateInputTest {
     public void setUp() throws Exception {
         _validateInput = new ValidateInput(null, null);
 
-        // test method: isValidPlainString(String input)
+        // Testmethode: isValidPlainString(String input)
         parameterTypes_IS_VALID_PLAIN_STRING = new Class[1];
         parameterTypes_IS_VALID_PLAIN_STRING[0] = java.lang.String.class;
         _testIsValidPlainString = _validateInput.getClass().getDeclaredMethod(IS_VALID_PLAIN_STRING_NAME, parameterTypes_IS_VALID_PLAIN_STRING);
         _testIsValidPlainString.setAccessible(true);
         parameters_IS_VALID_PLAIN_STRING = new Object[1];
 
-        // test method: isValidDate(String input)
+        // Testmethode: isValidDate(String input)
         parameterTypes_IS_VALID_DATE = new Class[1];
         parameterTypes_IS_VALID_DATE[0] = java.lang.String.class;
         _testIsValidDate = _validateInput.getClass().getDeclaredMethod(IS_VALID_DATE_NAME, parameterTypes_IS_VALID_DATE);
         _testIsValidDate.setAccessible(true);
         parameters_IS_VALID_DATE = new Object[1];
 
-        // test method: isValidPhoneNumber(String input)
+        // Testmethode: isValidPhoneNumber(String input)
         parameterTypes_IS_VALID_PHONE_NUMBER = new Class[1];
         parameterTypes_IS_VALID_PHONE_NUMBER[0] = java.lang.String.class;
         _testIsValidPhoneNumber = _validateInput.getClass().getDeclaredMethod(IS_VALID_PHONE_NUMBER_NAME, parameterTypes_IS_VALID_PHONE_NUMBER);
         _testIsValidPhoneNumber.setAccessible(true);
         parameters_IS_VALID_PHONE_NUMBER = new Object[1];
 
-        // test method: isValidPlz(String input)
+        // Testmethode: isValidPlz(String input)
         parameterTypes_IS_VALID_PLZ = new Class[1];
         parameterTypes_IS_VALID_PLZ[0] = java.lang.String.class;
         _testIsValidPlz = _validateInput.getClass().getDeclaredMethod(IS_VALID_PLZ_NAME, parameterTypes_IS_VALID_PLZ);
         _testIsValidPlz.setAccessible(true);
         parameters_IS_VALID_PLZ = new Object[1];
 
-        // test method: isValidEmailAddress(String input)
+        // Testmethode: isValidEmailAddress(String input)
         parameterTypes_IS_VALID_EMAIL_ADDRESS = new Class[1];
         parameterTypes_IS_VALID_EMAIL_ADDRESS[0] = java.lang.String.class;
         _testIsValidEmailAddress = _validateInput.getClass().getDeclaredMethod(IS_VALID_EMAIL_ADDRESS_NAME, parameterTypes_IS_VALID_EMAIL_ADDRESS);

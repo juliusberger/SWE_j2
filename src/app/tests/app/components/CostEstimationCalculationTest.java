@@ -17,34 +17,38 @@ import static org.junit.jupiter.api.Assertions.*;
 class CostEstimationCalculationTest {
     private CostEstimationCalculation _costEstimationCalculation;
 
-    // test method: calculateMenMonths(double functionPoints)
+    // Testmethode: calculateMenMonths(double functionPoints)
     private Method _testCalculateMenMonths;
     private static final String CALCULATE_MEN_MONTH_NAME = "calculateMenMonths";
     private Class[] parameterTypes_CALCULATE_MEN_MONTH;
     private Object[] parameters_CALCULATE_MEN_MONTH;
 
-    // test method: calculateFunctionTypesSums()
+    // Testmethode: calculateFunctionTypesSums()
     private Method _testCalculateFunctionTyesSums;
     private static String CALCULATE_FUNCTION_TYPES_SUMS_NAME = "calculateFunctionTypesSums";
-    private Class[] parameterTypes_CALCULATE_FUNCTION_TYPES_SUMS;
-    private Object[] parameters_CALCULATE_FUNCTION_TYPES_SUMS;
-
+    
+    // Testmethode: calculateImpactFactor()
+    private Method _testCalculateImpactFactor;
+    private static String CALCULATE_IMPACT_FACTOR_NAME = "calculateImpactFactor";
 
     @BeforeEach
     public void setUp() throws Exception {
         _costEstimationCalculation = new CostEstimationCalculation("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 
-        // test method: calculateMenMonths(double functionPoints)
+        // Testmethode: calculateMenMonths(double functionPoints)
         parameterTypes_CALCULATE_MEN_MONTH = new Class[1];
         parameterTypes_CALCULATE_MEN_MONTH[0] = double.class;
         _testCalculateMenMonths = _costEstimationCalculation.getClass().getDeclaredMethod(CALCULATE_MEN_MONTH_NAME, parameterTypes_CALCULATE_MEN_MONTH);
         _testCalculateMenMonths.setAccessible(true);
         parameters_CALCULATE_MEN_MONTH = new Object[1];
 
-        // test method: calculateFunctionTypesSums(I_Classification classification)
+        // Testmethode: calculateFunctionTypesSums()
         _testCalculateFunctionTyesSums = _costEstimationCalculation.getClass().getDeclaredMethod(CALCULATE_FUNCTION_TYPES_SUMS_NAME);
         _testCalculateFunctionTyesSums.setAccessible(true);
-        parameters_CALCULATE_FUNCTION_TYPES_SUMS = new Object[1];
+
+        // Testmethode: calculateImpactFactor()
+        _testCalculateImpactFactor = _costEstimationCalculation.getClass().getDeclaredMethod(CALCULATE_IMPACT_FACTOR_NAME);
+        _testCalculateImpactFactor.setAccessible(true);
     }
 
     /**
@@ -188,5 +192,17 @@ class CostEstimationCalculationTest {
 
         int result = (Integer) _testCalculateFunctionTyesSums.invoke(_costEstimationCalculation);
         assertEquals(221, result);
+    }
+
+    /**
+     * Testmethode für {@link CostEstimationCalculation#calculateImpactFactor()}
+     * Erwartetes Ergebnis: 1,15
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
+    @Test
+    public void testCalculateImpactFactor() throws Exception
+    {
+        double result = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
+        assertEquals(1.15, result);
     }
 }
