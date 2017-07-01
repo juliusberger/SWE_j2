@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 public class Main extends Application {
     private static Stage _primaryStage;
 
@@ -21,7 +23,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws java.io.IOException {
+    public void start(Stage primaryStage) throws IOException {
         _primaryStage = primaryStage;
 
         AnchorPane root = FXMLLoader.load(getClass().getResource("view/rootView.fxml"));
