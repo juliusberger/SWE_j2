@@ -180,7 +180,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         if ((functionPoints < 50) || (functionPoints > 2900)) {
             menMonths = StrictMath.pow(functionPoints, 0.4);
         } else {
-            for (Entry<Integer, Integer> currentCorrelationEntry : Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.entrySet()) {
+            for (Entry<Integer, Integer> currentCorrelationEntry : Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.descendingMap().entrySet()) {
                 // falls Bedingung wahr ist, ist untere Grenze des Intervalls gefunden
                 if (currentCorrelationEntry.getKey() < functionPoints) {
                     // obere und untere Grenze des Function-Points-Intervalls sowie der zugehörigen Mannmonate auslesen
@@ -191,6 +191,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
 
                     // lineare Interpolation zwischen den Intervallgrenzen zur Berechnung der Mannmonate
                     menMonths = (((upperBoundMenMonths - lowerBoundMenMonths) / (upperBoundFunctionPoints - lowerBoundFunctionPoints)) * (functionPoints - lowerBoundFunctionPoints)) + lowerBoundMenMonths;
+                    break;
                 }
             }
         }
