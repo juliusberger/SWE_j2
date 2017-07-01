@@ -4,8 +4,6 @@ package app.helpers.importExport;
 import app.Constants;
 import app.InfoDialog;
 import app.Log;
-import app.model.implementation.Project;
-import app.model.interfaces.I_Project;
 import app.model.interfaces.I_XmlModelEntity;
 import javafx.scene.control.Alert;
 
@@ -19,20 +17,24 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
- * Diese Klasse repräsentiert die zu {@link XmlImporter} gehörige Import-Logik.
+ * Diese Klasse implementiert die zu {@link I_XmlImporter} gehörige Import-Funktion.
+ * Dazu wird die festgelegte Datei, und das root-Model als Einstiegspunkt genutzt.
+ * Die benötigten Model-Repräsentationen für den Import/Export sind durch {@link I_XmlModelEntity} festgelegt. Dies ermöglicht den programmatikalischen und rekursiven Zugriff.
+ * Die benötigten Daten werden rekursiv aus der XML-Datei gelesen, und in die entsprechende aktuelle Unterhierarchie des root-Model geladen.
+ * Dabei gelten folgende Regeln:
+ * - Daten bestimmter Model-Klassen sind in Tags mit dem Namen der Model-Klasse enthalten (Name über {@link I_XmlModelEntity#getTag()}
+ * - Enthält eine Model-Klasse Properties (einfache Strings), so werden diese als <Property data=""/> gesammelt innerhalb von <Properties></Properties> gespeichert (Properties werden über {@link I_XmlModelEntity#getAllProperties()} abgerufen und durch {@link I_XmlModelEntity#setAllProperties(ArrayList)} gesetzt)
+ * - Enthält eine Model-Klasse weitere Model-Klassen (z.B. ModelEntry), so werden diese nach obigen Regeln innerhalb von <children></children> Tags gespeichert (Kindelemente über {@link I_XmlModelEntity#getChildren()}
  */
 class XmlImporter implements I_XmlImporter {
-    private final String PROPERTIES_TAG = "Properties";
-    private final String PROPERTY_TAG = "Property";
-    private final String CHILDREN_TAG = "Children";
-
     private String _fileName = "";
     private XMLStreamReader _reader;
+    private final I_XmlModelEntity _rootModel;
 
-    public XmlImporter(String fileName) {
+    public XmlImporter(String fileName, I_XmlModelEntity rootModel) {
         _fileName = fileName;
+        _rootModel = rootModel;
     }
-
 
     /**
      * Importiert die beim Erstellen der Klasse angegebene Datei. S. {@link XmlImporter#readXmlRecursively(I_XmlModelEntity)}
@@ -42,53 +44,51 @@ class XmlImporter implements I_XmlImporter {
         try {
             _reader = XMLInputFactory.newFactory().createXMLStreamReader(new FileInputStream(_fileName));
 
-            I_Project project = Project.getInstance();
-            project.removeExistingData();
-
             _reader.nextTag();
-            readXmlRecursively(project);
-
+            readXmlRecursively(_rootModel);
 
             Log.getLogger().info("XML-Import erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
             return true;
-        } catch (XMLStreamException ex) {
-            Log.getLogger()
-                    .log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Import fehlgeschlagen",
-                    "Import nicht erfolgreich abgeschlossen.", Alert.AlertType.ERROR);
         } catch (FileNotFoundException e) {
-            Log.getLogger()
-                    .log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Laden",
-                    "Fehler beim Laden der Datei. Die Datei konnte nicht geöffnet werden.", Alert.AlertType.ERROR);
+            Log.getLogger().log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Laden", "Fehler beim Laden der Datei. Die Datei konnte nicht geöffnet werden.", Alert.AlertType.ERROR);
+        } catch (XMLStreamException ex) {
+            Log.getLogger().log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Import fehlgeschlagen", "Import nicht erfolgreich abgeschlossen.", Alert.AlertType.ERROR);
         } catch (MalformedXmlException e) {
-            Log.getLogger()
-                    .log(Level.SEVERE, "Fehler beim Laden. Nicht wohlgeformtes XML-Dokument.");
-
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Ungültige Datei", "Nicht wohlgeformte Datei. Für den Import muss die Datei zuvor durch AnTool Exportiert worden sein.", Alert.AlertType.ERROR);
+            Log.getLogger().log(Level.SEVERE, "Fehler beim Laden. Nicht wohlgeformtes XML-Dokument.");
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Ungültige Datei", "Nicht wohlgeformte Datei. Für den Import muss die Datei zuvor durch ANTool exportiert worden sein.", Alert.AlertType.ERROR);
         }
         return false;
     }
 
+    /**
+     * @return Gibt den aktuellen Tag-Namen zurück.
+     */
     private String getName() {
         return _reader.getName().toString();
     }
 
+    /**
+     * @return Gibt an, ob der aktuelle Tag ein Startelement ist. (bsp. <Test>)
+     */
     private boolean isStartElem() {
         return _reader.getEventType() == XMLStreamConstants.START_ELEMENT;
     }
 
+    /**
+     * @return Gibt an, ob der aktuelle Tag ein Endelement ist. (bsp. </Test>)
+     */
     private boolean isEndElem() {
         return _reader.getEventType() == XMLStreamConstants.END_ELEMENT;
     }
 
 
     /**
-     * Traversiert die XML-Elemente und behandelt dabei besondere Tags entsprechend.
+     * Traversiert die XML-Elemente und behandelt dabei besondere Tags entsprechend ({@link Constants#XML_CHILDREN_TAG}, {@link Constants#XML_PROPERTIES_TAG}, {@link Constants#XML_PROPERTY_TAG}.
      *
      * @param model Das Model zum jeweiligen XML-Elementbaum.
-     * @throws XMLStreamException Falls das Model nicht zum XML-Baum passt.
+     * @throws XMLStreamException Falls das Model nicht zum XML-Baum passt, demnach die zu importierende Datei eine nicht valide Struktur enthält (also nicht durch ANTool exportiert, oder nachträglich verändert wurde) wird der Importvorgang abgebrochen.
      */
     private void readXmlRecursively(I_XmlModelEntity model) throws XMLStreamException, MalformedXmlException {
         if (_reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
@@ -100,7 +100,7 @@ class XmlImporter implements I_XmlImporter {
             while (!(getName().equals(rootName) && isEndElem())) {
                 String name = getName();
                 switch (name) {
-                    case CHILDREN_TAG:
+                    case Constants.XML_CHILDREN_TAG:
                         if (model.getChildren() != null) {
                             if (model.getChildren().size() > 0) {
                                 for (I_XmlModelEntity entity : model.getChildren()) {
@@ -113,14 +113,14 @@ class XmlImporter implements I_XmlImporter {
                             } else {
                                 while (!(getName().equals(name) && isEndElem())) {
                                     _reader.nextTag();
-                                    if (isStartElem() && getName().equals(PROPERTIES_TAG)) {
+                                    if (isStartElem() && getName().equals(Constants.XML_PROPERTIES_TAG)) {
                                         model.addEntryWithProperties(processProperties());
                                     }
                                 }
                             }
                         }
                         break;
-                    case PROPERTIES_TAG:
+                    case Constants.XML_PROPERTIES_TAG:
                         model.setAllProperties(processProperties());
                         break;
                     default:
@@ -136,7 +136,7 @@ class XmlImporter implements I_XmlImporter {
     }
 
     /**
-     * Liest die innerhalb von <Properties></Properties> angegebenen Properties.
+     * Liest die innerhalb von <Properties></Properties> als einzelne <Property data=""/> angegebenen Daten aus den Properties.
      *
      * @return Gibt die gelesenen Properties als String-ArrayList zurück
      * @throws XMLStreamException Falls allgemeine XML-Fehler auftreten sollten.
@@ -144,11 +144,8 @@ class XmlImporter implements I_XmlImporter {
     private ArrayList<String> processProperties() throws XMLStreamException {
         ArrayList<String> properties = new ArrayList<>();
         _reader.nextTag();
-        while (getName().equals(PROPERTY_TAG)) {
-            if (_reader.getEventType() != XMLStreamConstants.END_ELEMENT && _reader.getAttributeCount() > 0 && _reader
-                    .getAttributeName(0)
-                    .toString()
-                    .equals("data")) {
+        while (getName().equals(Constants.XML_PROPERTY_TAG)) {
+            if (_reader.getEventType() != XMLStreamConstants.END_ELEMENT && _reader.getAttributeCount() > 0 && _reader.getAttributeName(0).toString().equals("data")) {
                 properties.add(_reader.getAttributeValue(0));
             }
             _reader.nextTag();

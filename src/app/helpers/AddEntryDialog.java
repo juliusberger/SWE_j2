@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.Observable;
 
 /**
- * Hilfsklasse zur einheitlichen Erstellung von JavaFX-Dialogen. Wird hauptsächlich von {@link TableBinding} genutzt, um Kontextaktionen für Tabelleneinträge durchzuführen.
+ * Hilfsklasse zur einheitlichen Erstellung von JavaFX-Dialogen. Wird durch {@link TableBinding} genutzt, um Kontextaktionen für Tabelleneinträge durchzuführen.
+ * Der Dialog blockiert dabei, bis er durch Speichern oder Schliessen beendet wird. Danach koennen die eingegebenen Daten per {@link #getData()} abgerufen werden.
  */
 class AddEntryDialog extends Observable {
     private final Stage _stage;
@@ -29,7 +30,7 @@ class AddEntryDialog extends Observable {
     /**
      * Initialisiert das Grundgerüst des Dialogs.
      *
-     * @param stringProperties Strings für die jeweiligen Überschriften der Textfelder. Das erste Feld ist ein einzeiliges Textfeld, die anderen mehrzeilige Textareas
+     * @param stringProperties Strings für die jeweiligen Überschriften der Textfelder. Das erste Feld ist ein einzeiliges Textfeld, die anderen mehrzeilige Textareas.
      */
     AddEntryDialog(ArrayList<String> stringProperties) {
         _stage = new Stage();

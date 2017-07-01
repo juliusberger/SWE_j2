@@ -13,29 +13,26 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Controller für die Ist-Analyse (view/stateAnalysis.fxml)
+ * Es wird das Model {@link I_Analysis} an die Tabelle gebunden, um die Einträge des Typs {@link I_AnalysisEntry} zu verwalten.
  */
 public class StateAnalysisController implements Initializable {
 
-    public TableView<I_AnalysisEntry> stateAnalysisTable;
+    public TableView<I_AnalysisEntry> _stateAnalysisTable;
 
     public Button _addEntryButton;
     public Button _editEntryButton;
     public Button _deleteEntryButton;
 
-    private final I_Analysis _data = Project.getInstance().getStateAnalysis();
+    private final I_Analysis _dataModel = Project.getInstance().getStateAnalysis();
 
-
+    /**
+     * Bindet die Tabelle an die Repräsentationen der Einträge des Typs {@link I_AnalysisEntry} im Model.
+     * Für mehr Informationen zur Bindung eines Models an eine Tabelle, siehe {@link TableBinding}.
+     */
     @Override
-    public void initialize(URL location,
-                           ResourceBundle resources) {
-
-
-        I_TableBinding tableBinding = new TableBinding<>(stateAnalysisTable,
-                _data);
-        tableBinding.bindAll(_addEntryButton,
-                _editEntryButton,
-                _deleteEntryButton);
-
+    public void initialize(URL location, ResourceBundle resources) {
+        I_TableBinding tableBinding = new TableBinding<>(_stateAnalysisTable, _dataModel);
+        tableBinding.bindAll(_addEntryButton, _editEntryButton, _deleteEntryButton);
     }
 }

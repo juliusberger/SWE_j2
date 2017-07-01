@@ -1,7 +1,7 @@
 package app.helpers.importExport;
 
 /**
- * Created by eju8fe on 6/30/2017.
+ * Diese Exception ist bei nicht wohl geformten XML-Strukturen zu verwenden, z.B. falls die zu verarbeitende Datei eine nicht valide Struktur enthält (also nicht durch ANTool exportiert, oder nachträglich verändert wurde).
  */
 class MalformedXmlException extends Exception {
     MalformedXmlException() {

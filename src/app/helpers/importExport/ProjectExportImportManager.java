@@ -4,6 +4,8 @@ import app.Constants;
 import app.InfoDialog;
 import app.Main;
 import app.helpers.ValidateInput;
+import app.model.implementation.Project;
+import app.model.interfaces.I_Project;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -83,12 +85,15 @@ public class ProjectExportImportManager {
 
 
     private static boolean onLoadFile(File file) {
-        I_XmlImporter importer = new XmlImporter(file.getAbsolutePath());
+        I_Project project = Project.getInstance();
+        project.removeExistingData();
+        I_XmlImporter importer = new XmlImporter(file.getAbsolutePath(), project);
         return importer.importXml();
     }
 
     private static boolean onSaveFile(File file) {
-        I_XmlExporter exporter = new XmlExporter(file.getAbsolutePath());
+        I_Project project = Project.getInstance();
+        I_XmlExporter exporter = new XmlExporter(file.getAbsolutePath(), project);
         return exporter.exportXml();
     }
 }

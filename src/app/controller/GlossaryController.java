@@ -13,7 +13,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Erstellt von Julius am 23/04/2017.
+ * Controller für das Glossar (view/glossary.fxml)
+ * Es wird das Model {@link I_Glossary} an die Tabelle gebunden, um die Einträge des Typs {@link I_GlossaryEntry} zu verwalten.
  */
 public class GlossaryController implements Initializable {
     public TableView<I_GlossaryEntry> _glossaryTable;
@@ -24,13 +25,13 @@ public class GlossaryController implements Initializable {
 
     private final I_Glossary _dataModel = Project.getInstance().getGlossary();
 
+    /**
+     * Bindet die Tabelle an die Repräsentationen der Einträge des Typs {@link I_GlossaryEntry} im Model.
+     * Für mehr Informationen zur Bindung eines Models an eine Tabelle, siehe {@link TableBinding}.
+     */
     @Override
-    public void initialize(URL location,
-                           ResourceBundle resources) {
-        I_TableBinding glossaryEntryTableBinding = new TableBinding<>(_glossaryTable,
-                _dataModel);
-        glossaryEntryTableBinding.bindAll(_glossaryAddButton,
-                _glossaryEditButton,
-                _glossaryDeleteButton);
+    public void initialize(URL location, ResourceBundle resources) {
+        I_TableBinding glossaryEntryTableBinding = new TableBinding<>(_glossaryTable, _dataModel);
+        glossaryEntryTableBinding.bindAll(_glossaryAddButton, _glossaryEditButton, _glossaryDeleteButton);
     }
 }

@@ -1,5 +1,7 @@
 package app.controller;
 
+import app.Constants;
+import app.Main;
 import app.helpers.ValidateInput;
 import app.helpers.ValidateInput.Validator;
 import app.model.implementation.Project;
@@ -11,11 +13,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Erstellt von Julius am 22/04/2017.
+ * Controller für die Projektdaten (view/projectData.fxml).
+ * Jedes Textfeld wird an seine Model-Repräsentation gebunden und mit einer entsprechenden Validierung versehen.
  */
 public class ProjectDataController implements Initializable {
-
     private final I_ProjectData _projectData = Project.getInstance().getProjectData();
+
     public TextField _projectName;
     public TextField _projectDueDate;
     public TextField _editorSurname;
@@ -29,12 +32,28 @@ public class ProjectDataController implements Initializable {
     public TextField _customerCompanyPlz;
     public TextField _customerCompanyLocation;
 
+    /**
+     * Bindet die Textfelder an die Repräsentationen im Model.
+     * Fügt jedem Textfeld eine Validierungsroutine hinzu. Für mehr Informationen yur Validierung, siehe {@link ValidateInput}.
+     */
     @Override
     public void initialize(URL location,
                            ResourceBundle resources) {
+
+
         //<editor-fold desc="Projekt-Eigenschaften">
         _projectName.textProperty().bindBidirectional(_projectData.nameProperty());
         new ValidateInput(_projectName, Validator.PLAIN_TEXT);
+
+        /* Setzt den Fenstertitel gemäss des Projektnamens */
+        _projectName.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (_projectName.getText().isEmpty()) {
+                Main.getPrimaryStage().setTitle(Constants.CONTEXT_TITLE_COMMON);
+            } else {
+                Main.getPrimaryStage()
+                        .setTitle(Constants.CONTEXT_TITLE_COMMON + " - Projekt: " + _projectName.getText());
+            }
+        });
 
         _projectDueDate.textProperty().bindBidirectional(_projectData.dueDateProperty());
         new ValidateInput(_projectDueDate, Validator.DATE);

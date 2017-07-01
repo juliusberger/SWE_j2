@@ -14,6 +14,13 @@ public class Constants {
     public static final String CONTEXT_TITLE_ERROR = "Fehler";
 
 
+    public static final String CONTEXT_MSG_UNSAVED_CHANGES = "Alle nicht gespeicherten Änderungen gehen verloren. Fortfahren?";
+
+    public static final String XML_PROPERTIES_TAG = "Properties";
+    public static final String XML_PROPERTY_TAG = "Property";
+    public static final String XML_CHILDREN_TAG = "Children";
+
+
     public static final NavigableMap<Integer, Integer> FUNCTION_POINTS_MEN_MONTHS_CORRELATION = new TreeMap<>();
 
     static {

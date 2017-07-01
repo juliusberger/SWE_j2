@@ -3,8 +3,6 @@ package app.helpers.importExport;
 import app.Constants;
 import app.InfoDialog;
 import app.Log;
-import app.model.implementation.Project;
-import app.model.interfaces.I_Project;
 import app.model.interfaces.I_XmlModelEntity;
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 import javafx.scene.control.Alert;
@@ -14,17 +12,27 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
- * Created by Michi on 03.06.2017.
+ * Diese Klasse implementiert die zu {@link I_XmlExporter} gehörige Export-Funktion.
+ * Dazu wird die festgelegte Datei, und das root-Model als Einstiegspunkt genutzt.
+ * Die benötigten Model-Repräsentationen für den Import/Export sind durch {@link I_XmlModelEntity} festgelegt. Dies ermöglicht den programmatikalischen und rekursiven Zugriff.
+ * Die benötigten Daten werden rekursiv aus den Models mit dem Einstiegspunkt des root-Model geholt, und in entsprechende Tags geschrieben.
+ * Dabei gelten folgende Regeln:
+ * - Daten bestimmter Model-Klassen sind in Tags mit dem Namen der Model-Klasse enthalten (Name über {@link I_XmlModelEntity#getTag()}
+ * - Enthält eine Model-Klasse Properties (einfache Strings), so werden diese als <Property data=""/> gesammelt innerhalb von <Properties></Properties> gespeichert (Properties werden über {@link I_XmlModelEntity#getAllProperties()} abgerufen und durch {@link I_XmlModelEntity#setAllProperties(ArrayList)} gesetzt)
+ * - Enthält eine Model-Klasse weitere Model-Klassen (z.B. ModelEntry), so werden diese nach obigen Regeln innerhalb von <children></children> Tags gespeichert (Kindelemente über {@link I_XmlModelEntity#getChildren()}
  */
 class XmlExporter implements I_XmlExporter {
     private final String _fileName;
     private XMLStreamWriter _writer;
+    private final I_XmlModelEntity _rootModel;
 
-    public XmlExporter(String fileName) {
+    public XmlExporter(String fileName, I_XmlModelEntity rootModel) {
         _fileName = fileName;
+        _rootModel = rootModel;
     }
 
     private void writeXmlRecursively(I_XmlModelEntity entity) throws XMLStreamException {
@@ -35,8 +43,7 @@ class XmlExporter implements I_XmlExporter {
 
             for (String property : entity.getAllProperties()) {
                 _writer.writeEmptyElement("Property");
-                _writer.writeAttribute("data",
-                        property);
+                _writer.writeAttribute("data", property);
             }
 
             _writer.writeEndElement();
@@ -57,29 +64,23 @@ class XmlExporter implements I_XmlExporter {
     @Override
     public boolean exportXml() {
         try {
-            _writer = new IndentingXMLStreamWriter(XMLOutputFactory.newFactory().createXMLStreamWriter(new FileOutputStream(
-                    _fileName)));
+            _writer = new IndentingXMLStreamWriter(XMLOutputFactory.newFactory().createXMLStreamWriter(new FileOutputStream(_fileName)));
 
             _writer.writeStartDocument();
 
-            I_Project project = Project.getInstance();
-            writeXmlRecursively(project);
+            writeXmlRecursively(_rootModel);
 
             _writer.writeEndDocument();
 
             Log.getLogger().info("XML-Export erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
             return true;
         } catch (XMLStreamException ex) {
-            Log.getLogger()
-                    .log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
+            Log.getLogger().log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
 
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Export fehlgeschlagen",
-                    "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage(), Alert.AlertType.ERROR);
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Export fehlgeschlagen", "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage(), Alert.AlertType.ERROR);
         } catch (FileNotFoundException e) {
-            Log.getLogger()
-                    .log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Speichern",
-                    "Fehler beim Speichern der Datei. Die Datei konnte nicht erstellt werden.", Alert.AlertType.ERROR);
+            Log.getLogger().log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
+            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Speichern", "Fehler beim Speichern der Datei. Die Datei konnte nicht erstellt werden.", Alert.AlertType.ERROR);
         }
         return false;
     }

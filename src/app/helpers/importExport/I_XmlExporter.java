@@ -1,8 +1,11 @@
 package app.helpers.importExport;
 
 /**
- * Created by Julius on 26.06.17.
+ * Interface zum XML-Exporter.
  */
 interface I_XmlExporter {
+    /**
+     * @return Gibt zurück, ob der Export erfolgreich war, oder nicht.
+     */
     boolean exportXml();
 }
