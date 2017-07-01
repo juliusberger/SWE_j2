@@ -117,10 +117,31 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         int sumIlf = 0;
         int sumElf = 0;
 
-        HashMap<String, Integer> michisMap = new HashMap<>();
-        michisMap.put("einfach", 3);
-        michisMap.put("mittel", 3);
-        michisMap.put("komplex", 3);
+        // HashMaps ordnen Klassifizierung entsprechendes Gewicht zu
+        HashMap<String, Integer> eiWeights = new HashMap<>();
+        eiWeights.put("einfach", 3);
+        eiWeights.put("mittel", 4);
+        eiWeights.put("komplex", 6);
+
+        HashMap<String, Integer> eoWeights = new HashMap<>();
+        eoWeights.put("einfach", 4);
+        eoWeights.put("mittel", 5);
+        eoWeights.put("komplex", 7);
+
+        HashMap<String, Integer> eqWeights = new HashMap<>();
+        eqWeights.put("einfach", 3);
+        eqWeights.put("mittel", 4);
+        eqWeights.put("komplex", 6);
+
+        HashMap<String, Integer> ilfWeights = new HashMap<>();
+        ilfWeights.put("einfach", 7);
+        ilfWeights.put("mittel", 10);
+        ilfWeights.put("komplex", 15);
+
+        HashMap<String, Integer> elfWeights = new HashMap<>();
+        elfWeights.put("einfach", 5);
+        elfWeights.put("mittel", 7);
+        elfWeights.put("komplex", 10);
 
         // durchläuft jeden Eintrag der klassifizierten Anforderungen und addiert abhängig von jeweiliger
         // Kategorie und Klassifizierung das zugehörige Gewicht
@@ -128,39 +149,15 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
             I_ClassificationEntry currentClassificationEntry = _classification.getEntries().get(indexClassificationEntries);
 
             if (currentClassificationEntry.getCategory().equals("Eingabedaten (EI)")) {
-                sumEi += michisMap.get(currentClassificationEntry.getClassification());
+                sumEi += eiWeights.get(currentClassificationEntry.getClassification());
             } else if (currentClassificationEntry.getCategory().equals("Ausgabedaten (EO)")) {
-                if (currentClassificationEntry.getClassification().equals("einfach")) {
-                    sumEo += 4;
-                } else if (currentClassificationEntry.getClassification().equals("mittel")) {
-                    sumEo += 5;
-                } else if (currentClassificationEntry.getClassification().equals("komplex")) {
-                    sumEo += 7;
-                }
+                sumEo += eoWeights.get(currentClassificationEntry.getClassification());
             } else if (currentClassificationEntry.getCategory().equals("Abfragen (EQ)")) {
-                if (currentClassificationEntry.getClassification().equals("einfach")) {
-                    sumEq += 3;
-                } else if (currentClassificationEntry.getClassification().equals("mittel")) {
-                    sumEq += 4;
-                } else if (currentClassificationEntry.getClassification().equals("komplex")) {
-                    sumEq += 6;
-                }
+                sumEq += eqWeights.get(currentClassificationEntry.getClassification());
             } else if (currentClassificationEntry.getCategory().equals("Datenbestände (ILF)")) {
-                if (currentClassificationEntry.getClassification().equals("einfach")) {
-                    sumIlf += 7;
-                } else if (currentClassificationEntry.getClassification().equals("mittel")) {
-                    sumIlf += 10;
-                } else if (currentClassificationEntry.getClassification().equals("komplex")) {
-                    sumIlf += 15;
-                }
+                sumIlf += ilfWeights.get(currentClassificationEntry.getClassification());
             } else if (currentClassificationEntry.getCategory().equals("Referenzdaten (ELF)")) {
-                if (currentClassificationEntry.getClassification().equals("einfach")) {
-                    sumElf += 5;
-                } else if (currentClassificationEntry.getClassification().equals("mittel")) {
-                    sumElf += 7;
-                } else if (currentClassificationEntry.getClassification().equals("komplex")) {
-                    sumElf += 10;
-                }
+                sumElf += elfWeights.get(currentClassificationEntry.getClassification());
             }
         }
 
