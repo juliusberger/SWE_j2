@@ -24,6 +24,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
 
     /**
      * Befüllt Hashmap mit allen übergebenenen Parameterwerten, die zuvor in den View eingegeben wurden
+     *
      * @param influenceFactors Enthält Einflussfaktor-Kategorie sowie zugehörigen Faktor
      * @throws IllegalArgumentException Wird ausgeführt, falls nicht genau zehn Werte übergeben werden
      */
@@ -74,13 +75,13 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     /**
      * Berechnet die Summe aller eingegebener Einflussfaktoren und erechnet anschließend den daraus resultierenden
      * Multiplikationsfaktor für die Function-Points-Summe
+     *
      * @return Berechneter Einflussfaktor
      */
     private double calculateImpactFactor() {
 
         // falls ungültige Eingaben existieren, wird 0 zurückgegeben
-        if (areInfluenceBoxesValid())
-        {
+        if (areInfluenceBoxesValid()) {
             int _sumInfluencingFactors = 0;
             _sumInfluencingFactors += _influenceFactors.get("1").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("1"));
             _sumInfluencingFactors += _influenceFactors.get("2").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("2"));
@@ -94,10 +95,8 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
             _sumInfluencingFactors += _influenceFactors.get("7").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("7"));
 
             return ((double) _sumInfluencingFactors / 100) + 0.7;
-        }
-        else
-        {
-            InfoDialog.show("Aufwandsschätzung","Fehler bei Aufwandsschätzung" ,"Ungültige Werte bei Einflussfaktoren verwendet", AlertType.ERROR);
+        } else {
+            InfoDialog.show("Aufwandsschätzung", "Fehler bei Aufwandsschätzung", "Ungültige Werte bei Einflussfaktoren verwendet", AlertType.ERROR);
             Log.getLogger().log(Level.SEVERE, "Fehler bei Aufwandsschätzung - Ungültige Werte bei Einflussfaktoren verwendet");
 
             return 0;
@@ -108,6 +107,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
 
     /**
      * Berechnet die Summe der Einflussfaktoren nach IBM-Methode (7 Einflussfaktoren)
+     *
      * @return Gesamtsumme der eingegebenen Einflussfaktoren
      */
     private int calculateFunctionTypesSums() {
@@ -117,19 +117,18 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         int sumIlf = 0;
         int sumElf = 0;
 
+        HashMap<String, Integer> michisMap = new HashMap<>();
+        michisMap.put("einfach", 3);
+        michisMap.put("mittel", 3);
+        michisMap.put("komplex", 3);
+
         // durchläuft jeden Eintrag der klassifizierten Anforderungen und addiert abhängig von jeweiliger
         // Kategorie und Klassifizierung das zugehörige Gewicht
         for (int indexClassificationEntries = 0; indexClassificationEntries < _classification.getEntries().size(); indexClassificationEntries++) {
             I_ClassificationEntry currentClassificationEntry = _classification.getEntries().get(indexClassificationEntries);
 
             if (currentClassificationEntry.getCategory().equals("Eingabedaten (EI)")) {
-                if (currentClassificationEntry.getClassification().equals("einfach")) {
-                    sumEi += 3;
-                } else if (currentClassificationEntry.getClassification().equals("mittel")) {
-                    sumEi += 4;
-                } else if (currentClassificationEntry.getClassification().equals("komplex")) {
-                    sumEi += 6;
-                }
+                sumEi += michisMap.get(currentClassificationEntry.getClassification());
             } else if (currentClassificationEntry.getCategory().equals("Ausgabedaten (EO)")) {
                 if (currentClassificationEntry.getClassification().equals("einfach")) {
                     sumEo += 4;
@@ -171,6 +170,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     /**
      * Berechnet anhand der Function Points die benötigten Mannmonate durch lineare Interpolation nach IBM-Tabelle (1984) oder
      * nach Schätzfunktion von Jones
+     *
      * @param functionPoints Die Anzahl der berechneten Function Points
      * @return Die Anzahl der benötigten Mannmonate
      */
@@ -276,6 +276,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
 
     /**
      * Überprüft, ob alle Eingabefelder in Integer konvertiert und somit weiterverarbeitet werden können
+     *
      * @return Wahrheitswert, ob Einflussfaktoren-Felder verarbeitet werden können oder nicht
      */
     private boolean areInfluenceBoxesValid() {
