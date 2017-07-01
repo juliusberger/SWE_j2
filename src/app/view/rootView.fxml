@@ -5,13 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
-			xmlns="http://javafx.com/javafx/8.0.112"
-			fx:controller="app.controller.RootViewController"
-			fx:id="_anchorPane">
-	<VBox
-			prefHeight="600.0"
-			prefWidth="700.0"
-			stylesheets="@../assets/global.css">
+            xmlns="http://javafx.com/javafx/8.0.112"
+            fx:controller="app.controller.RootViewController"
+            fx:id="_anchorPane"
+            prefHeight="600.0"
+            prefWidth="700.0">
+	<VBox AnchorPane.bottomAnchor="0.0"
+	      AnchorPane.topAnchor="0.0"
+	      AnchorPane.leftAnchor="0.0"
+	      AnchorPane.rightAnchor="0.0"
+	      stylesheets="@../assets/global.css">
 
 		<MenuBar>
 			<Menu mnemonicParsing="false"
@@ -22,24 +25,28 @@
 				<SeparatorMenuItem mnemonicParsing="false"/>
 
 				<MenuItem fx:id="_loadProjectItem"
-						  mnemonicParsing="false"
-						  text="Projekt öffnen"/>
+				          mnemonicParsing="false"
+				          text="Projekt öffnen"/>
 				<MenuItem fx:id="_saveProjectItem"
 				          mnemonicParsing="false"
 				          text="Projekt speichern"/>
 				<SeparatorMenuItem mnemonicParsing="false"/>
 
-				<MenuItem fx:id="_XmlImportItem"
+				<MenuItem fx:id="_xmlImportItem"
 				          mnemonicParsing="false"
 				          text="XML-Import"/>
-				<MenuItem fx:id="_XmlExportItem"
+				<MenuItem fx:id="_xmlExportItem"
 				          mnemonicParsing="false"
 				          text="XML-Export"/>
+				<SeparatorMenuItem mnemonicParsing="false"/>
+
+				<MenuItem fx:id="_antoolCloseItem"
+				          mnemonicParsing="false"
+				          text="ANTool beenden"/>
 			</Menu>
 		</MenuBar>
 
-		<TabPane prefHeight="600.0"
-		         prefWidth="600"
+		<TabPane
 		         tabClosingPolicy="UNAVAILABLE">
 			<Tab text="Projektdaten">
 				<fx:include source="projectData.fxml"/>

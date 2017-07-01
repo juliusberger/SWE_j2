@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<ScrollPane xmlns:fx="http://javafx.com/fxml/1" hbarPolicy="NEVER" fitToWidth="true" styleClass="p-10"
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" hbarPolicy="NEVER" fitToWidth="true" fitToHeight="true" styleClass="p-10"
             stylesheets="@../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
             fx:controller="app.controller.RequirementsController">
     <VBox spacing="10.0">
@@ -41,21 +41,21 @@
         <Label styleClass="h3">
             Zielbestimmung
         </Label>
-        <TextArea wrapText="true" fx:id="_projectGoalText" maxHeight="60.0"/>
+        <TextArea wrapText="true" fx:id="_projectGoalText" minHeight="80.0"/>
 
         <Separator/>
 
         <Label styleClass="h3">
             Produkteinsatz
         </Label>
-        <TextArea wrapText="true" fx:id="_fieldOfApplicationText" maxHeight="60.0"/>
+        <TextArea wrapText="true" fx:id="_fieldOfApplicationText" minHeight="80.0"/>
 
         <Separator/>
 
         <Label styleClass="h3">
             Funktionale Anforderungen
         </Label>
-        <TableView fx:id="_functionalRequirementsTable" maxHeight="120.0">
+        <TableView fx:id="_functionalRequirementsTable" minHeight="120.0">
             <placeholder>
                 <Label text="Keine Einträge"/>
             </placeholder>
@@ -85,7 +85,7 @@
         <Label styleClass="h3">
             Nicht-Funktionale Anforderungen
         </Label>
-        <TableView fx:id="_nonFunctionalRequirementsTable" maxHeight="120.0">
+        <TableView fx:id="_nonFunctionalRequirementsTable" minHeight="120.0">
             <placeholder>
                 <Label text="Keine Einträge"/>
             </placeholder>
@@ -124,7 +124,6 @@
 
 
             <Label GridPane.rowIndex="1">
-                <styleClass>ph-5</styleClass>
                 <styleClass>h4</styleClass>
                 Funktionalität
             </Label>
@@ -197,7 +196,7 @@
 
 
             <Label GridPane.rowIndex="8">
-                <styleClass>ph-5</styleClass>
+
                 <styleClass>h4</styleClass>
                 Zuverlässigkeit
             </Label>
@@ -248,7 +247,7 @@
 
 
             <Label GridPane.rowIndex="13">
-                <styleClass>ph-5</styleClass>
+
                 <styleClass>h4</styleClass>
                 Benutzbarkeit
             </Label>
@@ -310,7 +309,7 @@
 
 
             <Label GridPane.rowIndex="19">
-                <styleClass>ph-5</styleClass>
+
                 <styleClass>h4</styleClass>
                 Effizienz
             </Label>
@@ -350,7 +349,7 @@
 
 
             <Label GridPane.rowIndex="23">
-                <styleClass>ph-5</styleClass>
+
                 <styleClass>h4</styleClass>
                 Wartbarkeit/Änderbarkeit
             </Label>
@@ -412,7 +411,7 @@
 
 
             <Label GridPane.rowIndex="29">
-                <styleClass>ph-5</styleClass>
+
                 <styleClass>h4</styleClass>
                 Übertragbarkeit
             </Label>
@@ -487,6 +486,34 @@
                 <RowConstraints minHeight="20.0"/>
                 <RowConstraints minHeight="20.0"/>
                 <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="30.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="30.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="30.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="30.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="30.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
+                <RowConstraints minHeight="20.0"/>
             </rowConstraints>
         </GridPane>
 
@@ -495,7 +522,7 @@
         <Label styleClass="h3">
             Ergänzungen
         </Label>
-        <TableView fx:id="_commentsTable" maxHeight="120.0">
+        <TableView fx:id="_commentsTable" minHeight="120.0">
             <placeholder>
                 <Label text="Keine Einträge"/>
             </placeholder>

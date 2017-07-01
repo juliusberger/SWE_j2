@@ -11,7 +11,7 @@
 	<Label styleClass="h3">
 		SOLL-Analyse
 	</Label>
-	<TableView fx:id="_futureAnalysisTable">
+	<TableView fx:id="_futureAnalysisTable" VBox.vgrow="ALWAYS">
 		<placeholder>
 			<Label text="Keine Einträge"/>
 		</placeholder>

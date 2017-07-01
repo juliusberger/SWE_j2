@@ -11,7 +11,7 @@
 	<Label styleClass="h3">
 		IST-Analyse
 	</Label>
-	<TableView fx:id="stateAnalysisTable">
+	<TableView fx:id="stateAnalysisTable" VBox.vgrow="ALWAYS">
 		<placeholder>
 			<Label text="Keine Einträge"/>
 		</placeholder>
