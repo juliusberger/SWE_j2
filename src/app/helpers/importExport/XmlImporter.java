@@ -125,35 +125,27 @@ class XmlImporter implements I_XmlImporter {
 
             while (!(getCurrentTagName().equals(rootName) && isEndElem())) {
                 String name = getCurrentTagName();
-                switch (name) {
-                    case Constants.XML_CHILDREN_TAG:
-                        if (model.getChildren() != null) {
-                            if (!model.getChildren().isEmpty()) {
-                                for (I_XmlModelEntity entity : model.getChildren()) {
-                                    _reader.nextTag();
-                                    if (isStartElem()) {
-                                        readXmlRecursively(entity);
-                                    }
-                                }
+                if (name.equals(Constants.XML_CHILDREN_TAG)) {
+                    if (model.getChildren() != null) {
+                        if (!model.getChildren().isEmpty()) {
+                            for (I_XmlModelEntity entity : model.getChildren()) {
                                 _reader.nextTag();
-                            } else {
-                                while (!(getCurrentTagName().equals(name) && isEndElem())) {
-                                    _reader.nextTag();
-                                    if (isStartElem() && getCurrentTagName().equals(Constants.XML_PROPERTIES_TAG)) {
-                                        model.addEntryWithProperties(processProperties());
-                                    }
+                                if (isStartElem()) {
+                                    readXmlRecursively(entity);
+                                }
+                            }
+                            _reader.nextTag();
+                        } else {
+                            while (!(getCurrentTagName().equals(name) && isEndElem())) {
+                                _reader.nextTag();
+                                if (isStartElem() && getCurrentTagName().equals(Constants.XML_PROPERTIES_TAG)) {
+                                    model.addEntryWithProperties(processProperties());
                                 }
                             }
                         }
-                        break;
-                    case Constants.XML_PROPERTIES_TAG:
-                        model.setAllProperties(processProperties());
-                        break;
-                    default:
-                        _reader.nextTag();
-                        readXmlRecursively(model);
-                        _reader.nextTag();
-                        break;
+                    }
+                } else if (name.equals(Constants.XML_PROPERTIES_TAG)) {
+                    model.setAllProperties(processProperties());
                 }
 
                 _reader.nextTag();

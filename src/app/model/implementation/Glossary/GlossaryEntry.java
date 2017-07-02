@@ -113,6 +113,9 @@ public class GlossaryEntry implements I_GlossaryEntry {
         ArrayList<String> stringProperties = new ArrayList<>();
         stringProperties.add(getItem());
         stringProperties.add(getDefinition());
+        stringProperties.add(getDistinction());
+        stringProperties.add(getValidity());
+        stringProperties.add(getLabel());
 
         return stringProperties;
     }
@@ -122,6 +125,9 @@ public class GlossaryEntry implements I_GlossaryEntry {
         try {
             setItem(propertyStrings.get(0));
             setDefinition(propertyStrings.get(1));
+            setDistinction(propertyStrings.get(2));
+            setValidity(propertyStrings.get(3));
+            setLabel(propertyStrings.get(4));
         } catch (IndexOutOfBoundsException ignored) {
 
         }
