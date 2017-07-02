@@ -1,8 +1,8 @@
 package app.model.implementation.Requirements;
 
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.beans.property.SimpleStringProperty;
 import app.model.interfaces.Requirements.I_CommentEntry;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +23,13 @@ public class CommentEntry implements I_CommentEntry {
     }
 
     @Override
-    public SimpleStringProperty keywordProperty() {
-        return _keyword;
+    public void setKeyword(String keyword) {
+        _keyword.set(keyword);
     }
 
     @Override
-    public void setKeyword(String keyword) {
-        _keyword.set(keyword);
+    public SimpleStringProperty keywordProperty() {
+        return _keyword;
     }
 
     @Override
@@ -38,13 +38,13 @@ public class CommentEntry implements I_CommentEntry {
     }
 
     @Override
-    public SimpleStringProperty descriptionProperty() {
-        return _description;
+    public void setDescription(String description) {
+        _description.set(description);
     }
 
     @Override
-    public void setDescription(String description) {
-        _description.set(description);
+    public SimpleStringProperty descriptionProperty() {
+        return _description;
     }
 
     @Override
@@ -62,6 +62,15 @@ public class CommentEntry implements I_CommentEntry {
     }
 
     @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(getKeyword());
+        stringProperties.add(getDescription());
+
+        return stringProperties;
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             setKeyword(propertyStrings.get(0));
@@ -69,14 +78,5 @@ public class CommentEntry implements I_CommentEntry {
         } catch (IndexOutOfBoundsException ignored) {
 
         }
-    }
-
-    @Override
-    public ArrayList<String> getAllProperties() {
-        ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(getKeyword());
-        stringProperties.add(getDescription());
-
-        return stringProperties;
     }
 }

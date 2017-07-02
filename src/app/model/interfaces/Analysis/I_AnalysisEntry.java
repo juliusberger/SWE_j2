@@ -10,13 +10,13 @@ import javafx.beans.property.SimpleStringProperty;
 public interface I_AnalysisEntry extends I_XmlModelEntity, I_ModelPropertyAdaptor {
     String getEntryName();
 
-    SimpleStringProperty entryNameProperty();
-
     void setEntryName(String entryName);
+
+    SimpleStringProperty entryNameProperty();
 
     String getDescription();
 
-    SimpleStringProperty descriptionProperty();
-
     void setDescription(String description);
+
+    SimpleStringProperty descriptionProperty();
 }

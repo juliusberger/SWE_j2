@@ -2,11 +2,11 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="10.0"
+<VBox xmlns:fx="http://javafx.com/fxml"
+      spacing="10.0"
       styleClass="p-10"
       stylesheets="@../assets/global.css"
       xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
       fx:controller="app.controller.StateAnalysisController">
 	<Label styleClass="h3">
 		IST-Analyse

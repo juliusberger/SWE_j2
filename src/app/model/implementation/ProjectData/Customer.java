@@ -1,8 +1,8 @@
 package app.model.implementation.ProjectData;
 
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.beans.property.SimpleStringProperty;
 import app.model.interfaces.ProjectData.I_Customer;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +26,13 @@ class Customer implements I_Customer {
         return _surname.get();
     }
 
+    public void setSurname(String surname) {
+        _surname.set(surname);
+    }
+
     @Override
     public SimpleStringProperty surnameProperty() {
         return _surname;
-    }
-
-    public void setSurname(String surname) {
-        _surname.set(surname);
     }
 
     @Override
@@ -40,13 +40,13 @@ class Customer implements I_Customer {
         return _name.get();
     }
 
+    public void setName(String name) {
+        _name.set(name);
+    }
+
     @Override
     public SimpleStringProperty nameProperty() {
         return _name;
-    }
-
-    public void setName(String name) {
-        _name.set(name);
     }
 
     @Override
@@ -54,13 +54,13 @@ class Customer implements I_Customer {
         return _telephone.get();
     }
 
+    public void setTelephone(String telephone) {
+        _telephone.set(telephone);
+    }
+
     @Override
     public SimpleStringProperty telephoneProperty() {
         return _telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        _telephone.set(telephone);
     }
 
     @Override
@@ -68,13 +68,13 @@ class Customer implements I_Customer {
         return _email.get();
     }
 
+    public void setEmail(String email) {
+        _email.set(email);
+    }
+
     @Override
     public SimpleStringProperty emailProperty() {
         return _email;
-    }
-
-    public void setEmail(String email) {
-        _email.set(email);
     }
 
     @Override
@@ -82,13 +82,13 @@ class Customer implements I_Customer {
         return _companyName.get();
     }
 
+    public void setCompanyName(String companyName) {
+        _companyName.set(companyName);
+    }
+
     @Override
     public SimpleStringProperty companyNameProperty() {
         return _companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        _companyName.set(companyName);
     }
 
     @Override
@@ -96,13 +96,13 @@ class Customer implements I_Customer {
         return _companyStreet.get();
     }
 
+    public void setCompanyStreet(String companyStreet) {
+        _companyStreet.set(companyStreet);
+    }
+
     @Override
     public SimpleStringProperty companyStreetProperty() {
         return _companyStreet;
-    }
-
-    public void setCompanyStreet(String companyStreet) {
-        _companyStreet.set(companyStreet);
     }
 
     @Override
@@ -110,13 +110,13 @@ class Customer implements I_Customer {
         return _companyPLZ.get();
     }
 
+    public void setCompanyPLZ(String companyPLZ) {
+        _companyPLZ.set(companyPLZ);
+    }
+
     @Override
     public SimpleStringProperty companyPLZProperty() {
         return _companyPLZ;
-    }
-
-    public void setCompanyPLZ(String companyPLZ) {
-        _companyPLZ.set(companyPLZ);
     }
 
     @Override
@@ -124,13 +124,13 @@ class Customer implements I_Customer {
         return _companyLocation.get();
     }
 
+    public void setCompanyLocation(String companyLocation) {
+        _companyLocation.set(companyLocation);
+    }
+
     @Override
     public SimpleStringProperty companyLocationProperty() {
         return _companyLocation;
-    }
-
-    public void setCompanyLocation(String companyLocation) {
-        _companyLocation.set(companyLocation);
     }
 
     @Override
@@ -149,23 +149,6 @@ class Customer implements I_Customer {
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
-        try {
-            setSurname(propertyStrings.get(0));
-            setName(propertyStrings.get(1));
-            setTelephone(propertyStrings.get(2));
-            setEmail(propertyStrings.get(3));
-
-            setCompanyName(propertyStrings.get(4));
-            setCompanyStreet(propertyStrings.get(5));
-            setCompanyPLZ(propertyStrings.get(6));
-            setCompanyLocation(propertyStrings.get(7));
-        } catch (IndexOutOfBoundsException ignored) {
-
-        }
-    }
-
-    @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
         stringProperties.add(getSurname());
@@ -181,6 +164,22 @@ class Customer implements I_Customer {
         return stringProperties;
     }
 
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        try {
+            setSurname(propertyStrings.get(0));
+            setName(propertyStrings.get(1));
+            setTelephone(propertyStrings.get(2));
+            setEmail(propertyStrings.get(3));
+
+            setCompanyName(propertyStrings.get(4));
+            setCompanyStreet(propertyStrings.get(5));
+            setCompanyPLZ(propertyStrings.get(6));
+            setCompanyLocation(propertyStrings.get(7));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
 
     @Override
     public void removeExistingData() {

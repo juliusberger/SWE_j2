@@ -46,8 +46,7 @@ class QualityRequirementEntry implements I_QualityRequirementEntry {
     @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
-        if (getPriority() != null)
-            stringProperties.add(getPriority().toString());
+        if (getPriority() != null) stringProperties.add(getPriority().toString());
         return stringProperties;
     }
 

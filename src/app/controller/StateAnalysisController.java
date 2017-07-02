@@ -2,12 +2,12 @@ package app.controller;
 
 import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import app.model.implementation.Project;
 import app.model.interfaces.Analysis.I_Analysis;
 import app.model.interfaces.Analysis.I_AnalysisEntry;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,13 +18,11 @@ import java.util.ResourceBundle;
  */
 public class StateAnalysisController implements Initializable {
 
+    private final I_Analysis _dataModel = Project.getInstance().getStateAnalysis();
     public TableView<I_AnalysisEntry> _stateAnalysisTable;
-
     public Button _addEntryButton;
     public Button _editEntryButton;
     public Button _deleteEntryButton;
-
-    private final I_Analysis _dataModel = Project.getInstance().getStateAnalysis();
 
     /**
      * Bindet die Tabelle an die Repräsentationen der Einträge des Typs {@link I_AnalysisEntry} im Model.

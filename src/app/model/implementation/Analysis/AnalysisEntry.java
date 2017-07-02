@@ -1,8 +1,8 @@
 package app.model.implementation.Analysis;
 
+import app.model.interfaces.Analysis.I_AnalysisEntry;
 import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
-import app.model.interfaces.Analysis.I_AnalysisEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +20,13 @@ public class AnalysisEntry implements I_AnalysisEntry {
     }
 
     @Override
-    public SimpleStringProperty entryNameProperty() {
-        return _entryName;
+    public void setEntryName(String entryName) {
+        _entryName.set(entryName);
     }
 
     @Override
-    public void setEntryName(String entryName) {
-        _entryName.set(entryName);
+    public SimpleStringProperty entryNameProperty() {
+        return _entryName;
     }
 
     @Override
@@ -35,13 +35,13 @@ public class AnalysisEntry implements I_AnalysisEntry {
     }
 
     @Override
-    public SimpleStringProperty descriptionProperty() {
-        return _description;
+    public void setDescription(String description) {
+        _description.set(description);
     }
 
     @Override
-    public void setDescription(String description) {
-        _description.set(description);
+    public SimpleStringProperty descriptionProperty() {
+        return _description;
     }
 
     @Override
@@ -60,6 +60,15 @@ public class AnalysisEntry implements I_AnalysisEntry {
     }
 
     @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(getEntryName());
+        stringProperties.add(getDescription());
+
+        return stringProperties;
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             setEntryName(propertyStrings.get(0));
@@ -67,14 +76,5 @@ public class AnalysisEntry implements I_AnalysisEntry {
         } catch (IndexOutOfBoundsException ignored) {
 
         }
-    }
-
-    @Override
-    public ArrayList<String> getAllProperties() {
-        ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(getEntryName());
-        stringProperties.add(getDescription());
-
-        return stringProperties;
     }
 }

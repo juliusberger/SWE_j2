@@ -1,5 +1,7 @@
 package app;
 
+import app.InfoDialog.AlertType;
+import app.helpers.importExport.I_ProjectExportImportManager;
 import app.helpers.importExport.ProjectExportImportManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,12 @@ public class Main extends Application {
         return _primaryStage;
     }
 
+    /**
+     * Startet die JavaFX App und lädt die rootView.
+     * Beim Beenden wird immer nachgefragt, ob das Projekt gespeichert werden soll. Dies gibt dem Anwender etwas mehr Sicherheit gegen aus Versehen passiertes Schliessen.
+     * @param primaryStage Wird vom JavaFX launch-Handler übergeben.
+     * @throws IOException s. JavaFX launch-Handler
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         _primaryStage = primaryStage;
@@ -35,13 +43,21 @@ public class Main extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.setOnCloseRequest(event -> {
-            if (InfoDialog.confirm(Constants.CONTEXT_TITLE_COMMON, "ANTool beenden", "Vor dem Beenden speichern?")) {
-                if (ProjectExportImportManager.saveProject()) {
+            InfoDialog confirmationDialog = new InfoDialog(
+                    Constants.CONTEXT_TITLE_COMMON,
+                    "ANTool beenden",
+                    "Vor dem Beenden speichern?",
+                    AlertType.CONFIRMATION
+            );
+
+            if (confirmationDialog.wasYesClicked()) {
+                I_ProjectExportImportManager projectExportImportManager = new ProjectExportImportManager();
+                if (projectExportImportManager.saveProject()) {
                     Log.getLogger().info("AnTool wird beendet...");
                 } else {
                     event.consume();
                 }
-            }
+            } else if (!confirmationDialog.wasNoClicked()) event.consume();
         });
 
         primaryStage.show();

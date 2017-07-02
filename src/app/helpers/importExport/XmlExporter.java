@@ -2,10 +2,10 @@ package app.helpers.importExport;
 
 import app.Constants;
 import app.InfoDialog;
+import app.InfoDialog.AlertType;
 import app.Log;
 import app.model.interfaces.I_XmlModelEntity;
 import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
-import javafx.scene.control.Alert.AlertType;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -70,7 +70,9 @@ class XmlExporter implements I_XmlExporter {
     public boolean exportXml() {
         if ((_rootModel != null) && (_fileName != null)) {
             try {
-                _writer = new IndentingXMLStreamWriter(XMLOutputFactory.newFactory().createXMLStreamWriter(new FileOutputStream(_fileName)));
+                _writer = new IndentingXMLStreamWriter(XMLOutputFactory.newFactory()
+                                                                       .createXMLStreamWriter(new FileOutputStream(
+                                                                               _fileName)));
 
                 _writer.writeStartDocument();
 
@@ -81,11 +83,27 @@ class XmlExporter implements I_XmlExporter {
                 Log.getLogger().info("XML-Export erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
                 return true;
             } catch (XMLStreamException ex) {
-                Log.getLogger().log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-                InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Export fehlgeschlagen", "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage(), AlertType.ERROR);
+                Log.getLogger().log(
+                        Level.SEVERE,
+                        "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage()
+                );
+                new InfoDialog(
+                        Constants.CONTEXT_TITLE_ERROR,
+                        "Export fehlgeschlagen",
+                        "XML-Export nicht erfolgreich abgeschlossen. Folgender Fehler trat auf:\n" + ex.getMessage(),
+                        AlertType.ERROR
+                );
             } catch (FileNotFoundException e) {
-                Log.getLogger().log(Level.SEVERE, "XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
-                InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Speichern", "Fehler beim Speichern der Datei. Die Datei konnte nicht erstellt werden.", AlertType.ERROR);
+                Log.getLogger().log(
+                        Level.SEVERE,
+                        "XML-Export nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage()
+                );
+                new InfoDialog(
+                        Constants.CONTEXT_TITLE_ERROR,
+                        "Fehler beim Speichern",
+                        "Fehler beim Speichern der Datei. Die Datei konnte nicht erstellt werden.",
+                        AlertType.ERROR
+                );
             }
         }
         return false;

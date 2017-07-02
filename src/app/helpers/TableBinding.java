@@ -95,7 +95,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
         addButton.setOnAction(event -> {
             AddEntryDialog addEntryDialog = new AddEntryDialog(getColumnStringPropertyLabels());
             addEntryDialog.addObserver((o, arg) -> {
-                if (addEntryDialog.isSaveClicked()) {
+                if (addEntryDialog.wasSaveClicked()) {
                     _dataModel.addEntryWithProperties(addEntryDialog.getData());
                 }
                 addEntryDialog.deleteObservers();
@@ -116,7 +116,7 @@ public class TableBinding<S extends I_ModelPropertyAdaptor> implements I_TableBi
             S selectedEntry = _tableView.getSelectionModel().getSelectedItem();
             AddEntryDialog addEntryDialog = new AddEntryDialog(getColumnStringPropertyLabels());
             addEntryDialog.addObserver((o, arg) -> {
-                if (addEntryDialog.isSaveClicked()) {
+                if (addEntryDialog.wasSaveClicked()) {
                     selectedEntry.setAllProperties(addEntryDialog.getData());
                 }
                 addEntryDialog.deleteObservers();

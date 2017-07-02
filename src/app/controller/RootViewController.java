@@ -2,6 +2,8 @@ package app.controller;
 
 import app.Constants;
 import app.InfoDialog;
+import app.InfoDialog.AlertType;
+import app.helpers.importExport.I_ProjectExportImportManager;
 import app.helpers.importExport.ProjectExportImportManager;
 import app.model.implementation.Project;
 import javafx.fxml.Initializable;
@@ -33,20 +35,25 @@ public class RootViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         _newProjectItem.setOnAction(event -> onNewProject());
 
-        _loadProjectItem.setOnAction(event -> ProjectExportImportManager.loadProject());
+        I_ProjectExportImportManager projectExportImportManager = new ProjectExportImportManager();
+        _loadProjectItem.setOnAction(event -> projectExportImportManager.loadProject());
+        _saveProjectItem.setOnAction(event -> projectExportImportManager.saveProject());
+        _xmlImportItem.setOnAction(event -> projectExportImportManager.importXml());
+        _xmlExportItem.setOnAction(event -> projectExportImportManager.exportXml());
 
-        _saveProjectItem.setOnAction(event -> ProjectExportImportManager.saveProject());
-
-        _xmlImportItem.setOnAction(event -> ProjectExportImportManager.importXml());
-
-        _xmlExportItem.setOnAction(event -> ProjectExportImportManager.exportXml());
-
-        _antoolCloseItem.setOnAction(event -> _anchorPane.getScene().getWindow().fireEvent(new WindowEvent(_anchorPane.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST)));
+        _antoolCloseItem.setOnAction(event -> _anchorPane.getScene()
+                                                         .getWindow()
+                                                         .fireEvent(new WindowEvent(_anchorPane.getScene().getWindow(),
+                                                                                    WindowEvent.WINDOW_CLOSE_REQUEST
+                                                         )));
     }
 
     private void onNewProject() {
-        if (InfoDialog.confirm(Constants.CONTEXT_TITLE_COMMON, "Neues Projekt anlegen", Constants.CONTEXT_MSG_UNSAVED_CHANGES))
-            Project.getInstance().removeExistingData();
+        if (new InfoDialog(Constants.CONTEXT_TITLE_COMMON,
+                           "Neues Projekt anlegen",
+                           Constants.CONTEXT_MSG_UNSAVED_CHANGES,
+                           AlertType.CONFIRMATION
+        ).wasYesClicked()) Project.getInstance().removeExistingData();
     }
 
 

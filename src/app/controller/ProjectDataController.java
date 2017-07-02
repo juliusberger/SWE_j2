@@ -37,8 +37,7 @@ public class ProjectDataController implements Initializable {
      * Fügt jedem Textfeld eine Validierungsroutine hinzu. Für mehr Informationen yur Validierung, siehe {@link ValidateInput}.
      */
     @Override
-    public void initialize(URL location,
-                           ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
 
 
         //<editor-fold desc="Projekt-Eigenschaften">
@@ -51,7 +50,7 @@ public class ProjectDataController implements Initializable {
                 Main.getPrimaryStage().setTitle(Constants.CONTEXT_TITLE_COMMON);
             } else {
                 Main.getPrimaryStage()
-                        .setTitle(Constants.CONTEXT_TITLE_COMMON + " - Projekt: " + _projectName.getText());
+                    .setTitle(Constants.CONTEXT_TITLE_COMMON + " - Projekt: " + _projectName.getText());
             }
         });
 
@@ -60,14 +59,10 @@ public class ProjectDataController implements Initializable {
         //</editor-fold>
 
         //<editor-fold desc="Projekt-Bearbeiter">
-        _editorName.textProperty()
-                .bindBidirectional(_projectData.getProjectEditor()
-                        .nameProperty());
+        _editorName.textProperty().bindBidirectional(_projectData.getProjectEditor().nameProperty());
         new ValidateInput(_editorName, Validator.PLAIN_TEXT);
 
-        _editorSurname.textProperty()
-                .bindBidirectional(_projectData.getProjectEditor()
-                        .surnameProperty());
+        _editorSurname.textProperty().bindBidirectional(_projectData.getProjectEditor().surnameProperty());
         new ValidateInput(_editorSurname, Validator.PLAIN_TEXT);
         //</editor-fold>
 
@@ -84,20 +79,17 @@ public class ProjectDataController implements Initializable {
         _customerEmail.textProperty().bindBidirectional(_projectData.getCustomer().emailProperty());
         new ValidateInput(_customerEmail, Validator.EMAIL);
 
-        _customerCompanyName.textProperty()
-                .bindBidirectional(_projectData.getCustomer().companyNameProperty());
+        _customerCompanyName.textProperty().bindBidirectional(_projectData.getCustomer().companyNameProperty());
         new ValidateInput(_customerCompanyName, Validator.PLAIN_TEXT);
 
-        _customerCompanyStreet.textProperty()
-                .bindBidirectional(_projectData.getCustomer().companyStreetProperty());
+        _customerCompanyStreet.textProperty().bindBidirectional(_projectData.getCustomer().companyStreetProperty());
         new ValidateInput(_customerCompanyStreet, Validator.PLAIN_TEXT);
 
         _customerCompanyPlz.textProperty().bindBidirectional(_projectData.getCustomer().companyPLZProperty());
         new ValidateInput(_customerCompanyPlz, Validator.PLZ);
 
 
-        _customerCompanyLocation.textProperty()
-                .bindBidirectional(_projectData.getCustomer().companyLocationProperty());
+        _customerCompanyLocation.textProperty().bindBidirectional(_projectData.getCustomer().companyLocationProperty());
         new ValidateInput(_customerCompanyLocation, Validator.PLAIN_TEXT);
         //</editor-fold>
     }

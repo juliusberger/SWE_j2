@@ -3,9 +3,9 @@ package app.helpers.importExport;
 
 import app.Constants;
 import app.InfoDialog;
+import app.InfoDialog.AlertType;
 import app.Log;
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.scene.control.Alert.AlertType;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -55,14 +55,35 @@ class XmlImporter implements I_XmlImporter {
             Log.getLogger().info("XML-Import erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
             return true;
         } catch (FileNotFoundException e) {
-            Log.getLogger().log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage());
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Fehler beim Laden", "Fehler beim Laden der Datei. Die Datei konnte nicht geöffnet werden.", AlertType.ERROR);
+            Log.getLogger().log(
+                    Level.SEVERE,
+                    "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht erstellt werden. " + e.getMessage()
+            );
+            new InfoDialog(
+                    Constants.CONTEXT_TITLE_ERROR,
+                    "Fehler beim Laden",
+                    "Fehler beim Laden der Datei. Die Datei konnte nicht geöffnet werden.",
+                    AlertType.ERROR
+            );
         } catch (XMLStreamException ex) {
-            Log.getLogger().log(Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage());
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Import fehlgeschlagen", "Import nicht erfolgreich abgeschlossen.", AlertType.ERROR);
+            Log.getLogger().log(
+                    Level.SEVERE,
+                    "XML-Import nicht erfolgreich abgeschlossen. Folgender Fehler trat auf: " + ex.getMessage()
+            );
+            new InfoDialog(
+                    Constants.CONTEXT_TITLE_ERROR,
+                    "Import fehlgeschlagen",
+                    "Import nicht erfolgreich abgeschlossen.",
+                    AlertType.ERROR
+            );
         } catch (MalformedXmlException ignored) {
             Log.getLogger().log(Level.SEVERE, "Fehler beim Laden. Nicht wohlgeformtes XML-Dokument.");
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Ungültige Datei", "Nicht wohlgeformte Datei. Für den Import muss die Datei zuvor durch ANTool exportiert worden sein.", AlertType.ERROR);
+            new InfoDialog(
+                    Constants.CONTEXT_TITLE_ERROR,
+                    "Ungültige Datei",
+                    "Nicht wohlgeformte Datei. Für den Import muss die Datei zuvor durch ANTool exportiert worden sein.",
+                    AlertType.ERROR
+            );
         }
         return false;
     }
@@ -150,7 +171,10 @@ class XmlImporter implements I_XmlImporter {
         _reader.nextTag();
         ArrayList<String> properties = new ArrayList<>();
         while (getCurrentTagName().equals(Constants.XML_PROPERTY_TAG)) {
-            if ((_reader.getEventType() != XMLStreamConstants.END_ELEMENT) && (_reader.getAttributeCount() > 0) && _reader.getAttributeName(0).toString().equals("data")) {
+            if ((_reader.getEventType() != XMLStreamConstants.END_ELEMENT) && (_reader.getAttributeCount() > 0) && _reader
+                    .getAttributeName(0)
+                    .toString()
+                    .equals("data")) {
                 properties.add(_reader.getAttributeValue(0));
             }
             _reader.nextTag();

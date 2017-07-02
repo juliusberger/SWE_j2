@@ -1,6 +1,8 @@
 package app.model.interfaces.ProjectData;
 
-import app.model.interfaces.*;
+import app.model.interfaces.I_Clearable;
+import app.model.interfaces.I_ModelPropertyAdaptor;
+import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -9,13 +11,13 @@ import javafx.beans.property.SimpleStringProperty;
 public interface I_ProjectEditor extends I_ModelPropertyAdaptor, I_XmlModelEntity, I_Clearable {
     String getSurname();
 
-    SimpleStringProperty surnameProperty();
-
     void setSurname(String surname);
+
+    SimpleStringProperty surnameProperty();
 
     String getName();
 
-    SimpleStringProperty nameProperty();
-
     void setName(String name);
+
+    SimpleStringProperty nameProperty();
 }

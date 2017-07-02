@@ -20,7 +20,7 @@ import java.util.Observable;
  * Hilfsklasse zur einheitlichen Erstellung von JavaFX-Dialogen. Wird durch {@link TableBinding} genutzt, um Kontextaktionen für Tabelleneinträge durchzuführen.
  * Der Dialog blockiert dabei, bis er durch Speichern oder Schliessen beendet wird. Danach koennen die eingegebenen Daten per {@link #getData()} abgerufen werden.
  */
-class AddEntryDialog extends Observable {
+class AddEntryDialog extends Observable implements I_AddEntryDialog {
     private final Stage _addEntryDialog;
     private final List<TextArea> _inputTextAreas = new ArrayList<>();
     private boolean _saveClicked = false;
@@ -87,7 +87,8 @@ class AddEntryDialog extends Observable {
     /**
      * Baut den AddEntryDialog auf und zeigt ihn als Overlay über der App.
      */
-    void show() {
+    @Override
+    public void show() {
         _addEntryDialog.showAndWait();
     }
 
@@ -111,7 +112,8 @@ class AddEntryDialog extends Observable {
     /**
      * @return boolean, ob beim Schließen des Dialogs "Speichern" gedrückt wurde, und demnach die Daten abgerufen werden koennen, oder ignoriert werden sollen.
      */
-    boolean isSaveClicked() {
+    @Override
+    public boolean wasSaveClicked() {
         return _saveClicked;
     }
 
@@ -119,7 +121,8 @@ class AddEntryDialog extends Observable {
     /**
      * @return Alle in Textfelder eingegebenen Daten als ArrayList
      */
-    ArrayList<String> getData() {
+    @Override
+    public ArrayList<String> getData() {
         ArrayList<String> strings = new ArrayList<>();
         for (TextArea textArea : _inputTextAreas) {
             strings.add(textArea.getText());
@@ -132,7 +135,8 @@ class AddEntryDialog extends Observable {
      *
      * @param texts ArrayList an Strings, die der Reihenfolge nach in die Textfelder des Dialogs eingesetzt werden
      */
-    void setData(List<String> texts) {
+    @Override
+    public void setData(List<String> texts) {
         for (int index = 0; index < _inputTextAreas.size(); index++) {
             _inputTextAreas.get(index).setText(texts.get(index));
         }

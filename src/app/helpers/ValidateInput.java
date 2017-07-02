@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * Klasse zur Validierung von Textfeldern.
  * Validiert den Text innerhalb eines Textfeldes mit der angegebenen Validierungsmethode.
  * Sollte der Text nicht valide sein, wird das Textfeld rot eingerahmt und mit einem roten Ausrufezeichen versehen.
- *
+ * <p>
  * Diese Klasse hält zudem die Information über Validität und Füllnung aller validierten Textfelder. Dies ermöglicht eine einfache Abfrage, ob invalide oder leere Felder vorhanden sind.
  */
 public class ValidateInput {
@@ -30,15 +30,6 @@ public class ValidateInput {
     }
 
     /**
-     * Mögliche Validierungen. S.u. für Details.
-     */
-    public enum Validator {
-        PHONE_NUMBER, DATE, EMAIL, PLZ, PLAIN_TEXT
-    }
-
-    //<editor-fold desc="Validierungsmethoden">
-
-    /**
      * Validiert einen String nach einer RegExp
      *
      * @param input Zu validierender String
@@ -48,6 +39,8 @@ public class ValidateInput {
     private static Boolean isValidString(String input, String regex) {
         return Pattern.matches(regex, input);
     }
+
+    //<editor-fold desc="Validierungsmethoden">
 
     /**
      * Prüft, ob ein String keine Zahl ist.
@@ -96,9 +89,11 @@ public class ValidateInput {
      * @param input Zu validierender String
      */
     private static Boolean isValidEmailAddress(String input) {
-        return isValidString(input, "\\A([^\\s@,:\"<>]+)@([^\\s@,:\"<>]+\\.[^\\s@,:\"<>.\\d]{2,}|\\[(\\d{1,3}\\.){3}\\d{1,3}\\])\\z");
+        return isValidString(
+                input,
+                "\\A([^\\s@,:\"<>]+)@([^\\s@,:\"<>]+\\.[^\\s@,:\"<>.\\d]{2,}|\\[(\\d{1,3}\\.){3}\\d{1,3}\\])\\z"
+        );
     }
-    //</editor-fold>
 
     /**
      * Gibt an, ob alle validierten Felder valide sind.
@@ -112,6 +107,7 @@ public class ValidateInput {
         }
         return allFieldsValid;
     }
+    //</editor-fold>
 
     /**
      * Gibt an, ob alle validierten Felder gefüllt sind.
@@ -197,6 +193,13 @@ public class ValidateInput {
         if (_textInputControlEmptiness.containsKey(_textInputControl))
             _textInputControlEmptiness.replace(_textInputControl, empty);
         else _textInputControlEmptiness.put(_textInputControl, empty);
+    }
+
+    /**
+     * Mögliche Validierungen. S.u. für Details.
+     */
+    public enum Validator {
+        PHONE_NUMBER, DATE, EMAIL, PLZ, PLAIN_TEXT
     }
 
 }

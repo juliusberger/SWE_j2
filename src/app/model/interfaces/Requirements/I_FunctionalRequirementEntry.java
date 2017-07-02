@@ -8,13 +8,13 @@ import javafx.beans.property.SimpleStringProperty;
 public interface I_FunctionalRequirementEntry extends I_RequirementEntry {
     String getFunction();
 
-    SimpleStringProperty functionProperty();
-
     void setFunction(String function);
+
+    SimpleStringProperty functionProperty();
 
     String getStakeholder();
 
-    SimpleStringProperty stakeholderProperty();
-
     void setStakeholder(String stakeholder);
+
+    SimpleStringProperty stakeholderProperty();
 }

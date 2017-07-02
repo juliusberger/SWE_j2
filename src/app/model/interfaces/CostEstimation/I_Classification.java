@@ -1,6 +1,9 @@
 package app.model.interfaces.CostEstimation;
 
-import app.model.interfaces.*;
+import app.model.interfaces.I_Clearable;
+import app.model.interfaces.I_ModelEntryFactory;
+import app.model.interfaces.I_ObservableDataAdaptor;
+import app.model.interfaces.I_XmlModelEntity;
 import javafx.collections.ObservableList;
 
 /**

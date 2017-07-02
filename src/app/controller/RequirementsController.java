@@ -19,11 +19,11 @@ import java.util.ResourceBundle;
 /**
  * Controller für das Lastenheft (view/requirements.fxml).
  * Folgende View-Elemente werden wie folgt an ihre Model-Repräsentation gebunden:
- *  - jedes Textfeld wird an seine Model-Repräsentation gebunden und mit einer entsprechenden Validierung versehen.
- *  - das Model {@link I_FunctionalRequirements} wird an die entsprechende Tabelle gebunden, um die Einträge des Typs {@link I_FunctionalRequirementEntry} zu verwalten.
- *  - das Model {@link I_NonFunctionalRequirements} wird an die entsprechende Tabelle gebunden, um die Einträge des Typs {@link I_NonFunctionalRequirementEntry} zu verwalten.
- *  - die einzelnen {@link I_QualityRequirementEntry} werden an die jeweilige ToggleGroup gebunden.
- *  - das Model {@link I_Comments} wird an die entsprechende Tabelle gebunden, um die Einträge des Typs {@link I_CommentEntry} zu verwalten.
+ * - jedes Textfeld wird an seine Model-Repräsentation gebunden und mit einer entsprechenden Validierung versehen.
+ * - das Model {@link I_FunctionalRequirements} wird an die entsprechende Tabelle gebunden, um die Einträge des Typs {@link I_FunctionalRequirementEntry} zu verwalten.
+ * - das Model {@link I_NonFunctionalRequirements} wird an die entsprechende Tabelle gebunden, um die Einträge des Typs {@link I_NonFunctionalRequirementEntry} zu verwalten.
+ * - die einzelnen {@link I_QualityRequirementEntry} werden an die jeweilige ToggleGroup gebunden.
+ * - das Model {@link I_Comments} wird an die entsprechende Tabelle gebunden, um die Einträge des Typs {@link I_CommentEntry} zu verwalten.
  */
 public class RequirementsController implements Initializable {
     private final I_Requirements _dataModel = Project.getInstance().getRequirements();
@@ -91,13 +91,19 @@ public class RequirementsController implements Initializable {
         functionalRequirementEntryTableBinding.setTableView(_functionalRequirementsTable);
         functionalRequirementEntryTableBinding.setDataModel(_dataModel.getFunctionalRequirements());
         functionalRequirementEntryTableBinding.bindTableToData();
-        functionalRequirementEntryTableBinding.bindButtonsToTableActions(_functionalRequirementsAddButton, _functionalRequirementsEditButton, _functionalRequirementsDeleteButton);
+        functionalRequirementEntryTableBinding.bindButtonsToTableActions(_functionalRequirementsAddButton,
+                                                                         _functionalRequirementsEditButton,
+                                                                         _functionalRequirementsDeleteButton
+        );
 
         I_TableBinding<I_NonFunctionalRequirementEntry> nonFunctionalRequirementEntryTableBinding = new TableBinding<>();
         nonFunctionalRequirementEntryTableBinding.setTableView(_nonFunctionalRequirementsTable);
         nonFunctionalRequirementEntryTableBinding.setDataModel(_dataModel.getNonFunctionalRequirements());
         nonFunctionalRequirementEntryTableBinding.bindTableToData();
-        nonFunctionalRequirementEntryTableBinding.bindButtonsToTableActions(_nonFunctionalRequirementsAddButton, _nonFunctionalRequirementsEditButton, _nonFunctionalRequirementsDeleteButton);
+        nonFunctionalRequirementEntryTableBinding.bindButtonsToTableActions(_nonFunctionalRequirementsAddButton,
+                                                                            _nonFunctionalRequirementsEditButton,
+                                                                            _nonFunctionalRequirementsDeleteButton
+        );
 
         ToggleGroup[] qualityRequirementToggleGroups = {_qualityRequirementToggleGroup1, _qualityRequirementToggleGroup2, _qualityRequirementToggleGroup3, _qualityRequirementToggleGroup4, _qualityRequirementToggleGroup5, _qualityRequirementToggleGroup6, _qualityRequirementToggleGroup7, _qualityRequirementToggleGroup8, _qualityRequirementToggleGroup9, _qualityRequirementToggleGroup10, _qualityRequirementToggleGroup11, _qualityRequirementToggleGroup12, _qualityRequirementToggleGroup13, _qualityRequirementToggleGroup14, _qualityRequirementToggleGroup15, _qualityRequirementToggleGroup16, _qualityRequirementToggleGroup17, _qualityRequirementToggleGroup18, _qualityRequirementToggleGroup19, _qualityRequirementToggleGroup20, _qualityRequirementToggleGroup21, _qualityRequirementToggleGroup22, _qualityRequirementToggleGroup23, _qualityRequirementToggleGroup24, _qualityRequirementToggleGroup25, _qualityRequirementToggleGroup26, _qualityRequirementToggleGroup27, _qualityRequirementToggleGroup28};
         for (int i = 0; i < qualityRequirementToggleGroups.length; i++) {
@@ -106,14 +112,18 @@ public class RequirementsController implements Initializable {
 
             qualityRequirementToggleGroups[i].selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
                 if (currentToggleGroup.getSelectedToggle() != null)
-                    currentQualityRequirementEntry.setPriority(Priority.values()[Integer.parseInt(currentToggleGroup.getSelectedToggle().getUserData().toString())]);
+                    currentQualityRequirementEntry.setPriority(Priority.values()[Integer.parseInt(currentToggleGroup.getSelectedToggle()
+                                                                                                                    .getUserData()
+                                                                                                                    .toString())]);
             });
 
             currentQualityRequirementEntry.priorityProperty().addListener((observable, oldValue, newValue) -> {
                 if (currentQualityRequirementEntry.getPriority() == Priority.UNSET) {
                     currentToggleGroup.selectToggle(null);
                 } else {
-                    currentToggleGroup.selectToggle(currentToggleGroup.getToggles().get(currentQualityRequirementEntry.getPriority().ordinal()));
+                    currentToggleGroup.selectToggle(currentToggleGroup.getToggles()
+                                                                      .get(currentQualityRequirementEntry.getPriority()
+                                                                                                         .ordinal()));
                 }
             });
         }
@@ -122,6 +132,9 @@ public class RequirementsController implements Initializable {
         commentEntryTableBinding.setTableView(_commentsTable);
         commentEntryTableBinding.setDataModel(_dataModel.getComments());
         commentEntryTableBinding.bindTableToData();
-        commentEntryTableBinding.bindButtonsToTableActions(_commentsAddButton, _commentsEditButton, _commentsDeleteButton);
+        commentEntryTableBinding.bindButtonsToTableActions(_commentsAddButton,
+                                                           _commentsEditButton,
+                                                           _commentsDeleteButton
+        );
     }
 }

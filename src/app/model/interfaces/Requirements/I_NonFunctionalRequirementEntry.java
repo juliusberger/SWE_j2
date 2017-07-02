@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 public interface I_NonFunctionalRequirementEntry extends I_RequirementEntry {
     String getBusinessProcess();
 
-    SimpleStringProperty businessProcessProperty();
-
     void setBusinessProcess(String businessProcess);
+
+    SimpleStringProperty businessProcessProperty();
 }

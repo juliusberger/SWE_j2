@@ -6,21 +6,25 @@ import java.util.TreeMap;
 /**
  * Repräsentiert unspezifische Konstanten, die überall im Projekt verwendet werden.
  */
-public enum Constants {
-    ;
+public final class Constants {
+
+    /**
+     * Benutzt als gemeinsame Fenstertitel.
+     */
     public static final String CONTEXT_TITLE_COMMON = "ANTool";
     public static final String CONTEXT_TITLE_XML_EXPORT = "XML-Export";
     public static final String CONTEXT_TITLE_XML_IMPORT = "XML-Import";
-
     public static final String CONTEXT_TITLE_ERROR = "Fehler";
-
     public static final String CONTEXT_MSG_UNSAVED_CHANGES = "Alle nicht gespeicherten Änderungen gehen verloren. Fortfahren?";
-
+    /**
+     * XML-Tag-Names für Import und Export
+     */
     public static final String XML_PROPERTIES_TAG = "Properties";
     public static final String XML_PROPERTY_TAG = "Property";
     public static final String XML_CHILDREN_TAG = "Children";
-
-
+    /**
+     * Übersetzung der berechneten Function Points in MannMonate. Tabelle gemäß IBM
+     */
     public static final NavigableMap<Integer, Integer> FUNCTION_POINTS_MEN_MONTHS_CORRELATION = new TreeMap<>();
 
     static {
@@ -63,5 +67,11 @@ public enum Constants {
         FUNCTION_POINTS_MEN_MONTHS_CORRELATION.put(150, 11);
         FUNCTION_POINTS_MEN_MONTHS_CORRELATION.put(100, 8);
         FUNCTION_POINTS_MEN_MONTHS_CORRELATION.put(50, 5);
+    }
+
+    /**
+     * Utility-Klasse, soll nicht instanziiert werden.
+     */
+    private Constants() {
     }
 }

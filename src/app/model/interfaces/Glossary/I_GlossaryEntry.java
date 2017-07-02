@@ -10,31 +10,31 @@ import javafx.beans.property.SimpleStringProperty;
 public interface I_GlossaryEntry extends I_XmlModelEntity, I_ModelPropertyAdaptor {
     String getItem();
 
-    SimpleStringProperty itemProperty();
-
     void setItem(String item);
+
+    SimpleStringProperty itemProperty();
 
     String getDefinition();
 
-    SimpleStringProperty definitionProperty();
-
     void setDefinition(String definition);
+
+    SimpleStringProperty definitionProperty();
 
     String getDistinction();
 
-    SimpleStringProperty distinctionProperty();
-
     void setDistinction(String distinction);
+
+    SimpleStringProperty distinctionProperty();
 
     String getValidity();
 
-    SimpleStringProperty validityProperty();
-
     void setValidity(String validity);
+
+    SimpleStringProperty validityProperty();
 
     String getLabel();
 
-    SimpleStringProperty labelProperty();
-
     void setLabel(String label);
+
+    SimpleStringProperty labelProperty();
 }

@@ -10,13 +10,13 @@ import javafx.beans.property.SimpleStringProperty;
 public interface I_CommentEntry extends I_ModelPropertyAdaptor, I_XmlModelEntity {
     String getKeyword();
 
-    SimpleStringProperty keywordProperty();
-
     void setKeyword(String keyword);
+
+    SimpleStringProperty keywordProperty();
 
     String getDescription();
 
-    SimpleStringProperty descriptionProperty();
-
     void setDescription(String description);
+
+    SimpleStringProperty descriptionProperty();
 }

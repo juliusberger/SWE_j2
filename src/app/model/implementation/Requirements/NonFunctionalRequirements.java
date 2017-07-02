@@ -28,13 +28,13 @@ class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalReq
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
-
+    public ArrayList<String> getAllProperties() {
+        return null;
     }
 
     @Override
-    public ArrayList<String> getAllProperties() {
-        return null;
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+
     }
 
     @Override
@@ -44,6 +44,6 @@ class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalReq
 
     @Override
     public String[] getPropertyNames() {
-        return new String[]{"businessProcess","description"};
+        return new String[]{"businessProcess", "description"};
     }
 }

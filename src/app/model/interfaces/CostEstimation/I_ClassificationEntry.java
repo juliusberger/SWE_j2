@@ -8,31 +8,31 @@ import javafx.beans.property.SimpleStringProperty;
 public interface I_ClassificationEntry extends I_CostEstimationEntry {
     String getFunction();
 
-    SimpleStringProperty functionProperty();
-
     void setFunction(String function);
+
+    SimpleStringProperty functionProperty();
 
     String getDescription();
 
-    SimpleStringProperty descriptionProperty();
-
     void setDescription(String description);
+
+    SimpleStringProperty descriptionProperty();
 
     String getStakeholder();
 
-    SimpleStringProperty stakeholderProperty();
-
     void setStakeholder(String stakeholder);
+
+    SimpleStringProperty stakeholderProperty();
 
     String getCategory();
 
-    SimpleStringProperty categoryProperty();
-
     void setCategory(String category);
+
+    SimpleStringProperty categoryProperty();
 
     String getClassification();
 
-    SimpleStringProperty classificationProperty();
-
     void setClassification(String classification);
+
+    SimpleStringProperty classificationProperty();
 }

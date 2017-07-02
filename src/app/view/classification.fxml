@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
-<VBox prefHeight="400.0" prefWidth="700.0" spacing="10.0" styleClass="p-10" stylesheets="@../assets/global.css"
-      xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1"
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="700.0" spacing="10.0" styleClass="p-10"
+      stylesheets="@../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
       fx:controller="app.controller.ClassificationController">
 
-    <TableView fx:id="_classificationTable" editable="true" maxHeight="360.0">
-        <columns>
-            <TableColumn text="Funktion"/>
-            <TableColumn text="Beschreibung"/>
-            <TableColumn text="Akteur"/>
-            <TableColumn fx:id="_categoryColumn" text="Kategorie"/>
-            <TableColumn fx:id="_classificationColumn" text="Klassifizierung"/>
-        </columns>
-        <columnResizePolicy>
-        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-        </columnResizePolicy>
-    </TableView>
-    <HBox styleClass="button-hbox">
-        <Button fx:id="_classificationSaveButton" maxWidth="1.7976931348623157E308"
-                HBox.hgrow="ALWAYS">Speichern
-        </Button>
-    </HBox>
+	<TableView fx:id="_classificationTable" editable="true" maxHeight="360.0">
+		<columns>
+			<TableColumn text="Funktion"/>
+			<TableColumn text="Beschreibung"/>
+			<TableColumn text="Akteur"/>
+			<TableColumn fx:id="_categoryColumn" text="Kategorie"/>
+			<TableColumn fx:id="_classificationColumn" text="Klassifizierung"/>
+		</columns>
+		<columnResizePolicy>
+			<TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+		</columnResizePolicy>
+	</TableView>
+	<HBox styleClass="button-hbox">
+		<Button fx:id="_classificationSaveButton" maxWidth="1.7976931348623157E308"
+		        HBox.hgrow="ALWAYS">Speichern
+		</Button>
+	</HBox>
 </VBox>

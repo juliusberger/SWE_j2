@@ -2,13 +2,15 @@ package app.components;
 
 import app.Constants;
 import app.InfoDialog;
+import app.InfoDialog.AlertType;
 import app.Log;
 import app.model.implementation.Project;
 import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_ClassificationEntry;
-import javafx.scene.control.Alert.AlertType;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 
@@ -16,11 +18,11 @@ import java.util.logging.Level;
  * Führt die Aufwandsschätzung sowie deren Optimierung durch
  */
 public class CostEstimationCalculation implements I_CostEstimationCalculation {
-    private static final I_Classification _classification = Project.getInstance().getClassification();
+    private final I_Classification _classification = Project.getInstance().getClassification();
     private final HashMap<String, String> _influenceFactors = new HashMap<>();
-    private double _calculatedFunctionPoints;
-    private double _calculatedMenMonths;
-    private boolean _isOptimized;
+    private double _calculatedFunctionPoints = 0.0;
+    private double _calculatedMenMonths = 0.0;
+    private boolean _isOptimized = false;
 
     /**
      * Befüllt Hashmap mit allen übergebenenen Parameterwerten, die zuvor in den View eingegeben wurden
@@ -53,8 +55,8 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     }
 
     @Override
-    public HashMap<String, String> getInfluenceFactors() {
-        return _influenceFactors;
+    public Map<String, String> getInfluenceFactors() {
+        return Collections.unmodifiableMap(_influenceFactors);
     }
 
     /**
@@ -65,7 +67,7 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     public void performCostEstimation() {
         int functionTypesSum = calculateFunctionTypesSums();
         double impactFactor = calculateImpactFactor();
-        double functionPoints = (double) functionTypesSum * impactFactor;
+        double functionPoints = functionTypesSum * impactFactor;
         double menMonths = calculateMenMonths(functionPoints);
 
         _calculatedFunctionPoints = Math.round(functionPoints * 100.0) / 100.0;
@@ -82,24 +84,39 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
 
         // falls ungültige Eingaben existieren, wird 0 zurückgegeben
         if (areInfluenceBoxesValid()) {
-            int _sumInfluencingFactors = 0;
-            _sumInfluencingFactors += _influenceFactors.get("1").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("1"));
-            _sumInfluencingFactors += _influenceFactors.get("2").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("2"));
-            _sumInfluencingFactors += _influenceFactors.get("3").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("3"));
-            _sumInfluencingFactors += _influenceFactors.get("4a").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4a"));
-            _sumInfluencingFactors += _influenceFactors.get("4b").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4b"));
-            _sumInfluencingFactors += _influenceFactors.get("4c").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4c"));
-            _sumInfluencingFactors += _influenceFactors.get("4d").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4d"));
-            _sumInfluencingFactors += _influenceFactors.get("5").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("5"));
-            _sumInfluencingFactors += _influenceFactors.get("6").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("6"));
-            _sumInfluencingFactors += _influenceFactors.get("7").equals("") ? 0 : Integer.parseInt(_influenceFactors.get("7"));
+            int sumInfluencingFactors = 0;
+            sumInfluencingFactors += _influenceFactors.get("1").equals("") ? 0 : Integer.parseInt(_influenceFactors.get(
+                    "1"));
+            sumInfluencingFactors += _influenceFactors.get("2").equals("") ? 0 : Integer.parseInt(_influenceFactors.get(
+                    "2"));
+            sumInfluencingFactors += _influenceFactors.get("3").equals("") ? 0 : Integer.parseInt(_influenceFactors.get(
+                    "3"));
+            sumInfluencingFactors += _influenceFactors.get("4a")
+                                                      .equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4a"));
+            sumInfluencingFactors += _influenceFactors.get("4b")
+                                                      .equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4b"));
+            sumInfluencingFactors += _influenceFactors.get("4c")
+                                                      .equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4c"));
+            sumInfluencingFactors += _influenceFactors.get("4d")
+                                                      .equals("") ? 0 : Integer.parseInt(_influenceFactors.get("4d"));
+            sumInfluencingFactors += _influenceFactors.get("5").equals("") ? 0 : Integer.parseInt(_influenceFactors.get(
+                    "5"));
+            sumInfluencingFactors += _influenceFactors.get("6").equals("") ? 0 : Integer.parseInt(_influenceFactors.get(
+                    "6"));
+            sumInfluencingFactors += _influenceFactors.get("7").equals("") ? 0 : Integer.parseInt(_influenceFactors.get(
+                    "7"));
 
-            return ((double) _sumInfluencingFactors / 100) + 0.7;
+            return (sumInfluencingFactors / 100.0) + 0.7;
         } else {
-            InfoDialog.show("Aufwandsschätzung", "Fehler bei Aufwandsschätzung", "Ungültige Werte bei Einflussfaktoren verwendet", AlertType.ERROR);
-            Log.getLogger().log(Level.SEVERE, "Fehler bei Aufwandsschätzung - Ungültige Werte bei Einflussfaktoren verwendet");
+            new InfoDialog("Aufwandsschätzung",
+                           "Fehler bei Aufwandsschätzung",
+                           "Ungültige Werte bei Einflussfaktoren verwendet",
+                           AlertType.ERROR
+            );
+            Log.getLogger()
+               .log(Level.SEVERE, "Fehler bei Aufwandsschätzung - Ungültige Werte bei Einflussfaktoren verwendet");
 
-            return 0;
+            return 0.0;
         }
 
 
@@ -111,12 +128,6 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
      * @return Gesamtsumme der eingegebenen Einflussfaktoren
      */
     private int calculateFunctionTypesSums() {
-        int sumEi = 0;
-        int sumEo = 0;
-        int sumEq = 0;
-        int sumIlf = 0;
-        int sumElf = 0;
-
         // HashMaps ordnen Klassifizierung entsprechendes Gewicht zu
         HashMap<String, Integer> eiWeights = new HashMap<>();
         eiWeights.put("einfach", 3);
@@ -143,13 +154,26 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         elfWeights.put("mittel", 7);
         elfWeights.put("komplex", 10);
 
+        int sumEi = 0;
+        int sumEo = 0;
+        int sumEq = 0;
+        int sumIlf = 0;
+        int sumElf = 0;
+
         // durchläuft jeden Eintrag der klassifizierten Anforderungen und addiert abhängig von jeweiliger
         // Kategorie und Klassifizierung das zugehörige Gewicht
-        for (int indexClassificationEntries = 0; indexClassificationEntries < _classification.getEntries().size(); indexClassificationEntries++) {
-            I_ClassificationEntry currentClassificationEntry = _classification.getEntries().get(indexClassificationEntries);
+        for (int indexClassificationEntries = 0; indexClassificationEntries < _classification.getEntries()
+                                                                                             .size(); indexClassificationEntries++) {
+            I_ClassificationEntry currentClassificationEntry = _classification.getEntries()
+                                                                              .get(indexClassificationEntries);
 
+            switch (currentClassificationEntry.getCategory()) {
+                case "Eingabedaten (EI)":
+                    sumEi += eiWeights.get(currentClassificationEntry.getClassification());
+                    break;
+            }
             if (currentClassificationEntry.getCategory().equals("Eingabedaten (EI)")) {
-                sumEi += eiWeights.get(currentClassificationEntry.getClassification());
+
             } else if (currentClassificationEntry.getCategory().equals("Ausgabedaten (EO)")) {
                 sumEo += eoWeights.get(currentClassificationEntry.getClassification());
             } else if (currentClassificationEntry.getCategory().equals("Abfragen (EQ)")) {
@@ -180,14 +204,19 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         if ((functionPoints < 50) || (functionPoints > 2900)) {
             menMonths = StrictMath.pow(functionPoints, 0.4);
         } else {
-            for (Entry<Integer, Integer> currentCorrelationEntry : Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.descendingMap().entrySet()) {
+            for (Entry<Integer, Integer> currentCorrelationEntry : Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.descendingMap()
+                                                                                                                   .entrySet()) {
                 // falls Bedingung wahr ist, ist untere Grenze des Intervalls gefunden
                 if (currentCorrelationEntry.getKey() < functionPoints) {
                     // obere und untere Grenze des Function-Points-Intervalls sowie der zugehörigen Mannmonate auslesen
                     double lowerBoundFunctionPoints = currentCorrelationEntry.getKey();
-                    double upperBoundFunctionPoints = Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.higherKey(currentCorrelationEntry.getKey());
+                    double upperBoundFunctionPoints = Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.higherKey(
+                            currentCorrelationEntry.getKey());
                     double lowerBoundMenMonths = currentCorrelationEntry.getValue();
-                    double upperBoundMenMonths = Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.get(Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.higherKey(currentCorrelationEntry.getKey()));
+                    double upperBoundMenMonths = Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION.get(Constants.FUNCTION_POINTS_MEN_MONTHS_CORRELATION
+                                                                                                              .higherKey(
+                                                                                                                      currentCorrelationEntry
+                                                                                                                              .getKey()));
 
                     // lineare Interpolation zwischen den Intervallgrenzen zur Berechnung der Mannmonate
                     menMonths = (((upperBoundMenMonths - lowerBoundMenMonths) / (upperBoundFunctionPoints - lowerBoundFunctionPoints)) * (functionPoints - lowerBoundFunctionPoints)) + lowerBoundMenMonths;
@@ -203,71 +232,118 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
     @Override
     public void performAutomaticOptimization() {
         if (!areInfluenceBoxesValid()) {
-            InfoDialog.show("Automatische Optimierung", "Fehler bei der Optimierung", "Für die automatische Optimierung müssen alle Einflussfaktoren gesetzt sein!", AlertType.ERROR);
-            Log.getLogger().log(Level.SEVERE, "Fehler bei Optimierung der Aufwandsschätzung - Für die automatische Optimierung müssen alle Einflussfaktoren gesetzt sein!");
+            new InfoDialog("Automatische Optimierung",
+                           "Fehler bei der Optimierung",
+                           "Für die automatische Optimierung müssen alle Einflussfaktoren gesetzt sein!",
+                           AlertType.ERROR
+            );
+            Log.getLogger().log(
+                    Level.SEVERE,
+                    "Fehler bei Optimierung der Aufwandsschätzung - Für die automatische Optimierung müssen alle Einflussfaktoren gesetzt sein!"
+            );
         } else {
             if (_isOptimized) {
-                InfoDialog.show("Automatische Optimierung", "Optimierung bereits durchgeführt", "Automatische Optimierung der Einflussfaktoren wurde bereits einmal durchgeführt!", AlertType.ERROR);
+                new InfoDialog("Automatische Optimierung",
+                               "Optimierung bereits durchgeführt",
+                               "Automatische Optimierung der Einflussfaktoren wurde bereits einmal durchgeführt!",
+                               AlertType.ERROR
+                );
             } else {
                 if ((Integer.parseInt(_influenceFactors.get("1")) > 0) && (Integer.parseInt(_influenceFactors.get("1")) < 4))
                     _influenceFactors.replace("1", Integer.toString(Integer.parseInt(_influenceFactors.get("1")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("1")) > 3) && (Integer.parseInt(_influenceFactors.get("1")) < 6))
+                else if ((Integer.parseInt(_influenceFactors.get("1")) > 3) && (Integer.parseInt(_influenceFactors.get(
+                        "1")) < 6))
                     _influenceFactors.replace("1", Integer.toString(Integer.parseInt(_influenceFactors.get("1")) - 2));
 
                 if ((Integer.parseInt(_influenceFactors.get("2")) > 0) && (Integer.parseInt(_influenceFactors.get("2")) < 4))
                     _influenceFactors.replace("2", Integer.toString(Integer.parseInt(_influenceFactors.get("2")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("2")) > 3) && (Integer.parseInt(_influenceFactors.get("2")) < 6))
+                else if ((Integer.parseInt(_influenceFactors.get("2")) > 3) && (Integer.parseInt(_influenceFactors.get(
+                        "2")) < 6))
                     _influenceFactors.replace("2", Integer.toString(Integer.parseInt(_influenceFactors.get("2")) - 2));
 
                 if ((Integer.parseInt(_influenceFactors.get("3")) > 0) && (Integer.parseInt(_influenceFactors.get("3")) < 4))
                     _influenceFactors.replace("3", Integer.toString(Integer.parseInt(_influenceFactors.get("3")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("3")) > 3) && (Integer.parseInt(_influenceFactors.get("3")) < 6))
+                else if ((Integer.parseInt(_influenceFactors.get("3")) > 3) && (Integer.parseInt(_influenceFactors.get(
+                        "3")) < 6))
                     _influenceFactors.replace("3", Integer.toString(Integer.parseInt(_influenceFactors.get("3")) - 2));
 
                 if ((Integer.parseInt(_influenceFactors.get("4a")) > 0) && (Integer.parseInt(_influenceFactors.get("4a")) < 5))
-                    _influenceFactors.replace("4a", Integer.toString(Integer.parseInt(_influenceFactors.get("4a")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("4a")) > 4) && (Integer.parseInt(_influenceFactors.get("4a")) < 8))
-                    _influenceFactors.replace("4a", Integer.toString(Integer.parseInt(_influenceFactors.get("4a")) - 2));
-                else if ((Integer.parseInt(_influenceFactors.get("4a")) > 7) && (Integer.parseInt(_influenceFactors.get("4a")) < 11))
-                    _influenceFactors.replace("4a", Integer.toString(Integer.parseInt(_influenceFactors.get("4a")) - 3));
+                    _influenceFactors.replace("4a",
+                                              Integer.toString(Integer.parseInt(_influenceFactors.get("4a")) - 1)
+                    );
+                else if ((Integer.parseInt(_influenceFactors.get("4a")) > 4) && (Integer.parseInt(_influenceFactors.get(
+                        "4a")) < 8)) _influenceFactors.replace("4a",
+                                                               Integer.toString(Integer.parseInt(_influenceFactors.get(
+                                                                       "4a")) - 2)
+                );
+                else if ((Integer.parseInt(_influenceFactors.get("4a")) > 7) && (Integer.parseInt(_influenceFactors.get(
+                        "4a")) < 11)) _influenceFactors.replace("4a",
+                                                                Integer.toString(Integer.parseInt(_influenceFactors.get(
+                                                                        "4a")) - 3)
+                );
 
                 if ((Integer.parseInt(_influenceFactors.get("4b")) > 0) && (Integer.parseInt(_influenceFactors.get("4b")) < 4))
-                    _influenceFactors.replace("4b", Integer.toString(Integer.parseInt(_influenceFactors.get("4b")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("4b")) > 3) && (Integer.parseInt(_influenceFactors.get("4b")) < 6))
-                    _influenceFactors.replace("4b", Integer.toString(Integer.parseInt(_influenceFactors.get("4b")) - 2));
+                    _influenceFactors.replace("4b",
+                                              Integer.toString(Integer.parseInt(_influenceFactors.get("4b")) - 1)
+                    );
+                else if ((Integer.parseInt(_influenceFactors.get("4b")) > 3) && (Integer.parseInt(_influenceFactors.get(
+                        "4b")) < 6)) _influenceFactors.replace("4b",
+                                                               Integer.toString(Integer.parseInt(_influenceFactors.get(
+                                                                       "4b")) - 2)
+                );
 
                 if ((Integer.parseInt(_influenceFactors.get("4c")) > 0) && (Integer.parseInt(_influenceFactors.get("4c")) < 5))
-                    _influenceFactors.replace("4c", Integer.toString(Integer.parseInt(_influenceFactors.get("4c")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("4c")) > 4) && (Integer.parseInt(_influenceFactors.get("4c")) < 8))
-                    _influenceFactors.replace("4c", Integer.toString(Integer.parseInt(_influenceFactors.get("4c")) - 2));
-                else if ((Integer.parseInt(_influenceFactors.get("4c")) > 7) && (Integer.parseInt(_influenceFactors.get("4c")) < 11))
-                    _influenceFactors.replace("4c", Integer.toString(Integer.parseInt(_influenceFactors.get("4c")) - 3));
+                    _influenceFactors.replace("4c",
+                                              Integer.toString(Integer.parseInt(_influenceFactors.get("4c")) - 1)
+                    );
+                else if ((Integer.parseInt(_influenceFactors.get("4c")) > 4) && (Integer.parseInt(_influenceFactors.get(
+                        "4c")) < 8)) _influenceFactors.replace("4c",
+                                                               Integer.toString(Integer.parseInt(_influenceFactors.get(
+                                                                       "4c")) - 2)
+                );
+                else if ((Integer.parseInt(_influenceFactors.get("4c")) > 7) && (Integer.parseInt(_influenceFactors.get(
+                        "4c")) < 11)) _influenceFactors.replace("4c",
+                                                                Integer.toString(Integer.parseInt(_influenceFactors.get(
+                                                                        "4c")) - 3)
+                );
 
                 if ((Integer.parseInt(_influenceFactors.get("4d")) > 0) && (Integer.parseInt(_influenceFactors.get("4d")) < 4))
-                    _influenceFactors.replace("4d", Integer.toString(Integer.parseInt(_influenceFactors.get("4d")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("4d")) > 3) && (Integer.parseInt(_influenceFactors.get("4d")) < 6))
-                    _influenceFactors.replace("4d", Integer.toString(Integer.parseInt(_influenceFactors.get("4d")) - 2));
+                    _influenceFactors.replace("4d",
+                                              Integer.toString(Integer.parseInt(_influenceFactors.get("4d")) - 1)
+                    );
+                else if ((Integer.parseInt(_influenceFactors.get("4d")) > 3) && (Integer.parseInt(_influenceFactors.get(
+                        "4d")) < 6)) _influenceFactors.replace("4d",
+                                                               Integer.toString(Integer.parseInt(_influenceFactors.get(
+                                                                       "4d")) - 2)
+                );
 
                 if ((Integer.parseInt(_influenceFactors.get("5")) > 0) && (Integer.parseInt(_influenceFactors.get("5")) < 4))
                     _influenceFactors.replace("5", Integer.toString(Integer.parseInt(_influenceFactors.get("5")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("5")) > 3) && (Integer.parseInt(_influenceFactors.get("5")) < 6))
+                else if ((Integer.parseInt(_influenceFactors.get("5")) > 3) && (Integer.parseInt(_influenceFactors.get(
+                        "5")) < 6))
                     _influenceFactors.replace("5", Integer.toString(Integer.parseInt(_influenceFactors.get("5")) - 2));
 
                 if ((Integer.parseInt(_influenceFactors.get("6")) > 0) && (Integer.parseInt(_influenceFactors.get("6")) < 4))
                     _influenceFactors.replace("6", Integer.toString(Integer.parseInt(_influenceFactors.get("6")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("6")) > 3) && (Integer.parseInt(_influenceFactors.get("6")) < 6))
+                else if ((Integer.parseInt(_influenceFactors.get("6")) > 3) && (Integer.parseInt(_influenceFactors.get(
+                        "6")) < 6))
                     _influenceFactors.replace("6", Integer.toString(Integer.parseInt(_influenceFactors.get("6")) - 2));
 
                 if ((Integer.parseInt(_influenceFactors.get("7")) > 0) && (Integer.parseInt(_influenceFactors.get("7")) < 4))
                     _influenceFactors.replace("7", Integer.toString(Integer.parseInt(_influenceFactors.get("7")) - 1));
-                else if ((Integer.parseInt(_influenceFactors.get("7")) > 3) && (Integer.parseInt(_influenceFactors.get("7")) < 6))
+                else if ((Integer.parseInt(_influenceFactors.get("7")) > 3) && (Integer.parseInt(_influenceFactors.get(
+                        "7")) < 6))
                     _influenceFactors.replace("7", Integer.toString(Integer.parseInt(_influenceFactors.get("7")) - 2));
 
                 performCostEstimation();
 
                 _isOptimized = true;
 
-                InfoDialog.show("Automatische Optimierung", "Optimierung erfolgreich durchgeführt", "Automatische Optimierung der Einflussfaktoren erfolgreich durchgeführt!");
+                new InfoDialog("Automatische Optimierung",
+                               "Optimierung erfolgreich durchgeführt",
+                               "Automatische Optimierung der Einflussfaktoren erfolgreich durchgeführt!",
+                               AlertType.INFORMATION
+                );
             }
         }
     }

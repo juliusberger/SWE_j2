@@ -8,23 +8,25 @@ import java.util.logging.SimpleFormatter;
 /**
  * Gemeinsamer Logger für alle Komponenten. Schreib die Ausgabe des Logs in das Logfile log.txt.
  */
-public enum Log {
-    ;
-    private static Logger _logger;
-    private static FileHandler _fileHandler;
+public final class Log {
+    private static Logger _logger = null;
+
+    private Log() {
+    }
 
     private static void createLogger() {
         try {
-            _fileHandler = new FileHandler("log.txt", true);
+            FileHandler fileHandler = new FileHandler("log.txt", true);
             _logger = Logger.getLogger("Log");
-            _logger.addHandler(_fileHandler);
+            _logger.addHandler(fileHandler);
             SimpleFormatter formatter = new SimpleFormatter();
-            _fileHandler.setFormatter(formatter);
+            fileHandler.setFormatter(formatter);
         } catch (SecurityException | IOException e) {
             System.err.println("Fehler beim Erstellen der Logdatei...");
             e.printStackTrace();
         }
     }
+
     public static Logger getLogger() {
         if (_logger == null) createLogger();
         return _logger;

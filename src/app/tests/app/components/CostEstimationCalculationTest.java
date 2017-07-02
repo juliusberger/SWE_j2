@@ -8,27 +8,24 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Testklasse für {@link CostEstimationCalculation}
  */
 class CostEstimationCalculationTest {
+    private static final String CALCULATE_MEN_MONTH_NAME = "calculateMenMonths";
+    private static String CALCULATE_FUNCTION_TYPES_SUMS_NAME = "calculateFunctionTypesSums";
+    private static String CALCULATE_IMPACT_FACTOR_NAME = "calculateImpactFactor";
     private CostEstimationCalculation _costEstimationCalculation;
-
     // Testmethode: calculateMenMonths(double functionPoints)
     private Method _testCalculateMenMonths;
-    private static final String CALCULATE_MEN_MONTH_NAME = "calculateMenMonths";
     private Class[] parameterTypes_CALCULATE_MEN_MONTH;
     private Object[] parameters_CALCULATE_MEN_MONTH;
-
     // Testmethode: calculateFunctionTypesSums()
     private Method _testCalculateFunctionTyesSums;
-    private static String CALCULATE_FUNCTION_TYPES_SUMS_NAME = "calculateFunctionTypesSums";
-    
     // Testmethode: calculateImpactFactor()
     private Method _testCalculateImpactFactor;
-    private static String CALCULATE_IMPACT_FACTOR_NAME = "calculateImpactFactor";
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -37,16 +34,21 @@ class CostEstimationCalculationTest {
         // Testmethode: calculateMenMonths(double functionPoints)
         parameterTypes_CALCULATE_MEN_MONTH = new Class[1];
         parameterTypes_CALCULATE_MEN_MONTH[0] = double.class;
-        _testCalculateMenMonths = _costEstimationCalculation.getClass().getDeclaredMethod(CALCULATE_MEN_MONTH_NAME, parameterTypes_CALCULATE_MEN_MONTH);
+        _testCalculateMenMonths = _costEstimationCalculation.getClass()
+                                                            .getDeclaredMethod(CALCULATE_MEN_MONTH_NAME,
+                                                                               parameterTypes_CALCULATE_MEN_MONTH
+                                                            );
         _testCalculateMenMonths.setAccessible(true);
         parameters_CALCULATE_MEN_MONTH = new Object[1];
 
         // Testmethode: calculateFunctionTypesSums()
-        _testCalculateFunctionTyesSums = _costEstimationCalculation.getClass().getDeclaredMethod(CALCULATE_FUNCTION_TYPES_SUMS_NAME);
+        _testCalculateFunctionTyesSums = _costEstimationCalculation.getClass()
+                                                                   .getDeclaredMethod(CALCULATE_FUNCTION_TYPES_SUMS_NAME);
         _testCalculateFunctionTyesSums.setAccessible(true);
 
         // Testmethode: calculateImpactFactor()
-        _testCalculateImpactFactor = _costEstimationCalculation.getClass().getDeclaredMethod(CALCULATE_IMPACT_FACTOR_NAME);
+        _testCalculateImpactFactor = _costEstimationCalculation.getClass()
+                                                               .getDeclaredMethod(CALCULATE_IMPACT_FACTOR_NAME);
         _testCalculateImpactFactor.setAccessible(true);
     }
 
@@ -54,12 +56,15 @@ class CostEstimationCalculationTest {
      * Testmethode für {@link CostEstimationCalculation#calculateMenMonths(double)}
      * Erwartetes Ergebnis: 4,58
      * Function Points: 45 < 50 (Jones-Schätzung)
+     *
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testCalculateMenMonths0() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 45;
-        double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation, parameters_CALCULATE_MEN_MONTH);
+        double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation,
+                                                                parameters_CALCULATE_MEN_MONTH
+        );
         assertEquals(4.58, Math.round(100.0 * result) / 100.0);
     }
 
@@ -67,12 +72,15 @@ class CostEstimationCalculationTest {
      * Testmethode für {@link CostEstimationCalculation#calculateMenMonths(double)}
      * Erwartetes Ergebnis: 15,98
      * Function Points: 50 <= 233,0 <= 2900 (IBM-Korrespondenztabelle)
+     *
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testCalculateMenMonths1() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 233.0;
-        double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation, parameters_CALCULATE_MEN_MONTH);
+        double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation,
+                                                                parameters_CALCULATE_MEN_MONTH
+        );
         assertEquals(15.98, Math.round(100.0 * result) / 100.0);
     }
 
@@ -80,12 +88,15 @@ class CostEstimationCalculationTest {
      * Testmethode für {@link CostEstimationCalculation#calculateMenMonths(double)}
      * Erwartetes Ergebnis: 26,24
      * Function Points: 50 <= 378,0 <= 2900 (IBM-Korrespondenztabelle)
+     *
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testCalculateMenMonths2() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 378.0;
-        double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation, parameters_CALCULATE_MEN_MONTH);
+        double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation,
+                                                                parameters_CALCULATE_MEN_MONTH
+        );
         assertEquals(26.24, Math.round(100.0 * result) / 100.0);
     }
 
@@ -93,18 +104,22 @@ class CostEstimationCalculationTest {
      * Testmethode für {@link CostEstimationCalculation#calculateMenMonths(double)}
      * Erwartetes Ergebnis: 26,39
      * Function Points: 3576,49 > 2900 (Jones-Schätzung)
+     *
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
     public void testCalculateMenMonths3() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 3576.49;
-        double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation, parameters_CALCULATE_MEN_MONTH);
+        double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation,
+                                                                parameters_CALCULATE_MEN_MONTH
+        );
         assertEquals(26.39, Math.round(100.0 * result) / 100.0);
     }
 
     /**
      * Testmethode für {@link CostEstimationCalculation#calculateFunctionTypesSums()}
      * Erwartetes Ergebnis: 221
+     *
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
@@ -196,11 +211,11 @@ class CostEstimationCalculationTest {
     /**
      * Testmethode für {@link CostEstimationCalculation#calculateImpactFactor()}
      * Erwartetes Ergebnis: 1,15
+     *
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testCalculateImpactFactor() throws Exception
-    {
+    public void testCalculateImpactFactor() throws Exception {
         double result = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
         assertEquals(1.15, result);
     }

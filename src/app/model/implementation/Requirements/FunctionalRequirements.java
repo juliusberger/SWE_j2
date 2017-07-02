@@ -28,13 +28,13 @@ class FunctionalRequirements extends ObservableEntryHolder<I_FunctionalRequireme
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
-
+    public ArrayList<String> getAllProperties() {
+        return null;
     }
 
     @Override
-    public ArrayList<String> getAllProperties() {
-        return null;
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+
     }
 
     @Override

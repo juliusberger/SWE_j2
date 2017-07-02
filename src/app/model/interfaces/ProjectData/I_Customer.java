@@ -1,6 +1,8 @@
 package app.model.interfaces.ProjectData;
 
-import app.model.interfaces.*;
+import app.model.interfaces.I_Clearable;
+import app.model.interfaces.I_ModelPropertyAdaptor;
+import app.model.interfaces.I_XmlModelEntity;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -9,49 +11,49 @@ import javafx.beans.property.SimpleStringProperty;
 public interface I_Customer extends I_ModelPropertyAdaptor, I_XmlModelEntity, I_Clearable {
     String getSurname();
 
-    SimpleStringProperty surnameProperty();
-
     void setSurname(String surname);
+
+    SimpleStringProperty surnameProperty();
 
     String getName();
 
-    SimpleStringProperty nameProperty();
-
     void setName(String name);
+
+    SimpleStringProperty nameProperty();
 
     String getTelephone();
 
-    SimpleStringProperty telephoneProperty();
-
     void setTelephone(String telephone);
+
+    SimpleStringProperty telephoneProperty();
 
     String getEmail();
 
-    SimpleStringProperty emailProperty();
-
     void setEmail(String email);
+
+    SimpleStringProperty emailProperty();
 
     String getCompanyName();
 
-    SimpleStringProperty companyNameProperty();
-
     void setCompanyName(String companyName);
+
+    SimpleStringProperty companyNameProperty();
 
     String getCompanyStreet();
 
-    SimpleStringProperty companyStreetProperty();
-
     void setCompanyStreet(String companyStreet);
+
+    SimpleStringProperty companyStreetProperty();
 
     String getCompanyPLZ();
 
-    SimpleStringProperty companyPLZProperty();
-
     void setCompanyPLZ(String companyPLZ);
+
+    SimpleStringProperty companyPLZProperty();
 
     String getCompanyLocation();
 
-    SimpleStringProperty companyLocationProperty();
-
     void setCompanyLocation(String companyLocation);
+
+    SimpleStringProperty companyLocationProperty();
 }

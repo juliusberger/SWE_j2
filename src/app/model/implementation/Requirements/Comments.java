@@ -28,12 +28,12 @@ class Comments extends ObservableEntryHolder<I_CommentEntry> implements I_Commen
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
+    public ArrayList<String> getAllProperties() {
+        return null;
     }
 
     @Override
-    public ArrayList<String> getAllProperties() {
-        return null;
+    public void setAllProperties(ArrayList<String> propertyStrings) {
     }
 
     @Override

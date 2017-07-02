@@ -1,8 +1,8 @@
 package app.model.implementation.ProjectData;
 
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.beans.property.SimpleStringProperty;
 import app.model.interfaces.ProjectData.I_ProjectEditor;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +20,13 @@ class ProjectEditor implements I_ProjectEditor {
     }
 
     @Override
-    public SimpleStringProperty surnameProperty() {
-        return _surname;
+    public void setSurname(String surname) {
+        _surname.set(surname);
     }
 
     @Override
-    public void setSurname(String surname) {
-        _surname.set(surname);
+    public SimpleStringProperty surnameProperty() {
+        return _surname;
     }
 
     @Override
@@ -35,13 +35,13 @@ class ProjectEditor implements I_ProjectEditor {
     }
 
     @Override
-    public SimpleStringProperty nameProperty() {
-        return _name;
+    public void setName(String name) {
+        _name.set(name);
     }
 
     @Override
-    public void setName(String name) {
-        _name.set(name);
+    public SimpleStringProperty nameProperty() {
+        return _name;
     }
 
     @Override
@@ -59,16 +59,6 @@ class ProjectEditor implements I_ProjectEditor {
     }
 
     @Override
-    public void setAllProperties(ArrayList<String> propertyStrings) {
-        try {
-            setSurname(propertyStrings.get(0));
-            setName(propertyStrings.get(1));
-        } catch (IndexOutOfBoundsException ignored) {
-
-        }
-    }
-
-    @Override
     public ArrayList<String> getAllProperties() {
         ArrayList<String> stringProperties = new ArrayList<>();
         stringProperties.add(getSurname());
@@ -77,6 +67,15 @@ class ProjectEditor implements I_ProjectEditor {
         return stringProperties;
     }
 
+    @Override
+    public void setAllProperties(ArrayList<String> propertyStrings) {
+        try {
+            setSurname(propertyStrings.get(0));
+            setName(propertyStrings.get(1));
+        } catch (IndexOutOfBoundsException ignored) {
+
+        }
+    }
 
     @Override
     public void removeExistingData() {

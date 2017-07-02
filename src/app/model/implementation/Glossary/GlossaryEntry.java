@@ -54,13 +54,13 @@ public class GlossaryEntry implements I_GlossaryEntry {
     }
 
     @Override
-    public SimpleStringProperty distinctionProperty() {
-        return _distinction;
+    public void setDistinction(String distinction) {
+        _distinction.set(distinction);
     }
 
     @Override
-    public void setDistinction(String distinction) {
-        _distinction.set(distinction);
+    public SimpleStringProperty distinctionProperty() {
+        return _distinction;
     }
 
     @Override
@@ -69,13 +69,13 @@ public class GlossaryEntry implements I_GlossaryEntry {
     }
 
     @Override
-    public SimpleStringProperty validityProperty() {
-        return _validity;
+    public void setValidity(String validity) {
+        _validity.set(validity);
     }
 
     @Override
-    public void setValidity(String validity) {
-        _validity.set(validity);
+    public SimpleStringProperty validityProperty() {
+        return _validity;
     }
 
     @Override
@@ -84,13 +84,13 @@ public class GlossaryEntry implements I_GlossaryEntry {
     }
 
     @Override
-    public SimpleStringProperty labelProperty() {
-        return _label;
+    public void setLabel(String label) {
+        _label.set(label);
     }
 
     @Override
-    public void setLabel(String label) {
-        _label.set(label);
+    public SimpleStringProperty labelProperty() {
+        return _label;
     }
 
     @Override

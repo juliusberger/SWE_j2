@@ -1,8 +1,8 @@
 package app.model.implementation.Requirements;
 
 import app.model.interfaces.I_XmlModelEntity;
-import javafx.beans.property.SimpleStringProperty;
 import app.model.interfaces.Requirements.I_NonFunctionalRequirementEntry;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +23,13 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
     }
 
     @Override
-    public SimpleStringProperty businessProcessProperty() {
-        return _businessProcess;
+    public void setBusinessProcess(String businessProcess) {
+        _businessProcess.set(businessProcess);
     }
 
     @Override
-    public void setBusinessProcess(String businessProcess) {
-        _businessProcess.set(businessProcess);
+    public SimpleStringProperty businessProcessProperty() {
+        return _businessProcess;
     }
 
     @Override
@@ -38,13 +38,13 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
     }
 
     @Override
-    public SimpleStringProperty descriptionProperty() {
-        return _description;
+    public void setDescription(String description) {
+        _description.set(description);
     }
 
     @Override
-    public void setDescription(String description) {
-        _description.set(description);
+    public SimpleStringProperty descriptionProperty() {
+        return _description;
     }
 
     @Override
@@ -63,6 +63,15 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
     }
 
     @Override
+    public ArrayList<String> getAllProperties() {
+        ArrayList<String> stringProperties = new ArrayList<>();
+        stringProperties.add(getBusinessProcess());
+        stringProperties.add(getDescription());
+
+        return stringProperties;
+    }
+
+    @Override
     public void setAllProperties(ArrayList<String> propertyStrings) {
         try {
             setBusinessProcess(propertyStrings.get(0));
@@ -70,14 +79,5 @@ public class NonFunctionalRequirementEntry implements I_NonFunctionalRequirement
         } catch (IndexOutOfBoundsException ignored) {
 
         }
-    }
-
-    @Override
-    public ArrayList<String> getAllProperties() {
-        ArrayList<String> stringProperties = new ArrayList<>();
-        stringProperties.add(getBusinessProcess());
-        stringProperties.add(getDescription());
-
-        return stringProperties;
     }
 }

@@ -22,6 +22,7 @@ public interface I_XmlModelEntity extends I_ModelPropertyAdaptor {
 
     /**
      * Überschreibung der Factory-Methode aus {@link I_ObservableDataAdaptor#addEntryWithProperties(ArrayList)}
+     *
      * @param properties s. {@link I_ObservableDataAdaptor#addEntryWithProperties(ArrayList)}
      */
     void addEntryWithProperties(ArrayList<String> properties);

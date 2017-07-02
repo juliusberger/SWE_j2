@@ -2,6 +2,7 @@ package app.controller;
 
 import app.Constants;
 import app.InfoDialog;
+import app.InfoDialog.AlertType;
 import app.Log;
 import app.components.CostEstimationCalculation;
 import app.components.I_CostEstimationCalculation;
@@ -9,7 +10,6 @@ import app.model.implementation.Project;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -64,14 +64,22 @@ public class CostEstimationController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.DECORATED);
             stage.setTitle("Anforderungen klassifizieren");
-            stage.getIcons().add(new Image(ClassificationController.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
+            stage.getIcons()
+                 .add(new Image(ClassificationController.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
             stage.setScene(new Scene(vBox));
 
             stage.showAndWait();
         } catch (IOException e) {
-            Log.getLogger().log(Level.SEVERE, "Fehler beim Erstellen des Klassifizierungs-Dialogs: " + Arrays.toString(e
-                    .getStackTrace()));
-            InfoDialog.show(Constants.CONTEXT_TITLE_ERROR, "Programmfehler", "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.", AlertType.ERROR);
+            Log.getLogger().log(
+                    Level.SEVERE,
+                    "Fehler beim Erstellen des Klassifizierungs-Dialogs: " + Arrays.toString(e.getStackTrace())
+            );
+            new InfoDialog(
+                    Constants.CONTEXT_TITLE_ERROR,
+                    "Programmfehler",
+                    "Beim Erstellen der Klassifikation ist ein Fehler aufgetreten.",
+                    AlertType.ERROR
+            );
         }
 
     }
@@ -79,21 +87,82 @@ public class CostEstimationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        _influenceFactorBox1.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(0).getWeightProperty());
-        _influenceFactorBox2.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(1).getWeightProperty());
-        _influenceFactorBox3.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(2).getWeightProperty());
-        _influenceFactorBox4a.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(3).getWeightProperty());
-        _influenceFactorBox4b.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(4).getWeightProperty());
-        _influenceFactorBox4c.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(5).getWeightProperty());
-        _influenceFactorBox4d.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(6).getWeightProperty());
-        _influenceFactorBox5.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(7).getWeightProperty());
-        _influenceFactorBox6.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(8).getWeightProperty());
-        _influenceFactorBox7.valueProperty().bindBidirectional(Project.getInstance().getCostEstimation().getCostEstimationEntries().get(9).getWeightProperty());
+        _influenceFactorBox1.valueProperty()
+                            .bindBidirectional(Project.getInstance()
+                                                      .getCostEstimation()
+                                                      .getCostEstimationEntries()
+                                                      .get(0)
+                                                      .getWeightProperty());
+        _influenceFactorBox2.valueProperty()
+                            .bindBidirectional(Project.getInstance()
+                                                      .getCostEstimation()
+                                                      .getCostEstimationEntries()
+                                                      .get(1)
+                                                      .getWeightProperty());
+        _influenceFactorBox3.valueProperty()
+                            .bindBidirectional(Project.getInstance()
+                                                      .getCostEstimation()
+                                                      .getCostEstimationEntries()
+                                                      .get(2)
+                                                      .getWeightProperty());
+        _influenceFactorBox4a.valueProperty()
+                             .bindBidirectional(Project.getInstance()
+                                                       .getCostEstimation()
+                                                       .getCostEstimationEntries()
+                                                       .get(3)
+                                                       .getWeightProperty());
+        _influenceFactorBox4b.valueProperty()
+                             .bindBidirectional(Project.getInstance()
+                                                       .getCostEstimation()
+                                                       .getCostEstimationEntries()
+                                                       .get(4)
+                                                       .getWeightProperty());
+        _influenceFactorBox4c.valueProperty()
+                             .bindBidirectional(Project.getInstance()
+                                                       .getCostEstimation()
+                                                       .getCostEstimationEntries()
+                                                       .get(5)
+                                                       .getWeightProperty());
+        _influenceFactorBox4d.valueProperty()
+                             .bindBidirectional(Project.getInstance()
+                                                       .getCostEstimation()
+                                                       .getCostEstimationEntries()
+                                                       .get(6)
+                                                       .getWeightProperty());
+        _influenceFactorBox5.valueProperty()
+                            .bindBidirectional(Project.getInstance()
+                                                      .getCostEstimation()
+                                                      .getCostEstimationEntries()
+                                                      .get(7)
+                                                      .getWeightProperty());
+        _influenceFactorBox6.valueProperty()
+                            .bindBidirectional(Project.getInstance()
+                                                      .getCostEstimation()
+                                                      .getCostEstimationEntries()
+                                                      .get(8)
+                                                      .getWeightProperty());
+        _influenceFactorBox7.valueProperty()
+                            .bindBidirectional(Project.getInstance()
+                                                      .getCostEstimation()
+                                                      .getCostEstimationEntries()
+                                                      .get(9)
+                                                      .getWeightProperty());
 
         _classifyRequirementsButton.setOnAction(event -> showClassificationDialog());
 
         _performCostEstimationButton.setOnAction(event -> {
-            _costEstimationCalculation = new CostEstimationCalculation(_influenceFactorBox1.getValue(), _influenceFactorBox2.getValue(), _influenceFactorBox3.getValue(), _influenceFactorBox4a.getValue(), _influenceFactorBox4b.getValue(), _influenceFactorBox4c.getValue(), _influenceFactorBox4d.getValue(), _influenceFactorBox5.getValue(), _influenceFactorBox6.getValue(), _influenceFactorBox7.getValue());
+            _costEstimationCalculation = new CostEstimationCalculation(
+                    _influenceFactorBox1.getValue(),
+                    _influenceFactorBox2.getValue(),
+                    _influenceFactorBox3.getValue(),
+                    _influenceFactorBox4a.getValue(),
+                    _influenceFactorBox4b.getValue(),
+                    _influenceFactorBox4c.getValue(),
+                    _influenceFactorBox4d.getValue(),
+                    _influenceFactorBox5.getValue(),
+                    _influenceFactorBox6.getValue(),
+                    _influenceFactorBox7.getValue()
+            );
 
             updateCalculationLabels();
         });
@@ -127,7 +196,6 @@ public class CostEstimationController implements Initializable {
         _calculatedFunctionPointsLabel.setText(Double.toString(_costEstimationCalculation.getCalculatedFunctionPoints()));
         _calculatedMenMonthsLabel.setText(Double.toString(_costEstimationCalculation.getCalculatedMenMonths()));
     }
-
 
 
 }

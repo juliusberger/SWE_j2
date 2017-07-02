@@ -27,7 +27,9 @@ import java.util.ResourceBundle;
  */
 public class ClassificationController implements Initializable {
     private final I_Classification _dataModel = Project.getInstance().getClassification();
-    private final I_FunctionalRequirements _functionalRequirements = Project.getInstance().getRequirements().getFunctionalRequirements();
+    private final I_FunctionalRequirements _functionalRequirements = Project.getInstance()
+                                                                            .getRequirements()
+                                                                            .getFunctionalRequirements();
 
     public TableView<I_ClassificationEntry> _classificationTable;
     public TableColumn<I_ClassificationEntry, String> _categoryColumn;
@@ -36,7 +38,13 @@ public class ClassificationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> categoryList = FXCollections.observableArrayList("Eingabedaten (EI)", "Ausgabedaten (EO)", "Abfragen (EQ)", "Datenbestände (ILF)", "Referenzdaten (ELF)");
+        ObservableList<String> categoryList = FXCollections.observableArrayList(
+                "Eingabedaten (EI)",
+                "Ausgabedaten (EO)",
+                "Abfragen (EQ)",
+                "Datenbestände (ILF)",
+                "Referenzdaten (ELF)"
+        );
         _categoryColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn(categoryList));
 
         ObservableList<String> classificationList = FXCollections.observableArrayList("einfach", "mittel", "komplex");
@@ -47,13 +55,16 @@ public class ClassificationController implements Initializable {
         classificationTableBinding.setDataModel(_dataModel);
         classificationTableBinding.bindTableToData();
 
-        _classificationSaveButton.setOnAction(event -> ((Stage) _classificationSaveButton.getScene().getWindow()).close());
+        _classificationSaveButton.setOnAction(event -> ((Stage) _classificationSaveButton.getScene()
+                                                                                         .getWindow()).close());
 
 
         for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
             boolean duplicate = false;
 
-            ArrayList<String> functionalRequirementEntry = _functionalRequirements.getEntries().get(index).getAllProperties();
+            ArrayList<String> functionalRequirementEntry = _functionalRequirements.getEntries()
+                                                                                  .get(index)
+                                                                                  .getAllProperties();
 
             for (int h = 0; h < _dataModel.getEntries().size(); h++) {
                 if (Objects.equals(functionalRequirementEntry.get(0), _dataModel.getEntries().get(h).getFunction())) {

@@ -9,23 +9,23 @@ import java.util.List;
 
 /**
  * Model des Lastenhefts. Gedacht für Halterklassen von:
- *  - {@link I_FunctionalRequirements}
- *  - {@link I_NonFunctionalRequirements}
- *  - {@link I_QualityRequirementEntry}
- *  - {@link I_Comments}
+ * - {@link I_FunctionalRequirements}
+ * - {@link I_NonFunctionalRequirements}
+ * - {@link I_QualityRequirementEntry}
+ * - {@link I_Comments}
  */
 public interface I_Requirements extends I_ModelPropertyAdaptor, I_XmlModelEntity, I_Clearable {
     String getProjectGoal();
 
-    SimpleStringProperty projectGoalProperty();
-
     void setProjectGoal(String projectGoal);
+
+    SimpleStringProperty projectGoalProperty();
 
     String getFieldOfApplication();
 
-    SimpleStringProperty fieldOfApplicationProperty();
-
     void setFieldOfApplication(String fieldOfApplication);
+
+    SimpleStringProperty fieldOfApplicationProperty();
 
     I_FunctionalRequirements getFunctionalRequirements();
 

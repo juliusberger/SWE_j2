@@ -1,6 +1,9 @@
 package app.model.interfaces.Glossary;
 
-import app.model.interfaces.*;
+import app.model.interfaces.I_Clearable;
+import app.model.interfaces.I_ModelEntryFactory;
+import app.model.interfaces.I_ObservableDataAdaptor;
+import app.model.interfaces.I_XmlModelEntity;
 
 /**
  * Model des Glossars. Gedacht für Halterklassen von {@link I_GlossaryEntry}.
