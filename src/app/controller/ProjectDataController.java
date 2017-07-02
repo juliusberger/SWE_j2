@@ -4,7 +4,7 @@ import app.Constants;
 import app.Main;
 import app.helpers.ValidateInput;
 import app.helpers.ValidateInput.Validator;
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.ProjectData.I_ProjectData;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
  * Jedes Textfeld wird an seine Model-Repräsentation gebunden und mit einer entsprechenden Validierung versehen.
  */
 public class ProjectDataController implements Initializable {
-    private final I_ProjectData _projectData = Project.getInstance().getProjectData();
+    private final I_ProjectData _projectData = ProjectRegistry.getInstance().getProjectData();
 
     public TextField _projectName;
     public TextField _projectDueDate;

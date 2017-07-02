@@ -5,7 +5,7 @@ import app.InfoDialog;
 import app.InfoDialog.AlertType;
 import app.helpers.importExport.I_ProjectExportImportManager;
 import app.helpers.importExport.ProjectExportImportManager;
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -53,7 +53,7 @@ public class RootViewController implements Initializable {
                            "Neues Projekt anlegen",
                            Constants.CONTEXT_MSG_UNSAVED_CHANGES,
                            AlertType.CONFIRMATION
-        ).wasYesClicked()) Project.getInstance().removeExistingData();
+        ).wasYesClicked()) ProjectRegistry.getInstance().removeExistingData();
     }
 
 

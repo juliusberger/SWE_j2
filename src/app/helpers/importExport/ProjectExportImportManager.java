@@ -5,8 +5,8 @@ import app.InfoDialog;
 import app.InfoDialog.AlertType;
 import app.Main;
 import app.helpers.ValidateInput;
-import app.model.implementation.Project;
-import app.model.interfaces.I_Project;
+import app.model.implementation.ProjectRegistry;
+import app.model.interfaces.I_ProjectRegistry;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -132,12 +132,12 @@ public final class ProjectExportImportManager implements I_ProjectExportImportMa
 
 
     /**
-     * Holt sich I_Project als rootModel, loescht existierende Daten, und übergibt es an den Importer.
+     * Holt sich I_ProjectRegistry als rootModel, loescht existierende Daten, und übergibt es an den Importer.
      * @param file File-Element aus dem Dateiauswahldialog.
      * @return Gibt zurück, ob Import erfolgreich war, oder nicht.
      */
     private boolean onLoadFile(File file) {
-        I_Project project = Project.getInstance();
+        I_ProjectRegistry project = ProjectRegistry.getInstance();
         project.removeExistingData();
         I_XmlImporter importer = new XmlImporter();
         importer.setFileName(file.getAbsolutePath());
@@ -147,12 +147,12 @@ public final class ProjectExportImportManager implements I_ProjectExportImportMa
 
 
     /**
-     * Holt sich I_Project als rootModel und übergibt es an den Exporter.
+     * Holt sich I_ProjectRegistry als rootModel und übergibt es an den Exporter.
      * @param file File-Element aus dem Dateispeicherdialog.
      * @return Gibt zurück, ob Export erfolgreich war, oder nicht.
      */
     private boolean onSaveFile(File file) {
-        I_Project project = Project.getInstance();
+        I_ProjectRegistry project = ProjectRegistry.getInstance();
         I_XmlExporter exporter = new XmlExporter();
         exporter.setFileName(file.getAbsolutePath());
         exporter.setRootModel(project);

@@ -2,7 +2,7 @@ package app.controller;
 
 import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.Glossary.I_Glossary;
 import app.model.interfaces.Glossary.I_GlossaryEntry;
 import javafx.fxml.Initializable;
@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
  * Es wird das Model {@link I_Glossary} an die Tabelle gebunden, um die Einträge des Typs {@link I_GlossaryEntry} zu verwalten.
  */
 public class GlossaryController implements Initializable {
-    private final I_Glossary _dataModel = Project.getInstance().getGlossary();
+    private final I_Glossary _dataModel = ProjectRegistry.getInstance().getGlossary();
     public TableView<I_GlossaryEntry> _glossaryTable;
     public Button _glossaryAddButton;
     public Button _glossaryEditButton;

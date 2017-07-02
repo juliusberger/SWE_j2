@@ -6,7 +6,7 @@ import app.InfoDialog.AlertType;
 import app.Log;
 import app.components.CostEstimationCalculation;
 import app.components.I_CostEstimationCalculation;
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -88,65 +88,65 @@ public class CostEstimationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _influenceFactorBox1.valueProperty()
-                            .bindBidirectional(Project.getInstance()
-                                                      .getCostEstimation()
-                                                      .getCostEstimationEntries()
-                                                      .get(0)
-                                                      .getWeightProperty());
+                            .bindBidirectional(ProjectRegistry.getInstance()
+                                                              .getCostEstimation()
+                                                              .getCostEstimationEntries()
+                                                              .get(0)
+                                                              .getWeightProperty());
         _influenceFactorBox2.valueProperty()
-                            .bindBidirectional(Project.getInstance()
-                                                      .getCostEstimation()
-                                                      .getCostEstimationEntries()
-                                                      .get(1)
-                                                      .getWeightProperty());
+                            .bindBidirectional(ProjectRegistry.getInstance()
+                                                              .getCostEstimation()
+                                                              .getCostEstimationEntries()
+                                                              .get(1)
+                                                              .getWeightProperty());
         _influenceFactorBox3.valueProperty()
-                            .bindBidirectional(Project.getInstance()
-                                                      .getCostEstimation()
-                                                      .getCostEstimationEntries()
-                                                      .get(2)
-                                                      .getWeightProperty());
+                            .bindBidirectional(ProjectRegistry.getInstance()
+                                                              .getCostEstimation()
+                                                              .getCostEstimationEntries()
+                                                              .get(2)
+                                                              .getWeightProperty());
         _influenceFactorBox4a.valueProperty()
-                             .bindBidirectional(Project.getInstance()
-                                                       .getCostEstimation()
-                                                       .getCostEstimationEntries()
-                                                       .get(3)
-                                                       .getWeightProperty());
+                             .bindBidirectional(ProjectRegistry.getInstance()
+                                                               .getCostEstimation()
+                                                               .getCostEstimationEntries()
+                                                               .get(3)
+                                                               .getWeightProperty());
         _influenceFactorBox4b.valueProperty()
-                             .bindBidirectional(Project.getInstance()
-                                                       .getCostEstimation()
-                                                       .getCostEstimationEntries()
-                                                       .get(4)
-                                                       .getWeightProperty());
+                             .bindBidirectional(ProjectRegistry.getInstance()
+                                                               .getCostEstimation()
+                                                               .getCostEstimationEntries()
+                                                               .get(4)
+                                                               .getWeightProperty());
         _influenceFactorBox4c.valueProperty()
-                             .bindBidirectional(Project.getInstance()
-                                                       .getCostEstimation()
-                                                       .getCostEstimationEntries()
-                                                       .get(5)
-                                                       .getWeightProperty());
+                             .bindBidirectional(ProjectRegistry.getInstance()
+                                                               .getCostEstimation()
+                                                               .getCostEstimationEntries()
+                                                               .get(5)
+                                                               .getWeightProperty());
         _influenceFactorBox4d.valueProperty()
-                             .bindBidirectional(Project.getInstance()
-                                                       .getCostEstimation()
-                                                       .getCostEstimationEntries()
-                                                       .get(6)
-                                                       .getWeightProperty());
+                             .bindBidirectional(ProjectRegistry.getInstance()
+                                                               .getCostEstimation()
+                                                               .getCostEstimationEntries()
+                                                               .get(6)
+                                                               .getWeightProperty());
         _influenceFactorBox5.valueProperty()
-                            .bindBidirectional(Project.getInstance()
-                                                      .getCostEstimation()
-                                                      .getCostEstimationEntries()
-                                                      .get(7)
-                                                      .getWeightProperty());
+                            .bindBidirectional(ProjectRegistry.getInstance()
+                                                              .getCostEstimation()
+                                                              .getCostEstimationEntries()
+                                                              .get(7)
+                                                              .getWeightProperty());
         _influenceFactorBox6.valueProperty()
-                            .bindBidirectional(Project.getInstance()
-                                                      .getCostEstimation()
-                                                      .getCostEstimationEntries()
-                                                      .get(8)
-                                                      .getWeightProperty());
+                            .bindBidirectional(ProjectRegistry.getInstance()
+                                                              .getCostEstimation()
+                                                              .getCostEstimationEntries()
+                                                              .get(8)
+                                                              .getWeightProperty());
         _influenceFactorBox7.valueProperty()
-                            .bindBidirectional(Project.getInstance()
-                                                      .getCostEstimation()
-                                                      .getCostEstimationEntries()
-                                                      .get(9)
-                                                      .getWeightProperty());
+                            .bindBidirectional(ProjectRegistry.getInstance()
+                                                              .getCostEstimation()
+                                                              .getCostEstimationEntries()
+                                                              .get(9)
+                                                              .getWeightProperty());
 
         _classifyRequirementsButton.setOnAction(event -> showClassificationDialog());
 

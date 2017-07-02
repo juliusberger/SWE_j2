@@ -3,7 +3,7 @@ package app.controller;
 
 import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_ClassificationEntry;
 import app.model.interfaces.Requirements.I_FunctionalRequirements;
@@ -26,10 +26,10 @@ import java.util.ResourceBundle;
  * Dieser Controller ist verantwortlich für die Erstellung des Klassifizierungs-Dialogs, ausgelöst durch den {@link CostEstimationController}.
  */
 public class ClassificationController implements Initializable {
-    private final I_Classification _dataModel = Project.getInstance().getClassification();
-    private final I_FunctionalRequirements _functionalRequirements = Project.getInstance()
-                                                                            .getRequirements()
-                                                                            .getFunctionalRequirements();
+    private final I_Classification _dataModel = ProjectRegistry.getInstance().getClassification();
+    private final I_FunctionalRequirements _functionalRequirements = ProjectRegistry.getInstance()
+                                                                                    .getRequirements()
+                                                                                    .getFunctionalRequirements();
 
     public TableView<I_ClassificationEntry> _classificationTable;
     public TableColumn<I_ClassificationEntry, String> _categoryColumn;

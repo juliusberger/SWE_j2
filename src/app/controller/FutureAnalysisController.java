@@ -2,7 +2,7 @@ package app.controller;
 
 import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.Analysis.I_Analysis;
 import app.model.interfaces.Analysis.I_AnalysisEntry;
 import javafx.fxml.Initializable;
@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  */
 public class FutureAnalysisController implements Initializable {
 
-    private final I_Analysis _dataModel = Project.getInstance().getFutureAnalysis();
+    private final I_Analysis _dataModel = ProjectRegistry.getInstance().getFutureAnalysis();
     public TableView<I_AnalysisEntry> _futureAnalysisTable;
     public Button _addEntryButton;
     public Button _editEntryButton;

@@ -4,7 +4,7 @@ import app.Constants;
 import app.InfoDialog;
 import app.InfoDialog.AlertType;
 import app.Log;
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_ClassificationEntry;
 
@@ -18,7 +18,7 @@ import java.util.logging.Level;
  * Führt die Aufwandsschätzung sowie deren Optimierung durch
  */
 public class CostEstimationCalculation implements I_CostEstimationCalculation {
-    private final I_Classification _classification = Project.getInstance().getClassification();
+    private final I_Classification _classification = ProjectRegistry.getInstance().getClassification();
     private final HashMap<String, String> _influenceFactors = new HashMap<>();
     private double _calculatedFunctionPoints = 0.0;
     private double _calculatedMenMonths = 0.0;

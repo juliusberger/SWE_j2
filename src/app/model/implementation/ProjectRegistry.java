@@ -11,7 +11,7 @@ import app.model.interfaces.Analysis.I_Analysis;
 import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_CostEstimation;
 import app.model.interfaces.Glossary.I_Glossary;
-import app.model.interfaces.I_Project;
+import app.model.interfaces.I_ProjectRegistry;
 import app.model.interfaces.I_XmlModelEntity;
 import app.model.interfaces.ProjectData.I_ProjectData;
 import app.model.interfaces.Requirements.I_Requirements;
@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Model-Implementierung von {@link I_Project}
+ * Model-Implementierung von {@link I_ProjectRegistry}
  */
-public final class Project implements I_Project {
-    private static I_Project _instance = new Project();
+public final class ProjectRegistry implements I_ProjectRegistry {
+    private static I_ProjectRegistry _instance = new ProjectRegistry();
 
     private final I_ProjectData _projectData = new ProjectData();
     private final I_Analysis _stateAnalysis = new StateAnalysis();
@@ -33,10 +33,10 @@ public final class Project implements I_Project {
     private final I_Classification _classification = new Classification();
     private final I_Glossary _glossary = new Glossary();
 
-    private Project() {
+    private ProjectRegistry() {
     }
 
-    public static I_Project getInstance() {
+    public static I_ProjectRegistry getInstance() {
         return _instance;
     }
 
@@ -94,7 +94,7 @@ public final class Project implements I_Project {
 
     @Override
     public String getTag() {
-        return "Project";
+        return "ProjectRegistry";
     }
 
     @Override

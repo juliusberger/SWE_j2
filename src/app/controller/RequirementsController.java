@@ -4,7 +4,7 @@ import app.helpers.I_TableBinding;
 import app.helpers.TableBinding;
 import app.helpers.ValidateInput;
 import app.helpers.ValidateInput.Validator;
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.Requirements.*;
 import app.model.interfaces.Requirements.I_QualityRequirementEntry.Priority;
 import javafx.fxml.Initializable;
@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  * - das Model {@link I_Comments} wird an die entsprechende Tabelle gebunden, um die Einträge des Typs {@link I_CommentEntry} zu verwalten.
  */
 public class RequirementsController implements Initializable {
-    private final I_Requirements _dataModel = Project.getInstance().getRequirements();
+    private final I_Requirements _dataModel = ProjectRegistry.getInstance().getRequirements();
 
     public TextArea _projectGoalText;
     public TextArea _fieldOfApplicationText;

@@ -1,6 +1,6 @@
 package app.components;
 
-import app.model.implementation.Project;
+import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.CostEstimation.I_Classification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -124,7 +124,7 @@ class CostEstimationCalculationTest {
      */
     @Test
     public void testCalculateFunctionTypesSums() throws Exception {
-        I_Classification classification = Project.getInstance().getClassification();
+        I_Classification classification = ProjectRegistry.getInstance().getClassification();
         // Die ersten drei Einträge sind bei dieser Methode nicht relevant, weshalb hier jeweils "Test" als Platzhalter gewählt wurde
         // Die klassifizierten Anforderungen entsprechen in der Anzahl der von uns im 3. Semester
         // angefertigten Aufwandsschätzung als Teil der Spezifikation

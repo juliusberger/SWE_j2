@@ -1,6 +1,5 @@
 package app.model.implementation.CostEstimation;
 
-import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_CostEstimation;
 import app.model.interfaces.CostEstimation.I_CostEstimationEntry;
 import app.model.interfaces.I_XmlModelEntity;
@@ -15,9 +14,6 @@ import java.util.List;
 public class CostEstimation implements I_CostEstimation {
 
     private final List<I_CostEstimationEntry> _costEstimationEntries = new ArrayList<>(9);
-
-    // TODO: hier nicht vom project holen?
-    private final I_Classification _classification = new Classification();
 
     public CostEstimation() {
         for (int i = 0; i <= 9; i++) {
