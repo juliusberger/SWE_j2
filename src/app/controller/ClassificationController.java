@@ -59,15 +59,15 @@ public class ClassificationController implements Initializable {
                                                                                          .getWindow()).close());
 
 
-        for (int index = 0; index < _functionalRequirements.getEntries().size(); index++) {
+        for (int indexFunctionalRequirements = 0; indexFunctionalRequirements < _functionalRequirements.getEntries().size(); indexFunctionalRequirements++) {
             boolean duplicate = false;
 
             ArrayList<String> functionalRequirementEntry = _functionalRequirements.getEntries()
-                                                                                  .get(index)
+                                                                                  .get(indexFunctionalRequirements)
                                                                                   .getAllProperties();
 
-            for (int h = 0; h < _dataModel.getEntries().size(); h++) {
-                if (Objects.equals(functionalRequirementEntry.get(0), _dataModel.getEntries().get(h).getFunction())) {
+            for (int indexDataModel = 0; indexDataModel < _dataModel.getEntries().size(); indexDataModel++) {
+                if (Objects.equals(functionalRequirementEntry.get(0), _dataModel.getEntries().get(indexDataModel).getFunction())) {
                     duplicate = true;
                 }
             }
@@ -75,6 +75,18 @@ public class ClassificationController implements Initializable {
                 _dataModel.addEntryWithProperties(functionalRequirementEntry);
             }
         }
+
+        for (int indexDataModel = 0; indexDataModel < _dataModel.getEntries().size(); indexDataModel++) {
+            boolean include = false;
+
+            for (int functionalRequirementEntry = 0; functionalRequirementEntry < _functionalRequirements.getEntries().size(); functionalRequirementEntry++) {
+                if (Objects.equals(_dataModel.getEntries().get(indexDataModel).getFunction(), _functionalRequirements.getEntries().get(functionalRequirementEntry).getAllProperties().get(0))) {
+                    include = true;
+                }
+            }
+            if (!include) _dataModel.getEntries().remove(indexDataModel);
+        }
+
     }
 
 
