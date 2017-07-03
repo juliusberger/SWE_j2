@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +22,7 @@ class XmlImporterTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testImportXML0() throws Exception {
+    void testImportXML0() throws Exception {
         I_XmlImporter xmlImporter = new XmlImporter();
         xmlImporter.setFileName("importTest0.xml");
         boolean successfulImport = xmlImporter.importXml();
@@ -35,7 +36,7 @@ class XmlImporterTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testImportXML1() throws Exception {
+    void testImportXML1() throws Exception {
         class RootModel implements I_XmlModelEntity {
             @Override
             public String getTag() {
@@ -79,7 +80,7 @@ class XmlImporterTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testImportXML2() throws Exception {
+    void testImportXML2() throws Exception {
         class Model implements I_XmlModelEntity {
             @Override
             public String getTag() {
@@ -107,10 +108,10 @@ class XmlImporterTest {
             }
         }
         class RootModel implements I_XmlModelEntity {
-            private I_XmlModelEntity _child1 = new Model();
+            private final I_XmlModelEntity _child1 = new Model();
 
-            private SimpleStringProperty _property1 = new SimpleStringProperty("");
-            private SimpleStringProperty _property2 = new SimpleStringProperty("");
+            private final SimpleStringProperty _property1 = new SimpleStringProperty("");
+            private final SimpleStringProperty _property2 = new SimpleStringProperty("");
 
             String getProperty1() {
                 return _property1.get();
@@ -190,10 +191,10 @@ class XmlImporterTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testImportXML3() throws Exception {
+    void testImportXML3() throws Exception {
         class Entry implements I_XmlModelEntity {
-            private SimpleStringProperty _property1 = new SimpleStringProperty("");
-            private SimpleStringProperty _property2 = new SimpleStringProperty("");
+            private final SimpleStringProperty _property1 = new SimpleStringProperty("");
+            private final SimpleStringProperty _property2 = new SimpleStringProperty("");
 
             String getProperty1() {
                 return _property1.get();
@@ -253,7 +254,7 @@ class XmlImporterTest {
             }
         }
         class RootModel implements I_XmlModelEntity {
-            private List<I_XmlModelEntity> _entries = new ArrayList<>();
+            private final List<I_XmlModelEntity> _entries = new ArrayList<>();
 
             @Override
             public String getTag() {
@@ -267,7 +268,7 @@ class XmlImporterTest {
 
             @Override
             public List<I_XmlModelEntity> getChildren() {
-                return _entries;
+                return Collections.unmodifiableList(_entries);
             }
 
             @Override
@@ -304,7 +305,7 @@ class XmlImporterTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testImportXML4() throws Exception {
+    void testImportXML4() throws Exception {
         class RootModel implements I_XmlModelEntity {
             @Override
             public String getTag() {
