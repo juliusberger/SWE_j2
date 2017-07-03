@@ -18,3 +18,7 @@ Jul 03, 2017 8:18:45 PM app.Main start
 INFORMATION: AnTool erfolgreich gestartet.
 Jul 03, 2017 8:30:06 PM app.Main start
 INFORMATION: AnTool erfolgreich gestartet.
+Jul 03, 2017 8:52:37 PM app.Main start
+INFORMATION: AnTool erfolgreich gestartet.
+Jul 03, 2017 8:56:21 PM app.Main start
+INFORMATION: AnTool erfolgreich gestartet.

@@ -67,7 +67,9 @@ public class ClassificationController implements Initializable {
                                                                                   .getAllProperties();
 
             for (int indexDataModel = 0; indexDataModel < _dataModel.getEntries().size(); indexDataModel++) {
-                if (Objects.equals(functionalRequirementEntry.get(0), _dataModel.getEntries().get(indexDataModel).getFunction())) {
+                if (Objects.equals(functionalRequirementEntry.get(0), _dataModel.getEntries().get(indexDataModel).getFunction()) &&
+                        Objects.equals(functionalRequirementEntry.get(1), _dataModel.getEntries().get(indexDataModel).getDescription()) &&
+                        Objects.equals(functionalRequirementEntry.get(2), _dataModel.getEntries().get(indexDataModel).getStakeholder())) {
                     duplicate = true;
                 }
             }
@@ -77,14 +79,16 @@ public class ClassificationController implements Initializable {
         }
 
         for (int indexDataModel = 0; indexDataModel < _dataModel.getEntries().size(); indexDataModel++) {
-            boolean include = false;
+            boolean included = false;
 
             for (int functionalRequirementEntry = 0; functionalRequirementEntry < _functionalRequirements.getEntries().size(); functionalRequirementEntry++) {
-                if (Objects.equals(_dataModel.getEntries().get(indexDataModel).getFunction(), _functionalRequirements.getEntries().get(functionalRequirementEntry).getAllProperties().get(0))) {
-                    include = true;
+                if (Objects.equals(_dataModel.getEntries().get(indexDataModel).getFunction(), _functionalRequirements.getEntries().get(functionalRequirementEntry).getAllProperties().get(0)) &&
+                        Objects.equals(_dataModel.getEntries().get(indexDataModel).getDescription(), _functionalRequirements.getEntries().get(functionalRequirementEntry).getAllProperties().get(1)) &&
+                        Objects.equals(_dataModel.getEntries().get(indexDataModel).getStakeholder(), _functionalRequirements.getEntries().get(functionalRequirementEntry).getAllProperties().get(2))) {
+                    included = true;
                 }
             }
-            if (!include) _dataModel.getEntries().remove(indexDataModel);
+            if (!included) _dataModel.getEntries().remove(indexDataModel);
         }
 
     }
