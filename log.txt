@@ -1,0 +1,12 @@
+Jul 03, 2017 5:17:13 PM app.Main start
+INFORMATION: AnTool erfolgreich gestartet.
+Jul 03, 2017 7:26:14 PM app.Main start
+INFORMATION: AnTool erfolgreich gestartet.
+Jul 03, 2017 7:26:37 PM app.controller.CostEstimationController populateImpactFactorsToCalculation
+SCHWERWIEGEND: Fehler bei Aufwandsschätzung - Ungültige Werte bei Einflussfaktoren verwendet
+Jul 03, 2017 7:35:46 PM app.Main start
+INFORMATION: AnTool erfolgreich gestartet.
+Jul 03, 2017 7:49:09 PM app.Main start
+INFORMATION: AnTool erfolgreich gestartet.
+Jul 03, 2017 8:06:16 PM app.Main start
+INFORMATION: AnTool erfolgreich gestartet.
