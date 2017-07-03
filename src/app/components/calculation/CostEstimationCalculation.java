@@ -198,11 +198,11 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
         for (int indexInfluenceFactors = 0; indexInfluenceFactors < _influenceFactors.size(); indexInfluenceFactors++) {
             Integer influenceFactor = _influenceFactors.get(indexInfluenceFactors);
             if (indexInfluenceFactors == 3 || indexInfluenceFactors == 5) {
-                if ((influenceFactor > 0) && (_influenceFactors.get(indexInfluenceFactors) < 5)) influenceFactor -= 1;
+                if ((influenceFactor > 0) && (influenceFactor < 5)) influenceFactor -= 1;
                 else if ((influenceFactor > 4) && (influenceFactor < 8)) influenceFactor -= 2;
                 else if ((influenceFactor > 7) && (influenceFactor < 11)) influenceFactor -= 3;
             } else {
-                if ((influenceFactor > 0) && (_influenceFactors.get(indexInfluenceFactors) < 4)) influenceFactor -= 1;
+                if ((influenceFactor > 0) && (influenceFactor < 4)) influenceFactor -= 1;
                 else if ((influenceFactor > 3) && (influenceFactor < 6)) influenceFactor -= 2;
             }
             _influenceFactors.set(indexInfluenceFactors, influenceFactor);
