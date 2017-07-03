@@ -217,6 +217,4 @@ public class CostEstimationCalculation implements I_CostEstimationCalculation {
                 AlertType.INFORMATION
         );
     }
-
-
 }
