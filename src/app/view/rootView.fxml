@@ -13,7 +13,7 @@
 	      AnchorPane.topAnchor="0.0"
 	      AnchorPane.leftAnchor="0.0"
 	      AnchorPane.rightAnchor="0.0"
-	      stylesheets="@../assets/global.css">
+	      stylesheets="@../../assets/global.css">
 
 		<MenuBar>
 			<Menu mnemonicParsing="false"

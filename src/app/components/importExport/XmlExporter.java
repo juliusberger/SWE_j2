@@ -64,6 +64,7 @@ class XmlExporter implements I_XmlExporter {
         }
 
         _writer.writeEndElement();
+        _writer.flush();
     }
 
     @Override

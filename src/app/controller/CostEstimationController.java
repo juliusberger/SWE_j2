@@ -62,12 +62,12 @@ public class CostEstimationController implements Initializable {
         Stage stage = new Stage();
 
         try {
-            VBox vBox = FXMLLoader.load(ClassificationController.class.getResource("../view/classification.fxml"));
+            VBox vBox = FXMLLoader.load(ClassificationController.class.getResource("/app/view/classification.fxml"));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.DECORATED);
             stage.setTitle("Anforderungen klassifizieren");
             stage.getIcons()
-                 .add(new Image(ClassificationController.class.getResourceAsStream("../assets/ANTool_Icon2.png")));
+                 .add(new Image(ClassificationController.class.getResourceAsStream("/assets/ANTool_Icon2.png")));
             stage.setScene(new Scene(vBox));
 
             stage.showAndWait();

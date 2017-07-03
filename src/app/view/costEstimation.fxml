@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml/1" fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER"
             styleClass="p-10"
-            stylesheets="@../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
+            stylesheets="@../../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
             fx:controller="app.controller.CostEstimationController">
 	<VBox spacing="10.0">
 

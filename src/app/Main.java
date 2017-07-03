@@ -40,7 +40,7 @@ public class Main extends Application {
 
         primaryStage.setTitle(Constants.CONTEXT_TITLE_COMMON);
         primaryStage.initStyle(StageStyle.DECORATED);
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/ANTool_Icon2.png")));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/ANTool_Icon2.png")));
         primaryStage.setScene(scene);
 
         primaryStage.setOnCloseRequest(event -> {

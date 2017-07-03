@@ -5,7 +5,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       spacing="10.0"
       styleClass="p-10"
-      stylesheets="@../assets/global.css"
+      stylesheets="@../../assets/global.css"
       xmlns="http://javafx.com/javafx"
       fx:controller="app.controller.StateAnalysisController">
 	<Label styleClass="h3">

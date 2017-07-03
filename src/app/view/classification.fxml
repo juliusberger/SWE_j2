@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="700.0" spacing="10.0" styleClass="p-10"
-      stylesheets="@../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
+      stylesheets="@../../assets/global.css" xmlns="http://javafx.com/javafx/8.0.112"
       fx:controller="app.controller.ClassificationController">
 
 	<TableView fx:id="_classificationTable" editable="true" maxHeight="360.0">
