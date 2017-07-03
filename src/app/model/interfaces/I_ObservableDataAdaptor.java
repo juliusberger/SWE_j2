@@ -10,19 +10,19 @@ import java.util.ArrayList;
  */
 public interface I_ObservableDataAdaptor<S extends I_ModelPropertyAdaptor> extends I_Clearable {
     /**
-     * Erstellt ein Objekt des Typs S und setzt die Properties gemäß setAllProperties.
+     * Erstellt ein Objekt des Typs S und setzt die Properties gemäß {@link I_ModelPropertyAdaptor#setAllProperties(ArrayList)}.
      *
      * @param propertyStrings s. setAllProperties in {@link I_ModelPropertyAdaptor#setAllProperties(ArrayList)}
      */
     void addEntryWithProperties(ArrayList<String> propertyStrings);
 
     /**
-     * @return Liefert die {@link ObservableList} der Items des Typs S
+     * @return Liefert die {@link ObservableList} der Items des Typs S. Die Entries sind die von einer Klasse gehaltenen Einträge variabler Anzahl. Bsp.: Glossar hält verschieden viele GlossarEinträge.
      */
     ObservableList<S> getEntries();
 
     /**
-     * @return Liefert die NAmen aller Property-Stings, benötigt zum Populieren von TableViews.
+     * @return Liefert die Namen der Variablen aller Properties, benötigt zum Populieren von TableViews in JavaFX.
      */
     String[] getPropertyNames();
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<Root>
+    <Children>
+        <Entry>
+            <Properties>
+                <Property data="test1"/>
+                <Property data="test2"/>
+            </Properties>
+        </Entry>
+        <Entry>
+            <Properties>
+                <Property data="test3"/>
+                <Property data="test4"/>
+            </Properties>
+        </Entry>
+    </Children>
+</Root>

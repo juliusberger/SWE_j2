@@ -10,18 +10,18 @@ import java.util.List;
  */
 public interface I_XmlModelEntity extends I_ModelPropertyAdaptor {
     /**
-     * @return Gibt die String Repräsentation des später in der XML-Datei zu stehenden Tags zurück.
+     * @return Gibt die String Repräsentation des später in der XML-Datei zu stehenden Tags zurück. Für Import und Export benoetigt.
      */
     String getTag();
 
     /**
-     * @return Liefert alle enthaltenen Kind-Models, die beim Import/Export rekursiv durchlaufen werden. s. {@link app.helpers.importExport.I_XmlImporter} und {@link app.helpers.importExport.I_XmlExporter}
+     * @return Liefert alle in der Klasse gehaltenen Kind-Models, die dann beim Import/Export rekursiv durchlaufen werden. s. {@link app.helpers.importExport.I_XmlImporter} und {@link app.helpers.importExport.I_XmlExporter}
      */
     @Nullable
     List<I_XmlModelEntity> getChildren();
 
     /**
-     * Überschreibung der Factory-Methode aus {@link I_ObservableDataAdaptor#addEntryWithProperties(ArrayList)}
+     * s. Factory-Methode aus {@link I_ObservableDataAdaptor#addEntryWithProperties(ArrayList)}
      *
      * @param properties s. {@link I_ObservableDataAdaptor#addEntryWithProperties(ArrayList)}
      */

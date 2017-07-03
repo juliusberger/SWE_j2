@@ -9,6 +9,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+import java.util.logging.Level;
+
 /**
  * Klasse zum erstellen einfacher Dialoge. Entweder als Informationen mit verschiedener Dringlichkeit, oder als Bestätigungsdialoge mit Ja/Nein Auswahl.
  */
@@ -24,43 +27,44 @@ public final class InfoDialog {
      * @param alertType Dringlichkeit des Dialogs. Für {@link AlertType#CONFIRMATION} wird ein Bestätigungsdialog mit Ja/Nein Auswahl erstellt.
      */
     public InfoDialog(String title, String header, String message, AlertType alertType) {
-        Alert alert = new Alert(alertType.getAlertType());
-        alert.setHeaderText(header);
-        alert.setContentText(message);
+        try {
+            Alert alert = new Alert(alertType.getAlertType());
+            alert.setHeaderText(header);
+            alert.setContentText(message);
 
-        if (alertType == AlertType.CONFIRMATION) {
-            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            if (alertType == AlertType.CONFIRMATION) {
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
-            ButtonType buttonJa = new ButtonType("Ja", ButtonData.YES);
-            ButtonType buttonNein = new ButtonType("Nein", ButtonData.NO);
+                ButtonType buttonJa = new ButtonType("Ja", ButtonData.YES);
+                ButtonType buttonNein = new ButtonType("Nein", ButtonData.NO);
 
-            alert.getButtonTypes().clear();
-            alert.getButtonTypes().addAll(buttonJa, buttonNein);
+                alert.getButtonTypes().clear();
+                alert.getButtonTypes().addAll(buttonJa, buttonNein);
+            }
+
+            DialogPane alertPane = alert.getDialogPane();
+
+            ObjectProperty<ButtonType> result = new SimpleObjectProperty<>();
+            for (ButtonType type : alertPane.getButtonTypes()) {
+                ((Button) alertPane.lookupButton(type)).setOnAction(e -> {
+                    result.set(type);
+                    alertPane.getScene().getWindow().hide();
+                });
+            }
+
+            alertPane.getScene().setRoot(new Label());
+
+            Scene scene = new Scene(alertPane);
+            Stage dialog = new Stage();
+            dialog.setScene(scene);
+            dialog.setTitle(title);
+            dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("assets/ANTool_Icon2.png")));
+
+            dialog.showAndWait();
+            _resultButtonData = (result.get() == null) ? null : result.get().getButtonData();
+        } catch (ExceptionInInitializerError | NoClassDefFoundError e) {
+            Log.getLogger().log(Level.SEVERE, "JavaFX fehler, Dialog konnte nicht erstellt werden. Fehler:" + Arrays.toString(e.getStackTrace()));
         }
-
-        DialogPane alertPane = alert.getDialogPane();
-
-        /*for (ButtonType type : alertPane.getButtonTypes()) {
-            ((Button) alertPane.lookupButton(type)).setOnAction(e -> alertPane.getScene().getWindow().hide());
-        }*/
-        ObjectProperty<ButtonType> result = new SimpleObjectProperty<>();
-        for (ButtonType type : alertPane.getButtonTypes()) {
-            ((Button) alertPane.lookupButton(type)).setOnAction(e -> {
-                result.set(type);
-                alertPane.getScene().getWindow().hide();
-            });
-        }
-
-        alertPane.getScene().setRoot(new Label());
-
-        Scene scene = new Scene(alertPane);
-        Stage dialog = new Stage();
-        dialog.setScene(scene);
-        dialog.setTitle(title);
-        dialog.getIcons().add(new Image(InfoDialog.class.getResourceAsStream("assets/ANTool_Icon2.png")));
-
-        dialog.showAndWait();
-        _resultButtonData = (result.get() == null) ? null : result.get().getButtonData();
     }
 
     public ButtonData getResultButtonData() {
