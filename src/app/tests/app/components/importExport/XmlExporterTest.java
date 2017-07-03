@@ -1,4 +1,4 @@
-package app.helpers.importExport;
+package app.components.importExport;
 
 import app.model.implementation.ProjectRegistry;
 import org.junit.jupiter.api.AfterAll;
@@ -6,12 +6,26 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Testklasse für {@link XmlExporter}
  */
 class XmlExporterTest {
+    /**
+     * Methode löscht durch {@link XmlExporter#exportXml()} erstellte Testdatei nach Beendigung aller Tests
+     *
+     * @throws Exception Wird geworfen, falls Datei nicht gelöscht werden kann
+     */
+    @AfterAll
+    static void clean() throws Exception {
+        File testFile = new File("Test.xml");
+        if (testFile.exists()) {
+            testFile.delete();
+        }
+    }
+
     /**
      * Testmethode für {@link XmlExporter#exportXml()}
      * Erwartetes Ergebnis: false
@@ -19,8 +33,7 @@ class XmlExporterTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testExportXML0() throws Exception
-    {
+    void testExportXML0() throws Exception {
         XmlExporter xmlExporter = new XmlExporter();
         boolean result = xmlExporter.exportXml();
         assertFalse(result);
@@ -33,8 +46,7 @@ class XmlExporterTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testExportXML1() throws Exception
-    {
+    void testExportXML1() throws Exception {
         XmlExporter xmlExporter = new XmlExporter();
         xmlExporter.setFileName("Test.xml");
         boolean result = xmlExporter.exportXml();
@@ -48,27 +60,11 @@ class XmlExporterTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testExportXML2() throws Exception
-    {
+    void testExportXML2() throws Exception {
         XmlExporter xmlExporter = new XmlExporter();
         xmlExporter.setFileName("Test.xml");
         xmlExporter.setRootModel(ProjectRegistry.getInstance());
         boolean result = xmlExporter.exportXml();
         assertTrue(result);
-    }
-
-    /**
-     * Methode löscht durch {@link XmlExporter#exportXml()} erstellte Testdatei nach Beendigung aller Tests
-     *
-     * @throws Exception Wird geworfen, falls Datei nicht gelöscht werden kann
-     */
-    @AfterAll
-    public static void clean() throws Exception
-    {
-        File testFile = new File("Test.xml");
-        if (testFile.exists())
-        {
-            testFile.delete();
-        }
     }
 }

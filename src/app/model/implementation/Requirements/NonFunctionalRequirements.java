@@ -38,11 +38,6 @@ class NonFunctionalRequirements extends ObservableEntryHolder<I_NonFunctionalReq
     }
 
     @Override
-    public void removeExistingData() {
-        getEntries().clear();
-    }
-
-    @Override
     public String[] getPropertyNames() {
         return new String[]{"businessProcess", "description"};
     }

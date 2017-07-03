@@ -1,10 +1,10 @@
-package app.helpers.importExport;
+package app.components.importExport;
 
 import app.Constants;
 import app.InfoDialog;
 import app.InfoDialog.AlertType;
 import app.Main;
-import app.helpers.ValidateInput;
+import app.components.ValidateInput;
 import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.I_ProjectRegistry;
 import javafx.stage.FileChooser;
@@ -84,6 +84,7 @@ public final class ProjectExportImportManager implements I_ProjectExportImportMa
     /**
      * Zeigt den Dateispeicherdialog und führt den XML-Export aus.
      * Zeigt eine Warnmeldung, falls validierte Textfelder nicht ausgefüllt oder fehlerhaft sind.
+     *
      * @return Gibt zurück, ob Export erfolgreich war, oder nicht.
      */
     @Override
@@ -133,6 +134,7 @@ public final class ProjectExportImportManager implements I_ProjectExportImportMa
 
     /**
      * Holt sich I_ProjectRegistry als rootModel, loescht existierende Daten, und übergibt es an den Importer.
+     *
      * @param file File-Element aus dem Dateiauswahldialog.
      * @return Gibt zurück, ob Import erfolgreich war, oder nicht.
      */
@@ -148,6 +150,7 @@ public final class ProjectExportImportManager implements I_ProjectExportImportMa
 
     /**
      * Holt sich I_ProjectRegistry als rootModel und übergibt es an den Exporter.
+     *
      * @param file File-Element aus dem Dateispeicherdialog.
      * @return Gibt zurück, ob Export erfolgreich war, oder nicht.
      */

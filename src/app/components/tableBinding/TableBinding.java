@@ -1,4 +1,4 @@
-package app.helpers;
+package app.components.tableBinding;
 
 import app.model.interfaces.I_ModelPropertyAdaptor;
 import app.model.interfaces.I_ObservableDataAdaptor;

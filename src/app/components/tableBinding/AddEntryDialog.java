@@ -1,4 +1,4 @@
-package app.helpers;
+package app.components.tableBinding;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -49,11 +49,11 @@ class AddEntryDialog extends Observable implements I_AddEntryDialog {
         _addEntryDialog.initModality(Modality.APPLICATION_MODAL);
         _addEntryDialog.initStyle(StageStyle.DECORATED);
         _addEntryDialog.setTitle("Eintrag hinzufügen");
-        _addEntryDialog.getIcons().add(new Image(getClass().getResourceAsStream("../assets/ANTool_Icon2.png")));
+        _addEntryDialog.getIcons().add(new Image(getClass().getResourceAsStream("../../assets/ANTool_Icon2.png")));
 
         VBox vBox = new VBox();
         vBox.setSpacing(10.0);
-        vBox.getStylesheets().add(getClass().getResource("../assets/global.css").toExternalForm());
+        vBox.getStylesheets().add(getClass().getResource("../../assets/global.css").toExternalForm());
         vBox.getStyleClass().add("p-10");
         vBox.setPrefWidth(400.0);
 

@@ -1,4 +1,4 @@
-package app.helpers.importExport;
+package app.components.importExport;
 
 
 import app.Constants;
@@ -55,9 +55,11 @@ class XmlImporter implements I_XmlImporter {
             Log.getLogger().info("XML-Import erfolgreich durchgeführt. Pfad zur Datei: " + _fileName);
             return true;
         } catch (FileNotFoundException e) {
-            Log.getLogger().log(
-                    Level.SEVERE, "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht gefunden werden. " + e.getMessage()
-            );
+            Log.getLogger()
+               .log(
+                       Level.SEVERE,
+                       "XML-Import nicht erfolgreich abgeschlossen. Datei konnte nicht gefunden werden. " + e.getMessage()
+               );
             new InfoDialog(
                     Constants.CONTEXT_TITLE_ERROR,
                     "Fehler beim Laden",

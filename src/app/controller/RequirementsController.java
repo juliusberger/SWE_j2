@@ -1,9 +1,9 @@
 package app.controller;
 
-import app.helpers.I_TableBinding;
-import app.helpers.TableBinding;
-import app.helpers.ValidateInput;
-import app.helpers.ValidateInput.Validator;
+import app.components.ValidateInput;
+import app.components.ValidateInput.Validator;
+import app.components.tableBinding.I_TableBinding;
+import app.components.tableBinding.TableBinding;
 import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.Requirements.*;
 import app.model.interfaces.Requirements.I_QualityRequirementEntry.Priority;
@@ -105,7 +105,36 @@ public class RequirementsController implements Initializable {
                                                                             _nonFunctionalRequirementsDeleteButton
         );
 
-        ToggleGroup[] qualityRequirementToggleGroups = {_qualityRequirementToggleGroup1, _qualityRequirementToggleGroup2, _qualityRequirementToggleGroup3, _qualityRequirementToggleGroup4, _qualityRequirementToggleGroup5, _qualityRequirementToggleGroup6, _qualityRequirementToggleGroup7, _qualityRequirementToggleGroup8, _qualityRequirementToggleGroup9, _qualityRequirementToggleGroup10, _qualityRequirementToggleGroup11, _qualityRequirementToggleGroup12, _qualityRequirementToggleGroup13, _qualityRequirementToggleGroup14, _qualityRequirementToggleGroup15, _qualityRequirementToggleGroup16, _qualityRequirementToggleGroup17, _qualityRequirementToggleGroup18, _qualityRequirementToggleGroup19, _qualityRequirementToggleGroup20, _qualityRequirementToggleGroup21, _qualityRequirementToggleGroup22, _qualityRequirementToggleGroup23, _qualityRequirementToggleGroup24, _qualityRequirementToggleGroup25, _qualityRequirementToggleGroup26, _qualityRequirementToggleGroup27, _qualityRequirementToggleGroup28};
+        ToggleGroup[] qualityRequirementToggleGroups = {
+                _qualityRequirementToggleGroup1,
+                _qualityRequirementToggleGroup2,
+                _qualityRequirementToggleGroup3,
+                _qualityRequirementToggleGroup4,
+                _qualityRequirementToggleGroup5,
+                _qualityRequirementToggleGroup6,
+                _qualityRequirementToggleGroup7,
+                _qualityRequirementToggleGroup8,
+                _qualityRequirementToggleGroup9,
+                _qualityRequirementToggleGroup10,
+                _qualityRequirementToggleGroup11,
+                _qualityRequirementToggleGroup12,
+                _qualityRequirementToggleGroup13,
+                _qualityRequirementToggleGroup14,
+                _qualityRequirementToggleGroup15,
+                _qualityRequirementToggleGroup16,
+                _qualityRequirementToggleGroup17,
+                _qualityRequirementToggleGroup18,
+                _qualityRequirementToggleGroup19,
+                _qualityRequirementToggleGroup20,
+                _qualityRequirementToggleGroup21,
+                _qualityRequirementToggleGroup22,
+                _qualityRequirementToggleGroup23,
+                _qualityRequirementToggleGroup24,
+                _qualityRequirementToggleGroup25,
+                _qualityRequirementToggleGroup26,
+                _qualityRequirementToggleGroup27,
+                _qualityRequirementToggleGroup28
+        };
         for (int i = 0; i < qualityRequirementToggleGroups.length; i++) {
             ToggleGroup currentToggleGroup = qualityRequirementToggleGroups[i];
             I_QualityRequirementEntry currentQualityRequirementEntry = _dataModel.getQualityRequirementEntries().get(i);

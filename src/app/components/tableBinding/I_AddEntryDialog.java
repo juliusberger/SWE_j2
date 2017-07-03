@@ -1,4 +1,4 @@
-package app.helpers;
+package app.components.tableBinding;
 
 import java.util.ArrayList;
 import java.util.List;

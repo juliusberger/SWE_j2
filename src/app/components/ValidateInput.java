@@ -1,4 +1,4 @@
-package app.helpers;
+package app.components;
 
 import javafx.scene.control.TextInputControl;
 

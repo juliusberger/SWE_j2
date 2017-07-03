@@ -1,4 +1,4 @@
-package app.helpers.importExport;
+package app.components.importExport;
 
 /**
  * Manager, der die Funktionen des Imports und Exports für Projekt und XML beinhaltet.

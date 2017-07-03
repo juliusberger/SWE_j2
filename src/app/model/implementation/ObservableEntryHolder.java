@@ -1,5 +1,6 @@
 package app.model.implementation;
 
+import app.components.tableBinding.TableBinding;
 import app.model.interfaces.I_ModelEntryFactory;
 import app.model.interfaces.I_ObservableDataAdaptor;
 import app.model.interfaces.I_XmlModelEntity;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Alle Klassen, die eine {@link ObservableList} des jeweiligen Typs halten, und Einträge dynamisch verwalten erben von dieser Klasse.
- * Nützlich ist dies in Verbindung mit der Verwendung von {@link javafx.scene.control.TableView}s über das {@link app.helpers.TableBinding}.
+ * Nützlich ist dies in Verbindung mit der Verwendung von {@link javafx.scene.control.TableView}s über das {@link TableBinding}.
  */
 public abstract class ObservableEntryHolder<S extends I_XmlModelEntity> implements I_ModelEntryFactory<S>, I_ObservableDataAdaptor<S> {
     /**

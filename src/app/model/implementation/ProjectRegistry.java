@@ -23,7 +23,7 @@ import java.util.List;
  * Model-Implementierung von {@link I_ProjectRegistry}
  */
 public final class ProjectRegistry implements I_ProjectRegistry {
-    private static I_ProjectRegistry _instance = new ProjectRegistry();
+    private static final I_ProjectRegistry _instance = new ProjectRegistry();
 
     private final I_ProjectData _projectData = new ProjectData();
     private final I_Analysis _stateAnalysis = new StateAnalysis();

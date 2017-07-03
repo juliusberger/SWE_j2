@@ -1,7 +1,7 @@
 package app.controller;
 
-import app.helpers.I_TableBinding;
-import app.helpers.TableBinding;
+import app.components.tableBinding.I_TableBinding;
+import app.components.tableBinding.TableBinding;
 import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.Glossary.I_Glossary;
 import app.model.interfaces.Glossary.I_GlossaryEntry;

@@ -1,4 +1,4 @@
-package app.components;
+package app.components.calculation;
 
 import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.CostEstimation.I_Classification;
@@ -15,21 +15,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class CostEstimationCalculationTest {
     private static final String CALCULATE_MEN_MONTH_NAME = "calculateMenMonths";
-    private static String CALCULATE_FUNCTION_TYPES_SUMS_NAME = "calculateFunctionTypesSums";
-    private static String CALCULATE_IMPACT_FACTOR_NAME = "calculateImpactFactor";
-    private CostEstimationCalculation _costEstimationCalculation;
+    private static final String CALCULATE_FUNCTION_TYPES_SUMS_NAME = "calculateFunctionTypesSums";
+    private static final String CALCULATE_IMPACT_FACTOR_NAME = "calculateImpactFactor";
+    private static final String PERFORM_AUTOMATIC_OPTIMIZATION_NAME = "performAutomaticOptimization";
+    private CostEstimationCalculation _costEstimationCalculation = null;
     // Testmethode: calculateMenMonths(double functionPoints)
-    private Method _testCalculateMenMonths;
-    private Class[] parameterTypes_CALCULATE_MEN_MONTH;
-    private Object[] parameters_CALCULATE_MEN_MONTH;
+    private Method _testCalculateMenMonths = null;
+    private Class[] parameterTypes_CALCULATE_MEN_MONTH = null;
+    private Object[] parameters_CALCULATE_MEN_MONTH = null;
     // Testmethode: calculateFunctionTypesSums()
-    private Method _testCalculateFunctionTyesSums;
+    private Method _testCalculateFunctionTyesSums = null;
     // Testmethode: calculateImpactFactor()
-    private Method _testCalculateImpactFactor;
+    private Method _testCalculateImpactFactor = null;
+    // Testmethode: performAutomaticOptimization
+    private Method _testPerformAutomaticOptimization = null;
 
     @BeforeEach
-    public void setUp() throws Exception {
-        _costEstimationCalculation = new CostEstimationCalculation("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+    void setUp() throws Exception {
+        _costEstimationCalculation = new CostEstimationCalculation();
+        _costEstimationCalculation.setInfluenceFactors(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
         // Testmethode: calculateMenMonths(double functionPoints)
         parameterTypes_CALCULATE_MEN_MONTH = new Class[1];
@@ -50,6 +54,12 @@ class CostEstimationCalculationTest {
         _testCalculateImpactFactor = _costEstimationCalculation.getClass()
                                                                .getDeclaredMethod(CALCULATE_IMPACT_FACTOR_NAME);
         _testCalculateImpactFactor.setAccessible(true);
+
+        // Testmethode: performAutomaticOptimization()
+        _testPerformAutomaticOptimization = _costEstimationCalculation.getClass()
+                                                                      .getDeclaredMethod(
+                                                                              PERFORM_AUTOMATIC_OPTIMIZATION_NAME);
+        _testPerformAutomaticOptimization.setAccessible(true);
     }
 
     /**
@@ -60,7 +70,7 @@ class CostEstimationCalculationTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testCalculateMenMonths0() throws Exception {
+    void testCalculateMenMonths0() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 45;
         double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation,
                                                                 parameters_CALCULATE_MEN_MONTH
@@ -76,7 +86,7 @@ class CostEstimationCalculationTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testCalculateMenMonths1() throws Exception {
+    void testCalculateMenMonths1() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 233.0;
         double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation,
                                                                 parameters_CALCULATE_MEN_MONTH
@@ -92,7 +102,7 @@ class CostEstimationCalculationTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testCalculateMenMonths2() throws Exception {
+    void testCalculateMenMonths2() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 378.0;
         double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation,
                                                                 parameters_CALCULATE_MEN_MONTH
@@ -108,7 +118,7 @@ class CostEstimationCalculationTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testCalculateMenMonths3() throws Exception {
+    void testCalculateMenMonths3() throws Exception {
         parameters_CALCULATE_MEN_MONTH[0] = 3576.49;
         double result = (Double) _testCalculateMenMonths.invoke(_costEstimationCalculation,
                                                                 parameters_CALCULATE_MEN_MONTH
@@ -123,7 +133,7 @@ class CostEstimationCalculationTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testCalculateFunctionTypesSums() throws Exception {
+    void testCalculateFunctionTypesSums() throws Exception {
         I_Classification classification = ProjectRegistry.getInstance().getClassification();
         // Die ersten drei Einträge sind bei dieser Methode nicht relevant, weshalb hier jeweils "Test" als Platzhalter gewählt wurde
         // Die klassifizierten Anforderungen entsprechen in der Anzahl der von uns im 3. Semester
@@ -215,8 +225,76 @@ class CostEstimationCalculationTest {
      * @throws Exception Wird geworfen, falls Test nicht ausführbar
      */
     @Test
-    public void testCalculateImpactFactor() throws Exception {
-        double result = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
+    void testCalculateImpactFactor0() throws Exception {
+        double result = (double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
         assertEquals(1.15, result);
+    }
+
+    /**
+     * Testmethode für {@link CostEstimationCalculation#calculateImpactFactor()}
+     * Erwartetes Ergebnis: 0,15
+     *
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
+    @Test
+    void testCalculateImpactFactor1() throws Exception {
+        I_CostEstimationCalculation costEstimationCalculation = new CostEstimationCalculation();
+        costEstimationCalculation.setInfluenceFactors(1, 0, 2, 0, 3, 0, 4, 0, 5, 0);
+        double result = (Double) _testCalculateImpactFactor.invoke(costEstimationCalculation);
+        assertEquals(0.15, 1 - result, 0.001);
+    }
+
+    /**
+     * Testmethode für {@link CostEstimationCalculation#performAutomaticOptimization()}
+     * Erwartetes Ergebnis: 0,22
+     *
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
+    @Test
+    void testPerformAutomaticOptimization0() throws Exception {
+        _costEstimationCalculation = new CostEstimationCalculation();
+        _costEstimationCalculation.setInfluenceFactors(5, 5, 5, 10, 5, 10, 5, 5, 5, 5);
+        // erwartetes Zwischenergebnis: 1,3
+        double resultBeforeOptimization = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
+        _testPerformAutomaticOptimization.invoke(_costEstimationCalculation);
+        // erwartetes Zwischenergebnis: 1,08
+        double resultAfterOptimization = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
+        assertEquals(0.22, Math.round((resultBeforeOptimization - resultAfterOptimization) * 100.0) / 100.0);
+    }
+
+    /**
+     * Testmethode für {@link CostEstimationCalculation#performAutomaticOptimization()}
+     * Erwartetes Ergebnis: 0,20
+     *
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
+    @Test
+    void testPerformAutomaticOptimization1() throws Exception {
+        _costEstimationCalculation = new CostEstimationCalculation();
+        _costEstimationCalculation.setInfluenceFactors(5, 5, 5, 6, 5, 6, 5, 5, 5, 5);
+        // erwartetes Zwischenergebnis: 1,22
+        double resultBeforeOptimization = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
+        _testPerformAutomaticOptimization.invoke(_costEstimationCalculation);
+        // erwartetes Zwischenergebnis: 1,02
+        double resultAfterOptimization = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
+        assertEquals(0.20, Math.round((resultBeforeOptimization - resultAfterOptimization) * 100.0) / 100.0);
+    }
+
+    /**
+     * Testmethode für {@link CostEstimationCalculation#performAutomaticOptimization()}
+     * Erwartetes Ergebnis: 0,1
+     *
+     * @throws Exception Wird geworfen, falls Test nicht ausführbar
+     */
+    @Test
+    void testPerformAutomaticOptimization2() throws Exception {
+        _costEstimationCalculation = new CostEstimationCalculation();
+        _costEstimationCalculation.setInfluenceFactors(3, 3, 3, 4, 3, 4, 3, 3, 3, 3);
+        // erwartetes Zwischenergebnis: 1,02
+        double resultBeforeOptimization = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
+        _testPerformAutomaticOptimization.invoke(_costEstimationCalculation);
+        // erwartetes Zwischenergebnis: 0,92
+        double resultAfterOptimization = (Double) _testCalculateImpactFactor.invoke(_costEstimationCalculation);
+        assertEquals(Math.round((resultBeforeOptimization - resultAfterOptimization) * 100.0) / 100.0, 0.1);
     }
 }

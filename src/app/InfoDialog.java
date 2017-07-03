@@ -16,7 +16,7 @@ import java.util.logging.Level;
  * Klasse zum erstellen einfacher Dialoge. Entweder als Informationen mit verschiedener Dringlichkeit, oder als Bestätigungsdialoge mit Ja/Nein Auswahl.
  */
 public final class InfoDialog {
-    private ButtonData _resultButtonData;
+    private ButtonData _resultButtonData = null;
 
     /**
      * Erstellt einen Informationsdialog/Bestätigungsdialog mit angegebener Dringlichkeit, zeigt ihn und blockiert den aufrufenden Thread.
@@ -63,7 +63,11 @@ public final class InfoDialog {
             dialog.showAndWait();
             _resultButtonData = (result.get() == null) ? null : result.get().getButtonData();
         } catch (ExceptionInInitializerError | NoClassDefFoundError e) {
-            Log.getLogger().log(Level.SEVERE, "JavaFX fehler, Dialog konnte nicht erstellt werden. Fehler:" + Arrays.toString(e.getStackTrace()));
+            Log.getLogger()
+               .log(
+                       Level.SEVERE,
+                       "JavaFX fehler, Dialog konnte nicht erstellt werden. Fehler:" + Arrays.toString(e.getStackTrace())
+               );
         }
     }
 
@@ -91,7 +95,7 @@ public final class InfoDialog {
         ERROR(Alert.AlertType.ERROR),
         CONFIRMATION(Alert.AlertType.CONFIRMATION);
 
-        private Alert.AlertType _alertType;
+        private final Alert.AlertType _alertType;
 
         AlertType(Alert.AlertType alertType) {
             _alertType = alertType;

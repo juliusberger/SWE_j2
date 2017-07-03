@@ -1,8 +1,8 @@
 package app.controller;
 
 
-import app.helpers.I_TableBinding;
-import app.helpers.TableBinding;
+import app.components.tableBinding.I_TableBinding;
+import app.components.tableBinding.TableBinding;
 import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.CostEstimation.I_Classification;
 import app.model.interfaces.CostEstimation.I_ClassificationEntry;
@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controller für die Klassifizierung (view/classification.fxml).
- * Dieser Controller ist verantwortlich für die Erstellung des Klassifizierungs-Dialogs, ausgelöst durch den {@link CostEstimationController}.
+ * Dieser Controller ist verantwortlich für die Erstellung und Anzeige des Klassifizierungs-Dialogs, ausgelöst durch den {@link CostEstimationController}.
  */
 public class ClassificationController implements Initializable {
     private final I_Classification _dataModel = ProjectRegistry.getInstance().getClassification();

@@ -1,12 +1,13 @@
 package app.model.interfaces;
 
+import app.components.tableBinding.TableBinding;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
 /**
  * Dieses Interface ist für Klassen gedacht, die eine {@link ObservableList} an Daten des entsprechenden Typs enthalten.
- * Es wird z.B. im {@link app.helpers.TableBinding} benutzt, um generisch Daten hinzuzufügen, zu ändern oder zu löschen.
+ * Es wird z.B. im {@link TableBinding} benutzt, um generisch Daten hinzuzufügen, zu ändern oder zu löschen.
  */
 public interface I_ObservableDataAdaptor<S extends I_ModelPropertyAdaptor> extends I_Clearable {
     /**

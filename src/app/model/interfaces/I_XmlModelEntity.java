@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repräsentiert ein exportierbares Model. Wird von {@link app.helpers.importExport.I_XmlImporter} und {@link app.helpers.importExport.I_XmlExporter} benutzt.
+ * Repräsentiert ein exportierbares Model. Wird von {@link app.components.importExport.I_XmlImporter} und {@link app.components.importExport.I_XmlExporter} benutzt.
  */
 public interface I_XmlModelEntity extends I_ModelPropertyAdaptor {
     /**
@@ -15,7 +15,7 @@ public interface I_XmlModelEntity extends I_ModelPropertyAdaptor {
     String getTag();
 
     /**
-     * @return Liefert alle in der Klasse gehaltenen Kind-Models, die dann beim Import/Export rekursiv durchlaufen werden. s. {@link app.helpers.importExport.I_XmlImporter} und {@link app.helpers.importExport.I_XmlExporter}
+     * @return Liefert alle in der Klasse gehaltenen Kind-Models, die dann beim Import/Export rekursiv durchlaufen werden. s. {@link app.components.importExport.I_XmlImporter} und {@link app.components.importExport.I_XmlExporter}
      */
     @Nullable
     List<I_XmlModelEntity> getChildren();

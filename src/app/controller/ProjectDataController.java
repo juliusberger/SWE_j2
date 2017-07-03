@@ -2,8 +2,8 @@ package app.controller;
 
 import app.Constants;
 import app.Main;
-import app.helpers.ValidateInput;
-import app.helpers.ValidateInput.Validator;
+import app.components.ValidateInput;
+import app.components.ValidateInput.Validator;
 import app.model.implementation.ProjectRegistry;
 import app.model.interfaces.ProjectData.I_ProjectData;
 import javafx.fxml.Initializable;

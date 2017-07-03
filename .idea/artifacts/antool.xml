@@ -1,19 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="antool">
+  <artifact type="jar" name="antool">
     <output-path>$PROJECT_DIR$/out/artifacts/antool</output-path>
-    <properties id="javafx-properties">
-      <options>
-        <option name="appClass" value="app.Main" />
-        <option name="description" value="" />
-        <option name="htmlPlaceholderId" value="" />
-        <option name="title" value="AnTool" />
-        <option name="vendor" value="" />
-        <option name="version" value="" />
-      </options>
-    </properties>
-    <root id="root">
-      <element id="archive" name="antool.jar">
-        <element id="module-output" name="antool" />
+    <root id="archive" name="antool.jar">
+      <element id="module-output" name="antool" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/resources/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>

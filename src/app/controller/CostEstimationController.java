@@ -4,9 +4,10 @@ import app.Constants;
 import app.InfoDialog;
 import app.InfoDialog.AlertType;
 import app.Log;
-import app.components.CostEstimationCalculation;
-import app.components.I_CostEstimationCalculation;
+import app.components.calculation.CostEstimationCalculation;
+import app.components.calculation.I_CostEstimationCalculation;
 import app.model.implementation.ProjectRegistry;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -26,7 +27,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 /**
- * Created by Julius on 26.04.17.
+ * Controller für die Aufwandsabschätzung (view/costEstimation.fxml).
+ * Dieser Controller ist verantwortlich für die Einleitung der Klassifikation, den Aufruf der Kalkulationsmethode, sowie das Anzeigen der errechneten Werte.
  */
 public class CostEstimationController implements Initializable {
     public Button _classifyRequirementsButton;
@@ -50,7 +52,7 @@ public class CostEstimationController implements Initializable {
     public Button _manualOptimizationButton;
     public Button _automaticOptimizationButton;
 
-    private I_CostEstimationCalculation _costEstimationCalculation;
+    private final I_CostEstimationCalculation _costEstimationCalculation = new CostEstimationCalculation();
 
     /**
      * Erstellt ein neues Fenster für den Klassifizierungs-Dialog und zeigt es an.
@@ -150,51 +152,94 @@ public class CostEstimationController implements Initializable {
 
         _classifyRequirementsButton.setOnAction(event -> showClassificationDialog());
 
-        _performCostEstimationButton.setOnAction(event -> {
-            _costEstimationCalculation = new CostEstimationCalculation(
-                    _influenceFactorBox1.getValue(),
-                    _influenceFactorBox2.getValue(),
-                    _influenceFactorBox3.getValue(),
-                    _influenceFactorBox4a.getValue(),
-                    _influenceFactorBox4b.getValue(),
-                    _influenceFactorBox4c.getValue(),
-                    _influenceFactorBox4d.getValue(),
-                    _influenceFactorBox5.getValue(),
-                    _influenceFactorBox6.getValue(),
-                    _influenceFactorBox7.getValue()
-            );
+        final boolean[] isOptimized = {false};
 
-            updateCalculationLabels();
+        _performCostEstimationButton.setOnAction(event -> {
+            if (populateImpactFactorsToCalculation()) {
+                updateCalculation();
+                isOptimized[0] = false;
+            }
         });
 
         _manualOptimizationButton.setOnAction(event -> {
-            showClassificationDialog();
-
-            updateCalculationLabels();
+            if (populateImpactFactorsToCalculation()) {
+                showClassificationDialog();
+                updateCalculation();
+            }
         });
 
-        _automaticOptimizationButton.setOnAction(event -> {
-            _costEstimationCalculation.performAutomaticOptimization();
+        _automaticOptimizationButton.setOnAction((ActionEvent event) -> {
+            if (isOptimized[0]) {
+                new InfoDialog(
+                        "Automatische Optimierung",
+                        "Optimierung bereits durchgeführt",
+                        "Automatische Optimierung der Einflussfaktoren wurde bereits einmal durchgeführt!",
+                        AlertType.ERROR
+                );
+            } else {
+                if (populateImpactFactorsToCalculation()) {
 
-            _influenceFactorBox1.setValue(_costEstimationCalculation.getInfluenceFactors().get("1"));
-            _influenceFactorBox2.setValue(_costEstimationCalculation.getInfluenceFactors().get("2"));
-            _influenceFactorBox3.setValue(_costEstimationCalculation.getInfluenceFactors().get("3"));
-            _influenceFactorBox4a.setValue(_costEstimationCalculation.getInfluenceFactors().get("4a"));
-            _influenceFactorBox4b.setValue(_costEstimationCalculation.getInfluenceFactors().get("4b"));
-            _influenceFactorBox4c.setValue(_costEstimationCalculation.getInfluenceFactors().get("4c"));
-            _influenceFactorBox4d.setValue(_costEstimationCalculation.getInfluenceFactors().get("4d"));
-            _influenceFactorBox5.setValue(_costEstimationCalculation.getInfluenceFactors().get("5"));
-            _influenceFactorBox6.setValue(_costEstimationCalculation.getInfluenceFactors().get("6"));
-            _influenceFactorBox7.setValue(_costEstimationCalculation.getInfluenceFactors().get("7"));
+                    _costEstimationCalculation.performAutomaticOptimization();
 
-            updateCalculationLabels();
+                    _influenceFactorBox1.setValue(_costEstimationCalculation.getInfluenceFactors().get(0).toString());
+                    _influenceFactorBox2.setValue(_costEstimationCalculation.getInfluenceFactors().get(1).toString());
+                    _influenceFactorBox3.setValue(_costEstimationCalculation.getInfluenceFactors().get(2).toString());
+                    _influenceFactorBox4a.setValue(_costEstimationCalculation.getInfluenceFactors().get(3).toString());
+                    _influenceFactorBox4b.setValue(_costEstimationCalculation.getInfluenceFactors().get(4).toString());
+                    _influenceFactorBox4c.setValue(_costEstimationCalculation.getInfluenceFactors().get(5).toString());
+                    _influenceFactorBox4d.setValue(_costEstimationCalculation.getInfluenceFactors().get(6).toString());
+                    _influenceFactorBox5.setValue(_costEstimationCalculation.getInfluenceFactors().get(7).toString());
+                    _influenceFactorBox6.setValue(_costEstimationCalculation.getInfluenceFactors().get(8).toString());
+                    _influenceFactorBox7.setValue(_costEstimationCalculation.getInfluenceFactors().get(9).toString());
+
+                    updateCalculation();
+
+                    isOptimized[0] = true;
+                }
+            }
         });
     }
 
-    private void updateCalculationLabels() {
+    private void updateCalculation() {
         _costEstimationCalculation.performCostEstimation();
         _calculatedFunctionPointsLabel.setText(Double.toString(_costEstimationCalculation.getCalculatedFunctionPoints()));
         _calculatedMenMonthsLabel.setText(Double.toString(_costEstimationCalculation.getCalculatedMenMonths()));
+    }
+
+    /**
+     * Überprüft, ob alle Eingabefelder in Integer konvertiert und somit weiterverarbeitet werden können
+     *
+     * @return Wahrheitswert, ob Einflussfaktoren-Felder verarbeitet werden können oder nicht
+     */
+    private boolean populateImpactFactorsToCalculation() {
+        try {
+            Integer[] influenceFactors = new Integer[]{
+                    Integer.parseInt(_influenceFactorBox1.getValue()),
+                    Integer.parseInt(_influenceFactorBox2.getValue()),
+                    Integer.parseInt(_influenceFactorBox3.getValue()),
+                    Integer.parseInt(_influenceFactorBox4a.getValue()),
+                    Integer.parseInt(_influenceFactorBox4b.getValue()),
+                    Integer.parseInt(_influenceFactorBox4c.getValue()),
+                    Integer.parseInt(_influenceFactorBox4d.getValue()),
+                    Integer.parseInt(_influenceFactorBox5.getValue()),
+                    Integer.parseInt(_influenceFactorBox6.getValue()),
+                    Integer.parseInt(_influenceFactorBox7.getValue())
+            };
+
+            _costEstimationCalculation.setInfluenceFactors(influenceFactors);
+
+            return true;
+        } catch (NumberFormatException ignored) {
+            new InfoDialog(
+                    "Aufwandsschätzung",
+                    "Fehler bei Aufwandsschätzung",
+                    "Alle Einflussfaktoren müssen gesetzt sein!",
+                    AlertType.ERROR
+            );
+            Log.getLogger()
+               .log(Level.SEVERE, "Fehler bei Aufwandsschätzung - Ungültige Werte bei Einflussfaktoren verwendet");
+        }
+        return false;
     }
 
 

@@ -1,8 +1,8 @@
 package app;
 
 import app.InfoDialog.AlertType;
-import app.helpers.importExport.I_ProjectExportImportManager;
-import app.helpers.importExport.ProjectExportImportManager;
+import app.components.importExport.I_ProjectExportImportManager;
+import app.components.importExport.ProjectExportImportManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +14,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class Main extends Application {
-    private static Stage _primaryStage;
+    private static Stage _primaryStage = null;
 
     public static void main(String[] args) {
         launch(args);
@@ -27,6 +27,7 @@ public class Main extends Application {
     /**
      * Startet die JavaFX App und lädt die rootView.
      * Beim Beenden wird immer nachgefragt, ob das Projekt gespeichert werden soll. Dies gibt dem Anwender etwas mehr Sicherheit gegen aus Versehen passiertes Schliessen.
+     *
      * @param primaryStage Wird vom JavaFX launch-Handler übergeben.
      * @throws IOException s. JavaFX launch-Handler
      */
